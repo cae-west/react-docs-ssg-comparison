@@ -21,6 +21,8 @@ const config = {
   // Serve the copied images (public/images/...) from the site root, as react.dev does.
   staticDirectories: ['static', '../public'],
 
+  plugins: ['./plugins/react-home.cjs'],
+
   i18n: {defaultLocale: 'en', locales: ['en']},
 
   presets: [
@@ -30,6 +32,8 @@ const config = {
       ({
         docs: {
           path: '../content',      // read the unmodified content in place
+          // The home page is react.dev's own HomeContent.js (see src/pages/index.js), not the stub index.md
+          exclude: ['index.md', '**/_*.{js,jsx,ts,tsx,md,mdx}', '**/_*/**', '**/*.test.{js,jsx,ts,tsx}', '**/__tests__/**'],
           routeBasePath: '/',      // docs at the site root, like react.dev
           sidebarPath: './sidebars.js',
           beforeDefaultRemarkPlugins: [reactDocsRemark],

@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Minimal reset, scoped to the homepage (Tailwind's preflight would restyle the whole site). */
+.rd-home *, .rd-home ::before, .rd-home ::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: currentColor; }
+.rd-home h1, .rd-home h2, .rd-home h3, .rd-home h4, .rd-home h5, .rd-home h6 { font-size: inherit; font-weight: inherit; margin: 0; }
+.rd-home p, .rd-home figure, .rd-home blockquote, .rd-home pre { margin: 0; }
+.rd-home a { color: inherit; text-decoration: inherit; border-bottom: 0; }
+.rd-home ul, .rd-home ol { list-style: none; margin: 0; padding: 0; }
+.rd-home img, .rd-home svg, .rd-home video { display: block; vertical-align: middle; max-width: 100%; }
+.rd-home button, .rd-home input { font: inherit; color: inherit; margin: 0; background: transparent; cursor: pointer; }
+.rd-home { font-family: -apple-system, system-ui, 'Segoe UI', Roboto, sans-serif; font-size: 16px; line-height: 1.5; }

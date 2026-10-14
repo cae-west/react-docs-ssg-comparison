@@ -6,6 +6,7 @@ const path = require('path');
 const CONTENT = path.resolve(__dirname, '../content');
 const SIDEBARS = path.resolve(__dirname, '../sidebars');
 
+// {{version}} in section headers is filled in by react.dev from siteConfig.version (19.3).
 // Map a react.dev URL path (e.g. /learn/state) to a Docusaurus doc id.
 function docIdFor(routePath) {
   if (routePath === '/' || routePath === '') return 'home'; // content/index.md has `id: home`
@@ -21,7 +22,7 @@ function build(sidebarFile) {
 
   function convert(node) {
     if (node.hasSectionHeader) {
-      return {type: 'html', value: node.sectionHeader, className: 'sidebar-section-header'};
+      return {type: 'html', value: node.sectionHeader.replace('{{version}}', '19.3'), className: 'sidebar-section-header'};
     }
     if (node.path && /^https?:\/\//.test(node.path)) {
       return {type: 'link', label: node.title, href: node.path};
