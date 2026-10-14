@@ -43,12 +43,12 @@ const config = {
   themeConfig: {
     navbar: {
       title: 'React',
+      logo: {alt: 'React', src: 'img/logo.svg'},
       items: [
         {type: 'docSidebar', sidebarId: 'learn', position: 'left', label: 'Learn'},
         {type: 'docSidebar', sidebarId: 'reference', position: 'left', label: 'Reference'},
         {type: 'docSidebar', sidebarId: 'community', position: 'left', label: 'Community'},
         {type: 'docSidebar', sidebarId: 'blog', position: 'left', label: 'Blog'},
-        {type: 'docSidebar', sidebarId: 'extras', position: 'left', label: 'Warnings & Errors'},
       ],
     },
     prism: {theme: prismThemes.github, darkTheme: prismThemes.dracula},
