@@ -1,0 +1,121 @@
+
+> docusaurus@0.0.0 build
+> docusaurus build
+
+[INFO] [en] Creating an optimized production build...
+[sidebars] sidebarBlog.json: 1 path(s) with no matching file [ '/blog/2024/04/25/react-19' ]
+(node:17372) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17372) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17372) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WARNING] Docusaurus static site generation process emitted warnings for 1 paths
+This is non-critical and can be disabled with DOCUSAURUS_IGNORE_SSG_WARNINGS=true
+Troubleshooting guide: https://github.com/facebook/docusaurus/discussions/10580
+
+- "/learn/keeping-components-pure":
+  - [HTML minifier diagnostic - error] No "p" element in scope but a "p" end tag seen - {"primary_spans":[{"end":17994,"start":17990}],"span_labels":[]}
+  - [HTML minifier diagnostic - error] No "p" element in scope but a "p" end tag seen - {"primary_spans":[{"end":18078,"start":18074}],"span_labels":[]}
+  - [HTML minifier diagnostic - error] No "p" element in scope but a "p" end tag seen - {"primary_spans":[{"end":18162,"start":18158}],"span_labels":[]}
+  - [HTML minifier diagnostic - error] No "p" element in scope but a "p" end tag seen - {"primary_spans":[{"end":18355,"start":18351}],"span_labels":[]}
+  - [HTML minifier diagnostic - error] No "p" element in scope but a "p" end tag seen - {"primary_spans":[{"end":18497,"start":18493}],"span_labels":[]}
+  - [HTML minifier diagnostic - error] No "p" element in scope but a "p" end tag seen - {"primary_spans":[{"end":40562,"start":40558}],"span_labels":[]}
+  - [HTML minifier diagnostic - error] No "p" element in scope but a "p" end tag seen - {"primary_spans":[{"end":47713,"start":47709}],"span_labels":[]}
+  - [HTML minifier diagnostic - error] No "p" element in scope but a "p" end tag seen - {"primary_spans":[{"end":50140,"start":50136}],"span_labels":[]}
+
+[WARNING] Docusaurus found broken links!
+
+Please check the pages of your site in the list below, and make sure you don't reference any path that does not exist.
+Note: it's possible to ignore broken links with the 'onBrokenLinks' Docusaurus configuration, and let the build pass.
+
+Exhaustive list of all broken links found:
+- Broken link on source page path = /blog/2023/03/16/introducing-react-dev:
+   -> linking to /reference
+   -> linking to /reference/react-dom/findDOMNode#alternatives
+- Broken link on source page path = /blog/2024/04/25/react-19-upgrade-guide:
+   -> linking to /blog/2024/04/25/react-19#error-handling
+   -> linking to /blog/2024/04/25/react-19#ref-as-a-prop
+- Broken link on source page path = /blog/2024/12/05/react-19:
+   -> linking to /reference/rsc/server-actions
+- Broken link on source page path = /errors/:
+   -> linking to /errors/149
+- Broken link on source page path = /learn/preserving-and-resetting-state:
+   -> linking to learn/understanding-your-ui-as-a-tree#the-render-tree (resolved as: /learn/learn/understanding-your-ui-as-a-tree#the-render-tree)
+- Broken link on source page path = /learn/react-compiler/introduction:
+   -> linking to reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive (resolved as: /learn/react-compiler/reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive)
+- Broken link on source page path = /learn/setup:
+   -> linking to learn/react-developer-tools (resolved as: /learn/learn/react-developer-tools)
+- Broken link on source page path = /learn/understanding-your-ui-as-a-tree:
+   -> linking to learn/your-first-component#components-ui-building-blocks (resolved as: /learn/learn/your-first-component#components-ui-building-blocks)
+- Broken link on source page path = /reference/react-dom/:
+   -> linking to /reference/react-dom/unmountComponentAtNode
+- Broken link on source page path = /reference/react-dom/server/resume:
+   -> linking to /reference/react-dom/static/index
+- Broken link on source page path = /reference/react-dom/server/resumeToPipeableStream:
+   -> linking to /reference/react-dom/static/index
+- Broken link on source page path = /reference/react-dom/static/resumeAndPrerender:
+   -> linking to /reference/react-dom/static/index
+- Broken link on source page path = /reference/react-dom/static/resumeAndPrerenderToNodeStream:
+   -> linking to /reference/react-dom/static/index
+- Broken link on source page path = /reference/react/cache:
+   -> linking to reference/react/memo (resolved as: /reference/react/reference/react/memo)
+- Broken link on source page path = /reference/react/forwardRef:
+   -> linking to /blog/2024/04/25/react-19#ref-as-a-prop
+- Broken link on source page path = /reference/react/useOptimistic:
+   -> linking to reference/react/useTransition#functions-called-in-starttransition-are-called-actions (resolved as: /reference/react/reference/react/useTransition#functions-called-in-starttransition-are-called-actions)
+- Broken link on source page path = /reference/rules/components-and-hooks-must-be-pure:
+   -> linking to learn/keeping-components-pure (resolved as: /reference/rules/learn/keeping-components-pure)
+   -> linking to learn/responding-to-events (resolved as: /reference/rules/learn/responding-to-events)
+   -> linking to learn/state-as-a-snapshot (resolved as: /reference/rules/learn/state-as-a-snapshot)
+
+[WARNING] Docusaurus found broken anchors!
+
+Please check the pages of your site in the list below, and make sure you don't reference any anchor that does not exist.
+Note: it's possible to ignore broken anchors with the 'onBrokenAnchors' Docusaurus configuration, and let the build pass.
+
+Exhaustive list of all broken anchors found:
+- Broken anchor on source page path = /blog/2023/03/16/introducing-react-dev:
+   -> linking to /learn/conditional-rendering#challenges
+- Broken anchor on source page path = /blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024:
+   -> linking to /community/team#dan-abramov
+   -> linking to /community/team#matt-carroll
+- Broken anchor on source page path = /community/team:
+   -> linking to #sebastian-markb%C3%A5ge (resolved as: /community/team#sebastian-markb%C3%A5ge)
+- Broken anchor on source page path = /reference/react-dom/components/common:
+   -> linking to #clipboardevent-handler (resolved as: /reference/react-dom/components/common#clipboardevent-handler)
+- Broken anchor on source page path = /reference/react-dom/components/textarea:
+   -> linking to #reading-the-textarea-value-when-submitting-a-form (resolved as: /reference/react-dom/components/textarea#reading-the-textarea-value-when-submitting-a-form)
+- Broken anchor on source page path = /reference/react-dom/server/resume:
+   -> linking to #aborting-server-rendering (resolved as: /reference/react-dom/server/resume#aborting-server-rendering)
+- Broken anchor on source page path = /reference/react-dom/server/resumeToPipeableStream:
+   -> linking to #specifying-what-goes-into-the-shell (resolved as: /reference/react-dom/server/resumeToPipeableStream#specifying-what-goes-into-the-shell)
+   -> linking to #streaming-more-content-as-it-loads (resolved as: /reference/react-dom/server/resumeToPipeableStream#streaming-more-content-as-it-loads)
+   -> linking to #recovering-from-errors-inside-the-shell (resolved as: /reference/react-dom/server/resumeToPipeableStream#recovering-from-errors-inside-the-shell)
+   -> linking to #aborting-server-rendering (resolved as: /reference/react-dom/server/resumeToPipeableStream#aborting-server-rendering)
+- Broken anchor on source page path = /reference/react-dom/static/resumeAndPrerender:
+   -> linking to #aborting-server-rendering (resolved as: /reference/react-dom/static/resumeAndPrerender#aborting-server-rendering)
+   -> linking to #recovering-from-errors-outside-the-shell (resolved as: /reference/react-dom/static/resumeAndPrerender#recovering-from-errors-outside-the-shell)
+   -> linking to #recovering-from-errors-inside-the-shell (resolved as: /reference/react-dom/static/resumeAndPrerender#recovering-from-errors-inside-the-shell)
+   -> linking to #logging-crashes-on-the-server (resolved as: /reference/react-dom/static/resumeAndPrerender#logging-crashes-on-the-server)
+- Broken anchor on source page path = /reference/react-dom/static/resumeAndPrerenderToNodeStream:
+   -> linking to #aborting-server-rendering (resolved as: /reference/react-dom/static/resumeAndPrerenderToNodeStream#aborting-server-rendering)
+   -> linking to #recovering-from-errors-outside-the-shell (resolved as: /reference/react-dom/static/resumeAndPrerenderToNodeStream#recovering-from-errors-outside-the-shell)
+   -> linking to #recovering-from-errors-inside-the-shell (resolved as: /reference/react-dom/static/resumeAndPrerenderToNodeStream#recovering-from-errors-inside-the-shell)
+   -> linking to #logging-crashes-on-the-server (resolved as: /reference/react-dom/static/resumeAndPrerenderToNodeStream#logging-crashes-on-the-server)
+- Broken anchor on source page path = /reference/react/Component:
+   -> linking to #context-instance-field (resolved as: /reference/react/Component#context-instance-field)
+- Broken anchor on source page path = /reference/react/legacy:
+   -> linking to #static-contexttype (resolved as: /reference/react/legacy#static-contexttype)
+- Broken anchor on source page path = /reference/react/useEffect:
+   -> linking to #examples-dependencies (resolved as: /reference/react/useEffect#examples-dependencies)
+   -> linking to #examples-connecting (resolved as: /reference/react/useEffect#examples-connecting)
+- Broken anchor on source page path = /reference/react/useOptimistic:
+   -> linking to #updating-state-based-on-current-state (resolved as: /reference/react/useOptimistic#updating-state-based-on-current-state)
+- Broken anchor on source page path = /reference/react/ViewTransition:
+   -> linking to #view-transition-events (resolved as: /reference/react/ViewTransition#view-transition-events)
+- Broken anchor on source page path = /reference/rsc/use-client:
+   -> linking to #passing-props-from-server-to-client-components (resolved as: /reference/rsc/use-client#passing-props-from-server-to-client-components)
+
+[SUCCESS] Generated static files in "build".
+[INFO] Use `npm run serve` command to test your build locally.
