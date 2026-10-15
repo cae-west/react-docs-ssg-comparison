@@ -148,3 +148,24 @@ code { border: none; color: var(--rd-secondary); }
 .rd-card > div > :last-child, .rd-callout > div > :last-child { margin-bottom: 0.5rem; }
 .rd-card { padding-bottom: 1rem; }
 .rd-deepdive > summary { margin-top: 0; }
+
+/* Search: a centered pill in the top bar on wide screens, as on react.dev.
+   Below 1200px it falls back to Docusaurus's normal placement.
+   ".navbar .navbar__search" is deliberately more specific than the search
+   plugin's own rule, which sets position: relative and would otherwise win. */
+:root {
+  --ifm-navbar-search-input-background-color: var(--rd-card);
+  --ifm-navbar-search-input-color: var(--rd-primary);
+}
+@media (min-width: 1200px) {
+  .navbar__inner { position: relative; }
+  .navbar .navbar__search {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(14rem, 26vw, 30rem);
+    margin: 0;
+  }
+  .navbar .navbar__search .navbar__search-input { width: 100%; height: 2.5rem; border-radius: 9999px; font-size: 15px; }
+}

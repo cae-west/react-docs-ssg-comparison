@@ -25,6 +25,22 @@ const config = {
 
   i18n: {defaultLocale: 'en', locales: ['en']},
 
+  themes: [
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        docsRouteBasePath: '/',   // docs are served from the site root
+        indexBlog: false,
+        indexPages: false,
+        docsDir: '../content',   // where the docs actually live
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        searchBarPosition: 'left',   // next to the logo, as on react.dev
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',
@@ -45,14 +61,15 @@ const config = {
   ],
 
   themeConfig: {
+    colorMode: {defaultMode: 'light', respectPrefersColorScheme: true},
     navbar: {
       title: 'React',
       logo: {alt: 'React', src: 'img/logo.svg'},
       items: [
-        {type: 'docSidebar', sidebarId: 'learn', position: 'left', label: 'Learn'},
-        {type: 'docSidebar', sidebarId: 'reference', position: 'left', label: 'Reference'},
-        {type: 'docSidebar', sidebarId: 'community', position: 'left', label: 'Community'},
-        {type: 'docSidebar', sidebarId: 'blog', position: 'left', label: 'Blog'},
+        {type: 'docSidebar', sidebarId: 'learn', position: 'right', label: 'Learn'},
+        {type: 'docSidebar', sidebarId: 'reference', position: 'right', label: 'Reference'},
+        {type: 'docSidebar', sidebarId: 'community', position: 'right', label: 'Community'},
+        {type: 'docSidebar', sidebarId: 'blog', position: 'right', label: 'Blog'},
       ],
     },
     prism: {theme: prismThemes.github, darkTheme: prismThemes.dracula},
