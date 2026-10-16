@@ -235,6 +235,13 @@ def on_page_markdown(markdown, page, config, files):
             out.append(f"{h.group(1)} {{ #{h.group(2)} }}")
             continue
 
+        # A plain <div className="..."> that only opens on this line (e.g. the card list on
+        # blog/index.md) wraps Markdown. Python-Markdown leaves everything inside a plain
+        # HTML block unprocessed unless the block is marked markdown="1".
+        if re.match(r'^<div className="[^"]*">$', stripped):
+            out.append("\n" + stripped.replace("className=", 'markdown="1" class=') + "\n")
+            continue
+
         tag = re.match(r"^<(/?)([A-Z]\w*)\b", stripped)
         if tag:
             closing, name = tag.group(1) == "/", tag.group(2)
