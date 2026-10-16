@@ -1,0 +1,17 @@
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+site:
+  title: React Docs
+  structure:
+    - type: section
+      key: react-docs
+      title: React Docs
+      path: react-docs
+      children:
+        - type: space
+          key: react
+          title: React
+          path: react
+          default: true
+          content:
+            directory: ./gitbook
+            language: en

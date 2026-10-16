@@ -104,9 +104,30 @@ shutil.copytree(IMAGES, OUT / "images")
         "Use the sidebar to browse Learn, Reference, Community and Blog.\n"
     ).encode("utf-8")
 )
-(ROOT / ".gitbook.yaml").write_bytes(
-    b"root: ./gitbook/\nstructure:\n  readme: README.md\n  summary: SUMMARY.md\n"
+# GitBook site-level Git Sync config: one space whose content is the gitbook/ folder.
+# (GitBook reads README.md and SUMMARY.md from that folder by default, so no .gitbook.yaml is needed.)
+(ROOT / "gitbook-docs.yaml").write_bytes(
+    (
+        "$schema: https://api.gitbook.com/gitbook-docs.yaml\n"
+        "site:\n"
+        "  title: React Docs\n"
+        "  structure:\n"
+        "    - type: section\n"
+        "      key: react-docs\n"
+        "      title: React Docs\n"
+        "      path: react-docs\n"
+        "      children:\n"
+        "        - type: space\n"
+        "          key: react\n"
+        "          title: React\n"
+        "          path: react\n"
+        "          default: true\n"
+        "          content:\n"
+        "            directory: ./gitbook\n"
+        "            language: en\n"
+    ).encode("utf-8")
 )
+(ROOT / ".gitbook.yaml").unlink(missing_ok=True)  # old v1 config, no longer used
 
 # .gitattributes: keep line endings untouched in the copy (same as content/ and public/)
 ga = ROOT / ".gitattributes"
