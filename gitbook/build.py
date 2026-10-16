@@ -116,6 +116,7 @@ shutil.copytree(IMAGES, OUT / "images")
         "      key: react-docs\n"
         "      title: React Docs\n"
         "      path: react-docs\n"
+        "      default: true\n"
         "      children:\n"
         "        - type: space\n"
         "          key: react\n"

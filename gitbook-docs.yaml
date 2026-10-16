@@ -6,6 +6,7 @@ site:
       key: react-docs
       title: React Docs
       path: react-docs
+      default: true
       children:
         - type: space
           key: react
