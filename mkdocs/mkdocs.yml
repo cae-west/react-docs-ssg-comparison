@@ -1,0 +1,59 @@
+# MkDocs Material build of the unmodified React docs.
+# The content lives in ../content and is never edited; hooks.py adapts it at build time.
+site_name: React
+site_description: The library for web and native user interfaces
+site_url: !ENV [SITE_URL, '']   # set by GitHub Actions for Pages; empty for local use
+docs_dir: ../content
+site_dir: site
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: assets/images/logo.svg
+  favicon: assets/images/logo.svg
+  font: false                      # use React's own fonts (see react.css)
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle: {icon: material/weather-night, name: Switch to dark mode}
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle: {icon: material/weather-sunny, name: Switch to light mode}
+  features:
+    - navigation.tabs              # Learn / Reference / Community / Blog across the top
+    - navigation.sections          # "GET STARTED", "LEARN REACT" as sidebar headers
+    - navigation.indexes           # a section's index page opens when you click the section
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+
+extra_css:
+  - assets/stylesheets/react.css
+
+hooks:
+  - hooks.py
+
+markdown_extensions:
+  - attr_list                      # heading ids  { #usage }
+  - md_in_html                     # Markdown inside the callout/sandbox wrappers
+  - tables
+  - toc:
+      permalink: false
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.details
+
+plugins:
+  - search
+
+validation:
+  nav:
+    omitted_files: ignore          # errors/, warnings/, versions.md aren't in React's sidebars either
+  links:
+    absolute_links: ignore
+    unrecognized_links: ignore

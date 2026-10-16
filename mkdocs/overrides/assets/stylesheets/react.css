@@ -1,0 +1,116 @@
+/* Theme modeled on react.dev (colors.js, tailwind.config.js, src/components/MDX/*). */
+@font-face { font-family: 'Source Code Pro'; font-weight: 400; font-display: swap; src: url('../fonts/Source-Code-Pro-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'Source Code Pro'; font-weight: 700; font-display: swap; src: url('../fonts/Source-Code-Pro-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'Optimistic Display'; font-weight: 500; font-display: swap; src: url('../fonts/Optimistic_Display_W_Md.ttf') format('truetype'); }
+@font-face { font-family: 'Optimistic Display'; font-weight: 700; font-display: swap; src: url('../fonts/Optimistic_Display_W_Bd.ttf') format('truetype'); }
+
+:root {
+  --rd-primary: #23272f; --rd-secondary: #404756; --rd-tertiary: #5e687e;
+  --rd-link: #087ea4; --rd-card: #f6f7f9; --rd-highlight: #e6f7ff; --rd-border: #ebecf0;
+  --rd-display: 'Optimistic Display', -apple-system, system-ui, 'Segoe UI', Roboto, sans-serif;
+  --md-text-font-family: -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --md-code-font-family: 'Source Code Pro', ui-monospace, Menlo, Consolas, monospace;
+}
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #ffffff;
+  --md-default-fg-color: #23272f;
+  --md-default-fg-color--light: #5e687e;
+  --md-typeset-color: #23272f;
+  --md-primary-fg-color: #ffffff;
+  --md-primary-bg-color: #23272f;
+  --md-primary-bg-color--light: #5e687e;
+  --md-accent-fg-color: #087ea4;
+  --md-typeset-a-color: #087ea4;
+  --md-code-bg-color: #f6f7f9;
+  --md-code-fg-color: #404756;
+}
+[data-md-color-scheme="slate"] {
+  --rd-primary: #f6f7f9; --rd-secondary: #ebecf0; --rd-tertiary: #99a1b3;
+  --rd-link: #58c4dc; --rd-card: #343a46; --rd-highlight: rgba(88,175,223,.1); --rd-border: #343a46;
+  --md-default-bg-color: #23272f;
+  --md-default-fg-color: #f6f7f9;
+  --md-default-fg-color--light: #99a1b3;
+  --md-typeset-color: #f6f7f9;
+  --md-primary-fg-color: #23272f;
+  --md-primary-bg-color: #f6f7f9;
+  --md-accent-fg-color: #58c4dc;
+  --md-typeset-a-color: #58c4dc;
+  --md-code-bg-color: #16181d;
+  --md-code-fg-color: #ebecf0;
+}
+
+/* Header and tabs: one white bar with a bottom border, like react.dev */
+.md-header, .md-tabs { box-shadow: none; }
+.md-header { border-bottom: 1px solid var(--rd-border); }
+.md-tabs { background: var(--md-default-bg-color); color: var(--rd-secondary); border-bottom: 1px solid var(--rd-border); }
+.md-tabs__link { font-size: .8rem; font-weight: 500; opacity: 1; }
+.md-tabs__item--active .md-tabs__link, .md-tabs__link:hover { color: var(--rd-link); }
+.md-header__title { font-family: var(--rd-display); font-weight: 700; }
+.md-header__button.md-logo img { height: 1.6rem; }
+.md-search__form { border-radius: 9999px; background: var(--rd-card); }
+.md-search__input { color: var(--rd-primary); }
+.md-search__input::placeholder, .md-search__icon { color: var(--rd-tertiary); }
+
+/* Typography */
+.md-typeset { font-size: .9rem; line-height: 1.7; }
+.md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4 { font-family: var(--rd-display); font-weight: 700; color: var(--rd-primary); letter-spacing: 0; }
+.md-typeset h1 { font-size: 2.25rem; margin-bottom: 1rem; }
+.md-typeset h2 { font-size: 1.6rem; margin-top: 2.5rem; }
+.md-typeset h3 { font-size: 1.3rem; }
+.md-typeset a { color: var(--rd-link); }
+.md-typeset code { border-radius: .375rem; }
+
+/* Sidebar */
+.md-nav { font-size: .8rem; }
+.md-nav__item--section > .md-nav__link { text-transform: uppercase; font-size: .65rem; letter-spacing: .08em; color: var(--rd-tertiary); }
+.md-nav__link--active { color: var(--rd-link); font-weight: 500; }
+.md-nav__link:hover { color: var(--rd-link); }
+
+/* Code blocks: rounded cards */
+.md-typeset pre > code { border-radius: 1rem; }
+.md-typeset .highlight { border-radius: 1rem; margin: 1.25rem 0; }
+.md-typeset .highlight span.filename { border-radius: 1rem 1rem 0 0; font-family: var(--md-code-font-family); font-weight: 500; font-size: .7rem; color: var(--rd-tertiary); background: var(--rd-card); }
+
+/* ---- react.dev MDX components ---- */
+.rd-intro { font-family: var(--rd-display); font-size: 1.15rem; line-height: 1.7; }
+.rd-callout, .rd-card, .rd-deepdive, .rd-challenges, .rd-recipes { border-radius: 1rem; margin: 2rem 0; padding: 1.25rem 1.75rem; }
+.rd-callout > :last-child, .rd-card > :last-child { margin-bottom: 0; }
+.md-typeset .rd-callout-title, .md-typeset .rd-card-title { font-family: var(--rd-display); font-weight: 700; font-size: 1.3rem; margin: 0 0 .5rem; color: var(--rd-primary); }
+.rd-note { background: #f4fbf9; } .md-typeset .rd-note .rd-callout-title { color: #2b6e62; }
+.rd-pitfall { background: #fef5e7; } .md-typeset .rd-pitfall .rd-callout-title { color: #c76a15; }
+.rd-deprecated { background: #faf1f0; } .md-typeset .rd-deprecated .rd-callout-title { color: #a6423a; }
+.rd-blue { background: #e6f7ff; } .md-typeset .rd-blue .rd-callout-title { color: #087ea4; }
+[data-md-color-scheme="slate"] .rd-note { background: rgba(43,110,98,.2); } [data-md-color-scheme="slate"] .md-typeset .rd-note .rd-callout-title { color: #44ac99; }
+[data-md-color-scheme="slate"] .rd-pitfall { background: rgba(182,87,0,.2); } [data-md-color-scheme="slate"] .md-typeset .rd-pitfall .rd-callout-title { color: #db7d27; }
+[data-md-color-scheme="slate"] .rd-deprecated { background: rgba(113,45,40,.2); } [data-md-color-scheme="slate"] .md-typeset .rd-deprecated .rd-callout-title { color: #c1554d; }
+[data-md-color-scheme="slate"] .rd-blue { background: rgba(4,89,117,.2); } [data-md-color-scheme="slate"] .md-typeset .rd-blue .rd-callout-title { color: #149eca; }
+.rd-card, .rd-challenges, .rd-recipes { background: var(--rd-card); box-shadow: inset 0 0 0 1px var(--rd-border); }
+
+.md-typeset details.rd-deepdive { background: #f3f4fd; border: 0; box-shadow: none; font-size: inherit; }
+.md-typeset details.rd-deepdive > summary { font-family: var(--rd-display); font-weight: 700; font-size: 1.3rem; color: #575fb7; background: none; padding-left: 0; }
+.md-typeset details.rd-deepdive > summary::before, .md-typeset details.rd-deepdive > summary::after,
+.md-typeset details.rd-hint > summary::before, .md-typeset details.rd-hint > summary::after { display: none; }
+[data-md-color-scheme="slate"] .md-typeset details.rd-deepdive { background: rgba(87,95,183,.2); }
+[data-md-color-scheme="slate"] .md-typeset details.rd-deepdive > summary { color: #8891ec; }
+.md-typeset details.rd-hint { border: 0; box-shadow: none; background: none; font-size: inherit; margin: 1rem 0; }
+.md-typeset details.rd-hint > summary { display: inline-block; padding: .3rem 1rem; border-radius: 9999px; background: var(--rd-border); color: var(--rd-primary); font-size: .75rem; font-weight: 500; }
+.md-typeset details.rd-hint > summary:hover { color: var(--rd-link); }
+
+.rd-sandpack { margin: 1.5rem 0; }
+.rd-sandpack .highlight { margin: 0; border-radius: 0; }
+.rd-sandpack > :first-child .highlight, .rd-sandpack > .highlight:first-child { border-radius: 1rem 1rem 0 0; }
+.rd-sandpack > .highlight:last-child { border-radius: 0 0 1rem 1rem; }
+.rd-terminal pre, .rd-terminal code { background: #16181d !important; color: #f6f7f9 !important; border-radius: 1rem; }
+.rd-console { border-radius: 1rem; background: var(--rd-card); padding: .5rem 1rem; margin: 1rem 0; font-family: var(--md-code-font-family); font-size: .75rem; }
+.rd-figure { text-align: center; margin: 1.5rem 0; }
+.rd-figure img { max-width: 100%; border-radius: .5rem; }
+[data-md-color-scheme="default"] .rd-figure img[src$=".dark.png"] { display: none; }
+.rd-figure figcaption { font-size: .75rem; color: var(--rd-tertiary); font-style: italic; }
+.rd-diagrams { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+.rd-team { border-bottom: 1px solid var(--rd-border); margin: 1rem 0; padding-bottom: 1rem; }
+.md-typeset mark.rd-codestep { background: var(--rd-highlight); color: inherit; border-radius: .25rem; padding: 0 .2rem; }
+.md-typeset hr.rd-divider { margin: 2rem 0; }
+.rd-team-photo { width: 5rem; height: 5rem; border-radius: 9999px; object-fit: cover; float: left; margin-right: 1rem; }
+.rd-team::after { content: ""; display: block; clear: both; }
+/* react.dev shows light-image / dark-image pairs depending on the theme */
+[data-md-color-scheme="default"] .dark-image, [data-md-color-scheme="slate"] .light-image { display: none; }
