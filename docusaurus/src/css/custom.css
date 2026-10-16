@@ -169,3 +169,7 @@ code { border: none; color: var(--rd-secondary); }
   }
   .navbar .navbar__search .navbar__search-input { width: 100%; height: 2.5rem; border-radius: 9999px; font-size: 15px; }
 }
+
+/* When the search box is focused, the search plugin wraps the input in an
+   inline <span>, which made the input shrink to fit its text. Keep it full width. */
+.navbar .navbar__search > span { display: block; width: 100%; }
