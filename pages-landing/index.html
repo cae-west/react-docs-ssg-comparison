@@ -4,33 +4,102 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>React docs in three static site generators</title>
-<meta name="description" content="The unmodified React documentation built with Docusaurus, MkDocs Material and GitBook.">
+<meta name="description" content="The unmodified React documentation built with Docusaurus, MkDocs Material and GitBook, with a comparison of setup, navigation, customization, performance and presentation.">
+<link rel="icon" href="react-logo.svg" type="image/svg+xml">
 <style>
-  :root { --bg:#fff; --fg:#23272f; --muted:#5e687e; --card:#f6f7f9; --border:#e3e8ee; --accent:#087ea4; }
+  :root {
+    --bg:#fff; --fg:#23272f; --muted:#5e687e; --card:#f6f7f9; --border:#e3e8ee; --accent:#087ea4;
+    --grid:#e3e8ee; --dot-muted:#b8bec9; --good-band:rgba(12,125,63,.08); --ref:#99a1b3;
+  }
   @media (prefers-color-scheme: dark) {
-    :root { --bg:#23272f; --fg:#f6f7f9; --muted:#99a1b3; --card:#2b3039; --border:#3b414d; --accent:#58c4dc; }
+    :root { --bg:#23272f; --fg:#f6f7f9; --muted:#99a1b3; --card:#2b3039; --border:#3b414d; --accent:#58c4dc;
+            --grid:#3b414d; --dot-muted:#6a7282; --good-band:rgba(95,211,141,.10); --ref:#7b8394; }
   }
   * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); line-height:1.5;
-         font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
-  main { max-width:880px; margin:0 auto; padding:56px 20px 40px; }
-  h1 { font-size:2.2rem; line-height:1.2; margin:0 0 12px; }
-  p.lead { color:var(--muted); font-size:1.15rem; margin:0 0 36px; max-width:640px; }
+  html { scroll-behavior: smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:960px; margin:0 auto; padding:48px 20px 40px; }
+  a { color:var(--accent); }
+  .logo { display:block; width:72px; height:auto; margin:0 0 20px; }
+  h1 { font-size:2.2rem; line-height:1.2; margin:0 0 12px; text-wrap:balance; }
+  h2 { font-size:1.45rem; line-height:1.3; margin:56px 0 12px; padding-top:8px; text-wrap:balance; }
+  h3 { font-size:1.1rem; margin:28px 0 10px; }
+  p { margin:0 0 14px; max-width:68ch; }
+  ul { margin:0 0 14px; padding-left:22px; max-width:68ch; }
+  li { margin-bottom:8px; }
+  code { font:.9em ui-monospace,Consolas,monospace; background:var(--card); padding:1px 5px; border-radius:4px; }
+  p.lead { color:var(--muted); font-size:1.15rem; margin:0 0 18px; max-width:640px; }
+  a.repo { display:inline-flex; align-items:center; gap:8px; margin:0 0 32px; padding:8px 14px; border:1px solid var(--border);
+           border-radius:999px; color:var(--fg); text-decoration:none; font-weight:600; font-size:.92rem; }
+  a.repo:hover, a.repo:focus-visible { border-color:var(--accent); color:var(--accent); }
+  a.repo .path { font:500 .88rem ui-monospace,Consolas,monospace; color:var(--muted); }
   .grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
-  a.card { display:block; padding:22px; background:var(--card); border:1px solid var(--border);
+  a.card { display:flex; flex-direction:column; padding:22px; background:var(--card); border:1px solid var(--border);
            border-radius:12px; color:inherit; text-decoration:none; transition:border-color .15s; }
   a.card:hover, a.card:focus-visible { border-color:var(--accent); }
-  a.card h2 { margin:0 0 8px; font-size:1.25rem; color:var(--accent); }
+  a.card h2 { margin:0 0 8px; padding:0; font-size:1.25rem; color:var(--accent); }
   a.card p { margin:0; color:var(--muted); font-size:.95rem; }
-  a.card span { display:inline-block; margin-top:14px; font-weight:600; font-size:.9rem; }
-  footer { margin-top:44px; padding-top:20px; border-top:1px solid var(--border); color:var(--muted); font-size:.9rem; }
-  footer a { color:var(--accent); }
+  a.card span { display:inline-block; margin-top:auto; padding-top:14px; font-weight:600; font-size:.9rem; }
+  nav.toc { margin:40px 0 0; padding:16px 20px; border:1px solid var(--border); border-radius:12px; }
+  nav.toc strong { display:block; margin-bottom:6px; font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  nav.toc ol { margin:0; padding-left:20px; columns:2 220px; column-gap:24px; }
+  nav.toc li { margin:0 0 4px; break-inside:avoid; }
+  .table-wrap { overflow-x:auto; margin:0 0 14px; border:1px solid var(--border); border-radius:10px; }
+  table { border-collapse:collapse; width:100%; min-width:640px; font-size:.92rem; }
+  th, td { text-align:left; vertical-align:top; padding:10px 12px; border-bottom:1px solid var(--border); }
+  thead th { background:var(--card); font-size:.85rem; }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom:0; }
+  tbody th { font-weight:600; white-space:nowrap; }
+  td.num { font-variant-numeric:tabular-nums; white-space:nowrap; }
+  figure.chart { margin:8px 0 14px; }
+  figure.chart .chart-scroll { overflow-x:auto; }
+  figure.chart svg { width:100%; min-width:600px; height:auto; display:block; }
+  figcaption { color:var(--muted); font-size:.85rem; margin-top:6px; }
+  .c-title { fill:var(--fg); font-weight:600; font-size:17px; }
+  .c-sub, .c-tick, .c-mob-label, .c-legend { fill:var(--muted); }
+  .c-name { fill:var(--fg); }
+  .c-desk-label { fill:var(--fg); font-weight:600; }
+  .c-grid { stroke:var(--grid); }
+  .c-ref { stroke:var(--ref); stroke-dasharray:4 3; }
+  .c-band { fill:var(--good-band); }
+  .c-link { stroke:var(--dot-muted); stroke-width:3; }
+  .c-mob { fill:var(--dot-muted); }
+  .c-desk { fill:var(--accent); }
+  .shots { display:grid; gap:14px; grid-template-columns:repeat(3,minmax(0,1fr)); margin:0 0 14px; }
+  .shots figure { margin:0; }
+  .shots a { display:block; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .shots a:hover, .shots a:focus-visible { border-color:var(--accent); }
+  .shots img { display:block; width:100%; height:auto; aspect-ratio:1440/750; object-fit:cover; object-position:top; }
+  .shots figcaption { font-weight:600; color:var(--fg); }
+  @media (max-width:700px) { .shots { grid-template-columns:1fr; } h1 { font-size:1.8rem; } }
+  @media (max-width:520px) { a.repo .path { display:none; } }
+  dialog.viewer { padding:0; border:0; background:transparent; max-width:none; max-height:none; width:100%; height:100%; }
+  dialog.viewer::backdrop { background:rgba(15,18,24,.93); }
+  .viewer-inner { position:relative; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;
+                  gap:12px; padding:56px max(16px, 5vw) 24px; }
+  .viewer-inner img { display:block; max-width:100%; max-height:calc(100% - 48px); width:auto; height:auto;
+                      border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.5); background:#fff; }
+  .viewer-cap { color:#f6f7f9; font-weight:600; text-align:center; margin:0; }
+  .viewer-cap small { display:block; color:#b8bec9; font-weight:400; }
+  .viewer button { position:absolute; display:grid; place-items:center; width:44px; height:44px; border:0; border-radius:50%;
+                   background:rgba(255,255,255,.14); color:#fff; font-size:26px; line-height:1; cursor:pointer; }
+  .viewer button:hover, .viewer button:focus-visible { background:rgba(255,255,255,.28); outline:2px solid #58c4dc; outline-offset:2px; }
+  .viewer .v-close { top:10px; right:max(10px, 2vw); }
+  .viewer .v-prev { left:max(6px, 1vw); top:50%; transform:translateY(-50%); }
+  .viewer .v-next { right:max(6px, 1vw); top:50%; transform:translateY(-50%); }
+  @media (max-width:700px) { .viewer .v-prev, .viewer .v-next { top:auto; bottom:14px; transform:none; } .viewer-inner { padding-bottom:72px; } }
+  footer { margin-top:56px; padding-top:20px; border-top:1px solid var(--border); color:var(--muted); font-size:.9rem; }
+  footer p { max-width:none; }
 </style>
 </head>
 <body>
 <main>
+  <img class="logo" src="react-logo.svg" alt="React logo" width="72" height="65">
   <h1>React docs in three static site generators</h1>
   <p class="lead">The same unmodified React documentation, built with Docusaurus, MkDocs Material and GitBook, each styled to look as close to react.dev as the tool allows.</p>
+  <a class="repo" href="https://github.com/cae-west/react-docs-ssg-comparison">Source on GitHub <span class="path">cae-west/react-docs-ssg-comparison</span> <span aria-hidden="true">&rarr;</span></a>
+
   <div class="grid">
     <a class="card" href="./docusaurus/">
       <h2>Docusaurus</h2>
@@ -48,11 +117,239 @@
       <span>Open site &rarr;</span>
     </a>
   </div>
+
+  <nav class="toc" aria-label="On this page">
+    <strong>Findings</strong>
+    <ol>
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#comparison">Comparison</a></li>
+      <li><a href="#setup">Setup experience</a></li>
+      <li><a href="#navigation">Navigation structure</a></li>
+      <li><a href="#customization">Customization</a></li>
+      <li><a href="#performance">Performance</a></li>
+      <li><a href="#developer-experience">Developer experience</a></li>
+      <li><a href="#ease-of-use">Ease of use</a></li>
+      <li><a href="#presentation">Overall presentation</a></li>
+      <li><a href="#screenshots">Screenshots</a></li>
+      <li><a href="#method">Method and sources</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="summary">Summary</h2>
+  <p>Docusaurus came closest to react.dev, MkDocs Material was the fastest on desktop, and GitBook was the quickest to publish but the hardest to bend to react.dev's look. All three serve the complete, unmodified React documentation: 225 pages, the five react.dev sidebars and 322 images.</p>
+  <p>No tool could render react.dev's custom MDX components (Sandpack editors, callouts, diagrams) on its own. Each needed an adapter: theme components in Docusaurus, a build hook in MkDocs, and a pre-build script that writes a converted copy for GitBook. The content files themselves were never edited.</p>
+
+  <h2 id="comparison">Comparison</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Criterion</th><th scope="col">Docusaurus 3.10</th><th scope="col">MkDocs Material 9.7</th><th scope="col">GitBook (hosted)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Setup experience</th><td>Node project, one install prompt, ~22 s install. 218 of 225 pages crashed until the custom tags were defined</td><td>Needs Python and a virtual environment; a PyYAML workaround on Python 3.15. Built with 0 errors but garbled pages</td><td>Account, space and Git Sync; two config errors before the first import (~5 min). Paid plan (trial)</td></tr>
+        <tr><th scope="row">Navigation structure</th><td>Learn / Reference / Community / Blog in the top bar, a sidebar per section, nested "On this page"</td><td>Same four sections as tabs, a sidebar per tab, nested table of contents</td><td>One long sidebar for every section, no top tabs; "On this page" shows top-level headings only</td></tr>
+        <tr><th scope="row">Customization</th><td>Full: React components, Tailwind, swizzled theme. Runs react.dev's own homepage code</td><td>Strong: Python hooks, Jinja templates, CSS. Homepage is a static HTML copy</td><td>Limited: theme settings and GitBook blocks only, no custom CSS or JavaScript</td></tr>
+        <tr><th scope="row">Performance<br><small>useState, desktop / mobile</small></th><td class="num">70 / 64</td><td class="num">98 / 66</td><td class="num">79 / 61</td></tr>
+        <tr><th scope="row">Developer experience</th><td>Clear errors, hot reload; search works only in a production build</td><td>Fails silently; a bad page title blanked every page with no error</td><td>No build to run, but no plugin system: fixes need a script that rewrites a copy of the content</td></tr>
+        <tr><th scope="row">Ease of use</th><td>Hardest to start; easiest to make faithful once set up</td><td>Moderate; one config file plus hooks</td><td>Easiest to publish and edit in a browser; two-way sync commits UI changes to the repo</td></tr>
+        <tr><th scope="row">Overall presentation</th><td>Closest to react.dev: same header, homepage, callouts and code colors</td><td>Close in pages, simpler homepage; callouts and code styled to match</td><td>Clean but generic GitBook look; react.dev callouts lost, own AI and feedback widgets added</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="setup">Setup experience</h2>
+  <p>GitBook was quickest to a first published page; Docusaurus and MkDocs each needed real work before any page was readable.</p>
+  <p><strong>Docusaurus.</strong> The project scaffold installed in about 22 seconds with one prompt, and a build takes 40–80 seconds. Pointed at the content, 218 of 225 pages crashed, because react.dev's custom tags (Sandpack, Note, DeepDive and others) are undefined outside react.dev. Defining stand-ins for them in the theme fixed every page.</p>
+  <p><strong>MkDocs Material.</strong> It needs Python and a virtual environment, and on Python 3.15 PyYAML had no prebuilt wheel, so the install needed a workaround. The first build reported 0 errors, but pages were garbled: MkDocs reads Python-Markdown, not MDX. It also only builds files inside its docs folder, so images had to be added in a hook.</p>
+  <p><strong>GitBook.</strong> Setup is an account, a space and a Git Sync connection to the repository, with no local tooling. Git Sync failed twice on config (it wanted <code>gitbook-docs.yaml</code>, and both the section and the space had to be marked default). The first import then took about 5 minutes. GitBook is a paid hosted product, used here on a 14-day trial.</p>
+
+  <h2 id="navigation">Navigation structure</h2>
+  <p>Docusaurus and MkDocs reproduce react.dev's four-part navigation; GitBook folds everything into one sidebar. All three were driven from react.dev's own sidebar files, so the page order and section headers match react.dev everywhere.</p>
+  <ul>
+    <li><strong>Docusaurus</strong> puts Learn, Reference, Community and Blog in the top bar and shows only that section's sidebar, as react.dev does. Breadcrumbs and a nested "On this page" list sit beside each page.</li>
+    <li><strong>MkDocs Material</strong> shows the same four sections as tabs under the header, plus Home. Its table of contents nests down to code-file headings on the tutorial.</li>
+    <li><strong>GitBook</strong> has no top-level tabs, so Learn, Reference and the React DOM sections all stack in one long sidebar. "On this page" lists only top-level headings: 4 on the tic-tac-toe tutorial and 3 on useState. Page URLs come from sidebar group titles (<code>/react-19.3/hooks/usestate</code>), not react.dev's paths.</li>
+  </ul>
+  <p>Broken in-page links after the fixes: Docusaurus 26 anchors on 15 pages, MkDocs 24, GitBook 33 on 15 pages. Nearly all come from react.dev's own content, such as links to pages its site generates in code.</p>
+
+  <h2 id="customization">Customization</h2>
+  <p>Docusaurus can run react.dev's own code; MkDocs can imitate it; GitBook can only be themed.</p>
+  <p><strong>Docusaurus.</strong> Because it is built on React, it ran react.dev's real homepage component, with Tailwind, 13 files copied from react.dev and two small stand-ins for Next.js modules. Custom tags became styled React components, and a remark plugin fixed image paths and heading ids at compile time.</p>
+  <p><strong>MkDocs Material.</strong> A Python hook rewrites each page as it builds: it reads the sidebars, converts heading ids, turns custom tags into styled blocks and fixes links and images. Templates and one CSS file carry react.dev's fonts and colors. The homepage had to be a static HTML copy of react.dev's, so its interactive demos are pictures.</p>
+  <p><strong>GitBook.</strong> There is no custom CSS, JavaScript or plugin system. Styling is limited to theme settings, colors and icons, plus GitBook's own blocks, which built a react.dev-style homepage from the same text and code. Every content fix had to happen before GitBook saw the files, in a script that writes a converted copy (217 of 225 files changed).</p>
+  <p>None of the three could reproduce react.dev's live Sandpack editors, YouTube embeds or error decoder.</p>
+
+  <h2 id="performance">Performance</h2>
+  <p>MkDocs Material is the only site rated good, at 98 on desktop; on mobile the three score 61–66, a gap within normal run-to-run variation.</p>
+  <figure class="chart">
+    <div class="chart-scroll">
+    <svg viewBox="0 0 760 340" role="img" aria-label="Lighthouse Performance scores. Docusaurus: mobile 64, desktop 70. MkDocs Material: mobile 66, desktop 98. GitBook: mobile 61, desktop 79." font-size="13">
+      <text class="c-title" x="20" y="30">MkDocs scores 98 on desktop; on mobile all three land within 5 points</text>
+      <text class="c-sub" x="20" y="54">Lighthouse Performance score, useState page (scale starts at 50)</text>
+      <circle class="c-mob" cx="26" cy="82" r="6"/><text class="c-legend" x="38" y="86">Mobile</text>
+      <circle class="c-desk" cx="116" cy="82" r="6"/><text class="c-legend" x="128" y="86">Desktop</text>
+      <g id="chart-body"></g>
+    </svg>
+    </div>
+    <figcaption>PageSpeed Insights (Lighthouse), one run per URL, October 16, 2026 · useState page of each live site</figcaption>
+  </figure>
+  <p>Docusaurus loses desktop points to JavaScript that blocks the page for 1.6 seconds while React takes over the static HTML. GitBook is slowest to show the main content on mobile (7.0 s). MkDocs ships the least JavaScript, which shows in its desktop numbers.</p>
+  <h3>Other Lighthouse results, mobile / desktop</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Measure</th><th scope="col">Docusaurus</th><th scope="col">MkDocs Material</th><th scope="col">GitBook</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Accessibility</th><td class="num">97 / 96</td><td class="num">93 / 93</td><td class="num">95 / 81</td></tr>
+        <tr><th scope="row">Best Practices</th><td class="num">100 / 100</td><td class="num">100 / 100</td><td class="num">96 / 96</td></tr>
+        <tr><th scope="row">SEO</th><td class="num">100 / 100</td><td class="num">100 / 100</td><td class="num">92 / 92</td></tr>
+        <tr><th scope="row">First Contentful Paint (s)</th><td class="num">3.3 / 0.5</td><td class="num">1.7 / 0.4</td><td class="num">2.9 / 0.6</td></tr>
+        <tr><th scope="row">Largest Contentful Paint (s)</th><td class="num">4.2 / 0.5</td><td class="num">6.3 / 0.4</td><td class="num">7.0 / 0.8</td></tr>
+        <tr><th scope="row">Total Blocking Time (ms)</th><td class="num">480 / 1,590</td><td class="num">370 / 130</td><td class="num">290 / 460</td></tr>
+        <tr><th scope="row">Cumulative Layout Shift</th><td class="num">0.001 / 0.01</td><td class="num">0 / 0.002</td><td class="num">0.001 / 0.018</td></tr>
+        <tr><th scope="row">Speed Index (s)</th><td class="num">5.0 / 1.1</td><td class="num">4.1 / 0.4</td><td class="num">5.9 / 1.2</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>GitBook is the only site below 100 on Best Practices and SEO; as a hosted service, those are out of the author's hands.</p>
+
+  <h2 id="developer-experience">Developer experience</h2>
+  <p>Docusaurus tells you what broke; MkDocs often does not; GitBook gives you nothing to debug locally.</p>
+  <ul>
+    <li><strong>Docusaurus</strong> stops on a broken page with an error naming the missing component, and lists every broken link and anchor at the end of a build. Its log looks alarming (20 lines mention "error"), but those were harmless HTML-minifier notes. Local search only works after a production build, not in the dev server.</li>
+    <li><strong>MkDocs Material</strong> builds 225 pages in 18–70 seconds with built-in search. It fails silently: unconverted MDX built with 0 errors, and pages titled <code>&lt;textarea&gt;</code> blanked every page until titles were escaped. The dev server does not watch template overrides.</li>
+    <li><strong>GitBook</strong> has no local build. Problems surface only after a sync, as dead links in the published site (1,943 before the conversion script). Git Sync is two-way, so changing a setting in GitBook's editor commits to the repository under your name.</li>
+  </ul>
+  <p>Publishing to a GitHub Pages subfolder broke images in both static generators: about 55 raw <code>&lt;img&gt;</code> tags and the homepage images used root paths. Each needed a small fix to apply the base path.</p>
+
+  <h2 id="ease-of-use">Ease of use</h2>
+  <p>For a writer, GitBook is easiest; for a developer maintaining react.dev-style content, Docusaurus is easiest once set up.</p>
+  <ul>
+    <li><strong>GitBook</strong> needs only a browser. Writers can edit pages in its editor, and the sidebar is one <code>SUMMARY.md</code> file. The catch is that MDX-heavy content like React's has to be converted first, and keeping that converted copy in sync is a manual step.</li>
+    <li><strong>MkDocs Material</strong> keeps everything in one readable <code>mkdocs.yml</code> plus a hook file. Adding a page is a Markdown file and a nav entry, but non-standard Markdown needs Python to handle.</li>
+    <li><strong>Docusaurus</strong> asks the most up front: Node, React components, and knowing which theme files to override. After that, new content written in MDX works as react.dev's authors intended.</li>
+  </ul>
+
+  <h2 id="presentation">Overall presentation</h2>
+  <p>Docusaurus is the most faithful copy of react.dev, MkDocs a close second, and GitBook looks like GitBook.</p>
+  <ul>
+    <li><strong>Docusaurus</strong> matches react.dev's header, centered search, homepage and callout boxes, with react.dev's fonts and code colors. A reader could mistake its pages for react.dev.</li>
+    <li><strong>MkDocs Material</strong> matches the pages closely: same fonts, green Note callouts, filename labels on code. Its header and tab bar keep Material's layout, and the homepage's grey band is boxed to the content width rather than running edge to edge.</li>
+    <li><strong>GitBook</strong> is clean and readable but plainly a GitBook site: its own header with an "Ask" AI button, "Was this helpful?" and a "Powered by GitBook" badge. react.dev's Note callouts appear as plain paragraphs, and the homepage is an ordinary docs page with the sidebar still showing. In Firefox and Waterfox, the header icon and site title don't render, though they do in Chrome and Edge.</li>
+  </ul>
+
+  <h2 id="screenshots">Screenshots</h2>
+  <p>The same three pages in each tool. Select a screenshot to see it full size.</p>
+  <h3>Homepage</h3>
+  <div class="shots">
+    <figure><a href="screenshots/docusaurus-1-home.webp"><img src="screenshots/docusaurus-1-home.webp" alt="Docusaurus homepage" loading="lazy" width="1440" height="900"></a><figcaption>Docusaurus</figcaption></figure>
+    <figure><a href="screenshots/mkdocs-1-home.webp"><img src="screenshots/mkdocs-1-home.webp" alt="MkDocs Material homepage" loading="lazy" width="1440" height="900"></a><figcaption>MkDocs Material</figcaption></figure>
+    <figure><a href="screenshots/gitbook-1-home.webp"><img src="screenshots/gitbook-1-home.webp" alt="GitBook homepage" loading="lazy" width="1440" height="750"></a><figcaption>GitBook</figcaption></figure>
+  </div>
+  <h3>Tutorial: Tic-Tac-Toe</h3>
+  <div class="shots">
+    <figure><a href="screenshots/docusaurus-2-tic-tac-toe.webp"><img src="screenshots/docusaurus-2-tic-tac-toe.webp" alt="Docusaurus tic-tac-toe tutorial" loading="lazy" width="1440" height="900"></a><figcaption>Docusaurus</figcaption></figure>
+    <figure><a href="screenshots/mkdocs-2-tic-tac-toe.webp"><img src="screenshots/mkdocs-2-tic-tac-toe.webp" alt="MkDocs Material tic-tac-toe tutorial" loading="lazy" width="1440" height="900"></a><figcaption>MkDocs Material</figcaption></figure>
+    <figure><a href="screenshots/gitbook-2-tic-tac-toe.webp"><img src="screenshots/gitbook-2-tic-tac-toe.webp" alt="GitBook tic-tac-toe tutorial" loading="lazy" width="1440" height="750"></a><figcaption>GitBook</figcaption></figure>
+  </div>
+  <h3>useState reference</h3>
+  <div class="shots">
+    <figure><a href="screenshots/docusaurus-3-usestate.webp"><img src="screenshots/docusaurus-3-usestate.webp" alt="Docusaurus useState page" loading="lazy" width="1440" height="900"></a><figcaption>Docusaurus</figcaption></figure>
+    <figure><a href="screenshots/mkdocs-3-usestate.webp"><img src="screenshots/mkdocs-3-usestate.webp" alt="MkDocs Material useState page" loading="lazy" width="1440" height="900"></a><figcaption>MkDocs Material</figcaption></figure>
+    <figure><a href="screenshots/gitbook-3-usestate.webp"><img src="screenshots/gitbook-3-usestate.webp" alt="GitBook useState page" loading="lazy" width="1440" height="750"></a><figcaption>GitBook</figcaption></figure>
+  </div>
+
+  <h2 id="method">Method and sources</h2>
+  <ul>
+    <li><strong>Content:</strong> react.dev's <code>src/content</code> (225 Markdown/MDX files), its five sidebar files and <code>public/images</code> (322 images), copied unmodified from <a href="https://github.com/reactjs/react.dev">reactjs/react.dev</a>.</li>
+    <li><strong>Versions:</strong> Docusaurus 3.10.2 (Node 22), MkDocs 1.6.1 with Material 9.7.7 (Python 3.13), GitBook hosted with Git Sync, October 2026.</li>
+    <li><strong>Rule kept:</strong> no content file was edited. Docusaurus and MkDocs adapt the content while building; GitBook reads a converted copy generated by <code>gitbook/build.py</code>.</li>
+    <li><strong>Performance:</strong> <a href="https://pagespeed.web.dev/">PageSpeed Insights</a> (Lighthouse), one run per URL on October 16, 2026: <a href="https://pagespeed.web.dev/analysis/https-cae-west-github-io-react-docs-ssg-comparison-docusaurus-reference-react-useState/hbkwlj61bh">Docusaurus</a>, <a href="https://pagespeed.web.dev/analysis/https-cae-west-github-io-react-docs-ssg-comparison-mkdocs-reference-react-useState/f6fid0zin5">MkDocs Material</a>, <a href="https://pagespeed.web.dev/analysis/https-react-docs-1-gitbook-io-react-docs-react-19-3-hooks-usestate/f9yf9sjy4w">GitBook</a>.</li>
+    <li><strong>Screenshots:</strong> light mode. Docusaurus and MkDocs at 1440 × 900 in Chromium; GitBook in Waterfox, scaled to the same width.</li>
+  </ul>
+
   <footer>
-    Source and notes: <a href="https://github.com/cae-west/react-docs-ssg-comparison">github.com/cae-west/react-docs-ssg-comparison</a>.
-    React documentation &copy; Meta Platforms, Inc., licensed under
-    <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; this is an independent comparison, not an official React site.
+    <p>Source and notes: <a href="https://github.com/cae-west/react-docs-ssg-comparison">github.com/cae-west/react-docs-ssg-comparison</a>.
+    React documentation and logo &copy; Meta Platforms, Inc.; documentation licensed under
+    <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. This is an independent comparison, not an official React site.</p>
   </footer>
+  <dialog class="viewer" id="viewer" aria-label="Screenshot viewer">
+    <div class="viewer-inner">
+      <button class="v-close" type="button" aria-label="Close">&times;</button>
+      <button class="v-prev" type="button" aria-label="Previous screenshot">&#8249;</button>
+      <img id="viewer-img" alt="">
+      <p class="viewer-cap" id="viewer-cap"></p>
+      <button class="v-next" type="button" aria-label="Next screenshot">&#8250;</button>
+    </div>
+  </dialog>
 </main>
+<script>
+  // Draws the performance chart from one data list, so the dots and labels can't disagree.
+  (function () {
+    var rows = [
+      { tool: "Docusaurus", mobile: 64, desktop: 70 },
+      { tool: "MkDocs Material", mobile: 66, desktop: 98 },
+      { tool: "GitBook", mobile: 61, desktop: 79 }
+    ];
+    var NS = "http://www.w3.org/2000/svg", g = document.getElementById("chart-body");
+    var lo = 50, x0 = 190, x1 = 710, y0 = 130, gap = 62, yAxis = y0 + rows.length * gap - 20;
+    function x(v) { return x0 + (v - lo) / (100 - lo) * (x1 - x0); }
+    function el(name, attrs, text) {
+      var n = document.createElementNS(NS, name);
+      for (var k in attrs) n.setAttribute(k, attrs[k]);
+      if (text != null) n.textContent = text;
+      g.appendChild(n); return n;
+    }
+    el("rect", { "class": "c-band", x: x(90), y: y0 - 22, width: x(100) - x(90), height: yAxis - y0 + 22 });
+    [50, 60, 70, 80, 90, 100].forEach(function (t) {
+      el("line", { "class": "c-grid", x1: x(t), x2: x(t), y1: y0 - 22, y2: yAxis });
+      el("text", { "class": "c-tick", x: x(t), y: yAxis + 18, "text-anchor": "middle" }, t);
+    });
+    el("line", { "class": "c-ref", x1: x(90), x2: x(90), y1: y0 - 22, y2: yAxis });
+    el("text", { "class": "c-tick", x: x(95), y: y0 - 30, "text-anchor": "middle" }, "Good (90+)");
+    rows.forEach(function (r, i) {
+      var y = y0 + i * gap;
+      el("text", { "class": "c-name", x: 20, y: y + 5 }, r.tool);
+      el("line", { "class": "c-link", x1: x(r.mobile), x2: x(r.desktop), y1: y, y2: y });
+      el("circle", { "class": "c-mob", cx: x(r.mobile), cy: y, r: 8 });
+      el("text", { "class": "c-mob-label", x: x(r.mobile) - 14, y: y + 5, "text-anchor": "end" }, r.mobile);
+      el("circle", { "class": "c-desk", cx: x(r.desktop), cy: y, r: 8 });
+      el("text", { "class": "c-desk-label", x: x(r.desktop) + 14, y: y + 5 }, r.desktop);
+    });
+  })();
+</script>
+<script>
+  // Screenshot viewer: opens a screenshot over the page with close, previous and next.
+  // Without JavaScript (or without <dialog> support) the links still open the image itself.
+  (function () {
+    var dlg = document.getElementById("viewer");
+    if (!dlg || typeof dlg.showModal !== "function") return;
+    var img = document.getElementById("viewer-img"), cap = document.getElementById("viewer-cap");
+    var links = Array.prototype.slice.call(document.querySelectorAll(".shots a"));
+    var current = 0;
+    function show(i) {
+      current = (i + links.length) % links.length;
+      var a = links[current], thumb = a.querySelector("img");
+      var page = a.closest(".shots").previousElementSibling.textContent;
+      img.src = a.getAttribute("href");
+      img.alt = thumb.alt;
+      cap.textContent = a.parentNode.querySelector("figcaption").textContent;
+      var sub = document.createElement("small");
+      sub.textContent = page + " \u00b7 " + (current + 1) + " of " + links.length;
+      cap.appendChild(sub);
+    }
+    links.forEach(function (a, i) {
+      a.addEventListener("click", function (e) { e.preventDefault(); show(i); dlg.showModal(); });
+    });
+    dlg.querySelector(".v-close").addEventListener("click", function () { dlg.close(); });
+    dlg.querySelector(".v-prev").addEventListener("click", function () { show(current - 1); });
+    dlg.querySelector(".v-next").addEventListener("click", function () { show(current + 1); });
+    dlg.addEventListener("click", function (e) {
+      if (e.target === dlg || e.target.classList.contains("viewer-inner")) dlg.close();
+    });
+    dlg.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") show(current - 1);
+      if (e.key === "ArrowRight") show(current + 1);
+    });
+    dlg.addEventListener("close", function () { links[current].focus(); });
+  })();
+</script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # Builds the Docusaurus and MkDocs Material versions of the React docs and
 # publishes them to GitHub Pages:
-#   /                 landing page (pages-landing/index.html)
+#   /                 landing page + write-up (pages-landing/: index.html, react-logo.svg, screenshots/)
 #   /docusaurus/      Docusaurus build
 #   /mkdocs/          MkDocs Material build
 # The GitBook version is hosted by GitBook and linked from the landing page.
@@ -62,7 +62,7 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp pages-landing/index.html _site/index.html
+          cp -r pages-landing/. _site/
           cp -r docusaurus/build _site/docusaurus
           cp -r mkdocs/site _site/mkdocs
           touch _site/.nojekyll
