@@ -1,6 +1,6 @@
 $schema: https://api.gitbook.com/gitbook-docs.yaml
 site:
-  title: React
+  title: React Docs Test
   structure:
     - type: section
       key: react-docs
