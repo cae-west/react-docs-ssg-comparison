@@ -273,7 +273,8 @@ def on_page_markdown(markdown, page, config, files):
         line = JSX_COMMENT.sub("", line)
         # Raw HTML written for React: className -> class, /images/ -> relative to the page URL
         line = line.replace("className=", "class=")
-        line = re.sub(r'src="/images/', f'src="{_site_prefix(page)}images/', line)
+        line = re.sub(r'\b(src|srcset)="/images/',
+                      lambda m: f'{m.group(1)}="{_site_prefix(page)}images/', line)
         # Images: /images/x and ../images/x -> relative to this file
         line = re.sub(r"\]\((?:\.\./)?/?images/", f"]({_md_prefix(page)}images/", line)
         # Site-absolute links -> relative .md links (works on any base URL)
