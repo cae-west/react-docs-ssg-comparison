@@ -28,7 +28,7 @@ This API is only available inside React Server Components.
 experimental_taintObjectReference(message, object);
 ```
 
-To prevent passing a key, hash or token, see [`taintUniqueValue`](/reference/react/experimental_taintUniqueValue).
+To prevent passing a key, hash or token, see [`taintUniqueValue`](experimental_taintUniqueValue.md).
 
 </Intro>
 
@@ -36,9 +36,9 @@ To prevent passing a key, hash or token, see [`taintUniqueValue`](/reference/rea
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `taintObjectReference(message, object)` {/*taintobjectreference*/}
+### `taintObjectReference(message, object)`
 
 Call `taintObjectReference` with an object to register it with React as something that should not be allowed to be passed to the Client as is:
 
@@ -53,17 +53,17 @@ experimental_taintObjectReference(
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `message`: The message you want to display if the object gets passed to a Client Component. This message will be displayed as a part of the Error that will be thrown if the object gets passed to a Client Component.
 
 * `object`: The object to be tainted. Functions and class instances can be passed to `taintObjectReference` as `object`. Functions and classes are already blocked from being passed to Client Components but the React's default error message will be replaced by what you defined in `message`. When a specific instance of a Typed Array is passed to `taintObjectReference` as `object`, any other copies of the Typed Array will not be tainted.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `experimental_taintObjectReference` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 - Recreating or cloning a tainted object creates a new untainted object which may contain sensitive data. For example, if you have a tainted `user` object, `const userInfo = {name: user.name, ssn: user.ssn}` or `{...user}` will create new objects which are not tainted. `taintObjectReference` only protects against simple mistakes when the object is passed through to a Client Component unchanged.
 
@@ -75,9 +75,9 @@ experimental_taintObjectReference(
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Prevent user data from unintentionally reaching the client {/*prevent-user-data-from-unintentionally-reaching-the-client*/}
+### Prevent user data from unintentionally reaching the client
 
 A Client Component should never accept objects that carry sensitive data. Ideally, the data fetching functions should not expose data that the current user should not have access to. Sometimes mistakes happen during refactoring. To protect against these mistakes happening down the line we can "taint" the user object in our data API.
 
@@ -99,7 +99,7 @@ Now whenever anyone tries to pass this object to a Client Component, an error wi
 
 <DeepDive>
 
-#### Protecting against leaks in data fetching {/*protecting-against-leaks-in-data-fetching*/}
+#### Protecting against leaks in data fetching
 
 If you're running a Server Components environment that has access to sensitive data, you have to be careful not to pass objects straight through:
 

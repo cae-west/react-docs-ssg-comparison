@@ -4,15 +4,15 @@ title: preserve-manual-memoization
 
 <Intro>
 
-Validates that existing manual memoization is preserved by the compiler. React Compiler will only compile components and hooks if its inference [matches or exceeds the existing manual memoization](/learn/react-compiler/introduction#what-should-i-do-about-usememo-usecallback-and-reactmemo).
+Validates that existing manual memoization is preserved by the compiler. React Compiler will only compile components and hooks if its inference [matches or exceeds the existing manual memoization](../../../learn/react-compiler/introduction.md#what-should-i-do-about-usememo-usecallback-and-reactmemo).
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 React Compiler preserves your existing `useMemo`, `useCallback`, and `React.memo` calls. If you've manually memoized something, the compiler assumes you had a good reason and won't remove it. However, incomplete dependencies prevent the compiler from understanding your code's data flow and applying further optimizations.
 
-### Invalid {/*invalid*/}
+### Invalid
 
 Examples of incorrect code for this rule:
 
@@ -37,7 +37,7 @@ function Component({ onUpdate, value }) {
 }
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 Examples of correct code for this rule:
 
@@ -60,9 +60,9 @@ function Component({ data, filter }) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### Should I remove my manual memoization? {/*remove-manual-memoization*/}
+### Should I remove my manual memoization?
 
 You might wonder if React Compiler makes manual memoization unnecessary:
 

@@ -8,15 +8,15 @@ The React docs at [react.dev](https://react.dev) provide documentation for the l
 
 </Intro>
 
-We aim to keep the docs updated within major versions, and do not publish versions for each minor or patch version. When a new major is released, we archive the docs for the previous version as `x.react.dev`. See our [versioning policy](/community/versioning-policy) for more info.
+We aim to keep the docs updated within major versions, and do not publish versions for each minor or patch version. When a new major is released, we archive the docs for the previous version as `x.react.dev`. See our [versioning policy](community/versioning-policy.md) for more info.
 
 You can find an archive of previous major versions below.
 
-## Latest version: 19.3 {/*latest-version*/}
+## Latest version: 19.3
 
 - [react.dev](https://react.dev) {/*docs-19*/}
 
-## Previous versions {/*previous-versions*/}
+## Previous versions
 
 - [18.react.dev](https://18.react.dev) {/*docs-18*/}
 - [17.react.dev](https://17.react.dev) {/*docs-17*/}
@@ -25,25 +25,25 @@ You can find an archive of previous major versions below.
 
 <Note>
 
-#### Legacy Docs {/*legacy-docs*/}
+#### Legacy Docs
 
-In 2023, we [launched our new docs](/blog/2023/03/16/introducing-react-dev) for React 18 as [react.dev](https://react.dev). The legacy React 18 docs are available at [legacy.reactjs.org](https://legacy.reactjs.org). Versions 17 and below are hosted on legacy sites.
+In 2023, we [launched our new docs](blog/2023/03/16/introducing-react-dev.md) for React 18 as [react.dev](https://react.dev). The legacy React 18 docs are available at [legacy.reactjs.org](https://legacy.reactjs.org). Versions 17 and below are hosted on legacy sites.
 
 For versions older than React 15, see [15.react.dev](https://15.react.dev).
 
 </Note>
 
-## Changelog {/*changelog*/}
+## Changelog
 
-### React 19 {/*react-19*/}
+### React 19
 
 **Blog Posts**
-- [React v19](/blog/2024/12/05/react-19)
-- [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide)
-- [React Compiler Beta Release](/blog/2024/10/21/react-compiler-beta-release)
-- [React Compiler v1.0](/blog/2025/10/07/react-compiler-1)
-- [React 19.2](/blog/2025/10/01/react-19-2)
-- [React 19.3](/blog/2026/09/09/react-19-3)
+- [React v19](blog/2024/12/05/react-19.md)
+- [React 19 Upgrade Guide](blog/2024/04/25/react-19-upgrade-guide.md)
+- [React Compiler Beta Release](blog/2024/10/21/react-compiler-beta-release.md)
+- [React Compiler v1.0](blog/2025/10/07/react-compiler-1.md)
+- [React 19.2](blog/2025/10/01/react-19-2.md)
+- [React 19.3](blog/2026/09/09/react-19-3.md)
 
 **Talks**
 - [React 19 Keynote](https://www.youtube.com/watch?v=lyEKhv8-3n0)
@@ -82,12 +82,12 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v19.0.1 (December, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1901-dec-3-2025)
 - [v19.0.0 (December, 2024)](https://github.com/react/react/blob/main/CHANGELOG.md#1900-december-5-2024)
 
-### React 18 {/*react-18*/}
+### React 18
 
 **Blog Posts**
-- [React v18.0](/blog/2022/03/29/react-v18)
-- [How to Upgrade to React 18](/blog/2022/03/08/react-18-upgrade-guide)
-- [The Plan for React 18](/blog/2021/06/08/the-plan-for-react-18)
+- [React v18.0](blog/2022/03/29/react-v18.md)
+- [How to Upgrade to React 18](blog/2022/03/08/react-18-upgrade-guide.md)
+- [The Plan for React 18](blog/2021/06/08/the-plan-for-react-18.md)
 
 **Talks**
 - [React 18 Keynote](https://www.youtube.com/watch?v=FZ0cG47msEk)
@@ -106,7 +106,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v18.1.0 (April, 2022)](https://github.com/react/react/blob/main/CHANGELOG.md#1810-april-26-2022)
 - [v18.0.0 (March 2022)](https://github.com/react/react/blob/main/CHANGELOG.md#1800-march-29-2022)
 
-### React 17 {/*react-17*/}
+### React 17
 
 **Blog Posts**
 - [React v17.0](https://legacy.reactjs.org/blog/2020/10/20/react-v17.html)
@@ -118,7 +118,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v17.0.1 (October 2020)](https://github.com/react/react/blob/main/CHANGELOG.md#1701-october-22-2020)
 - [v17.0.0 (October 2020)](https://github.com/react/react/blob/main/CHANGELOG.md#1700-october-20-2020)
 
-### React 16 {/*react-16*/}
+### React 16
 
 **Blog Posts**
 - [React v16.0](https://legacy.reactjs.org/blog/2017/09/26/react-v16.0.html)
@@ -173,7 +173,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v16.0.1 (August 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1601-august-1-2018)
 - [v16.0 (September 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1600-september-26-2017)
 
-### React 15 {/*react-15*/}
+### React 15
 
 **Blog Posts**
 - [React v15.0](https://legacy.reactjs.org/blog/2016/04/07/react-v15.html)
@@ -211,7 +211,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v15.0.1 (April 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1501-april-8-2016)
 - [v15.0.0 (April 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1500-april-7-2016)
 
-### React 0.14 {/*react-14*/}
+### React 0.14
 
 **Blog Posts**
 - [React v0.14](https://legacy.reactjs.org/blog/2015/10/07/react-v0.14.html)
@@ -237,7 +237,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v0.14.1 (October 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0141-october-28-2015)
 - [v0.14.0 (October 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0140-october-7-2015)
 
-### React 0.13 {/*react-13*/}
+### React 0.13
 
 **Blog Posts**
 - [React Native v0.4](https://legacy.reactjs.org/blog/2015/04/17/react-native-v0.4.html)
@@ -258,7 +258,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v0.13.1 (March 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0131-march-16-2015)
 - [v0.13.0 (March 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0130-march-10-2015)
 
-### React 0.12 {/*react-12*/}
+### React 0.12
 
 **Blog Posts**
 - [React v0.12](https://legacy.reactjs.org/blog/2014/10/28/react-v0.12.html)
@@ -271,7 +271,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v0.12.1 (November 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0121-november-18-2014)
 - [v0.12.0 (October 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0120-october-28-2014)
 
-### React 0.11 {/*react-11*/}
+### React 0.11
 
 **Blog Posts**
 - [React v0.11](https://legacy.reactjs.org/blog/2014/07/17/react-v0.11.html)
@@ -287,7 +287,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v0.11.1 (July 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0111-july-24-2014)
 - [v0.11.0 (July 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0110-july-17-2014)
 
-### React 0.10 and below {/*react-10-and-below*/}
+### React 0.10 and below
 
 **Blog Posts**
 - [React v0.10](https://legacy.reactjs.org/blog/2014/03/21/react-v0.10.html)
@@ -319,7 +319,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v0.3.1 (May 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#031-may-30-2013)
 - [v0.3.0 (May 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#030-may-29-2013)
 
-### Initial Commit {/*initial-commit*/}
+### Initial Commit
 
 React was open-sourced on May 29, 2013. The initial commit is: [`75897c`: Initial public release](https://github.com/react/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
 

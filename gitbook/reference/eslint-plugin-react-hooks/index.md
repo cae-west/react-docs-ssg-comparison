@@ -5,7 +5,7 @@ version: rc
 
 <Intro>
 
-`eslint-plugin-react-hooks` provides ESLint rules to enforce the [Rules of React](/reference/rules).
+`eslint-plugin-react-hooks` provides ESLint rules to enforce the [Rules of React](../rules/index.md).
 
 </Intro>
 
@@ -17,24 +17,24 @@ When the compiler reports a diagnostic, it means that the compiler was able to s
 What this means for linting, is that you don’t need to fix all violations immediately. Address them at your own pace to gradually increase the number of optimized components.
 </Note>
 
-## Recommended Rules {/*recommended*/}
+## Recommended Rules
 
 These rules are included in the `recommended` preset in `eslint-plugin-react-hooks`:
 
-* [`exhaustive-deps`](/reference/eslint-plugin-react-hooks/lints/exhaustive-deps) - Validates that dependency arrays for React hooks contain all necessary dependencies
-* [`rules-of-hooks`](/reference/eslint-plugin-react-hooks/lints/rules-of-hooks) - Validates that components and hooks follow the Rules of Hooks
-* [`component-hook-factories`](/reference/eslint-plugin-react-hooks/lints/component-hook-factories) - Validates higher order functions defining nested components or hooks
-* [`config`](/reference/eslint-plugin-react-hooks/lints/config) - Validates the compiler configuration options
-* [`error-boundaries`](/reference/eslint-plugin-react-hooks/lints/error-boundaries) - Validates usage of Error Boundaries instead of try/catch for child errors
-* [`gating`](/reference/eslint-plugin-react-hooks/lints/gating) - Validates configuration of gating mode
-* [`globals`](/reference/eslint-plugin-react-hooks/lints/globals) - Validates against assignment/mutation of globals during render
-* [`immutability`](/reference/eslint-plugin-react-hooks/lints/immutability) - Validates against mutating props, state, and other immutable values
-* [`incompatible-library`](/reference/eslint-plugin-react-hooks/lints/incompatible-library) - Validates against usage of libraries which are incompatible with memoization
-* [`preserve-manual-memoization`](/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization) - Validates that existing manual memoization is preserved by the compiler
-* [`purity`](/reference/eslint-plugin-react-hooks/lints/purity) - Validates that components/hooks are pure by checking known-impure functions
-* [`refs`](/reference/eslint-plugin-react-hooks/lints/refs) - Validates correct usage of refs, not reading/writing during render
-* [`set-state-in-effect`](/reference/eslint-plugin-react-hooks/lints/set-state-in-effect) - Validates against calling setState synchronously in an effect
-* [`set-state-in-render`](/reference/eslint-plugin-react-hooks/lints/set-state-in-render) - Validates against setting state during render
-* [`static-components`](/reference/eslint-plugin-react-hooks/lints/static-components) - Validates that components are static, not recreated every render
-* [`unsupported-syntax`](/reference/eslint-plugin-react-hooks/lints/unsupported-syntax) - Validates against syntax that React Compiler does not support
-* [`use-memo`](/reference/eslint-plugin-react-hooks/lints/use-memo) - Validates usage of the `useMemo` hook without a return value
+* [`exhaustive-deps`](lints/exhaustive-deps.md) - Validates that dependency arrays for React hooks contain all necessary dependencies
+* [`rules-of-hooks`](lints/rules-of-hooks.md) - Validates that components and hooks follow the Rules of Hooks
+* [`component-hook-factories`](lints/component-hook-factories.md) - Validates higher order functions defining nested components or hooks
+* [`config`](lints/config.md) - Validates the compiler configuration options
+* [`error-boundaries`](lints/error-boundaries.md) - Validates usage of Error Boundaries instead of try/catch for child errors
+* [`gating`](lints/gating.md) - Validates configuration of gating mode
+* [`globals`](lints/globals.md) - Validates against assignment/mutation of globals during render
+* [`immutability`](lints/immutability.md) - Validates against mutating props, state, and other immutable values
+* [`incompatible-library`](lints/incompatible-library.md) - Validates against usage of libraries which are incompatible with memoization
+* [`preserve-manual-memoization`](lints/preserve-manual-memoization.md) - Validates that existing manual memoization is preserved by the compiler
+* [`purity`](lints/purity.md) - Validates that components/hooks are pure by checking known-impure functions
+* [`refs`](lints/refs.md) - Validates correct usage of refs, not reading/writing during render
+* [`set-state-in-effect`](lints/set-state-in-effect.md) - Validates against calling setState synchronously in an effect
+* [`set-state-in-render`](lints/set-state-in-render.md) - Validates against setting state during render
+* [`static-components`](lints/static-components.md) - Validates that components are static, not recreated every render
+* [`unsupported-syntax`](lints/unsupported-syntax.md) - Validates against syntax that React Compiler does not support
+* [`use-memo`](lints/use-memo.md) - Validates usage of the `useMemo` hook without a return value

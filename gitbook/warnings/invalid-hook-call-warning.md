@@ -18,14 +18,14 @@ There are three common reasons you might be seeing it:
 
 Let's look at each of these cases.
 
-## Breaking Rules of Hooks {/*breaking-rules-of-hooks*/}
+## Breaking Rules of Hooks
 
-Functions whose names start with `use` are called [*Hooks*](/reference/react) in React.
+Functions whose names start with `use` are called [*Hooks*](../reference/react/index.md) in React.
 
 **Don’t call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function, before any early returns. You can only call Hooks while React is rendering a function component:
 
-* ✅ Call them at the top level in the body of a [function component](/learn/your-first-component).
-* ✅ Call them at the top level in the body of a [custom Hook](/learn/reusing-logic-with-custom-hooks).
+* ✅ Call them at the top level in the body of a [function component](../learn/your-first-component.md).
+* ✅ Call them at the top level in the body of a [custom Hook](../learn/reusing-logic-with-custom-hooks.md).
 
 ```js{2-3,8-9}
 function Counter() {
@@ -107,15 +107,15 @@ You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/packa
 
 <Note>
 
-[Custom Hooks](/learn/reusing-logic-with-custom-hooks) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
+[Custom Hooks](../learn/reusing-logic-with-custom-hooks.md) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
 
 </Note>
 
-## Mismatching Versions of React and React DOM {/*mismatching-versions-of-react-and-react-dom*/}
+## Mismatching Versions of React and React DOM
 
 You might be using a version of `react-dom` (< 16.8.0) or `react-native` (< 0.59) that doesn't yet support Hooks. You can run `npm ls react-dom` or `npm ls react-native` in your application folder to check which version you're using. If you find more than one of them, this might also create problems (more on that below).
 
-## Duplicate React {/*duplicate-react*/}
+## Duplicate React
 
 In order for Hooks to work, the `react` import from your application code needs to resolve to the same module as the `react` import from inside the `react-dom` package.
 
@@ -153,6 +153,6 @@ In general, React supports using multiple independent copies on one page (for ex
 
 </Note>
 
-## Other Causes {/*other-causes*/}
+## Other Causes
 
 If none of this worked, please comment in [this issue](https://github.com/react/react/issues/13991) and we'll try to help. Try to create a small reproducing example — you might discover the problem as you're doing it.

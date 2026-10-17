@@ -4,11 +4,11 @@ title: Acknowledgements
 
 <Intro>
 
-React was originally created by [Jordan Walke.](https://github.com/jordwalke) Today, React has a [dedicated full-time team working on it](/community/team), as well as over a thousand [open source contributors.](https://github.com/react/react/graphs/contributors)
+React was originally created by [Jordan Walke.](https://github.com/jordwalke) Today, React has a [dedicated full-time team working on it](team.md), as well as over a thousand [open source contributors.](https://github.com/react/react/graphs/contributors)
 
 </Intro>
 
-## Past contributors {/*past-contributors*/}
+## Past contributors
 
 We'd like to recognize a few people who have made significant contributions to React and its documentation in the past and have helped maintain them over the years:
 
@@ -64,7 +64,7 @@ This list is not exhaustive.
 
 We'd like to give special thanks to [Tom Occhino](https://github.com/tomocchino) and [Adam Wolff](https://github.com/wolffiex) for their guidance and support over the years. We are also thankful to all the volunteers who [translated React into other languages.](https://translations.react.dev/)
 
-## Additional Thanks {/*additional-thanks*/}
+## Additional Thanks
 
 Additionally, we're grateful to:
 

@@ -4,13 +4,13 @@ title: useLayoutEffect
 
 <Pitfall>
 
-`useLayoutEffect` can hurt performance. Prefer [`useEffect`](/reference/react/useEffect) when possible.
+`useLayoutEffect` can hurt performance. Prefer [`useEffect`](useEffect.md) when possible.
 
 </Pitfall>
 
 <Intro>
 
-`useLayoutEffect` is a version of [`useEffect`](/reference/react/useEffect) that fires before the browser repaints the screen.
+`useLayoutEffect` is a version of [`useEffect`](useEffect.md) that fires before the browser repaints the screen.
 
 ```js
 useLayoutEffect(setup, dependencies?)
@@ -22,9 +22,9 @@ useLayoutEffect(setup, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `useLayoutEffect(setup, dependencies?)` {/*useinsertioneffect*/}
+### `useLayoutEffect(setup, dependencies?)`
 
 Call `useLayoutEffect` to perform the layout measurements before the browser repaints the screen:
 
@@ -45,35 +45,35 @@ function Tooltip() {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
-* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. After your [component commits](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom) to the DOM and before the browser repaints the screen, React will run your setup function. After every commit with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function.
+* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. After your [component commits](../../learn/render-and-commit.md#step-3-react-commits-changes-to-the-dom) to the DOM and before the browser repaints the screen, React will run your setup function. After every commit with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function.
 
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If you omit this argument, your Effect will re-run after every commit of the component.
+* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](../../learn/editor-setup.md#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If you omit this argument, your Effect will re-run after every commit of the component.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `useLayoutEffect` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * `useLayoutEffect` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a component and move the Effect there.
 
-* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, [implement the cleanup function.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, [implement the cleanup function.](../../learn/synchronizing-with-effects.md#how-to-handle-the-effect-firing-twice-in-development)
 
-* If some of your dependencies are objects or functions defined inside the component, there is a risk that they will **cause the Effect to re-run more often than needed.** To fix this, remove unnecessary [object](/reference/react/useEffect#removing-unnecessary-object-dependencies) and [function](/reference/react/useEffect#removing-unnecessary-function-dependencies) dependencies. You can also [extract state updates](/reference/react/useEffect#updating-state-based-on-previous-state-from-an-effect) and [non-reactive logic](/reference/react/useEffect#reading-the-latest-props-and-state-from-an-effect) outside of your Effect.
+* If some of your dependencies are objects or functions defined inside the component, there is a risk that they will **cause the Effect to re-run more often than needed.** To fix this, remove unnecessary [object](useEffect.md#removing-unnecessary-object-dependencies) and [function](useEffect.md#removing-unnecessary-function-dependencies) dependencies. You can also [extract state updates](useEffect.md#updating-state-based-on-previous-state-from-an-effect) and [non-reactive logic](useEffect.md#reading-the-latest-props-and-state-from-an-effect) outside of your Effect.
 
 * Effects **only run on the client.** They don't run during server rendering.
 
-* The code inside `useLayoutEffect` and all state updates scheduled from it **block the browser from repainting the screen.** When used excessively, this makes your app slow. When possible, prefer [`useEffect`.](/reference/react/useEffect)
+* The code inside `useLayoutEffect` and all state updates scheduled from it **block the browser from repainting the screen.** When used excessively, this makes your app slow. When possible, prefer [`useEffect`.](useEffect.md)
 
 * If you trigger a state update inside `useLayoutEffect`, React will execute all remaining Effects immediately including `useEffect`.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Measuring layout before the browser repaints the screen {/*measuring-layout-before-the-browser-repaints-the-screen*/}
+### Measuring layout before the browser repaints the screen
 
 Most components don't need to know their position and size on the screen to decide what to render. They only return some JSX. Then the browser calculates their *layout* (position and size) and repaints the screen.
 
@@ -253,11 +253,11 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-Notice that even though the `Tooltip` component has to render in two passes (first, with `tooltipHeight` initialized to `0` and then with the real measured height), you only see the final result. This is why you need `useLayoutEffect` instead of [`useEffect`](/reference/react/useEffect) for this example. Let's look at the difference in detail below.
+Notice that even though the `Tooltip` component has to render in two passes (first, with `tooltipHeight` initialized to `0` and then with the real measured height), you only see the final result. This is why you need `useLayoutEffect` instead of [`useEffect`](useEffect.md) for this example. Let's look at the difference in detail below.
 
 <Recipes titleText="useLayoutEffect vs useEffect" titleId="examples">
 
-#### `useLayoutEffect` blocks the browser from repainting {/*uselayouteffect-blocks-the-browser-from-repainting*/}
+#### `useLayoutEffect` blocks the browser from repainting
 
 React guarantees that the code inside `useLayoutEffect` and any state updates scheduled inside it will be processed **before the browser repaints the screen.** This lets you render the tooltip, measure it, and re-render the tooltip again without the user noticing the first extra render. In other words, `useLayoutEffect` blocks the browser from painting.
 
@@ -404,9 +404,9 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 <Solution />
 
-#### `useEffect` does not block the browser {/*useeffect-does-not-block-the-browser*/}
+#### `useEffect` does not block the browser
 
-Here is the same example, but with [`useEffect`](/reference/react/useEffect) instead of `useLayoutEffect`. If you're on a slower device, you might notice that sometimes the tooltip "flickers" and you briefly see its initial position before the corrected position.
+Here is the same example, but with [`useEffect`](useEffect.md) instead of `useLayoutEffect`. If you're on a slower device, you might notice that sometimes the tooltip "flickers" and you briefly see its initial position before the corrected position.
 
 <Sandpack>
 
@@ -712,9 +712,9 @@ Rendering in two passes and blocking the browser hurts performance. Try to avoid
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I'm getting an error: "`useLayoutEffect` does nothing on the server" {/*im-getting-an-error-uselayouteffect-does-nothing-on-the-server*/}
+### I'm getting an error: "`useLayoutEffect` does nothing on the server"
 
 The purpose of `useLayoutEffect` is to let your component [use layout information for rendering:](#measuring-layout-before-the-browser-repaints-the-screen)
 
@@ -722,7 +722,7 @@ The purpose of `useLayoutEffect` is to let your component [use layout informatio
 2. Measure the layout *before the browser repaints the screen.*
 3. Render the final content using the layout information you've read.
 
-When you or your framework uses [server rendering](/reference/react-dom/server), your React app renders to HTML on the server for the initial render. This lets you show the initial HTML before the JavaScript code loads.
+When you or your framework uses [server rendering](../react-dom/server/index.md), your React app renders to HTML on the server for the initial render. This lets you show the initial HTML before the JavaScript code loads.
 
 The problem is that on the server, there is no layout information.
 
@@ -732,12 +732,12 @@ Usually, components that rely on layout information don't need to render on the 
 
 However, if you're running into this problem, you have a few different options:
 
-- Replace `useLayoutEffect` with [`useEffect`.](/reference/react/useEffect) This tells React that it's okay to display the initial render result without blocking the paint (because the original HTML will become visible before your Effect runs).
+- Replace `useLayoutEffect` with [`useEffect`.](useEffect.md) This tells React that it's okay to display the initial render result without blocking the paint (because the original HTML will become visible before your Effect runs).
 
-- Alternatively, call [`use(browser())`](/reference/react/use#use-browser) to mark the component as browser-only. React will replace its content up to the closest [`<Suspense>`](/reference/react/Suspense) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
+- Alternatively, call [`use(browser())`](use.md#usebrowser) to mark the component as browser-only. React will replace its content up to the closest [`<Suspense>`](Suspense.md) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
 
-- Alternatively, [mark your component as client-only.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content) This tells React to replace its content up to the closest `<Suspense>` boundary with a loading fallback during server rendering.
+- Alternatively, [mark your component as client-only.](Suspense.md#providing-a-fallback-for-server-errors-and-client-only-content) This tells React to replace its content up to the closest `<Suspense>` boundary with a loading fallback during server rendering.
 
 - Alternatively, you can render a component with `useLayoutEffect` only after hydration. Keep a boolean `isMounted` state that's initialized to `false`, and set it to `true` inside a `useEffect` call. Your rendering logic can then be like `return isMounted ? <RealContent /> : <FallbackContent />`. On the server and during the hydration, the user will see `FallbackContent` which should not call `useLayoutEffect`. Then React will replace it with `RealContent` which runs on the client only and can include `useLayoutEffect` calls.
 
-- If you synchronize your component with an external data store and rely on `useLayoutEffect` for different reasons than measuring layout, consider [`useSyncExternalStore`](/reference/react/useSyncExternalStore) instead which [supports server rendering.](/reference/react/useSyncExternalStore#adding-support-for-server-rendering)
+- If you synchronize your component with an external data store and rely on `useLayoutEffect` for different reasons than measuring layout, consider [`useSyncExternalStore`](useSyncExternalStore.md) instead which [supports server rendering.](useSyncExternalStore.md#adding-support-for-server-rendering)

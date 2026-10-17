@@ -4,15 +4,15 @@ title: rules-of-hooks
 
 <Intro>
 
-Validates that components and hooks follow the [Rules of Hooks](/reference/rules/rules-of-hooks).
+Validates that components and hooks follow the [Rules of Hooks](../../rules/rules-of-hooks.md).
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 React relies on the order in which hooks are called to correctly preserve state between renders. Each time your component renders, React expects the exact same hooks to be called in the exact same order. When hooks are called conditionally or in loops, React loses track of which state corresponds to which hook call, leading to bugs like state mismatches and "Rendered fewer/more hooks than expected" errors.
 
-## Common Violations {/*common-violations*/}
+## Common Violations
 
 These patterns violate the Rules of Hooks:
 
@@ -26,7 +26,7 @@ These patterns violate the Rules of Hooks:
 
 <Note>
 
-### `use` hook {/*use-hook*/}
+### `use` hook
 
 The `use` hook is different from other React hooks. You can call it conditionally and in loops:
 
@@ -46,11 +46,11 @@ However, `use` still has restrictions:
 - Can't be wrapped in try/catch
 - Must be called inside a component or hook
 
-Learn more: [`use` API Reference](/reference/react/use)
+Learn more: [`use` API Reference](../../react/use.md)
 
 </Note>
 
-### Invalid {/*invalid*/}
+### Invalid
 
 Examples of incorrect code for this rule:
 
@@ -80,7 +80,7 @@ try {
 const globalState = useState(0); // Outside component
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 Examples of correct code for this rule:
 
@@ -104,9 +104,9 @@ function Component({ isSpecial, shouldFetch, fetchPromise }) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I want to fetch data based on some condition {/*conditional-data-fetching*/}
+### I want to fetch data based on some condition
 
 You're trying to conditionally call useEffect:
 
@@ -134,11 +134,11 @@ useEffect(() => {
 
 There are better ways to fetch data rather than in a useEffect. Consider using TanStack Query, useSWR, or React Router 6.4+ for data fetching. These solutions handle deduplicating requests, caching responses, and avoiding network waterfalls.
 
-Learn more: [Fetching Data](/learn/synchronizing-with-effects#fetching-data)
+Learn more: [Fetching Data](../../../learn/synchronizing-with-effects.md#fetching-data)
 
 </Note>
 
-### I need different state for different scenarios {/*conditional-state-initialization*/}
+### I need different state for different scenarios
 
 You're trying to conditionally initialize state:
 
@@ -160,7 +160,7 @@ const [permissions, setPermissions] = useState(
 );
 ```
 
-## Options {/*options*/}
+## Options
 
 You can configure custom effect hooks using shared ESLint settings (available in `eslint-plugin-react-hooks` 6.1.1 and later):
 

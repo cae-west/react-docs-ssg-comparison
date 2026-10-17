@@ -8,11 +8,11 @@ Validates against syntax that React Compiler does not support. If you need to, y
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 React Compiler needs to statically analyze your code to apply optimizations. Features like `eval` and `with` make it impossible to statically understand what the code does at compile time, so the compiler can't optimize components that use them.
 
-### Invalid {/*invalid*/}
+### Invalid
 
 Examples of incorrect code for this rule:
 
@@ -37,7 +37,7 @@ function Component({propName}) {
 }
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 Examples of correct code for this rule:
 
@@ -54,9 +54,9 @@ function Component() {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I need to evaluate dynamic code {/*evaluate-dynamic-code*/}
+### I need to evaluate dynamic code
 
 You might need to evaluate user-provided code:
 

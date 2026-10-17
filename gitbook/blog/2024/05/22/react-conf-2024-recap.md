@@ -17,11 +17,11 @@ Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada w
 
 ---
 
-At React Conf 2024, we announced the [React 19 RC](/blog/2024/12/05/react-19), the [React Native New Architecture Beta](https://github.com/reactwg/react-native-new-architecture/discussions/189), and an experimental release of the [React Compiler](/learn/react-compiler). The community also took the stage to announce [React Router v7](https://remix.run/blog/merging-remix-and-react-router), [Universal Server Components](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=20765s) in Expo Router, React Server Components in [RedwoodJS](https://redwoodjs.com/blog/rsc-now-in-redwoodjs), and much more.
+At React Conf 2024, we announced the [React 19 RC](../../12/05/react-19.md), the [React Native New Architecture Beta](https://github.com/reactwg/react-native-new-architecture/discussions/189), and an experimental release of the [React Compiler](../../../../learn/react-compiler/index.md). The community also took the stage to announce [React Router v7](https://remix.run/blog/merging-remix-and-react-router), [Universal Server Components](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=20765s) in Expo Router, React Server Components in [RedwoodJS](https://redwoodjs.com/blog/rsc-now-in-redwoodjs), and much more.
 
 The entire [day 1](https://www.youtube.com/watch?v=T8TZQ6k4SLE) and [day 2](https://www.youtube.com/watch?v=0ckOUBiuxVY) streams are available online. In this post, we'll summarize the talks and announcements from the event.
 
-## Day 1 {/*day-1*/}
+## Day 1
 
 _[Watch the full day 1 stream here.](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=973s)_
 
@@ -36,7 +36,7 @@ For more, check out these talks from the community later in the conference:
 - [RedwoodJS, now with React Server Components](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=26815s) by [Amy Dutton](https://twitter.com/selfteachme)
 - [Introducing Universal React Server Components in Expo Router](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=20765s) by [Evan Bacon](https://twitter.com/Baconbrix)
 
-Next in the keynote, [Josh Story](https://twitter.com/joshcstory) and [Andrew Clark](https://twitter.com/acdlite) shared new features coming in React 19, and announced the React 19 RC which is ready for testing in production. Check out all the features in the [React 19 release post](/blog/2024/12/05/react-19), and see these talks for deep dives on the new features:
+Next in the keynote, [Josh Story](https://twitter.com/joshcstory) and [Andrew Clark](https://twitter.com/acdlite) shared new features coming in React 19, and announced the React 19 RC which is ready for testing in production. Check out all the features in the [React 19 release post](../../12/05/react-19.md), and see these talks for deep dives on the new features:
 
 - [What's new in React 19](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=8880s) by [Lydia Hallie](https://twitter.com/lydiahallie)
 - [React Unpacked: A Roadmap to React 19](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=10112s) by [Sam Selikoff](https://twitter.com/samselikoff)
@@ -47,7 +47,7 @@ Next in the keynote, [Josh Story](https://twitter.com/joshcstory) and [Andrew Cl
 
 Finally, we ended the keynote with [Joe Savona](https://twitter.com/en_JS), [Sathya Gunasekaran](https://twitter.com/_gsathya), and [Mofei Zhang](https://twitter.com/zmofei) announcing that the React Compiler is now [Open Source](https://github.com/react/react/pull/29061), and sharing an experimental version of the React Compiler to try out.
 
-For more information on using the Compiler and how it works, check out [the docs](/learn/react-compiler) and these talks:
+For more information on using the Compiler and how it works, check out [the docs](../../../../learn/react-compiler/index.md) and these talks:
 
 - [Forget About Memo](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=12020s) by [Lauren Tan](https://twitter.com/potetotes)
 - [React Compiler Deep Dive](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=9313s) by [Sathya Gunasekaran](https://twitter.com/_gsathya) and [Mofei Zhang](https://twitter.com/zmofei)
@@ -56,7 +56,7 @@ Watch the full day 1 keynote here:
 
 <YouTubeIframe src="https://www.youtube.com/embed/T8TZQ6k4SLE?t=973s" />
 
-## Day 2 {/*day-2*/}
+## Day 2
 
 _[Watch the full day 2 stream here.](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=1720s)_
 
@@ -81,14 +81,14 @@ Watch the full day 2 keynote here:
 
 <YouTubeIframe src="https://www.youtube.com/embed/0ckOUBiuxVY?t=1720s" />
 
-## Q&A {/*q-and-a*/}
+## Q&A
 
 The React and React Native teams also ended each day with a Q&A session:
 
 - [React Q&A](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=27518s) hosted by [Michael Chan](https://twitter.com/chantastic)
 - [React Native Q&A](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=27935s) hosted by [Jamon Holmgren](https://twitter.com/jamonholmgren)
 
-## And more... {/*and-more*/}
+## And more...
 
 We also heard talks on accessibility, error reporting, css, and more:
 
@@ -98,7 +98,7 @@ We also heard talks on accessibility, error reporting, css, and more:
 - [Let's break React Rules](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=25862s) by [Charlotte Isambert](https://twitter.com/c_isambert)
 - [Solve 100% of your errors](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=19881s) by [Ryan Albrecht](https://github.com/ryan953)
 
-## Thank you {/*thank-you*/}
+## Thank you
 
 Thank you to all the staff, speakers, and participants who made React Conf 2024 possible. There are too many to list, but we want to thank a few in particular.
 

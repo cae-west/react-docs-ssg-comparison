@@ -14,7 +14,7 @@ This separate environment is the "server" in React Server Components. Server Com
 
 <Note>
 
-#### How do I build support for Server Components? {/*how-do-i-build-support-for-server-components*/}
+#### How do I build support for Server Components?
 
 While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x.
 
@@ -22,7 +22,7 @@ To support React Server Components as a bundler or framework, we recommend pinni
 
 </Note>
 
-### Server Components without a Server {/*server-components-without-a-server*/}
+### Server Components without a Server
 Server components can run at build time to read from the filesystem or fetch static content, so a web server is not required. For example, you may want to read static data from a content management system.
 
 Without Server Components, it's common to fetch static data on the client with an Effect:
@@ -92,7 +92,7 @@ See [Async components with Server Components](#async-components-with-server-comp
 
 </Note>
 
-### Server Components with a Server {/*server-components-with-a-server*/}
+### Server Components with a Server
 Server Components can also run on a web server during a request for a page, letting you access your data layer without having to build an API. They are rendered before your application is bundled, and can pass data and JSX as props to Client Components.
 
 Without Server Components, it's common to fetch dynamic data on the client in an Effect:
@@ -179,11 +179,11 @@ The bundler then combines the data, rendered Server Components and dynamic Clien
 
 Server Components can be made dynamic by re-fetching them from a server, where they can access the data and render again. This new application architecture combines the simple “request/response” mental model of server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, giving you the best of both worlds.
 
-### Rendering a context provider in a Server Component {/*rendering-a-context-provider-in-a-server-component*/}
+### Rendering a context provider in a Server Component
 
 Server Components cannot create context, but they can render a context provider imported from a Client Component module.
 
-Create and export the context from a file with the [`'use client'`](/reference/rsc/use-client) directive:
+Create and export the context from a file with the [`'use client'`](use-client.md) directive:
 
 ```js
 // user-context.js
@@ -210,19 +210,19 @@ export async function Layout({ children }) {
 }
 ```
 
-Client Components rendered inside this provider can read its value with [`use`](/reference/react/use) or [`useContext`](/reference/react/useContext).
+Client Components rendered inside this provider can read its value with [`use`](../react/use.md) or [`useContext`](../react/useContext.md).
 
-### Adding interactivity to Server Components {/*adding-interactivity-to-server-components*/}
+### Adding interactivity to Server Components
 
 Server Components are not sent to the browser, so they cannot use interactive APIs like `useState`. To add interactivity to Server Components, you can compose them with Client Component using the `"use client"` directive.
 
 <Note>
 
-#### There is no directive for Server Components. {/*there-is-no-directive-for-server-components*/}
+#### There is no directive for Server Components.
 
 A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Functions.
 
-For more info, see the docs for [Directives](/reference/rsc/directives).
+For more info, see the docs for [Directives](directives.md).
 
 </Note>
 
@@ -284,7 +284,7 @@ This works by first rendering `Notes` as a Server Component, and then instructin
 </body>
 ```
 
-### Async components with Server Components {/*async-components-with-server-components*/}
+### Async components with Server Components
 
 Server Components introduce a new way to write Components using async/await. When you `await` in an async component, React will suspend and wait for the promise to resolve before resuming rendering. This works across server/client boundaries with streaming support for Suspense.
 

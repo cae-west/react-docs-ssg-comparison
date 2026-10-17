@@ -7,22 +7,22 @@ React integrates with tools like editors, TypeScript, browser extensions, and co
 
 </Intro>
 
-## Editor Setup {/*editor-setup*/}
+## Editor Setup
 
-See our [recommended editors](/learn/editor-setup) and learn how to set them up to work with React.
+See our [recommended editors](editor-setup.md) and learn how to set them up to work with React.
 
-## Using TypeScript {/*using-typescript*/}
+## Using TypeScript
 
-TypeScript is a popular way to add type definitions to JavaScript codebases. [Learn how to integrate TypeScript into your React projects](/learn/typescript).
+TypeScript is a popular way to add type definitions to JavaScript codebases. [Learn how to integrate TypeScript into your React projects](typescript.md).
 
-## React Developer Tools {/*react-developer-tools*/}
+## React Developer Tools
 
-React Developer Tools is a browser extension that can inspect React components, edit props and state, and identify performance problems. Learn how to install it [here](learn/react-developer-tools).
+React Developer Tools is a browser extension that can inspect React components, edit props and state, and identify performance problems. Learn how to install it [here](react-developer-tools.md).
 
-## React Compiler {/*react-compiler*/}
+## React Compiler
 
-React Compiler is a tool that automatically optimizes your React app. [Learn more](/learn/react-compiler).
+React Compiler is a tool that automatically optimizes your React app. [Learn more](react-compiler/index.md).
 
-## Next steps {/*next-steps*/}
+## Next steps
 
-Head to the [Quick Start](/learn) guide for a tour of the most important React concepts you will encounter every day.
+Head to the [Quick Start](index.md) guide for a tour of the most important React concepts you will encounter every day.

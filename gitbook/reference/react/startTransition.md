@@ -16,9 +16,9 @@ startTransition(action)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `startTransition(action)` {/*starttransition*/}
+### `startTransition(action)`
 
 The `startTransition` function lets you mark a state update as a Transition.
 
@@ -39,23 +39,23 @@ function TabContainer() {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
-* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls awaited in the `action` will be included in the transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](/reference/react/useTransition#preventing-unwanted-loading-indicators).
+* `action`: A function that updates some state by calling one or more [`set` functions](useState.md#set-functions-like-setsomethingnextstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls awaited in the `action` will be included in the transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](useTransition.md#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](useTransition.md#preventing-unwanted-loading-indicators).
 
-#### Returns {/*returns*/}
+#### Returns
 
 `startTransition` does not return anything.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
-* `startTransition` does not provide a way to track whether a Transition is pending. To show a pending indicator while the Transition is ongoing, you need [`useTransition`](/reference/react/useTransition) instead.
+* `startTransition` does not provide a way to track whether a Transition is pending. To show a pending indicator while the Transition is ongoing, you need [`useTransition`](useTransition.md) instead.
 
-* You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook return value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
+* You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook return value, try [`useDeferredValue`](useDeferredValue.md) instead.
 
 * The function you pass to `startTransition` is called immediately, marking all state updates that happen while it executes as Transitions. If you try to perform state updates in a `setTimeout`, for example, they won't be marked as Transitions.
 
-* You must wrap any state updates after any async requests in another `startTransition` to mark them as Transitions. This is a known limitation that we will fix in the future (see [Troubleshooting](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
+* You must wrap any state updates after any async requests in another `startTransition` to mark them as Transitions. This is a known limitation that we will fix in the future (see [Troubleshooting](useTransition.md#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
 
 * A state update marked as a Transition will be interrupted by other state updates. For example, if you update a chart component inside a Transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input state update.
 
@@ -65,9 +65,9 @@ function TabContainer() {
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Marking a state update as a non-blocking Transition {/*marking-a-state-update-as-a-non-blocking-transition*/}
+### Marking a state update as a non-blocking Transition
 
 You can mark a state update as a *Transition* by wrapping it in a `startTransition` call:
 
@@ -92,8 +92,8 @@ With a Transition, your UI stays responsive in the middle of a re-render. For ex
 
 <Note>
 
-`startTransition` is very similar to [`useTransition`](/reference/react/useTransition), except that it does not provide the `isPending` flag to track whether a Transition is ongoing. The standalone function is also not associated with a component, so if the function passed to it throws an error or returns a rejected Promise, React reports the error with [`reportError`](https://developer.mozilla.org/en-US/docs/Web/API/Window/reportError). You can call `startTransition` when `useTransition` is not available. For example, `startTransition` works outside components, such as from a data library.
+`startTransition` is very similar to [`useTransition`](useTransition.md), except that it does not provide the `isPending` flag to track whether a Transition is ongoing. The standalone function is also not associated with a component, so if the function passed to it throws an error or returns a rejected Promise, React reports the error with [`reportError`](https://developer.mozilla.org/en-US/docs/Web/API/Window/reportError). You can call `startTransition` when `useTransition` is not available. For example, `startTransition` works outside components, such as from a data library.
 
-[Learn about Transitions and see examples on the `useTransition` page.](/reference/react/useTransition)
+[Learn about Transitions and see examples on the `useTransition` page.](useTransition.md)
 
 </Note>

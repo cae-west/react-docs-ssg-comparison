@@ -8,7 +8,7 @@ React can change how you think about the designs you look at and the apps you bu
 
 </Intro>
 
-## Start with the mockup {/*start-with-the-mockup*/}
+## Start with the mockup
 
 Imagine that you already have a JSON API and a mockup from a designer.
 
@@ -27,11 +27,11 @@ The JSON API returns some data that looks like this:
 
 The mockup looks like this:
 
-<img src="/images/docs/s_thinking-in-react_ui.png" width="300" style={{margin: '0 auto'}} />
+<img src="../images/docs/s_thinking-in-react_ui.png" width="300" style={{margin: '0 auto'}} />
 
 To implement a UI in React, you will usually follow the same five steps.
 
-## Step 1: Break the UI into a component hierarchy {/*step-1-break-the-ui-into-a-component-hierarchy*/}
+## Step 1: Break the UI into a component hierarchy
 
 Start by drawing boxes around every component and subcomponent in the mockup and naming them. If you work with a designer, they may have already named these components in their design tool. Ask them!
 
@@ -49,7 +49,7 @@ There are five components on this screen:
 
 <CodeDiagram flip>
 
-<img src="/images/docs/s_thinking-in-react_ui_outline.png" width="500" style={{margin: '0 auto'}} />
+<img src="../images/docs/s_thinking-in-react_ui_outline.png" width="500" style={{margin: '0 auto'}} />
 
 1. `FilterableProductTable` (grey) contains the entire app.
 2. `SearchBar` (blue) receives the user input.
@@ -71,11 +71,11 @@ Now that you've identified the components in the mockup, arrange them into a hie
         * `ProductCategoryRow`
         * `ProductRow`
 
-## Step 2: Build a static version in React {/*step-2-build-a-static-version-in-react*/}
+## Step 2: Build a static version in React
 
 Now that you have your component hierarchy, it's time to implement your app. The most straightforward approach is to build a version that renders the UI from your data model without adding any interactivity... yet! It's often easier to build the static version first and add interactivity later. Building a static version requires a lot of typing and no thinking, but adding interactivity requires a lot of thinking and not a lot of typing.
 
-To build a static version of your app that renders your data model, you'll want to build [components](/learn/your-first-component) that reuse other components and pass data using [props.](/learn/passing-props-to-a-component) Props are a way of passing data from parent to child. (If you're familiar with the concept of [state](/learn/state-a-components-memory), don't use state at all to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don't need it.)
+To build a static version of your app that renders your data model, you'll want to build [components](your-first-component.md) that reuse other components and pass data using [props.](passing-props-to-a-component.md) Props are a way of passing data from parent to child. (If you're familiar with the concept of [state](state-a-components-memory.md), don't use state at all to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don't need it.)
 
 You can either build "top down" by starting with building the components higher up in the hierarchy (like `FilterableProductTable`) or "bottom up" by working from components lower down (like `ProductRow`). In simpler examples, it’s usually easier to go top-down, and on larger projects, it’s easier to go bottom-up.
 
@@ -195,7 +195,7 @@ td {
 
 </Sandpack>
 
-(If this code looks intimidating, go through the [Quick Start](/learn/) first!)
+(If this code looks intimidating, go through the [Quick Start](index.md) first!)
 
 After building your components, you'll have a library of reusable components that render your data model. Because this is a static app, the components will only return JSX. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. This is called _one-way data flow_ because the data flows down from the top-level component to the ones at the bottom of the tree.
 
@@ -205,7 +205,7 @@ At this point, you should not be using any state values. That’s for the next s
 
 </Pitfall>
 
-## Step 3: Find the minimal but complete representation of UI state {/*step-3-find-the-minimal-but-complete-representation-of-ui-state*/}
+## Step 3: Find the minimal but complete representation of UI state
 
 To make the UI interactive, you need to let users change your underlying data model. You will use *state* for this.
 
@@ -237,18 +237,18 @@ This means only the search text and the value of the checkbox are state! Nicely 
 
 <DeepDive>
 
-#### Props vs State {/*props-vs-state*/}
+#### Props vs State
 
 There are two types of "model" data in React: props and state. The two are very different:
 
-* [**Props** are like arguments you pass](/learn/passing-props-to-a-component) to a function. They let a parent component pass data to a child component and customize its appearance. For example, a `Form` can pass a `color` prop to a `Button`.
-* [**State** is like a component’s memory.](/learn/state-a-components-memory) It lets a component keep track of some information and change it in response to interactions. For example, a `Button` might keep track of `isHovered` state.
+* [**Props** are like arguments you pass](passing-props-to-a-component.md) to a function. They let a parent component pass data to a child component and customize its appearance. For example, a `Form` can pass a `color` prop to a `Button`.
+* [**State** is like a component’s memory.](state-a-components-memory.md) It lets a component keep track of some information and change it in response to interactions. For example, a `Button` might keep track of `isHovered` state.
 
 Props and state are different, but they work together. A parent component will often keep some information in state (so that it can change it), and *pass it down* to child components as their props. It's okay if the difference still feels fuzzy on the first read. It takes a bit of practice for it to really stick!
 
 </DeepDive>
 
-## Step 4: Identify where your state should live {/*step-4-identify-where-your-state-should-live*/}
+## Step 4: Identify where your state should live
 
 After identifying your app’s minimal state data, you need to identify which component is responsible for changing this state, or *owns* the state. Remember: React uses one-way data flow, passing data down the component hierarchy from parent to child component. It may not be immediately clear which component should own what state. This can be challenging if you’re new to this concept, but you can figure it out by following these steps!
 
@@ -273,7 +273,7 @@ Now let's run through our strategy for them:
 
 So the state values will live in `FilterableProductTable`.
 
-Add state to the component with the [`useState()` Hook.](/reference/react/useState) Hooks are special functions that let you "hook into" React. Add two state variables at the top of `FilterableProductTable` and specify their initial state:
+Add state to the component with the [`useState()` Hook.](../reference/react/useState.md) Hooks are special functions that let you "hook into" React. Add two state variables at the top of `FilterableProductTable` and specify their initial state:
 
 ```js
 function FilterableProductTable({ products }) {
@@ -460,7 +460,7 @@ function SearchBar({ filterText, inStockOnly }) {
 However, you haven't added any code to respond to the user actions like typing yet. This will be your final step.
 
 
-## Step 5: Add inverse data flow {/*step-5-add-inverse-data-flow*/}
+## Step 5: Add inverse data flow
 
 Currently your app renders correctly with props and state flowing down the hierarchy. But to change the state according to user input, you will need to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`.
 
@@ -656,8 +656,8 @@ td {
 
 </Sandpack>
 
-You can learn all about handling events and updating state in the [Adding Interactivity](/learn/adding-interactivity) section.
+You can learn all about handling events and updating state in the [Adding Interactivity](adding-interactivity.md) section.
 
-## Where to go from here {/*where-to-go-from-here*/}
+## Where to go from here
 
-This was a very brief introduction to how to think about building components and applications with React. You can [start a React project](/learn/installation) right now or [dive deeper on all the syntax](/learn/describing-the-ui) used in this tutorial.
+This was a very brief introduction to how to think about building components and applications with React. You can [start a React project](installation.md) right now or [dive deeper on all the syntax](describing-the-ui.md) used in this tutorial.

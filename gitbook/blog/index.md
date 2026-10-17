@@ -154,13 +154,13 @@ The React team is excited to share a few updates:
 
 ---
 
-### All release notes {/*all-release-notes*/}
+### All release notes
 
 Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md`](https://github.com/react/react/blob/main/CHANGELOG.md) file in the React repository, as well as on the [Releases](https://github.com/react/react/releases) page.
 
 ---
 
-### Older posts {/*older-posts*/}
+### Older posts
 
 See the [older posts.](https://reactjs.org/blog/all.html)
 

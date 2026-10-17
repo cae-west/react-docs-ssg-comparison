@@ -16,9 +16,9 @@ const onEvent = useEffectEvent(callback)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `useEffectEvent(callback)` {/*useeffectevent*/}
+### `useEffectEvent(callback)`
 
 Call `useEffectEvent` at the top level of your component to create an Effect Event.
 
@@ -32,30 +32,30 @@ function ChatRoom({ roomId, theme }) {
 }
 ```
 
-Effect Events are a part of your Effect logic, but they behave more like an event handler. They always “see” the latest values from render (like props and state) without re-synchronizing your Effect, so they're excluded from Effect dependencies. See [Separating Events from Effects](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects) to learn more.
+Effect Events are a part of your Effect logic, but they behave more like an event handler. They always “see” the latest values from render (like props and state) without re-synchronizing your Effect, so they're excluded from Effect dependencies. See [Separating Events from Effects](../../learn/separating-events-from-effects.md#extracting-non-reactive-logic-out-of-effects) to learn more.
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `callback`: A function containing the logic for your Effect Event. The function can accept any number of arguments and return any value. When you call the returned Effect Event function, the `callback` always accesses the latest committed values from render at the time of the call.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `useEffectEvent` returns an Effect Event function with the same type signature as your `callback`.
 
 You can call this function inside `useEffect`, `useLayoutEffect`, `useInsertionEffect`, or from within other Effect Events in the same component.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * `useEffectEvent` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the Effect Event into it.
-* Effect Events can only be called from inside Effects or other Effect Events. Do not call them during rendering or pass them to other components or Hooks. The [`eslint-plugin-react-hooks`](/reference/eslint-plugin-react-hooks) linter enforces this restriction.
+* Effect Events can only be called from inside Effects or other Effect Events. Do not call them during rendering or pass them to other components or Hooks. The [`eslint-plugin-react-hooks`](../eslint-plugin-react-hooks/index.md) linter enforces this restriction.
 * Do not use `useEffectEvent` to avoid specifying dependencies in your Effect's dependency array. This hides bugs and makes your code harder to understand. Only use it for logic that is genuinely an event fired from Effects.
 * Effect Event functions do not have a stable identity. Their identity intentionally changes on every render.
 
 <DeepDive>
 
-#### Why are Effect Events not stable? {/*why-are-effect-events-not-stable*/}
+#### Why are Effect Events not stable?
 
 Unlike `set` functions from `useState` or refs, Effect Event functions do not have a stable identity. Their identity intentionally changes on every render:
 
@@ -76,10 +76,10 @@ This design reinforces that Effect Events conceptually belong to a particular ef
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
 
-### Using an event in an Effect {/*using-an-event-in-an-effect*/}
+### Using an event in an Effect
 
 Call `useEffectEvent` at the top level of your component to create an *Effect Event*:
 
@@ -109,7 +109,7 @@ Since `onConnected` is an <CodeStep step={1}>Effect Event</CodeStep>, `muted` an
 
 <Pitfall>
 
-##### Don't use Effect Events to skip dependencies {/*pitfall-skip-dependencies*/}
+##### Don't use Effect Events to skip dependencies
 
 It might be tempting to use `useEffectEvent` to avoid listing dependencies that you think are "unnecessary." However, this hides bugs and makes your code harder to understand:
 
@@ -126,13 +126,13 @@ useEffect(() => {
 
 If a value should cause your Effect to re-run, keep it as a dependency. Only use Effect Events for logic that genuinely should not re-trigger your Effect.
 
-See [Separating Events from Effects](/learn/separating-events-from-effects) to learn more.
+See [Separating Events from Effects](../../learn/separating-events-from-effects.md) to learn more.
 
 </Pitfall>
 
 ---
 
-### Using a timer with latest values {/*using-a-timer-with-latest-values*/}
+### Using a timer with latest values
 
 When you use `setInterval` or `setTimeout` in an Effect, you often want to read the latest values from render without restarting the timer whenever those values change.
 
@@ -192,7 +192,7 @@ Try changing the increment value while the timer is running. The counter immedia
 
 ---
 
-### Using an event listener with latest values {/*using-an-event-listener-with-latest-values*/}
+### Using an event listener with latest values
 
 When you set up an event listener in an Effect, you often need to read the latest values from render in the callback. Without `useEffectEvent`, you would need to include the values in your dependencies, causing the listener to be removed and re-added on every change.
 
@@ -258,7 +258,7 @@ Toggle the checkbox and move your cursor. The dot responds immediately to the ch
 
 ---
 
-### Avoid reconnecting to external systems {/*showing-a-notification-without-reconnecting*/}
+### Avoid reconnecting to external systems
 
 A common use case for `useEffectEvent` is when you want to do something in response to an Effect, but that "something" depends on a value you don't want to react to.
 
@@ -405,7 +405,7 @@ Try switching rooms. The chat reconnects and shows a notification. Now mute the 
 
 ---
 
-### Using Effect Events in custom Hooks {/*using-effect-events-in-custom-hooks*/}
+### Using Effect Events in custom Hooks
 
 You can use `useEffectEvent` inside your own custom Hooks. This lets you create reusable Hooks that encapsulate Effects while keeping some values non-reactive:
 
@@ -476,9 +476,9 @@ In this example, `useInterval` is a custom Hook that sets up an interval. The `c
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I'm getting an error: "A function wrapped in useEffectEvent can't be called during rendering" {/*cant-call-during-rendering*/}
+### I'm getting an error: "A function wrapped in useEffectEvent can't be called during rendering"
 
 This error means you're calling an Effect Event function during the render phase of your component. Effect Events can only be called from inside Effects or other Effect Events.
 
@@ -504,7 +504,7 @@ If you need to run logic during render, don't wrap it in `useEffectEvent`. Call 
 
 ---
 
-### I'm getting a lint error: "Functions returned from useEffectEvent must not be included in the dependency array" {/*effect-event-in-deps*/}
+### I'm getting a lint error: "Functions returned from useEffectEvent must not be included in the dependency array"
 
 If you see a warning like "Functions returned from `useEffectEvent` must not be included in the dependency array", remove the Effect Event from your dependencies:
 
@@ -528,7 +528,7 @@ Effect Events are designed to be called from Effects without being listed as dep
 
 ---
 
-### I'm getting a lint error: "... is a function created with useEffectEvent, and can only be called from Effects" {/*effect-event-called-outside-effect*/}
+### I'm getting a lint error: "... is a function created with useEffectEvent, and can only be called from Effects"
 
 If you see a warning like "... is a function created with React Hook `useEffectEvent`, and can only be called from Effects and Effect Events", you're calling the function from the wrong place:
 

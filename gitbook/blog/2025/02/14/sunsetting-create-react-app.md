@@ -13,7 +13,7 @@ February 14, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ri
 
 Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](#how-to-migrate-to-a-framework), or to [migrate to a build tool](#how-to-migrate-to-a-build-tool) like Vite, Parcel, or RSBuild.
 
-We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by [building a React app from scratch](/learn/build-a-react-app-from-scratch).
+We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by [building a React app from scratch](../../../../learn/build-a-react-app-from-scratch.md).
 
 </Intro>
 
@@ -27,7 +27,7 @@ Create React App solved these problems by combining several tools into a single 
 
 This model became so popular that there's an entire category of tools working this way today.
 
-## Deprecating Create React App {/*deprecating-create-react-app*/}
+## Deprecating Create React App
 
 Although Create React App makes it easy to get started, [there are several limitations](#limitations-of-build-tools) that make it difficult to build high performant production apps. In principle, we could solve these problems by essentially evolving it into a [framework](#why-we-recommend-frameworks).
 
@@ -50,8 +50,8 @@ This error message will only be shown once per install.
 
 We've also added a deprecation notice to the Create React App [website](https://create-react-app.dev/) and GitHub [repo](https://github.com/facebook/create-react-app). Create React App will continue working in maintenance mode, and we've published a new version of Create React App to work with React 19.
 
-## How to Migrate to a Framework {/*how-to-migrate-to-a-framework*/}
-We recommend [creating new React apps](/learn/creating-a-react-app) with a framework. All the frameworks we recommend support client-side rendering ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)) and single-page apps ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), and can be deployed to a CDN or static hosting service without a server.
+## How to Migrate to a Framework
+We recommend [creating new React apps](../../../../learn/creating-a-react-app.md) with a framework. All the frameworks we recommend support client-side rendering ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)) and single-page apps ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), and can be deployed to a CDN or static hosting service without a server.
 
 For existing apps, these guides will help you migrate to a client-only SPA:
 
@@ -59,7 +59,7 @@ For existing apps, these guides will help you migrate to a client-only SPA:
 * [React Router’s framework adoption guide](https://reactrouter.com/upgrading/component-routes).
 * [Expo webpack to Expo Router migration guide](https://docs.expo.dev/router/migrate/from-expo-webpack/)
 
-## How to Migrate to a Build Tool {/*how-to-migrate-to-a-build-tool*/}
+## How to Migrate to a Build Tool
 
 If your app has unusual constraints, or you prefer to solve these problems by building your own framework, or you just want to learn how react works from scratch, you can roll your own custom setup with React using Vite, Parcel or Rsbuild.
 
@@ -69,23 +69,23 @@ For existing apps, these guides will help you migrate to a build tool:
 * [Parcel Create React App migration guide](https://parceljs.org/migration/cra/)
 * [Rsbuild Create React App migration guide](https://rsbuild.dev/guide/migration/cra)
 
-To help get started with Vite, Parcel or Rsbuild, we've added new docs for [Building a React App from Scratch](/learn/build-a-react-app-from-scratch).
+To help get started with Vite, Parcel or Rsbuild, we've added new docs for [Building a React App from Scratch](../../../../learn/build-a-react-app-from-scratch.md).
 
 <DeepDive>
 
-#### Do I need a framework? {/*do-i-need-a-framework*/}
+#### Do I need a framework?
 
 Most apps would benefit from a framework, but there are valid cases to build a React app from scratch. A good rule of thumb is if your app needs routing, you would probably benefit from a framework.
 
 Just like Svelte has Sveltekit, Vue has Nuxt, and Solid has SolidStart, [React recommends using a framework](#why-we-recommend-frameworks) that fully integrates routing into features like data-fetching and code-splitting out of the box. This avoids the pain of needing to write your own complex configurations and essentially build a framework yourself.
 
-However, you can always [build a React app from scratch](/learn/build-a-react-app-from-scratch) using a build tool like Vite, Parcel, or Rsbuild.
+However, you can always [build a React app from scratch](../../../../learn/build-a-react-app-from-scratch.md) using a build tool like Vite, Parcel, or Rsbuild.
 
 </DeepDive>
 
 Continue reading to learn more about the [limitations of build tools](#limitations-of-build-tools) and [why we recommend frameworks](#why-we-recommend-frameworks).
 
-## Limitations of Build Tools {/*limitations-of-build-tools*/}
+## Limitations of Build Tools
 
 Create React App and build tools like it make it easy to get started building a React app. After running `npx create-react-app my-app`, you get a fully configured React app with a development server, linting, and a production build.
 
@@ -105,7 +105,7 @@ This allows you to immediately start coding in React with features like JSX, def
 
 Most production apps need solutions to problems like routing, data fetching, and code splitting.
 
-### Routing {/*routing*/}
+### Routing
 
 Create React App does not include a specific routing solution. If you're just getting started, one option is to use `useState` to switch between routes. But doing this means that you can't share links to your app - every link would go to the same page - and structuring your app becomes difficult over time:
 
@@ -152,7 +152,7 @@ With this change, you can share a link to `/dashboard` and the app will navigate
 
 There's a tradeoff being made here: the routing library adds complexity to the app, but it also adds features that are difficult to implement without it.
 
-### Data Fetching {/*data-fetching*/}
+### Data Fetching
 
 Another common problem in Create React App is data fetching. Create React App does not include a specific data fetching solution. If you're just getting started, a common option is to use `fetch` in an effect to load data.
 
@@ -202,7 +202,7 @@ On initial load, the router can fetch the data immediately before the route is r
 
 However, this requires correctly configuring the loaders in your app and trades off complexity for performance.
 
-### Code Splitting {/*code-splitting*/}
+### Code Splitting
 
 Another common problem in Create React App is [code splitting](https://www.patterns.dev/vanilla/bundle-splitting). Create React App does not include a specific code splitting solution. If you're just getting started, you might not consider code splitting at all.
 
@@ -235,7 +235,7 @@ const router = createBrowserRouter([
 
 Optimized code-splitting is tricky to get right, and it's easy to make mistakes that can cause the user to download more code than they need. It works best when integrated with your router and data loading solutions to maximize caching, parallelize fetches, and support ["import on interaction"](https://www.patterns.dev/vanilla/import-on-interaction) patterns.
 
-### And more... {/*and-more*/}
+### And more...
 
 These are just a few examples of the limitations of Create React App.
 
@@ -266,7 +266,7 @@ All of these work together to create the most optimal [loading sequence](https:/
 
 Solving each of these problems individually in Create React App can be difficult as each problem is interconnected with the others and can require deep expertise in problem areas users may not be familiar with. In order to solve these problems, users end up building their own bespoke solutions on top of Create React App, which was the problem Create React App originally tried to solve.
 
-## Why we Recommend Frameworks {/*why-we-recommend-frameworks*/}
+## Why we Recommend Frameworks
 
 Although you could solve all these pieces yourself in a build tool like Create React App, Vite, or Parcel, it is hard to do well. Just like when Create React App itself integrated several build tools together, you need a tool to integrate all of these features together to provide the best experience to users.
 
@@ -278,7 +278,7 @@ Frameworks provide the same getting started experience as Create React App, but 
 
 <DeepDive>
 
-#### Server rendering is optional {/*server-rendering-is-optional*/}
+#### Server rendering is optional
 
 The frameworks we recommend all provide the option to create a [client-side rendered (CSR)](https://developer.mozilla.org/en-US/docs/Glossary/CSR) app.
 
@@ -290,7 +290,7 @@ There are tradeoffs to using a server, and it is not always the best option for 
 
 Frameworks provide the option to use a server on any page if you want to, but do not force you to use a server. This allows you to pick the right rendering strategy for each page in your app.
 
-#### What About Server Components {/*server-components*/}
+#### What About Server Components
 
 The frameworks we recommend also include support for React Server Components.
 
@@ -298,13 +298,13 @@ Server Components help solve these problems by moving routing and data fetching 
 
 Server Components do not require a server. They can be run at build time on your CI server to create a static-site generated app (SSG) app, at runtime on a web server for a server-side rendered (SSR) app.
 
-See [Introducing zero-bundle size React Server Components](/blog/2020/12/21/data-fetching-with-react-server-components) and [the docs](/reference/rsc/server-components) for more info.
+See [Introducing zero-bundle size React Server Components](../../../2020/12/21/data-fetching-with-react-server-components.md) and [the docs](../../../../reference/rsc/server-components.md) for more info.
 
 </DeepDive>
 
 <Note>
 
-#### Server Rendering is not just for SEO {/*server-rendering-is-not-just-for-seo*/}
+#### Server Rendering is not just for SEO
 
 A common misunderstanding is that server rendering is only for [SEO](https://developer.mozilla.org/en-US/docs/Glossary/SEO).
 

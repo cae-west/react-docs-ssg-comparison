@@ -10,17 +10,17 @@ Some things on the screen update in response to user input. For example, clickin
 
 <YouWillLearn isChapter={true}>
 
-* [How to handle user-initiated events](/learn/responding-to-events)
-* [How to make components "remember" information with state](/learn/state-a-components-memory)
-* [How React updates the UI in two phases](/learn/render-and-commit)
-* [Why state doesn't update right after you change it](/learn/state-as-a-snapshot)
-* [How to queue multiple state updates](/learn/queueing-a-series-of-state-updates)
-* [How to update an object in state](/learn/updating-objects-in-state)
-* [How to update an array in state](/learn/updating-arrays-in-state)
+* [How to handle user-initiated events](responding-to-events.md)
+* [How to make components "remember" information with state](state-a-components-memory.md)
+* [How React updates the UI in two phases](render-and-commit.md)
+* [Why state doesn't update right after you change it](state-as-a-snapshot.md)
+* [How to queue multiple state updates](queueing-a-series-of-state-updates.md)
+* [How to update an object in state](updating-objects-in-state.md)
+* [How to update an array in state](updating-arrays-in-state.md)
 
 </YouWillLearn>
 
-## Responding to events {/*responding-to-events*/}
+## Responding to events
 
 React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
 
@@ -68,15 +68,15 @@ button { margin-right: 10px; }
 
 <LearnMore path="/learn/responding-to-events">
 
-Read **[Responding to Events](/learn/responding-to-events)** to learn how to add event handlers.
+Read **[Responding to Events](responding-to-events.md)** to learn how to add event handlers.
 
 </LearnMore>
 
-## State: a component's memory {/*state-a-components-memory*/}
+## State: a component's memory
 
 Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state.*
 
-You can add state to a component with a [`useState`](/reference/react/useState) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
+You can add state to a component with a [`useState`](../reference/react/useState.md) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
 
 ```js
 const [index, setIndex] = useState(0);
@@ -229,11 +229,11 @@ button {
 
 <LearnMore path="/learn/state-a-components-memory">
 
-Read **[State: A Component's Memory](/learn/state-a-components-memory)** to learn how to remember a value and update it on interaction.
+Read **[State: A Component's Memory](state-a-components-memory.md)** to learn how to remember a value and update it on interaction.
 
 </LearnMore>
 
-## Render and commit {/*render-and-commit*/}
+## Render and commit
 
 Before your components are displayed on the screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
 
@@ -244,18 +244,18 @@ Imagine that your components are cooks in the kitchen, assembling tasty dishes f
 3. **Committing** to the DOM (placing the order on the table)
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
-  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
+  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="../images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="../images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="../images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
 <LearnMore path="/learn/render-and-commit">
 
-Read **[Render and Commit](/learn/render-and-commit)** to learn the lifecycle of a UI update.
+Read **[Render and Commit](render-and-commit.md)** to learn the lifecycle of a UI update.
 
 </LearnMore>
 
-## State as a snapshot {/*state-as-a-snapshot*/}
+## State as a snapshot
 
 Unlike regular JavaScript variables, React state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render. This can be surprising at first!
 
@@ -314,11 +314,11 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <LearnMore path="/learn/state-as-a-snapshot">
 
-Read **[State as a Snapshot](/learn/state-as-a-snapshot)** to learn why state appears "fixed" and unchanging inside the event handlers.
+Read **[State as a Snapshot](state-as-a-snapshot.md)** to learn why state appears "fixed" and unchanging inside the event handlers.
 
 </LearnMore>
 
-## Queueing a series of state updates {/*queueing-a-series-of-state-updates*/}
+## Queueing a series of state updates
 
 This component is buggy: clicking "+3" increments the score only once.
 
@@ -354,7 +354,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[State as a Snapshot](/learn/state-as-a-snapshot) explains why this is happening. Setting state requests a new re-render, but does not change it in the already running code. So `score` continues to be `0` right after you call `setScore(score + 1)`.
+[State as a Snapshot](state-as-a-snapshot.md) explains why this is happening. Setting state requests a new re-render, but does not change it in the already running code. So `score` continues to be `0` right after you call `setScore(score + 1)`.
 
 ```js
 console.log(score);  // 0
@@ -402,11 +402,11 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 <LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-Read **[Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)** to learn how to queue a sequence of state updates.
+Read **[Queueing a Series of State Updates](queueing-a-series-of-state-updates.md)** to learn how to queue a sequence of state updates.
 
 </LearnMore>
 
-## Updating objects in state {/*updating-objects-in-state*/}
+## Updating objects in state
 
 State can hold any kind of JavaScript value, including objects. But you shouldn't change objects and arrays that you hold in the React state directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the state to use that copy.
 
@@ -633,11 +633,11 @@ img { width: 200px; height: 200px; }
 
 <LearnMore path="/learn/updating-objects-in-state">
 
-Read **[Updating Objects in State](/learn/updating-objects-in-state)** to learn how to update objects correctly.
+Read **[Updating Objects in State](updating-objects-in-state.md)** to learn how to update objects correctly.
 
 </LearnMore>
 
-## Updating arrays in state {/*updating-arrays-in-state*/}
+## Updating arrays in state
 
 Arrays are another type of mutable JavaScript objects you can store in state and should treat as read-only. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array:
 
@@ -789,12 +789,12 @@ function ItemList({ artworks, onToggle }) {
 
 <LearnMore path="/learn/updating-arrays-in-state">
 
-Read **[Updating Arrays in State](/learn/updating-arrays-in-state)** to learn how to update arrays correctly.
+Read **[Updating Arrays in State](updating-arrays-in-state.md)** to learn how to update arrays correctly.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## What's next?
 
-Head over to [Responding to Events](/learn/responding-to-events) to start reading this chapter page by page!
+Head over to [Responding to Events](responding-to-events.md) to start reading this chapter page by page!
 
-Or, if you're already familiar with these topics, why not read about [Managing State](/learn/managing-state)?
+Or, if you're already familiar with these topics, why not read about [Managing State](managing-state.md)?

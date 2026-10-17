@@ -10,17 +10,17 @@ As your application grows, it helps to be more intentional about how your state 
 
 <YouWillLearn isChapter={true}>
 
-* [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
-* [How to structure state well](/learn/choosing-the-state-structure)
-* [How to "lift state up" to share it between components](/learn/sharing-state-between-components)
-* [How to control whether the state gets preserved or reset](/learn/preserving-and-resetting-state)
-* [How to consolidate complex state logic in a function](/learn/extracting-state-logic-into-a-reducer)
-* [How to pass information without "prop drilling"](/learn/passing-data-deeply-with-context)
-* [How to scale state management as your app grows](/learn/scaling-up-with-reducer-and-context)
+* [How to think about UI changes as state changes](reacting-to-input-with-state.md)
+* [How to structure state well](choosing-the-state-structure.md)
+* [How to "lift state up" to share it between components](sharing-state-between-components.md)
+* [How to control whether the state gets preserved or reset](preserving-and-resetting-state.md)
+* [How to consolidate complex state logic in a function](extracting-state-logic-into-a-reducer.md)
+* [How to pass information without "prop drilling"](passing-data-deeply-with-context.md)
+* [How to scale state management as your app grows](scaling-up-with-reducer-and-context.md)
 
 </YouWillLearn>
 
-## Reacting to input with state {/*reacting-to-input-with-state*/}
+## Reacting to input with state
 
 With React, you won't modify the UI from code directly. For example, you won't write commands like "disable the button", "enable the button", "show the success message", etc. Instead, you will describe the UI you want to see for the different visual states of your component ("initial state", "typing state", "success state"), and then trigger the state changes in response to user input. This is similar to how designers think about UI.
 
@@ -108,11 +108,11 @@ function submitForm(answer) {
 
 <LearnMore path="/learn/reacting-to-input-with-state">
 
-Read **[Reacting to Input with State](/learn/reacting-to-input-with-state)** to learn how to approach interactions with a state-driven mindset.
+Read **[Reacting to Input with State](reacting-to-input-with-state.md)** to learn how to approach interactions with a state-driven mindset.
 
 </LearnMore>
 
-## Choosing the state structure {/*choosing-the-state-structure*/}
+## Choosing the state structure
 
 Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's unnecessary state, it's easy to forget to update it, and introduce bugs!
 
@@ -225,11 +225,11 @@ This might seem like a small change, but many bugs in React apps are fixed this 
 
 <LearnMore path="/learn/choosing-the-state-structure">
 
-Read **[Choosing the State Structure](/learn/choosing-the-state-structure)** to learn how to design the state shape to avoid bugs.
+Read **[Choosing the State Structure](choosing-the-state-structure.md)** to learn how to design the state shape to avoid bugs.
 
 </LearnMore>
 
-## Sharing state between components {/*sharing-state-between-components*/}
+## Sharing state between components
 
 Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as "lifting state up", and it's one of the most common things you will do writing React code.
 
@@ -296,11 +296,11 @@ h3, p { margin: 5px 0px; }
 
 <LearnMore path="/learn/sharing-state-between-components">
 
-Read **[Sharing State Between Components](/learn/sharing-state-between-components)** to learn how to lift state up and keep components in sync.
+Read **[Sharing State Between Components](sharing-state-between-components.md)** to learn how to lift state up and keep components in sync.
 
 </LearnMore>
 
-## Preserving and resetting state {/*preserving-and-resetting-state*/}
+## Preserving and resetting state
 
 When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered component tree.
 
@@ -496,11 +496,11 @@ textarea {
 
 <LearnMore path="/learn/preserving-and-resetting-state">
 
-Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)** to learn the lifetime of state and how to control it.
+Read **[Preserving and Resetting State](preserving-and-resetting-state.md)** to learn the lifetime of state and how to control it.
 
 </LearnMore>
 
-## Extracting state logic into a reducer {/*extracting-state-logic-into-a-reducer*/}
+## Extracting state logic into a reducer
 
 Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer". Your event handlers become concise because they only specify the user "actions". At the bottom of the file, the reducer function specifies how the state should update in response to each action!
 
@@ -693,11 +693,11 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/extracting-state-logic-into-a-reducer">
 
-Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)** to learn how to consolidate logic in the reducer function.
+Read **[Extracting State Logic into a Reducer](extracting-state-logic-into-a-reducer.md)** to learn how to consolidate logic in the reducer function.
 
 </LearnMore>
 
-## Passing data deeply with context {/*passing-data-deeply-with-context*/}
+## Passing data deeply with context
 
 Usually, you will pass information from a parent component to a child component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many components need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
 
@@ -795,11 +795,11 @@ export const LevelContext = createContext(0);
 
 <LearnMore path="/learn/passing-data-deeply-with-context">
 
-Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)** to learn about using context as an alternative to passing props.
+Read **[Passing Data Deeply with Context](passing-data-deeply-with-context.md)** to learn about using context as an alternative to passing props.
 
 </LearnMore>
 
-## Scaling up with reducer and context {/*scaling-up-with-reducer-and-context*/}
+## Scaling up with reducer and context
 
 Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
 
@@ -1004,12 +1004,12 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/scaling-up-with-reducer-and-context">
 
-Read **[Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-context)** to learn how state management scales in a growing app.
+Read **[Scaling Up with Reducer and Context](scaling-up-with-reducer-and-context.md)** to learn how state management scales in a growing app.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## What's next?
 
-Head over to [Reacting to Input with State](/learn/reacting-to-input-with-state) to start reading this chapter page by page!
+Head over to [Reacting to Input with State](reacting-to-input-with-state.md) to start reading this chapter page by page!
 
-Or, if you're already familiar with these topics, why not read about [Escape Hatches](/learn/escape-hatches)?
+Or, if you're already familiar with these topics, why not read about [Escape Hatches](escape-hatches.md)?

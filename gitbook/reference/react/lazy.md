@@ -16,9 +16,9 @@ const SomeComponent = lazy(load)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `lazy(load)` {/*lazy*/}
+### `lazy(load)`
 
 Call `lazy` outside your components to declare a lazy-loaded React component:
 
@@ -30,31 +30,31 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `load`: A function that returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or another *thenable* (a Promise-like object with a `then` method). React will not call `load` until the first time you attempt to render the returned component. After React first calls `load`, it will wait for it to resolve, and then render the resolved value's `.default` as a React component. Both the returned Promise and the Promise's resolved value will be cached, so React will not call `load` more than once. If the Promise rejects, React will `throw` the rejection reason for the nearest Error Boundary to handle.
 
-#### Returns {/*returns*/}
+#### Returns
 
-`lazy` returns a React component you can render in your tree. While the code for the lazy component is still loading, attempting to render it will *suspend.* Use [`<Suspense>`](/reference/react/Suspense) to display a loading indicator while it's loading.
+`lazy` returns a React component you can render in your tree. While the code for the lazy component is still loading, attempting to render it will *suspend.* Use [`<Suspense>`](Suspense.md) to display a loading indicator while it's loading.
 
 ---
 
-### `load` function {/*load*/}
+### `load` function
 
-#### Parameters {/*load-parameters*/}
+#### Parameters
 
 `load` receives no parameters.
 
-#### Returns {/*load-returns*/}
+#### Returns
 
-You need to return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or some other *thenable* (a Promise-like object with a `then` method). It needs to eventually resolve to an object whose `.default` property is a valid React component type, such as a function, [`memo`](/reference/react/memo), or a [`forwardRef`](/reference/react/forwardRef) component.
+You need to return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or some other *thenable* (a Promise-like object with a `then` method). It needs to eventually resolve to an object whose `.default` property is a valid React component type, such as a function, [`memo`](memo.md), or a [`forwardRef`](forwardRef.md) component.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Lazy-loading components with Suspense {/*suspense-for-code-splitting*/}
+### Lazy-loading components with Suspense
 
 Usually, you import components with the static [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) declaration:
 
@@ -72,7 +72,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 This code relies on [dynamic `import()`,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) which might require support from your bundler or framework. Using this pattern requires that the lazy component you're importing was exported as the `default` export.
 
-Now that your component's code loads on demand, you also need to specify what should be displayed while it is loading. You can do this by wrapping the lazy component or any of its parents into a [`<Suspense>`](/reference/react/Suspense) boundary:
+Now that your component's code loads on demand, you also need to specify what should be displayed while it is loading. You can do this by wrapping the lazy component or any of its parents into a [`<Suspense>`](Suspense.md) boundary:
 
 ```js {1,4}
 <Suspense fallback={<Loading />}>
@@ -177,13 +177,13 @@ body {
 
 This demo loads with an artificial delay. The next time you untick and tick the checkbox, `Preview` will be cached, so there will be no loading state. To see the loading state again, click "Reset" on the sandbox.
 
-[Learn more about managing loading states with Suspense.](/reference/react/Suspense)
+[Learn more about managing loading states with Suspense.](Suspense.md)
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### My `lazy` component's state gets reset unexpectedly {/*my-lazy-components-state-gets-reset-unexpectedly*/}
+### My `lazy` component's state gets reset unexpectedly
 
 Do not declare `lazy` components *inside* other components:
 

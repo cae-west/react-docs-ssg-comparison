@@ -16,9 +16,9 @@ const isElement = isValidElement(value)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `isValidElement(value)` {/*isvalidelement*/}
+### `isValidElement(value)`
 
 Call `isValidElement(value)` to check whether `value` is a React element.
 
@@ -37,30 +37,30 @@ console.log(isValidElement({ age: 42 })); // false
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `value`: The `value` you want to check. It can be any a value of any type.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `isValidElement` returns `true` if the `value` is a React element. Otherwise, it returns `false`.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
-* **Only [JSX tags](/learn/writing-markup-with-jsx) and objects returned by [`createElement`](/reference/react/createElement) are considered to be React elements.** For example, even though a number like `42` is a valid React *node* (and can be returned from a component), it is not a valid React element. Arrays and portals created with [`createPortal`](/reference/react-dom/createPortal) are also *not* considered to be React elements.
+* **Only [JSX tags](../../learn/writing-markup-with-jsx.md) and objects returned by [`createElement`](createElement.md) are considered to be React elements.** For example, even though a number like `42` is a valid React *node* (and can be returned from a component), it is not a valid React element. Arrays and portals created with [`createPortal`](../react-dom/createPortal.md) are also *not* considered to be React elements.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Checking if something is a React element {/*checking-if-something-is-a-react-element*/}
+### Checking if something is a React element
 
 Call `isValidElement` to check if some value is a *React element.*
 
 React elements are:
 
-- Values produced by writing a [JSX tag](/learn/writing-markup-with-jsx)
-- Values produced by calling [`createElement`](/reference/react/createElement)
+- Values produced by writing a [JSX tag](../../learn/writing-markup-with-jsx.md)
+- Values produced by calling [`createElement`](createElement.md)
 
 For React elements, `isValidElement` returns `true`:
 
@@ -90,13 +90,13 @@ console.log(isValidElement([<div />, <div />])); // false
 console.log(isValidElement(MyComponent)); // false
 ```
 
-It is very uncommon to need `isValidElement`. It's mostly useful if you're calling another API that *only* accepts elements (like [`cloneElement`](/reference/react/cloneElement) does) and you want to avoid an error when your argument is not a React element.
+It is very uncommon to need `isValidElement`. It's mostly useful if you're calling another API that *only* accepts elements (like [`cloneElement`](cloneElement.md) does) and you want to avoid an error when your argument is not a React element.
 
 Unless you have some very specific reason to add an `isValidElement` check, you probably don't need it.
 
 <DeepDive>
 
-#### React elements vs React nodes {/*react-elements-vs-react-nodes*/}
+#### React elements vs React nodes
 
 When you write a component, you can return any kind of *React node* from it:
 
@@ -109,7 +109,7 @@ function MyComponent() {
 A React node can be:
 
 - A React element created like `<div />` or `createElement('div')`
-- A portal created with [`createPortal`](/reference/react-dom/createPortal)
+- A portal created with [`createPortal`](../react-dom/createPortal.md)
 - A string
 - A number
 - `true`, `false`, `null`, or `undefined` (which are not displayed)

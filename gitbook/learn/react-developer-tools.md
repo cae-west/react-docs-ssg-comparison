@@ -4,7 +4,7 @@ title: React Developer Tools
 
 <Intro>
 
-Use React Developer Tools to inspect React [components](/learn/your-first-component), edit [props](/learn/passing-props-to-a-component) and [state](/learn/state-a-components-memory), and identify performance problems.
+Use React Developer Tools to inspect React [components](your-first-component.md), edit [props](passing-props-to-a-component.md) and [state](state-a-components-memory.md), and identify performance problems.
 
 </Intro>
 
@@ -14,7 +14,7 @@ Use React Developer Tools to inspect React [components](/learn/your-first-compon
 
 </YouWillLearn>
 
-## Browser extension {/*browser-extension*/}
+## Browser extension
 
 The easiest way to debug websites built with React is to install the React Developer Tools browser extension. It is available for several popular browsers:
 
@@ -24,9 +24,9 @@ The easiest way to debug websites built with React is to install the React Devel
 
 Now, if you visit a website **built with React,** you will see the _Components_ and _Profiler_ panels.
 
-![React Developer Tools extension](/images/docs/react-devtools-extension.png)
+![React Developer Tools extension](../images/docs/react-devtools-extension.png)
 
-### Safari and other browsers {/*safari-and-other-browsers*/}
+### Safari and other browsers
 For other browsers (for example, Safari), install the [`react-devtools`](https://www.npmjs.com/package/react-devtools) npm package:
 ```bash
 # Yarn
@@ -50,9 +50,9 @@ Then connect your website by adding the following `<script>` tag to the beginnin
 
 Reload your website in the browser now to view it in developer tools.
 
-![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
+![React Developer Tools standalone](../images/docs/react-devtools-standalone.png)
 
-## Mobile (React Native) {/*mobile-react-native*/}
+## Mobile (React Native)
 
 To inspect apps built with [React Native](https://reactnative.dev/), you can use [React Native DevTools](https://reactnative.dev/docs/react-native-devtools), the built-in debugger that deeply integrates React Developer Tools. All features work identically to the browser extension, including native element highlighting and selection.
 

@@ -8,11 +8,11 @@ Validates that components are static, not recreated every render. Components tha
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 Components defined inside other components are recreated on every render. React sees each as a brand new component type, unmounting the old one and mounting the new one, destroying all state and DOM nodes in the process.
 
-### Invalid {/*invalid*/}
+### Invalid
 
 Examples of incorrect code for this rule:
 
@@ -37,7 +37,7 @@ function Parent({type}) {
 }
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 Examples of correct code for this rule:
 
@@ -55,9 +55,9 @@ function Parent({type}) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I need to render different components conditionally {/*conditional-components*/}
+### I need to render different components conditionally
 
 You might define components inside to access local state:
 

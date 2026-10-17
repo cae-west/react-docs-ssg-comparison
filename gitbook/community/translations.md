@@ -8,25 +8,25 @@ React docs are translated by the global community into many languages all over t
 
 </Intro>
 
-## Source site {/*main-site*/}
+## Source site
 
 All translations are provided from the canonical source docs:
 
 - [English](https://react.dev/) &mdash; [Contribute](https://github.com/reactjs/react.dev/)
 
-## Full translations {/*full-translations*/}
+## Full translations
 
 {/* If you are a language maintainer and want to add your language here, finish the "Core" translations and edit `deployedTranslations` under `src/utils`. */}
 
 <LanguageList progress="complete" />
 
-## In-progress translations {/*in-progress-translations*/}
+## In-progress translations
 
 For the progress of each translation, see: [Is React Translated Yet?](https://translations.react.dev/)
 
 <LanguageList progress="in-progress" />
 
-## How to contribute {/*how-to-contribute*/}
+## How to contribute
 
 You can contribute to the translation efforts!
 

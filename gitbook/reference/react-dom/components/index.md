@@ -10,44 +10,44 @@ React supports all of the browser built-in [HTML](https://developer.mozilla.org/
 
 ---
 
-## Common components {/*common-components*/}
+## Common components
 
 All of the built-in browser components support some props and events.
 
-* [Common components (e.g. `<div>`)](/reference/react-dom/components/common)
+* [Common components (e.g. `<div>`)](common.md)
 
 This includes React-specific props like `ref` and `dangerouslySetInnerHTML`.
 
 ---
 
-## Form components {/*form-components*/}
+## Form components
 
 These built-in browser components accept user input:
 
-* [`<input>`](/reference/react-dom/components/input)
-* [`<select>`](/reference/react-dom/components/select)
-* [`<textarea>`](/reference/react-dom/components/textarea)
+* [`<input>`](input.md)
+* [`<select>`](select.md)
+* [`<textarea>`](textarea.md)
 
-They are special in React because passing the `value` prop to them makes them *[controlled.](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)*
+They are special in React because passing the `value` prop to them makes them *[controlled.](input.md#controlling-an-input-with-a-state-variable)*
 
 ---
 
-## Resource and Metadata Components {/*resource-and-metadata-components*/}
+## Resource and Metadata Components
 
 These built-in browser components let you load external resources or annotate the document with metadata:
 
-* [`<img>`](/reference/react-dom/components/img)
-* [`<link>`](/reference/react-dom/components/link)
-* [`<meta>`](/reference/react-dom/components/meta)
-* [`<script>`](/reference/react-dom/components/script)
-* [`<style>`](/reference/react-dom/components/style)
-* [`<title>`](/reference/react-dom/components/title)
+* [`<img>`](img.md)
+* [`<link>`](link.md)
+* [`<meta>`](meta.md)
+* [`<script>`](script.md)
+* [`<style>`](style.md)
+* [`<title>`](title.md)
 
 They are special in React because React can render them into the document head, suspend while resources are loading, and enact other behaviors that are described on the reference page for each specific component.
 
 ---
 
-## All HTML components {/*all-html-components*/}
+## All HTML components
 
 React supports all built-in browser HTML components. This includes:
 
@@ -92,8 +92,8 @@ React supports all built-in browser HTML components. This includes:
 * [`<html>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html)
 * [`<i>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i)
 * [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)
-* [`<img>`](/reference/react-dom/components/img)
-* [`<input>`](/reference/react-dom/components/input)
+* [`<img>`](img.md)
+* [`<input>`](input.md)
 * [`<ins>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ins)
 * [`<kbd>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd)
 * [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)
@@ -111,12 +111,12 @@ React supports all built-in browser HTML components. This includes:
 * [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object)
 * [`<ol>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol)
 * [`<optgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup)
-* [`<option>`](/reference/react-dom/components/option)
+* [`<option>`](option.md)
 * [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output)
 * [`<p>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p)
 * [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
 * [`<pre>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre)
-* [`<progress>`](/reference/react-dom/components/progress)
+* [`<progress>`](progress.md)
 * [`<q>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/q)
 * [`<rp>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/rp)
 * [`<rt>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/rt)
@@ -125,7 +125,7 @@ React supports all built-in browser HTML components. This includes:
 * [`<samp>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/samp)
 * [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script)
 * [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section)
-* [`<select>`](/reference/react-dom/components/select)
+* [`<select>`](select.md)
 * [`<slot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
 * [`<small>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/small)
 * [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source)
@@ -139,7 +139,7 @@ React supports all built-in browser HTML components. This includes:
 * [`<tbody>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody)
 * [`<td>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td)
 * [`<template>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template)
-* [`<textarea>`](/reference/react-dom/components/textarea)
+* [`<textarea>`](textarea.md)
 * [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot)
 * [`<th>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th)
 * [`<thead>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead)
@@ -161,13 +161,13 @@ Similar to the [DOM standard,](https://developer.mozilla.org/en-US/docs/Web/API/
 
 ---
 
-### Custom HTML elements {/*custom-html-elements*/}
+### Custom HTML elements
 
 If you render a tag with a dash, like `<my-element>`, React will assume you want to render a [custom HTML element.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
 
 If you render a built-in browser HTML element with an [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is) attribute, it will also be treated as a custom element.
 
-#### Setting values on custom elements {/*attributes-vs-properties*/}
+#### Setting values on custom elements
 
 Custom elements have two methods of passing data into them:
 
@@ -225,7 +225,7 @@ export function App() {
 
 </Sandpack>
 
-#### Listening for events on custom elements {/*custom-element-events*/}
+#### Listening for events on custom elements
 
 A common pattern when using custom elements is that they may dispatch [`CustomEvent`s](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) rather than accept a function to call when an event occur. You can listen for these events using an `on` prefix when binding to the event via JSX.
 
@@ -298,7 +298,7 @@ Events are case-sensitive and support dashes (`-`). Preserve the casing of the e
 </Note>
 ---
 
-## All SVG components {/*all-svg-components*/}
+## All SVG components
 
 React supports all built-in browser SVG components. This includes:
 

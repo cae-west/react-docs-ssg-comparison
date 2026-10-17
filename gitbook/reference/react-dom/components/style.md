@@ -16,9 +16,9 @@ The [built-in browser `<style>` component](https://developer.mozilla.org/en-US/d
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<style>` {/*style*/}
+### `<style>`
 
 To add inline styles to your document, render the [built-in browser `<style>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style). You can render `<style>` from any component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical styles.
 
@@ -28,12 +28,12 @@ To add inline styles to your document, render the [built-in browser `<style>` co
 
 [See more examples below.](#usage)
 
-#### Props {/*props*/}
+#### Props
 
-`<style>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<style>` supports all [common element props.](common.md#props)
 
 * `children`: a string, required. The contents of the stylesheet.
-* `precedence`: a string. Tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher". Many style systems can work fine using a single precedence value because style rules are atomic. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using [`preinit`](/reference/react-dom/preinit) functions.
+* `precedence`: a string. Tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher". Many style systems can work fine using a single precedence value because style rules are atomic. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using [`preinit`](../preinit.md) functions.
 * `href`: a string. Allows React to [de-duplicate styles](#special-rendering-behavior) that have the same `href`.
 * `media`: a string. Restricts the stylesheet to a certain [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries).
 * `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
@@ -43,9 +43,9 @@ Props that are **not recommended** for use with React:
 
 * `blocking`: a string. If set to `"render"`, instructs the browser not to render the page until the stylesheet is loaded. React provides more fine-grained control using Suspense.
 
-#### Special rendering behavior {/*special-rendering-behavior*/}
+#### Special rendering behavior
 
-React can move `<style>` components to the document's `<head>`, de-duplicate identical stylesheets, and [suspend](/reference/react/Suspense) while the stylesheet is loading.
+React can move `<style>` components to the document's `<head>`, de-duplicate identical stylesheets, and [suspend](../../react/Suspense.md) while the stylesheet is loading.
 
 To opt into this behavior, provide the `href` and `precedence` props. React will de-duplicate styles if they have the same `href`. The precedence prop tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other.
 
@@ -57,9 +57,9 @@ This special treatment comes with three caveats:
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Rendering an inline CSS stylesheet {/*rendering-an-inline-css-stylesheet*/}
+### Rendering an inline CSS stylesheet
 
 If a component depends on certain CSS styles in order to be displayed correctly, you can render an inline stylesheet within the component.
 

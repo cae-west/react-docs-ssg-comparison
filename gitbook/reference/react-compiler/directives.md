@@ -17,27 +17,27 @@ function MyComponent() {
 
 ---
 
-## Overview {/*overview*/}
+## Overview
 
 React Compiler directives provide fine-grained control over which functions are optimized by the compiler. They are string literals placed at the beginning of a function body or at the top of a module.
 
-### Available directives {/*available-directives*/}
+### Available directives
 
-* **[`"use memo"`](/reference/react-compiler/directives/use-memo)** - Opts a function into compilation
-* **[`"use no memo"`](/reference/react-compiler/directives/use-no-memo)** - Opts a function out of compilation
+* **[`"use memo"`](directives/use-memo.md)** - Opts a function into compilation
+* **[`"use no memo"`](directives/use-no-memo.md)** - Opts a function out of compilation
 
-### Quick comparison {/*quick-comparison*/}
+### Quick comparison
 
 | Directive | Purpose | When to use |
 |-----------|---------|-------------|
-| [`"use memo"`](/reference/react-compiler/directives/use-memo) | Force compilation | When using `annotation` mode or to override `infer` mode heuristics |
-| [`"use no memo"`](/reference/react-compiler/directives/use-no-memo) | Prevent compilation | Debugging issues or working with incompatible code |
+| [`"use memo"`](directives/use-memo.md) | Force compilation | When using `annotation` mode or to override `infer` mode heuristics |
+| [`"use no memo"`](directives/use-no-memo.md) | Prevent compilation | Debugging issues or working with incompatible code |
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Function-level directives {/*function-level*/}
+### Function-level directives
 
 Place directives at the beginning of a function to control its compilation:
 
@@ -55,7 +55,7 @@ function UnoptimizedComponent() {
 }
 ```
 
-### Module-level directives {/*module-level*/}
+### Module-level directives
 
 Place directives at the top of a file to affect all functions in that module:
 
@@ -79,9 +79,9 @@ function Component3() {
 }
 ```
 
-### Compilation modes interaction {/*compilation-modes*/}
+### Compilation modes interaction
 
-Directives behave differently depending on your [`compilationMode`](/reference/react-compiler/compilationMode):
+Directives behave differently depending on your [`compilationMode`](compilationMode.md):
 
 * **`annotation` mode**: Only functions with `"use memo"` are compiled
 * **`infer` mode**: Compiler decides what to compile, directives override decisions
@@ -89,9 +89,9 @@ Directives behave differently depending on your [`compilationMode`](/reference/r
 
 ---
 
-## Best practices {/*best-practices*/}
+## Best practices
 
-### Use directives sparingly {/*use-sparingly*/}
+### Use directives sparingly
 
 Directives are escape hatches. Prefer configuring the compiler at the project level:
 
@@ -112,7 +112,7 @@ function SpecialCase() {
 }
 ```
 
-### Document directive usage {/*document-usage*/}
+### Document directive usage
 
 Always explain why a directive is used:
 
@@ -130,7 +130,7 @@ function Mystery() {
 }
 ```
 
-### Plan for removal {/*plan-removal*/}
+### Plan for removal
 
 Opt-out directives should be temporary:
 
@@ -148,9 +148,9 @@ function TemporaryWorkaround() {
 
 ---
 
-## Common patterns {/*common-patterns*/}
+## Common patterns
 
-### Gradual adoption {/*gradual-adoption*/}
+### Gradual adoption
 
 When adopting the React Compiler in a large codebase:
 
@@ -176,14 +176,14 @@ function ProblematicComponent() {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
 For specific issues with directives, see the troubleshooting sections in:
 
-* [`"use memo"` troubleshooting](/reference/react-compiler/directives/use-memo#troubleshooting)
-* [`"use no memo"` troubleshooting](/reference/react-compiler/directives/use-no-memo#troubleshooting)
+* [`"use memo"` troubleshooting](directives/use-memo.md#troubleshooting)
+* [`"use no memo"` troubleshooting](directives/use-no-memo.md#troubleshooting)
 
-### Common issues {/*common-issues*/}
+### Common issues
 
 1. **Directive ignored**: Check placement (must be first) and spelling
 2. **Compilation still happens**: Check `ignoreUseNoForget` setting
@@ -191,8 +191,8 @@ For specific issues with directives, see the troubleshooting sections in:
 
 ---
 
-## See also {/*see-also*/}
+## See also
 
-* [`compilationMode`](/reference/react-compiler/compilationMode) - Configure how the compiler chooses what to optimize
-* [`Configuration`](/reference/react-compiler/configuration) - Full compiler configuration options
-* [React Compiler documentation](/learn/react-compiler) - Getting started guide
+* [`compilationMode`](compilationMode.md) - Configure how the compiler chooses what to optimize
+* [`Configuration`](configuration.md) - Full compiler configuration options
+* [React Compiler documentation](../../learn/react-compiler/index.md) - Getting started guide

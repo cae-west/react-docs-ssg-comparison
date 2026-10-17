@@ -18,7 +18,7 @@ React, and many other UI libraries, model UI as a tree. Thinking of your app as 
 
 </YouWillLearn>
 
-## Your UI as a tree {/*your-ui-as-a-tree*/}
+## Your UI as a tree
 
 Trees are a relationship model between items. The UI is often represented using tree structures. For example, browsers use tree structures to model HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) and CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Mobile platforms also use trees to represent their view hierarchy.
 
@@ -29,9 +29,9 @@ React creates a UI tree from your components. In this example, the UI tree is th
 
 Like browsers and mobile platforms, React also uses tree structures to manage and model the relationship between components in a React app. These trees are useful tools to understand how data flows through a React app and how to optimize rendering and app size.
 
-## The Render Tree {/*the-render-tree*/}
+## The Render Tree
 
-A major feature of components is the ability to compose components of other components. As we [nest components](/learn/your-first-component#nesting-and-organizing-components), we have the concept of parent and child components, where each parent component may itself be a child of another component.
+A major feature of components is the ability to compose components of other components. As we [nest components](your-first-component.md#nesting-and-organizing-components), we have the concept of parent and child components, where each parent component may itself be a child of another component.
 
 When we render a React app, we can model this relationship in a tree, known as the render tree.
 
@@ -129,13 +129,13 @@ From the example app, we can construct the above render tree.
 
 The tree is composed of nodes, each of which represents a component. `App`, `FancyText`, `Copyright`, to name a few, are all nodes in our tree.
 
-The root node in a React render tree is the [root component](/learn/importing-and-exporting-components#the-root-component-file) of the app. In this case, the root component is `App` and it is the first component React renders. Each arrow in the tree points from a parent component to a child component.
+The root node in a React render tree is the [root component](importing-and-exporting-components.md#the-root-component-file) of the app. In this case, the root component is `App` and it is the first component React renders. Each arrow in the tree points from a parent component to a child component.
 
 <DeepDive>
 
-#### Where are the HTML tags in the render tree? {/*where-are-the-html-elements-in-the-render-tree*/}
+#### Where are the HTML tags in the render tree?
 
-You'll notice in the above render tree, there is no mention of the HTML tags that each component renders. This is because the render tree is only composed of React [components](learn/your-first-component#components-ui-building-blocks).
+You'll notice in the above render tree, there is no mention of the HTML tags that each component renders. This is because the render tree is only composed of React [components](your-first-component.md#components-ui-building-blocks).
 
 React, as a UI framework, is platform agnostic. On react.dev, we showcase examples that render to the web, which uses HTML markup as its UI primitives. But a React app could just as likely render to a mobile or desktop platform, which may use different UI primitives like [UIView](https://developer.apple.com/documentation/uikit/uiview) or [FrameworkElement](https://learn.microsoft.com/en-us/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0).
 
@@ -143,7 +143,7 @@ These platform UI primitives are not a part of React. React render trees can pro
 
 </DeepDive>
 
-A render tree represents a single render pass of a React application. With [conditional rendering](/learn/conditional-rendering), a parent component may render different children depending on the data passed.
+A render tree represents a single render pass of a React application. With [conditional rendering](conditional-rendering.md), a parent component may render different children depending on the data passed.
 
 We can update the app to conditionally render either an inspirational quote or color.
 
@@ -257,9 +257,9 @@ Although render trees may differ across render passes, these trees are generally
 
 Identifying these categories of components are useful for understanding data flow and performance of your app.
 
-## The Module Dependency Tree {/*the-module-dependency-tree*/}
+## The Module Dependency Tree
 
-Another relationship in a React app that can be modeled with a tree are an app's module dependencies. As we [break up our components](/learn/importing-and-exporting-components#exporting-and-importing-a-component) and logic into separate files, we create [JS modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) where we may export components, functions, or constants.
+Another relationship in a React app that can be modeled with a tree are an app's module dependencies. As we [break up our components](importing-and-exporting-components.md#exporting-and-importing-a-component) and logic into separate files, we create [JS modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) where we may export components, functions, or constants.
 
 Each node in a module dependency tree is a module and each branch represents an `import` statement in that module.
 
@@ -277,7 +277,7 @@ Comparing to the render tree of the same app, there are similar structures but s
 
 * The nodes that make-up the tree represent modules, not components.
 * Non-component modules, like `inspirations.js`, are also represented in this tree. The render tree only encapsulates components.
-* `Copyright.js` appears under `App.js` but in the render tree, `Copyright`, the component, appears as a child of `InspirationGenerator`. This is because `InspirationGenerator` accepts JSX as [children props](/learn/passing-props-to-a-component#passing-jsx-as-children), so it renders `Copyright` as a child component but does not import the module.
+* `Copyright.js` appears under `App.js` but in the render tree, `Copyright`, the component, appears as a child of `InspirationGenerator`. This is because `InspirationGenerator` accepts JSX as [children props](passing-props-to-a-component.md#passing-jsx-as-children), so it renders `Copyright` as a child component but does not import the module.
 
 Dependency trees are useful to determine what modules are necessary to run your React app. When building a React app for production, there is typically a build step that will bundle all the necessary JavaScript to ship to the client. The tool responsible for this is called a [bundler](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview#the_modern_tooling_ecosystem), and bundlers will use the dependency tree to determine what modules should be included.
 

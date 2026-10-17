@@ -16,9 +16,9 @@ Arrays are mutable in JavaScript, but you should treat them as immutable when yo
 
 </YouWillLearn>
 
-## Updating arrays without mutation {/*updating-arrays-without-mutation*/}
+## Updating arrays without mutation
 
-In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React state as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
+In JavaScript, arrays are just another kind of object. [Like with objects](updating-objects-in-state.md), **you should treat arrays in React state as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
 
 Instead, every time you want to update an array, you'll want to pass a *new* array to your state setting function. To do that, you can create a new array from the original array in your state by calling its non-mutating methods like `filter()` and `map()`. Then you can set your state to the resulting new array.
 
@@ -40,11 +40,11 @@ Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript
 * `slice` lets you copy an array or a part of it.
 * `splice` **mutates** the array (to insert or delete items).
 
-In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
+In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](updating-objects-in-state.md) explains what mutation is and why it's not recommended for state.
 
 </Pitfall>
 
-### Adding to an array {/*adding-to-an-array*/}
+### Adding to an array
 
 `push()` will mutate an array, which you don't want:
 
@@ -152,7 +152,7 @@ setArtists([
 
 In this way, spread can do the job of both `push()` by adding to the end of an array and `unshift()` by adding to the beginning of an array. Try it in the sandbox above!
 
-### Removing from an array {/*removing-from-an-array*/}
+### Removing from an array
 
 The easiest way to remove an item from an array is to *filter it out*. In other words, you will produce a new array that will not contain that item. To do this, use the `filter` method, for example:
 
@@ -208,7 +208,7 @@ setArtists(
 
 Here, `artists.filter(a => a.id !== artist.id)` means "create an array that consists of those `artists` whose IDs are different from `artist.id`". In other words, each artist's "Delete" button will filter _that_ artist out of the array, and then request a re-render with the resulting array. Note that `filter` does not modify the original array.
 
-### Transforming an array {/*transforming-an-array*/}
+### Transforming an array
 
 If you want to change some or all items of the array, you can use `map()` to create a **new** array. The function you will pass to `map` can decide what to do with each item, based on its data or its index (or both).
 
@@ -278,7 +278,7 @@ body { height: 300px; }
 
 </Sandpack>
 
-### Replacing items in an array {/*replacing-items-in-an-array*/}
+### Replacing items in an array
 
 It is particularly common to want to replace one or more items in an array. Assignments like `arr[0] = 'bird'` are mutating the original array, so instead you'll want to use `map` for this as well.
 
@@ -332,7 +332,7 @@ button { margin: 5px; }
 
 </Sandpack>
 
-### Inserting into an array {/*inserting-into-an-array*/}
+### Inserting into an array
 
 Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use the `...` array spread syntax together with the `slice()` method. The `slice()` method lets you cut a "slice" of the array. To insert an item, you will create an array that spreads the slice _before_ the insertion point, then the new item, and then the rest of the original array.
 
@@ -396,7 +396,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-### Making other changes to an array {/*making-other-changes-to-an-array*/}
+### Making other changes to an array
 
 There are some things you can't do with the spread syntax and non-mutating methods like `map()` and `filter()` alone. For example, you may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods are mutating the original array, so you can't use them directly.
 
@@ -451,9 +451,9 @@ nextList[0].seen = true; // Problem: mutates list[0]
 setList(nextList);
 ```
 
-Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object.** So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](/learn/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
+Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object.** So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](updating-objects-in-state.md#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
 
-## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
+## Updating objects inside arrays
 
 Objects are not _really_ located "inside" arrays. They might appear to be "inside" in code, but each object in an array is a separate value, to which the array "points". This is why you need to be careful when changing nested fields like `list[0]`. Another person's artwork list may point to the same element of the array!
 
@@ -564,7 +564,7 @@ setMyList(myList.map(artwork => {
 }));
 ```
 
-Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
+Here, `...` is the object spread syntax used to [create a copy of an object.](updating-objects-in-state.md#copying-objects-with-the-spread-syntax)
 
 With this approach, none of the existing state items are being mutated, and the bug is fixed:
 
@@ -654,11 +654,11 @@ function ItemList({ artworks, onToggle }) {
 
 In general, **you should only mutate objects that you have just created.** If you were inserting a *new* artwork, you could mutate it, but if you're dealing with something that's already in state, you need to make a copy.
 
-### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
+### Write concise update logic with Immer
 
-Updating nested arrays without mutation can get a little bit repetitive. [Just as with objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
+Updating nested arrays without mutation can get a little bit repetitive. [Just as with objects](updating-objects-in-state.md#write-concise-update-logic-with-immer):
 
-- Generally, you shouldn't need to update state more than a couple of levels deep. If your state objects are very deep, you might want to [restructure them differently](/learn/choosing-the-state-structure#avoid-deeply-nested-state) so that they are flat.
+- Generally, you shouldn't need to update state more than a couple of levels deep. If your state objects are very deep, you might want to [restructure them differently](choosing-the-state-structure.md#avoid-deeply-nested-state) so that they are flat.
 - If you don't want to change your state structure, you might prefer to use [Immer](https://github.com/immerjs/use-immer), which lets you write using the convenient but mutating syntax and takes care of producing the copies for you.
 
 Here is the Art Bucket List example rewritten with Immer:
@@ -789,7 +789,7 @@ Behind the scenes, Immer always constructs the next state from scratch according
 
 <Challenges>
 
-#### Update an item in the shopping cart {/*update-an-item-in-the-shopping-cart*/}
+#### Update an item in the shopping cart
 
 Fill in the `handleIncreaseClick` logic so that pressing "+" increases the corresponding number:
 
@@ -916,7 +916,7 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Remove an item from the shopping cart {/*remove-an-item-from-the-shopping-cart*/}
+#### Remove an item from the shopping cart
 
 This shopping cart has a working "+" button, but the "–" button doesn't do anything. You need to add an event handler to it so that pressing it decreases the `count` of the corresponding product. If you press "–" when the count is 1, the product should automatically get removed from the cart. Make sure it never shows 0.
 
@@ -1077,7 +1077,7 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Fix the mutations using non-mutative methods {/*fix-the-mutations-using-non-mutative-methods*/}
+#### Fix the mutations using non-mutative methods
 
 In this example, all of the event handlers in `App.js` use mutation. As a result, editing and deleting todos doesn't work. Rewrite `handleAddTodo`, `handleChangeTodo`, and `handleDeleteTodo` to use the non-mutative methods:
 
@@ -1410,7 +1410,7 @@ ul, li { margin: 0; padding: 0; }
 </Solution>
 
 
-#### Fix the mutations using Immer {/*fix-the-mutations-using-immer*/}
+#### Fix the mutations using Immer
 
 This is the same example as in the previous challenge. This time, fix the mutations by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `todos` state variable to use it.
 

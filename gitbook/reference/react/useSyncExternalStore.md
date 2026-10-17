@@ -16,9 +16,9 @@ const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)` {/*usesyncexternalstore*/}
+### `useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)`
 
 Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
 
@@ -39,7 +39,7 @@ It returns the snapshot of the data in the store. You need to pass two functions
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`, which will cause React to re-call `getSnapshot` and (if needed) re-render the component. The `subscribe` function should return a function that cleans up the subscription.
 
@@ -47,19 +47,19 @@ It returns the snapshot of the data in the store. You need to pass two functions
 
 * **optional** `getServerSnapshot`: A function that returns the initial snapshot of the data in the store. It will be used only during server rendering and during hydration of server-rendered content on the client. The server snapshot must be the same between the client and the server, and is usually serialized and passed from the server to the client. If you omit this argument, rendering the component on the server will throw an error.
 
-#### Returns {/*returns*/}
+#### Returns
 
 The current snapshot of the store which you can use in your rendering logic.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * The store snapshot returned by `getSnapshot` must be immutable. If the underlying store has mutable data, return a new immutable snapshot if the data has changed. Otherwise, return a cached last snapshot.
 
 * If a different `subscribe` function is passed during a re-render, React will re-subscribe to the store using the newly passed `subscribe` function. You can prevent this by declaring `subscribe` outside the component.
 
-* If the store is mutated during a [non-blocking Transition update](/reference/react/useTransition), React will fall back to performing that update as blocking. Specifically, for every Transition update, React will call `getSnapshot` a second time just before applying changes to the DOM. If it returns a different value than when it was called originally, React will restart the update from scratch, this time applying it as a blocking update, to ensure that every component on screen is reflecting the same version of the store.
+* If the store is mutated during a [non-blocking Transition update](useTransition.md), React will fall back to performing that update as blocking. Specifically, for every Transition update, React will call `getSnapshot` a second time just before applying changes to the DOM. If it returns a different value than when it was called originally, React will restart the update from scratch, this time applying it as a blocking update, to ensure that every component on screen is reflecting the same version of the store.
 
-* It's not recommended to _suspend_ a render based on a store value returned by `useSyncExternalStore`. The reason is that mutations to the external store cannot be marked as [non-blocking Transition updates](/reference/react/useTransition), so they will trigger the nearest [`Suspense` fallback](/reference/react/Suspense), replacing already-rendered content on screen with a loading spinner, which typically makes a poor UX.
+* It's not recommended to _suspend_ a render based on a store value returned by `useSyncExternalStore`. The reason is that mutations to the external store cannot be marked as [non-blocking Transition updates](useTransition.md), so they will trigger the nearest [`Suspense` fallback](Suspense.md), replacing already-rendered content on screen with a loading spinner, which typically makes a poor UX.
 
   For example, the following are discouraged:
 
@@ -79,11 +79,11 @@ The current snapshot of the store which you can use in your rendering logic.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Subscribing to an external store {/*subscribing-to-an-external-store*/}
+### Subscribing to an external store
 
-Most of your React components will only read data from their [props,](/learn/passing-props-to-a-component) [state,](/reference/react/useState) and [context.](/reference/react/useContext) However, sometimes a component needs to read some data from some store outside of React that changes over time. This includes:
+Most of your React components will only read data from their [props,](../../learn/passing-props-to-a-component.md) [state,](useState.md) and [context.](useContext.md) However, sometimes a component needs to read some data from some store outside of React that changes over time. This includes:
 
 * Third-party state management libraries that hold state outside of React.
 * Browser APIs that expose a mutable value and events to subscribe to its changes.
@@ -169,13 +169,13 @@ function emitChange() {
 
 <Note>
 
-When possible, we recommend using built-in React state with [`useState`](/reference/react/useState) and [`useReducer`](/reference/react/useReducer) instead. The `useSyncExternalStore` API is mostly useful if you need to integrate with existing non-React code.
+When possible, we recommend using built-in React state with [`useState`](useState.md) and [`useReducer`](useReducer.md) instead. The `useSyncExternalStore` API is mostly useful if you need to integrate with existing non-React code.
 
 </Note>
 
 ---
 
-### Subscribing to a browser API {/*subscribing-to-a-browser-api*/}
+### Subscribing to a browser API
 
 Another reason to add `useSyncExternalStore` is when you want to subscribe to some value exposed by the browser that changes over time. For example, suppose that you want your component to display whether the network connection is active. The browser exposes this information via a property called [`navigator.onLine`.](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)
 
@@ -241,7 +241,7 @@ function subscribe(callback) {
 
 ---
 
-### Extracting the logic to a custom Hook {/*extracting-the-logic-to-a-custom-hook*/}
+### Extracting the logic to a custom Hook
 
 Usually you won't write `useSyncExternalStore` directly in your components. Instead, you'll typically call it from your own custom Hook. This lets you use the same external store from different components.
 
@@ -326,9 +326,9 @@ function subscribe(callback) {
 
 ---
 
-### Adding support for server rendering {/*adding-support-for-server-rendering*/}
+### Adding support for server rendering
 
-If your React app uses [server rendering,](/reference/react-dom/server) your React components will also run outside the browser environment to generate the initial HTML. This creates a few challenges when connecting to an external store:
+If your React app uses [server rendering,](../react-dom/server/index.md) your React components will also run outside the browser environment to generate the initial HTML. This creates a few challenges when connecting to an external store:
 
 - If you're connecting to a browser-only API, it won't work because it does not exist on the server.
 - If you're connecting to a third-party data store, you'll need its data to match between the server and client.
@@ -359,9 +359,9 @@ function subscribe(callback) {
 The `getServerSnapshot` function is similar to `getSnapshot`, but it runs only in two situations:
 
 - It runs on the server when generating the HTML.
-- It runs on the client during [hydration](/reference/react-dom/client/hydrateRoot), i.e. when React takes the server HTML and makes it interactive.
+- It runs on the client during [hydration](../react-dom/client/hydrateRoot.md), i.e. when React takes the server HTML and makes it interactive.
 
-This lets you provide the initial snapshot value which will be used before the app becomes interactive. If there is no meaningful initial value for the server rendering, omit this argument to [force rendering on the client.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)
+This lets you provide the initial snapshot value which will be used before the app becomes interactive. If there is no meaningful initial value for the server rendering, omit this argument to [force rendering on the client.](Suspense.md#providing-a-fallback-for-server-errors-and-client-only-content)
 
 <Note>
 
@@ -371,9 +371,9 @@ Make sure that `getServerSnapshot` returns the same exact data on the initial cl
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I'm getting an error: "The result of `getSnapshot` should be cached" {/*im-getting-an-error-the-result-of-getsnapshot-should-be-cached*/}
+### I'm getting an error: "The result of `getSnapshot` should be cached"
 
 This error means your `getSnapshot` function returns a new object every time it's called, for example:
 
@@ -401,7 +401,7 @@ If your store data is mutable, your `getSnapshot` function should return an immu
 
 ---
 
-### My `subscribe` function gets called after every re-render {/*my-subscribe-function-gets-called-after-every-re-render*/}
+### My `subscribe` function gets called after every re-render
 
 This `subscribe` function is defined *inside* a component so it is different on every re-render:
 
@@ -432,7 +432,7 @@ function ChatIndicator() {
 }
 ```
 
-Alternatively, wrap `subscribe` into [`useCallback`](/reference/react/useCallback) to only resubscribe when some argument changes:
+Alternatively, wrap `subscribe` into [`useCallback`](useCallback.md) to only resubscribe when some argument changes:
 
 ```js {2-5}
 function ChatIndicator({ userId }) {

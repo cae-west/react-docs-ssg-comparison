@@ -16,11 +16,11 @@ const ref = useRef(initialValue)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `useRef(initialValue)` {/*useref*/}
+### `useRef(initialValue)`
 
-Call `useRef` at the top level of your component to declare a [ref.](/learn/referencing-values-with-refs)
+Call `useRef` at the top level of your component to declare a [ref.](../../learn/referencing-values-with-refs.md)
 
 ```js
 import { useRef } from 'react';
@@ -33,11 +33,11 @@ function MyComponent() {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `initialValue`: The value you want the ref object's `current` property to be initially. It can be a value of any type. This argument is ignored after the initial render.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `useRef` returns an object with a single property:
 
@@ -45,20 +45,20 @@ function MyComponent() {
 
 On the next renders, `useRef` will return the same object.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
 * When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
 * Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your component's behavior unpredictable.
-* In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. Each ref object will be created twice, but one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the behavior.
+* In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities.](useState.md#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. Each ref object will be created twice, but one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the behavior.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Referencing a value with a ref {/*referencing-a-value-with-a-ref*/}
+### Referencing a value with a ref
 
-Call `useRef` at the top level of your component to declare one or more [refs.](/learn/referencing-values-with-refs)
+Call `useRef` at the top level of your component to declare one or more [refs.](../../learn/referencing-values-with-refs.md)
 
 ```js [[1, 4, "intervalRef"], [3, 4, "0"]]
 import { useRef } from 'react';
@@ -70,7 +70,7 @@ function Stopwatch() {
 
 `useRef` returns a <CodeStep step={1}>ref object</CodeStep> with a single <CodeStep step={2}>`current` property</CodeStep> initially set to the <CodeStep step={3}>initial value</CodeStep> you provided.
 
-On the next renders, `useRef` will return the same object. You can change its `current` property to store information and read it later. This might remind you of [state](/reference/react/useState), but there is an important difference.
+On the next renders, `useRef` will return the same object. You can change its `current` property to store information and read it later. This might remind you of [state](useState.md), but there is an important difference.
 
 **Changing a ref does not trigger a re-render.** This means refs are perfect for storing information that doesn't affect the visual output of your component. For example, if you need to store an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its <CodeStep step={2}>`current` property</CodeStep>:
 
@@ -98,11 +98,11 @@ By using a ref, you ensure that:
 - Changing it **does not trigger a re-render** (unlike state variables, which trigger a re-render).
 - The **information is local** to each copy of your component (unlike the variables outside, which are shared).
 
-Changing a ref does not trigger a re-render, so refs are not appropriate for storing information you want to display on the screen. Use state for that instead. Read more about [choosing between `useRef` and `useState`.](/learn/referencing-values-with-refs#differences-between-refs-and-state)
+Changing a ref does not trigger a re-render, so refs are not appropriate for storing information you want to display on the screen. Use state for that instead. Read more about [choosing between `useRef` and `useState`.](../../learn/referencing-values-with-refs.md#differences-between-refs-and-state)
 
 <Recipes titleText="Examples of referencing a value with useRef" titleId="examples-value">
 
-#### Click counter {/*click-counter*/}
+#### Click counter
 
 This component uses a ref to keep track of how many times the button was clicked. Note that it's okay to use a ref instead of state here because the click count is only read and written in an event handler.
 
@@ -133,7 +133,7 @@ If you show `{ref.current}` in the JSX, the number won't update on click. This i
 
 <Solution />
 
-#### A stopwatch {/*a-stopwatch*/}
+#### A stopwatch
 
 This example uses a combination of state and refs. Both `startTime` and `now` are state variables because they are used for rendering. But we also need to hold an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) so that we can stop the interval on button press. Since the interval ID is not used for rendering, it's appropriate to keep it in a ref, and manually update it.
 
@@ -190,9 +190,9 @@ export default function Stopwatch() {
 
 **Do not write _or read_ `ref.current` during rendering.**
 
-React expects that the body of your component [behaves like a pure function](/learn/keeping-components-pure):
+React expects that the body of your component [behaves like a pure function](../../learn/keeping-components-pure.md):
 
-- If the inputs ([props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context](/learn/passing-data-deeply-with-context)) are the same, it should return exactly the same JSX.
+- If the inputs ([props](../../learn/passing-props-to-a-component.md), [state](../../learn/state-a-components-memory.md), and [context](../../learn/passing-data-deeply-with-context.md)) are the same, it should return exactly the same JSX.
 - Calling it in a different order or with different arguments should not affect the results of other calls.
 
 Reading or writing a ref **during rendering** breaks these expectations.
@@ -226,15 +226,15 @@ function MyComponent() {
 }
 ```
 
-If you *have to* read [or write](/reference/react/useState#storing-information-from-previous-renders) something during rendering, [use state](/reference/react/useState) instead.
+If you *have to* read [or write](useState.md#storing-information-from-previous-renders) something during rendering, [use state](useState.md) instead.
 
-When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure.](/learn/keeping-components-pure#where-you-_can_-cause-side-effects)
+When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure.](../../learn/keeping-components-pure.md#where-you-_can_-cause-side-effects)
 
 </Pitfall>
 
 ---
 
-### Manipulating the DOM with a ref {/*manipulating-the-dom-with-a-ref*/}
+### Manipulating the DOM with a ref
 
 It's particularly common to use a ref to manipulate the [DOM.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API) React has built-in support for this.
 
@@ -265,11 +265,11 @@ After React creates the DOM node and puts it on the screen, React will set the <
 
 React will set the `current` property back to `null` when the node is removed from the screen.
 
-Read more about [manipulating the DOM with refs.](/learn/manipulating-the-dom-with-refs)
+Read more about [manipulating the DOM with refs.](../../learn/manipulating-the-dom-with-refs.md)
 
 <Recipes titleText="Examples of manipulating the DOM with useRef" titleId="examples-dom">
 
-#### Focusing a text input {/*focusing-a-text-input*/}
+#### Focusing a text input
 
 In this example, clicking the button will focus the input:
 
@@ -300,7 +300,7 @@ export default function Form() {
 
 <Solution />
 
-#### Scrolling an image into view {/*scrolling-an-image-into-view*/}
+#### Scrolling an image into view
 
 In this example, clicking the button will scroll an image into view. It uses a ref to the list DOM node, and then calls DOM [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) API to find the image we want to scroll to.
 
@@ -393,7 +393,7 @@ li {
 
 <Solution />
 
-#### Playing and pausing a video {/*playing-and-pausing-a-video*/}
+#### Playing and pausing a video
 
 This example uses a ref to call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on a `<video>` DOM node.
 
@@ -446,9 +446,9 @@ button { display: block; margin-bottom: 20px; }
 
 <Solution />
 
-#### Exposing a ref to your own component {/*exposing-a-ref-to-your-own-component*/}
+#### Exposing a ref to your own component
 
-Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can create a `ref` in the parent and pass the `ref` as prop to the child component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
+Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can create a `ref` in the parent and pass the `ref` as prop to the child component. Read a [detailed walkthrough](../../learn/manipulating-the-dom-with-refs.md#accessing-another-components-dom-nodes) here.
 
 <Sandpack>
 
@@ -485,7 +485,7 @@ export default function Form() {
 
 ---
 
-### Avoiding recreating the ref contents {/*avoiding-recreating-the-ref-contents*/}
+### Avoiding recreating the ref contents
 
 React saves the initial ref value once and ignores it on the next renders.
 
@@ -512,7 +512,7 @@ Normally, writing or reading `ref.current` during render is not allowed. However
 
 <DeepDive>
 
-#### How to avoid null checks when initializing useRef later {/*how-to-avoid-null-checks-when-initializing-use-ref-later*/}
+#### How to avoid null checks when initializing useRef later
 
 If you use a type checker and don't want to always check for `null`, you can try a pattern like this instead:
 
@@ -538,9 +538,9 @@ Here, the `playerRef` itself is nullable. However, you should be able to convinc
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I can't get a ref to a custom component {/*i-cant-get-a-ref-to-a-custom-component*/}
+### I can't get a ref to a custom component
 
 If you try to pass a `ref` to your own component like this:
 
@@ -573,7 +573,7 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-And then add `ref` to the list of props your component accepts and pass `ref` as a prop to the relevant child [built-in component](/reference/react-dom/components/common) like this:
+And then add `ref` to the list of props your component accepts and pass `ref` as a prop to the relevant child [built-in component](../react-dom/components/common.md) like this:
 
 ```js {1,6}
 function MyInput({ value, onChange, ref }) {
@@ -591,4 +591,4 @@ export default MyInput;
 
 Then the parent component can get a ref to it.
 
-Read more about [accessing another component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)
+Read more about [accessing another component's DOM nodes.](../../learn/manipulating-the-dom-with-refs.md#accessing-another-components-dom-nodes)

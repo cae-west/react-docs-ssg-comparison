@@ -16,9 +16,9 @@ State is isolated between components. React keeps track of which state belongs t
 
 </YouWillLearn>
 
-## State is tied to a position in the render tree {/*state-is-tied-to-a-position-in-the-tree*/}
+## State is tied to a position in the render tree
 
-React builds [render trees](learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
+React builds [render trees](understanding-your-ui-as-a-tree.md#the-render-tree) for the component structure in your UI.
 
 When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the render tree.
 
@@ -274,7 +274,7 @@ Adding a component
 
 **React preserves a component's state for as long as it's being rendered at its position in the UI tree.** If it gets removed, or a different component gets rendered at the same position, React discards its state.
 
-## Same component at the same position preserves state {/*same-component-at-the-same-position-preserves-state*/}
+## Same component at the same position preserves state
 
 In this example, there are two different `<Counter />` tags:
 
@@ -482,7 +482,7 @@ In both cases, the `App` component returns a `<div>` with `<Counter />` as a fir
 
 </Pitfall>
 
-## Different components at the same position reset state {/*different-components-at-the-same-position-reset-state*/}
+## Different components at the same position reset state
 
 In this example, ticking the checkbox will replace `<Counter>` with a `<p>`:
 
@@ -739,7 +739,7 @@ Every time you click the button, the input state disappears! This is because a *
 
 </Pitfall>
 
-## Resetting state at the same position {/*resetting-state-at-the-same-position*/}
+## Resetting state at the same position
 
 By default, React preserves state of a component while it stays at the same position. Usually, this is exactly what you want, so it makes sense as the default behavior. But sometimes, you may want to reset a component's state. Consider this app that lets two players keep track of their scores during each turn:
 
@@ -821,7 +821,7 @@ There are two ways to reset state when switching between them:
 2. Give each component an explicit identity with `key`
 
 
-### Option 1: Rendering a component in different positions {/*option-1-rendering-a-component-in-different-positions*/}
+### Option 1: Rendering a component in different positions
 
 If you want these two `Counter`s to be independent, you can render them in two different positions:
 
@@ -923,11 +923,11 @@ Each `Counter`'s state gets destroyed each time it's removed from the DOM. This 
 
 This solution is convenient when you only have a few independent components rendered in the same place. In this example, you only have two, so it's not a hassle to render both separately in the JSX.
 
-### Option 2: Resetting state with a key {/*option-2-resetting-state-with-a-key*/}
+### Option 2: Resetting state with a key
 
 There is also another, more generic, way to reset a component's state.
 
-You might have seen `key`s when [rendering lists.](/learn/rendering-lists#keeping-list-items-in-order-with-key) Keys aren't just for lists! You can use keys to make React distinguish between any components. By default, React uses order within the parent ("first counter", "second counter") to discern between components. But keys let you tell React that this is not just a *first* counter, or a *second* counter, but a specific counter--for example, *Taylor's* counter. This way, React will know *Taylor's* counter wherever it appears in the tree!
+You might have seen `key`s when [rendering lists.](rendering-lists.md#keeping-list-items-in-order-with-key) Keys aren't just for lists! You can use keys to make React distinguish between any components. By default, React uses order within the parent ("first counter", "second counter") to discern between components. But keys let you tell React that this is not just a *first* counter, or a *second* counter, but a specific counter--for example, *Taylor's* counter. This way, React will know *Taylor's* counter wherever it appears in the tree!
 
 In this example, the two `<Counter />`s don't share state even though they appear in the same place in JSX:
 
@@ -1017,7 +1017,7 @@ Remember that keys are not globally unique. They only specify the position *with
 
 </Note>
 
-### Resetting a form with a key {/*resetting-a-form-with-a-key*/}
+### Resetting a form with a key
 
 Resetting state with a key is particularly useful when dealing with forms.
 
@@ -1223,12 +1223,12 @@ textarea {
 
 <DeepDive>
 
-#### Preserving state for removed components {/*preserving-state-for-removed-components*/}
+#### Preserving state for removed components
 
 In a real chat app, you'd probably want to recover the input state when the user selects the previous recipient again. There are a few ways to keep the state "alive" for a component that's no longer visible:
 
 - You could render _all_ chats instead of just the current one, but hide all the others with CSS. The chats would not get removed from the tree, so their local state would be preserved. This solution works great for simple UIs. But it can get very slow if the hidden trees are large and contain a lot of DOM nodes.
-- You could [lift the state up](/learn/sharing-state-between-components) and hold the pending message for each recipient in the parent component. This way, when the child components get removed, it doesn't matter, because it's the parent that keeps the important information. This is the most common solution.
+- You could [lift the state up](sharing-state-between-components.md) and hold the pending message for each recipient in the parent component. This way, when the child components get removed, it doesn't matter, because it's the parent that keeps the important information. This is the most common solution.
 - You might also use a different source in addition to React state. For example, you probably want a message draft to persist even if the user accidentally closes the page. To implement this, you could have the `Chat` component initialize its state by reading from the [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), and save the drafts there too.
 
 No matter which strategy you pick, a chat _with Alice_ is conceptually distinct from a chat _with Bob_, so it makes sense to give a `key` to the `<Chat>` tree based on the current recipient.
@@ -1248,7 +1248,7 @@ No matter which strategy you pick, a chat _with Alice_ is conceptually distinct 
 
 <Challenges>
 
-#### Fix disappearing input text {/*fix-disappearing-input-text*/}
+#### Fix disappearing input text
 
 This example shows a message when you press the button. However, pressing the button also accidentally resets the input. Why does this happen? Fix it so that pressing the button does not reset the input text.
 
@@ -1399,7 +1399,7 @@ This way, `Form` is always the second child, so it stays in the same position an
 
 </Solution>
 
-#### Swap two form fields {/*swap-two-form-fields*/}
+#### Swap two form fields
 
 This form lets you enter first and last name. It also has a checkbox controlling which field goes first. When you tick the checkbox, the "Last name" field will appear before the "First name" field.
 
@@ -1533,7 +1533,7 @@ label { display: block; margin: 10px 0; }
 
 </Solution>
 
-#### Reset a detail form {/*reset-a-detail-form*/}
+#### Reset a detail form
 
 This is an editable contact list. You can edit the selected contact's details and then either press "Save" to update it, or "Reset" to undo your changes.
 
@@ -1842,7 +1842,7 @@ button {
 
 </Solution>
 
-#### Clear an image while it's loading {/*clear-an-image-while-its-loading*/}
+#### Clear an image while it's loading
 
 When you press "Next", the browser starts loading the next image. However, because it's displayed in the same `<img>` tag, by default you would still see the previous image until the next one loads. This may be undesirable if it's important for the text to always match the image. Change it so that the moment you press "Next", the previous image immediately clears.
 
@@ -1986,7 +1986,7 @@ img { width: 150px; height: 150px; }
 
 </Solution>
 
-#### Fix misplaced state in the list {/*fix-misplaced-state-in-the-list*/}
+#### Fix misplaced state in the list
 
 In this list, each `Contact` has state that determines whether "Show email" has been pressed for it. Press "Show email" for Alice, and then tick the "Show in reverse order" checkbox. You will notice that it's _Taylor's_ email that is expanded now, but Alice's--which has moved to the bottom--appears collapsed.
 

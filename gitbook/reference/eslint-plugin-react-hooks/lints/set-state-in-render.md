@@ -8,13 +8,13 @@ Validates against unconditionally setting state during render, which can trigger
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 Calling `setState` during render unconditionally triggers another render before the current one finishes. This creates an infinite loop that crashes your app.
 
-## Common Violations {/*common-violations*/}
+## Common Violations
 
-### Invalid {/*invalid*/}
+### Invalid
 
 ```js {expectedErrors: {'react-compiler': [4]}}
 // ❌ Unconditional setState directly in render
@@ -25,7 +25,7 @@ function Component({value}) {
 }
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 ```js
 // ✅ Derive during render
@@ -65,9 +65,9 @@ function Component({ items }) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I want to sync state to a prop {/*clamp-state-to-prop*/}
+### I want to sync state to a prop
 
 A common problem is trying to "fix" state after it renders. Suppose you want to keep a counter from exceeding a `max` prop:
 

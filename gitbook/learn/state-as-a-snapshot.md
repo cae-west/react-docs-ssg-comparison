@@ -17,9 +17,9 @@ State variables might look like regular JavaScript variables that you can read a
 
 </YouWillLearn>
 
-## Setting state triggers renders {/*setting-state-triggers-renders*/}
+## Setting state triggers renders
 
-You might think of your user interface as changing directly in response to the user event like a click. In React, it works a little differently from this mental model. On the previous page, you saw that [setting state requests a re-render](/learn/render-and-commit#step-1-trigger-a-render) from React. This means that for an interface to react to the event, you need to *update the state*.
+You might think of your user interface as changing directly in response to the user event like a click. In React, it works a little differently from this mental model. On the previous page, you saw that [setting state requests a re-render](render-and-commit.md#step-1-trigger-a-render) from React. This means that for an interface to react to the event, you need to *update the state*.
 
 In this example, when you press "send", `setIsSent(true)` tells React to re-render the UI:
 
@@ -69,9 +69,9 @@ Here's what happens when you click the button:
 
 Let's take a closer look at the relationship between state and rendering.
 
-## Rendering takes a snapshot in time {/*rendering-takes-a-snapshot-in-time*/}
+## Rendering takes a snapshot in time
 
-["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
+["Rendering"](render-and-commit.md#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
 
 Unlike a photograph or a movie frame, the UI "snapshot" you return is interactive. It includes logic like event handlers that specify what happens in response to inputs. React updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.
 
@@ -82,17 +82,17 @@ When React re-renders a component:
 3. React then updates the screen to match the snapshot your function returned.
 
 <IllustrationBlock sequential>
-    <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
-    <Illustration caption="Calculating the snapshot" src="/images/docs/illustrations/i_render2.png" />
-    <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
+    <Illustration caption="React executing the function" src="../images/docs/illustrations/i_render1.png" />
+    <Illustration caption="Calculating the snapshot" src="../images/docs/illustrations/i_render2.png" />
+    <Illustration caption="Updating the DOM tree" src="../images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
 As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
 
 <IllustrationBlock sequential>
-  <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
-  <Illustration caption="React updates the state value" src="/images/docs/illustrations/i_state-snapshot2.png" />
-  <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" />
+  <Illustration caption="You tell React to update the state" src="../images/docs/illustrations/i_state-snapshot1.png" />
+  <Illustration caption="React updates the state value" src="../images/docs/illustrations/i_state-snapshot2.png" />
+  <Illustration caption="React passes a snapshot of the state value into the component" src="../images/docs/illustrations/i_state-snapshot3.png" />
 </IllustrationBlock>
 
 Here's a little experiment to show you how this works. In this example, you might expect that clicking the "+3" button would increment the counter three times because it calls `setNumber(number + 1)` three times.
@@ -172,7 +172,7 @@ For the next render, `number` is `1`, so *that render's* click handler looks lik
 
 This is why clicking the button again will set the counter to `2`, then to `3` on the next click, and so on.
 
-## State over time {/*state-over-time*/}
+## State over time
 
 Well, that was fun. Try to guess what clicking this button will alert:
 
@@ -307,7 +307,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 **React keeps the state values "fixed" within one render's event handlers.** You don't need to worry whether the state has changed while the code is running.
 
-But what if you wanted to read the latest state before a re-render? You'll want to use a [state updater function](/learn/queueing-a-series-of-state-updates), covered on the next page!
+But what if you wanted to read the latest state before a re-render? You'll want to use a [state updater function](queueing-a-series-of-state-updates.md), covered on the next page!
 
 <Recap>
 
@@ -325,7 +325,7 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 
 <Challenges>
 
-#### Implement a traffic light {/*implement-a-traffic-light*/}
+#### Implement a traffic light
 
 Here is a crosswalk light component that toggles when the button is pressed:
 

@@ -11,7 +11,7 @@ Oct 16, 2025 by [Matt Carroll](https://x.com/mattcarrollcode) and [Ricky Hanlon]
 
 <Intro>
 
-Last week we hosted React Conf 2025 where we announced the [React Foundation](/blog/2025/10/07/introducing-the-react-foundation) and showcased new features coming to React and React Native.
+Last week we hosted React Conf 2025 where we announced the [React Foundation](../07/introducing-the-react-foundation.md) and showcased new features coming to React and React Native.
 
 </Intro>
 
@@ -24,7 +24,7 @@ The entire [day 1](https://www.youtube.com/watch?v=zyVRg2QR6LA&t=1067s) and [day
 In this post, we'll summarize the talks and announcements from the event.
 
 
-## Day 1 Keynote {/*day-1-keynote*/}
+## Day 1 Keynote
 
 _Watch the full day 1 stream [here.](https://www.youtube.com/watch?v=zyVRg2QR6LA&t=1067s)_
 
@@ -42,18 +42,18 @@ Jack Pope announced new features in Canary including:
 * [Fragment Refs](https://react.dev/reference/react/Fragment#fragmentinstance) — a new way to interact with the DOM nodes wrapped by a Fragment.
 
 Lauren Tan announced [React Compiler v1.0](https://react.dev/blog/2025/10/07/react-compiler-1) and recommended all apps use React Compiler for benefits like:
-* [Automatic memoization](/learn/react-compiler/introduction#what-does-react-compiler-do) that understands React code.
-* [New lint rules](/learn/react-compiler/installation#eslint-integration) powered by React Compiler to teach best practices.
-* [Default support](/learn/react-compiler/installation#basic-setup) for new apps in Vite, Next.js, and Expo.
-* [Migration guides](/learn/react-compiler/incremental-adoption) for existing apps migrating to React Compiler.
+* [Automatic memoization](../../../../learn/react-compiler/introduction.md#what-does-react-compiler-do) that understands React code.
+* [New lint rules](../../../../learn/react-compiler/installation.md#eslint-integration) powered by React Compiler to teach best practices.
+* [Default support](../../../../learn/react-compiler/installation.md#basic-setup) for new apps in Vite, Next.js, and Expo.
+* [Migration guides](../../../../learn/react-compiler/incremental-adoption.md) for existing apps migrating to React Compiler.
 
-Finally, Seth Webster announced the [React Foundation](/blog/2025/10/07/introducing-the-react-foundation) to steward React's open source development and community.
+Finally, Seth Webster announced the [React Foundation](../07/introducing-the-react-foundation.md) to steward React's open source development and community.
 
 Watch day 1 here:
 
 <YouTubeIframe src="https://www.youtube.com/embed/zyVRg2QR6LA?si=z-8t_xCc12HwGJH_&t=1067s" />
 
-## Day 2 Keynote {/*day-2-keynote*/}
+## Day 2 Keynote
 
 _Watch the full day 2 stream [here.](https://www.youtube.com/watch?v=p9OcztRyDl0&t=2299s)_
 
@@ -72,7 +72,7 @@ Watch day 2 here:
 <YouTubeIframe src="https://www.youtube.com/embed/p9OcztRyDl0?si=qPTHftsUE07cjZpS&t=2299s" />
 
 
-## React team talks {/*react-team-talks*/}
+## React team talks
 
 Throughout the conference, there were talks from the React team including:
 * [Async React Part I](https://www.youtube.com/watch?v=zyVRg2QR6LA&t=10907s) and [Part II](https://www.youtube.com/watch?v=p9OcztRyDl0&t=29073s) [(Ricky Hanlon)](https://x.com/rickhanlonii) showed what's possible using the last 10 years of innovation.
@@ -82,7 +82,7 @@ Throughout the conference, there were talks from the React team including:
 * [React Strict DOM](https://www.youtube.com/watch?v=p9OcztRyDl0&t=9026s) [(Nicolas Gallagher)](https://nicolasgallagher.com/) talked about Meta's approach to using web code on native.
 * [View Transitions and Activity](https://www.youtube.com/watch?v=zyVRg2QR6LA&t=4870s) [(Chance Strickland)](https://x.com/chancethedev) — Chance worked with the React team to showcase how to use `<Activity />` and `<ViewTransition />` to build fast, native-feeling animations.
 * [In case you missed the memo](https://www.youtube.com/watch?v=zyVRg2QR6LA&t=9525s) [(Cody Olsen)](https://bsky.app/profile/codey.bsky.social) - Cody worked with the React team to adopt the Compiler at Sanity Studio, and shared how it went.
-## React framework talks {/*react-framework-talks*/}
+## React framework talks
 
 The second half of day 2 had a series of talks from React Framework teams including:
 
@@ -95,14 +95,14 @@ The second half of day 2 had a series of talks from React Framework teams includ
 * [RedwoodSDK: Web Standards Meet Full-Stack React](https://www.youtube.com/watch?v=p9OcztRyDl0&t=24992s) by [Peter Pistorius](https://x.com/appfactory) and [Aurora Scharff](https://x.com/aurorascharff).
 * [TanStack Start](https://www.youtube.com/watch?v=p9OcztRyDl0&t=26065s) by [Tanner Linsley](https://x.com/tannerlinsley).
 
-## Q&A {/*q-and-a*/}
+## Q&A
 There were three Q&A panels during the conference:
 
 * [React Team at Meta Q&A](https://www.youtube.com/watch?v=zyVRg2QR6LA&t=26304s) hosted by [Shruti Kapoor](https://x.com/shrutikapoor08)
 * [React Frameworks Q&A](https://www.youtube.com/watch?v=p9OcztRyDl0&t=26812s) hosted by [Jack Herrington](https://x.com/jherr)
 * [React and AI Panel](https://www.youtube.com/watch?v=zyVRg2QR6LA&t=18741s) hosted by [Lee Robinson](https://x.com/leerob)
 
-## And more... {/*and-more*/}
+## And more...
 
 We also heard talks from the community including:
 * [Building an MCP Server](https://www.youtube.com/watch?v=zyVRg2QR6LA&t=24204s) by [James Swinton](https://x.com/JamesSwintonDev) ([AG Grid](https://www.ag-grid.com/?utm_source=react-conf&utm_medium=react-conf-homepage&utm_campaign=react-conf-sponsorship-2025))
@@ -110,7 +110,7 @@ We also heard talks from the community including:
 * [Why React Native Apps Make All the Money](https://www.youtube.com/watch?v=zyVRg2QR6LA&t=24917s) by [Perttu Lähteenlahti](https://x.com/plahteenlahti) ([RevenueCat](https://www.revenuecat.com/))
 * [The invisible craft of great UX](https://www.youtube.com/watch?v=zyVRg2QR6LA&t=23400s) by [Michał Dudak](https://x.com/michaldudak) ([MUI](https://mui.com/))
 
-## Thanks {/*thanks*/}
+## Thanks
 
 Thank you to all the staff, speakers, and participants, who made React Conf 2025 possible. There are too many to list, but we want to thank a few in particular.
 

@@ -10,19 +10,19 @@ React is a JavaScript library for rendering user interfaces (UI). UI is built fr
 
 <YouWillLearn isChapter={true}>
 
-* [How to write your first React component](/learn/your-first-component)
-* [When and how to create multi-component files](/learn/importing-and-exporting-components)
-* [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
-* [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
-* [How to configure components with props](/learn/passing-props-to-a-component)
-* [How to conditionally render components](/learn/conditional-rendering)
-* [How to render multiple components at a time](/learn/rendering-lists)
-* [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
-* [Why understanding your UI as trees is useful](/learn/understanding-your-ui-as-a-tree)
+* [How to write your first React component](your-first-component.md)
+* [When and how to create multi-component files](importing-and-exporting-components.md)
+* [How to add markup to JavaScript with JSX](writing-markup-with-jsx.md)
+* [How to use curly braces with JSX to access JavaScript functionality from your components](javascript-in-jsx-with-curly-braces.md)
+* [How to configure components with props](passing-props-to-a-component.md)
+* [How to conditionally render components](conditional-rendering.md)
+* [How to render multiple components at a time](rendering-lists.md)
+* [How to avoid confusing bugs by keeping components pure](keeping-components-pure.md)
+* [Why understanding your UI as trees is useful](understanding-your-ui-as-a-tree.md)
 
 </YouWillLearn>
 
-## Your first component {/*your-first-component*/}
+## Your first component
 
 React applications are built from isolated pieces of UI called *components*. A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` component rendering three `Profile` components:
 
@@ -58,11 +58,11 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <LearnMore path="/learn/your-first-component">
 
-Read **[Your First Component](/learn/your-first-component)** to learn how to declare and use React components.
+Read **[Your First Component](your-first-component.md)** to learn how to declare and use React components.
 
 </LearnMore>
 
-## Importing and exporting components {/*importing-and-exporting-components*/}
+## Importing and exporting components
 
 You can declare many components in one file, but large files can get difficult to navigate. To solve this, you can *export* a component into its own file, and then *import* that component from another file:
 
@@ -113,11 +113,11 @@ img { margin: 0 10px 10px 0; }
 
 <LearnMore path="/learn/importing-and-exporting-components">
 
-Read **[Importing and Exporting Components](/learn/importing-and-exporting-components)** to learn how to split components into their own files.
+Read **[Importing and Exporting Components](importing-and-exporting-components.md)** to learn how to split components into their own files.
 
 </LearnMore>
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Writing markup with JSX
 
 Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
 
@@ -182,11 +182,11 @@ img { height: 90px; }
 
 <LearnMore path="/learn/writing-markup-with-jsx">
 
-Read **[Writing Markup with JSX](/learn/writing-markup-with-jsx)** to learn how to write valid JSX.
+Read **[Writing Markup with JSX](writing-markup-with-jsx.md)** to learn how to write valid JSX.
 
 </LearnMore>
 
-## JavaScript in JSX with curly braces {/*javascript-in-jsx-with-curly-braces*/}
+## JavaScript in JSX with curly braces
 
 JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to "open a window" to JavaScript:
 
@@ -230,11 +230,11 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-Read **[JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces)** to learn how to access JavaScript data from JSX.
+Read **[JavaScript in JSX with Curly Braces](javascript-in-jsx-with-curly-braces.md)** to learn how to access JavaScript data from JSX.
 
 </LearnMore>
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## Passing props to a component
 
 React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, functions, and even JSX!
 
@@ -311,11 +311,11 @@ export function getImageUrl(person, size = 's') {
 
 <LearnMore path="/learn/passing-props-to-a-component">
 
-Read **[Passing Props to a Component](/learn/passing-props-to-a-component)** to learn how to pass and read props.
+Read **[Passing Props to a Component](passing-props-to-a-component.md)** to learn how to pass and read props.
 
 </LearnMore>
 
-## Conditional rendering {/*conditional-rendering*/}
+## Conditional rendering
 
 Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
 
@@ -359,11 +359,11 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-Read **[Conditional Rendering](/learn/conditional-rendering)** to learn the different ways to render content conditionally.
+Read **[Conditional Rendering](conditional-rendering.md)** to learn the different ways to render content conditionally.
 
 </LearnMore>
 
-## Rendering lists {/*rendering-lists*/}
+## Rendering lists
 
 You will often want to display multiple similar components from a collection of data. You can use JavaScript's `filter()` and `map()` with React to filter and transform your array of data into an array of components.
 
@@ -459,11 +459,11 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-Read **[Rendering Lists](/learn/rendering-lists)** to learn how to render a list of components, and how to choose a key.
+Read **[Rendering Lists](rendering-lists.md)** to learn how to render a list of components, and how to choose a key.
 
 </LearnMore>
 
-## Keeping components pure {/*keeping-components-pure*/}
+## Keeping components pure
 
 Some JavaScript functions are *pure.* A pure function:
 
@@ -520,11 +520,11 @@ export default function TeaSet() {
 
 <LearnMore path="/learn/keeping-components-pure">
 
-Read **[Keeping Components Pure](/learn/keeping-components-pure)** to learn how to write components as pure, predictable functions.
+Read **[Keeping Components Pure](keeping-components-pure.md)** to learn how to write components as pure, predictable functions.
 
 </LearnMore>
 
-## Your UI as a tree {/*your-ui-as-a-tree*/}
+## Your UI as a tree
 
 React uses trees to model the relationships between components and modules.
 
@@ -550,13 +550,13 @@ A dependency tree is often used by build tools to bundle all the relevant JavaSc
 
 <LearnMore path="/learn/understanding-your-ui-as-a-tree">
 
-Read **[Your UI as a Tree](/learn/understanding-your-ui-as-a-tree)** to learn how to create a render and module dependency trees for a React app and how they're useful mental models for improving user experience and performance.
+Read **[Your UI as a Tree](understanding-your-ui-as-a-tree.md)** to learn how to create a render and module dependency trees for a React app and how they're useful mental models for improving user experience and performance.
 
 </LearnMore>
 
 
-## What's next? {/*whats-next*/}
+## What's next?
 
-Head over to [Your First Component](/learn/your-first-component) to start reading this chapter page by page!
+Head over to [Your First Component](your-first-component.md) to start reading this chapter page by page!
 
-Or, if you're already familiar with these topics, why not read about [Adding Interactivity](/learn/adding-interactivity)?
+Or, if you're already familiar with these topics, why not read about [Adding Interactivity](adding-interactivity.md)?

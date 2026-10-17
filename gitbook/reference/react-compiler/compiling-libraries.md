@@ -8,7 +8,7 @@ This guide helps library authors understand how to use React Compiler to ship op
 
 <InlineToc />
 
-## Why Ship Compiled Code? {/*why-ship-compiled-code*/}
+## Why Ship Compiled Code?
 
 As a library author, you can compile your library code before publishing to npm. This provides several benefits:
 
@@ -16,7 +16,7 @@ As a library author, you can compile your library code before publishing to npm.
 - **No configuration required by users** - The optimizations work out of the box
 - **Consistent behavior** - All users get the same optimized version regardless of their build setup
 
-## Setting Up Compilation {/*setting-up-compilation*/}
+## Setting Up Compilation
 
 Add React Compiler to your library's build process:
 
@@ -36,11 +36,11 @@ module.exports = {
 };
 ```
 
-## Backwards Compatibility {/*backwards-compatibility*/}
+## Backwards Compatibility
 
 If your library supports React versions below 19, you'll need additional configuration:
 
-### 1. Install the runtime package {/*install-runtime-package*/}
+### 1. Install the runtime package
 
 We recommend installing react-compiler-runtime as a direct dependency:
 
@@ -59,7 +59,7 @@ npm install react-compiler-runtime@latest
 }
 ```
 
-### 2. Configure the target version {/*configure-target-version*/}
+### 2. Configure the target version
 
 Set the minimum React version your library supports:
 
@@ -69,13 +69,13 @@ Set the minimum React version your library supports:
 }
 ```
 
-## Testing Strategy {/*testing-strategy*/}
+## Testing Strategy
 
 Test your library both with and without compilation to ensure compatibility. Run your existing test suite against the compiled code, and also create a separate test configuration that bypasses the compiler. This helps catch any issues that might arise from the compilation process and ensures your library works correctly in all scenarios.
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### Library doesn't work with older React versions {/*library-doesnt-work-with-older-react-versions*/}
+### Library doesn't work with older React versions
 
 If your compiled library throws errors in React 17 or 18:
 
@@ -83,7 +83,7 @@ If your compiled library throws errors in React 17 or 18:
 2. Check that your `target` configuration matches your minimum supported React version
 3. Ensure the runtime package is included in your published bundle
 
-### Compilation conflicts with other Babel plugins {/*compilation-conflicts-with-other-babel-plugins*/}
+### Compilation conflicts with other Babel plugins
 
 Some Babel plugins may conflict with React Compiler:
 
@@ -91,7 +91,7 @@ Some Babel plugins may conflict with React Compiler:
 2. Disable conflicting optimizations in other plugins
 3. Test your build output thoroughly
 
-### Runtime module not found {/*runtime-module-not-found*/}
+### Runtime module not found
 
 If users see "Cannot find module 'react-compiler-runtime'":
 
@@ -99,8 +99,8 @@ If users see "Cannot find module 'react-compiler-runtime'":
 2. Check that your bundler includes the runtime in the output
 3. Verify the package is published to npm with your library
 
-## Next Steps {/*next-steps*/}
+## Next Steps
 
-- Learn about [debugging techniques](/learn/react-compiler/debugging) for compiled code
-- Check the [configuration options](/reference/react-compiler/configuration) for all compiler options
-- Explore [compilation modes](/reference/react-compiler/compilationMode) for selective optimization
+- Learn about [debugging techniques](../../learn/react-compiler/debugging.md) for compiled code
+- Check the [configuration options](configuration.md) for all compiler options
+- Explore [compilation modes](compilationMode.md) for selective optimization

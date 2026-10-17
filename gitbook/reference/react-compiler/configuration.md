@@ -29,11 +29,11 @@ module.exports = {
 
 ---
 
-## Compilation Control {/*compilation-control*/}
+## Compilation Control
 
 These options control *what* the compiler optimizes and *how* it selects components and hooks to compile.
 
-* [`compilationMode`](/reference/react-compiler/compilationMode) controls the strategy for selecting functions to compile (e.g., all functions, only annotated ones, or intelligent detection).
+* [`compilationMode`](compilationMode.md) controls the strategy for selecting functions to compile (e.g., all functions, only annotated ones, or intelligent detection).
 
 ```js
 {
@@ -43,11 +43,11 @@ These options control *what* the compiler optimizes and *how* it selects compone
 
 ---
 
-## Version Compatibility {/*version-compatibility*/}
+## Version Compatibility
 
 React version configuration ensures the compiler generates code compatible with your React version.
 
-[`target`](/reference/react-compiler/target) specifies which React version you're using (17, 18, or 19).
+[`target`](target.md) specifies which React version you're using (17, 18, or 19).
 
 ```js
 // For React 18 projects
@@ -58,11 +58,11 @@ React version configuration ensures the compiler generates code compatible with 
 
 ---
 
-## Error Handling {/*error-handling*/}
+## Error Handling
 
-These options control how the compiler responds to code that doesn't follow the [Rules of React](/reference/rules).
+These options control how the compiler responds to code that doesn't follow the [Rules of React](../rules/index.md).
 
-[`panicThreshold`](/reference/react-compiler/panicThreshold) determines whether to fail the build or skip problematic components.
+[`panicThreshold`](panicThreshold.md) determines whether to fail the build or skip problematic components.
 
 ```js
 // Recommended for production
@@ -73,11 +73,11 @@ These options control how the compiler responds to code that doesn't follow the 
 
 ---
 
-## Debugging {/*debugging*/}
+## Debugging
 
 Logging and analysis options help you understand what the compiler is doing.
 
-[`logger`](/reference/react-compiler/logger) provides custom logging for compilation events.
+[`logger`](logger.md) provides custom logging for compilation events.
 
 ```js
 {
@@ -93,11 +93,11 @@ Logging and analysis options help you understand what the compiler is doing.
 
 ---
 
-## Feature Flags {/*feature-flags*/}
+## Feature Flags
 
 Conditional compilation lets you control when optimized code is used.
 
-[`gating`](/reference/react-compiler/gating) enables runtime feature flags for A/B testing or gradual rollouts.
+[`gating`](gating.md) enables runtime feature flags for A/B testing or gradual rollouts.
 
 ```js
 {
@@ -110,9 +110,9 @@ Conditional compilation lets you control when optimized code is used.
 
 ---
 
-## Common Configuration Patterns {/*common-patterns*/}
+## Common Configuration Patterns
 
-### Default configuration {/*default-configuration*/}
+### Default configuration
 
 For most React 19 applications, the compiler works without configuration:
 
@@ -125,7 +125,7 @@ module.exports = {
 };
 ```
 
-### React 17/18 projects {/*react-17-18*/}
+### React 17/18 projects
 
 Older React versions need the runtime package and target configuration:
 
@@ -139,7 +139,7 @@ npm install react-compiler-runtime@latest
 }
 ```
 
-### Incremental adoption {/*incremental-adoption*/}
+### Incremental adoption
 
 Start with specific directories and expand gradually:
 

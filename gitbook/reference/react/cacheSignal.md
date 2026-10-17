@@ -4,7 +4,7 @@ title: cacheSignal
 
 <RSC>
 
-`cacheSignal` is currently only used with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
+`cacheSignal` is currently only used with [React Server Components](../../blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023.md#react-server-components).
 
 </RSC>
 
@@ -22,9 +22,9 @@ const signal = cacheSignal();
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `cacheSignal` {/*cachesignal*/}
+### `cacheSignal`
 
 Call `cacheSignal` to get an `AbortSignal`.
 
@@ -41,24 +41,24 @@ Rendering is considered finished when:
 - the render was aborted
 - the render has failed
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 This function does not accept any parameters.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `cacheSignal` returns an `AbortSignal` if called during rendering. Otherwise `cacheSignal()` returns `null`.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
-- `cacheSignal` is currently for use in [React Server Components](/reference/rsc/server-components) only. In Client Components, it will always return `null`. In the future it will also be used for Client Component when a client cache refreshes or invalidates. You should not assume it'll always be null on the client.
+- `cacheSignal` is currently for use in [React Server Components](../rsc/server-components.md) only. In Client Components, it will always return `null`. In the future it will also be used for Client Component when a client cache refreshes or invalidates. You should not assume it'll always be null on the client.
 - If called outside of rendering, `cacheSignal` will return `null` to make it clear that the current scope isn't cached forever.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Cancel in-flight requests {/*cancel-in-flight-requests*/}
+### Cancel in-flight requests
 
 Call <CodeStep step={1}>`cacheSignal`</CodeStep> to abort in-flight requests.
 
@@ -83,7 +83,7 @@ async function Component() {
 ```
 </Pitfall>
 
-### Ignore errors after React has finished rendering {/*ignore-errors-after-react-has-finished-rendering*/}
+### Ignore errors after React has finished rendering
 
 If a function throws, it may be due to cancellation (e.g. <CodeStep step={1}>the Database connection</CodeStep> has been closed). You can use the <CodeStep step={2}>`aborted` property</CodeStep> to check if the error was due to cancellation or a real error. You may want to <CodeStep step={3}>ignore errors</CodeStep> that were due to cancellation.
 

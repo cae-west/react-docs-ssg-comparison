@@ -17,7 +17,7 @@ React automatically updates the [DOM](https://developer.mozilla.org/docs/Web/API
 
 </YouWillLearn>
 
-## Getting a ref to the node {/*getting-a-ref-to-the-node*/}
+## Getting a ref to the node
 
 To access a DOM node managed by React, first, import the `useRef` Hook:
 
@@ -37,14 +37,14 @@ Finally, pass your ref as the `ref` attribute to the JSX tag for which you want 
 <div ref={myRef}>
 ```
 
-The `useRef` Hook returns an object with a single property called `current`. Initially, `myRef.current` will be `null`. When React creates a DOM node for this `<div>`, React will put a reference to this node into `myRef.current`. You can then access this DOM node from your [event handlers](/learn/responding-to-events) and use the built-in [browser APIs](https://developer.mozilla.org/docs/Web/API/Element) defined on it.
+The `useRef` Hook returns an object with a single property called `current`. Initially, `myRef.current` will be `null`. When React creates a DOM node for this `<div>`, React will put a reference to this node into `myRef.current`. You can then access this DOM node from your [event handlers](responding-to-events.md) and use the built-in [browser APIs](https://developer.mozilla.org/docs/Web/API/Element) defined on it.
 
 ```js
 // You can use any browser APIs, for example:
 myRef.current.scrollIntoView();
 ```
 
-### Example: Focusing a text input {/*example-focusing-a-text-input*/}
+### Example: Focusing a text input
 
 In this example, clicking the button will focus the input:
 
@@ -80,9 +80,9 @@ To implement this:
 3. In the `handleClick` function, read the input DOM node from `inputRef.current` and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it with `inputRef.current.focus()`.
 4. Pass the `handleClick` event handler to `<button>` with `onClick`.
 
-While DOM manipulation is the most common use case for refs, the `useRef` Hook can be used for storing other things outside React, like timer IDs. Similarly to state, refs remain between renders. Refs are like state variables that don't trigger re-renders when you set them. Read about refs in [Referencing Values with Refs.](/learn/referencing-values-with-refs)
+While DOM manipulation is the most common use case for refs, the `useRef` Hook can be used for storing other things outside React, like timer IDs. Similarly to state, refs remain between renders. Refs are like state variables that don't trigger re-renders when you set them. Read about refs in [Referencing Values with Refs.](referencing-values-with-refs.md)
 
-### Example: Scrolling to an element {/*example-scrolling-to-an-element*/}
+### Example: Scrolling to an element
 
 You can have more than a single ref in a component. In this example, there is a carousel of three images. Each button centers an image by calling the browser [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method on the corresponding DOM node:
 
@@ -193,7 +193,7 @@ li {
 
 <DeepDive>
 
-#### How to manage a list of refs using a ref callback {/*how-to-manage-a-list-of-refs-using-a-ref-callback*/}
+#### How to manage a list of refs using a ref callback
 
 In the above examples, there is a predefined number of refs. However, sometimes you might need a ref to each item in the list, and you don't know how many you will have. Something like this **wouldn't work**:
 
@@ -211,7 +211,7 @@ This is because **Hooks must only be called at the top-level of your component.*
 
 One possible way around this is to get a single ref to their parent element, and then use DOM manipulation methods like [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) to "find" the individual child nodes from it. However, this is brittle and can break if your DOM structure changes.
 
-Another solution is to **pass a function to the `ref` attribute.** This is called a [`ref` callback.](/reference/react-dom/components/common#ref-callback) React will call your ref callback with the DOM node when it's time to set the ref, and call the cleanup function returned from the callback when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
+Another solution is to **pass a function to the `ref` attribute.** This is called a [`ref` callback.](../reference/react-dom/components/common.md#ref-callback-function) React will call your ref callback with the DOM node when it's time to set the ref, and call the cleanup function returned from the callback when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
 
 This example shows how you can use this approach to scroll to an arbitrary node in a long list:
 
@@ -322,7 +322,7 @@ li {
 
 </Sandpack>
 
-In this example, `itemsRef` doesn't hold a single DOM node. Instead, it holds a [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) from item ID to a DOM node. ([Refs can hold any values!](/learn/referencing-values-with-refs)) The [`ref` callback](/reference/react-dom/components/common#ref-callback) on every list item takes care to update the Map:
+In this example, `itemsRef` doesn't hold a single DOM node. Instead, it holds a [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) from item ID to a DOM node. ([Refs can hold any values!](referencing-values-with-refs.md)) The [`ref` callback](../reference/react-dom/components/common.md#ref-callback-function) on every list item takes care to update the Map:
 
 ```js
 <li
@@ -346,19 +346,19 @@ This lets you read individual DOM nodes from the Map later.
 
 When Strict Mode is enabled, ref callbacks will run twice in development.
 
-Read more about [how this helps find bugs](/reference/react/StrictMode#fixing-bugs-found-by-re-running-ref-callbacks-in-development) in callback refs.
+Read more about [how this helps find bugs](../reference/react/StrictMode.md#fixing-bugs-found-by-re-running-ref-callbacks-in-development) in callback refs.
 
 </Note>
 
 </DeepDive>
 
-## Accessing another component's DOM nodes {/*accessing-another-components-dom-nodes*/}
+## Accessing another component's DOM nodes
 
 <Pitfall>
 Refs are an escape hatch. Manually manipulating _another_ component's DOM nodes can make your code fragile.
 </Pitfall>
 
-You can pass refs from parent component to child components [just like any other prop](/learn/passing-props-to-a-component).
+You can pass refs from parent component to child components [just like any other prop](passing-props-to-a-component.md).
 
 ```js {3-4,9}
 import { useRef } from 'react';
@@ -373,7 +373,7 @@ function MyForm() {
 }
 ```
 
-In the above example, a ref is created in the parent component, `MyForm`, and is passed to the child component, `MyInput`. `MyInput` then passes the ref to `<input>`. Because `<input>` is a [built-in component](/reference/react-dom/components/common) React sets the `.current` property of the ref to the `<input>` DOM element.
+In the above example, a ref is created in the parent component, `MyForm`, and is passed to the child component, `MyInput`. `MyInput` then passes the ref to `<input>`. Because `<input>` is a [built-in component](../reference/react-dom/components/common.md) React sets the `.current` property of the ref to the `<input>` DOM element.
 
 The `inputRef` created in `MyForm` now points to the `<input>` DOM element returned by `MyInput`. A click handler created in `MyForm` can access `inputRef` and call `focus()` to set the focus on `<input>`.
 
@@ -408,9 +408,9 @@ export default function MyForm() {
 
 <DeepDive>
 
-#### Exposing a subset of the API with an imperative handle {/*exposing-a-subset-of-the-api-with-an-imperative-handle*/}
+#### Exposing a subset of the API with an imperative handle
 
-In the above example, the ref passed to `MyInput` is passed on to the original DOM input element. This lets the parent component call `focus()` on it. However, this also lets the parent component do something else--for example, change its CSS styles. In uncommon cases, you may want to restrict the exposed functionality. You can do that with [`useImperativeHandle`](/reference/react/useImperativeHandle):
+In the above example, the ref passed to `MyInput` is passed on to the original DOM input element. This lets the parent component call `focus()` on it. However, this also lets the parent component do something else--for example, change its CSS styles. In uncommon cases, you may want to restrict the exposed functionality. You can do that with [`useImperativeHandle`](../reference/react/useImperativeHandle.md):
 
 <Sandpack>
 
@@ -446,18 +446,18 @@ export default function Form() {
 
 </Sandpack>
 
-Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, [`useImperativeHandle`](/reference/react/useImperativeHandle) instructs React to provide your own special object as the value of a ref to the parent component. So `inputRef.current` inside the `Form` component will only have the `focus` method. In this case, the ref "handle" is not the DOM node, but the custom object you create inside [`useImperativeHandle`](/reference/react/useImperativeHandle) call.
+Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, [`useImperativeHandle`](../reference/react/useImperativeHandle.md) instructs React to provide your own special object as the value of a ref to the parent component. So `inputRef.current` inside the `Form` component will only have the `focus` method. In this case, the ref "handle" is not the DOM node, but the custom object you create inside [`useImperativeHandle`](../reference/react/useImperativeHandle.md) call.
 
 </DeepDive>
 
-## When React attaches the refs {/*when-react-attaches-the-refs*/}
+## When React attaches the refs
 
-In React, every update is split in [two phases](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom):
+In React, every update is split in [two phases](render-and-commit.md#step-3-react-commits-changes-to-the-dom):
 
 * During **render,** React calls your components to figure out what should be on the screen.
 * During **commit,** React applies changes to the DOM.
 
-In general, you [don't want](/learn/referencing-values-with-refs#best-practices-for-refs) to access refs during rendering. That goes for refs holding DOM nodes as well. During the first render, the DOM nodes have not yet been created, so `ref.current` will be `null`. And during the rendering of updates, the DOM nodes haven't been updated yet. So it's too early to read them.
+In general, you [don't want](referencing-values-with-refs.md#best-practices-for-refs) to access refs during rendering. That goes for refs holding DOM nodes as well. During the first render, the DOM nodes have not yet been created, so `ref.current` will be `null`. And during the rendering of updates, the DOM nodes haven't been updated yet. So it's too early to read them.
 
 React sets `ref.current` during the commit. Before updating the DOM, React sets the affected `ref.current` values to `null`. After updating the DOM, React immediately sets them to the corresponding DOM nodes.
 
@@ -465,7 +465,7 @@ React sets `ref.current` during the commit. Before updating the DOM, React sets 
 
 <DeepDive>
 
-#### Flushing state updates synchronously with flushSync {/*flushing-state-updates-synchronously-with-flush-sync*/}
+#### Flushing state updates synchronously with flushSync
 
 Consider code like this, which adds a new todo and scrolls the screen down to the last child of the list. Notice how, for some reason, it always scrolls to the todo that was *just before* the last added one:
 
@@ -528,7 +528,7 @@ setTodos([ ...todos, newTodo]);
 listRef.current.lastChild.scrollIntoView();
 ```
 
-In React, [state updates are queued.](/learn/queueing-a-series-of-state-updates) Usually, this is what you want. However, here it causes a problem because `setTodos` does not immediately update the DOM. So the time you scroll the list to its last element, the todo has not yet been added. This is why scrolling always "lags behind" by one item.
+In React, [state updates are queued.](queueing-a-series-of-state-updates.md) Usually, this is what you want. However, here it causes a problem because `setTodos` does not immediately update the DOM. So the time you scroll the list to its last element, the todo has not yet been added. This is why scrolling always "lags behind" by one item.
 
 To fix this issue, you can force React to update ("flush") the DOM synchronously. To do this, import `flushSync` from `react-dom` and **wrap the state update** into a `flushSync` call:
 
@@ -598,13 +598,13 @@ for (let i = 0; i < 20; i++) {
 
 </DeepDive>
 
-## Best practices for DOM manipulation with refs {/*best-practices-for-dom-manipulation-with-refs*/}
+## Best practices for DOM manipulation with refs
 
 Refs are an escape hatch. You should only use them when you have to "step outside React". Common examples of this include managing focus, scroll position, or calling browser APIs that React does not expose.
 
 If you stick to non-destructive actions like focusing and scrolling, you shouldn't encounter any problems. However, if you try to **modify** the DOM manually, you can risk conflicting with the changes React is making.
 
-To illustrate this problem, this example includes a welcome message and two buttons. The first button toggles its presence using [conditional rendering](/learn/conditional-rendering) and [state](/learn/state-a-components-memory), as you would usually do in React. The second button uses the [`remove()` DOM API](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove) to forcefully remove it from the DOM outside of React's control.
+To illustrate this problem, this example includes a welcome message and two buttons. The first button toggles its presence using [conditional rendering](conditional-rendering.md) and [state](state-a-components-memory.md), as you would usually do in React. The second button uses the [`remove()` DOM API](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove) to forcefully remove it from the DOM outside of React's control.
 
 Try pressing "Toggle with setState" a few times. The message should disappear and appear again. Then press "Remove from the DOM". This will forcefully remove it. Finally, press "Toggle with setState":
 
@@ -668,7 +668,7 @@ However, this doesn't mean that you can't do it at all. It requires caution. **Y
 
 <Challenges>
 
-#### Play and pause the video {/*play-and-pause-the-video*/}
+#### Play and pause the video
 
 In this example, the button toggles a state variable to switch between a playing and a paused state. However, in order to actually play or pause the video, toggling state is not enough. You also need to call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on the DOM element for the `<video>`. Add a ref to it, and make the button work.
 
@@ -764,7 +764,7 @@ In order to handle the built-in browser controls, you can add `onPlay` and `onPa
 
 </Solution>
 
-#### Focus the search field {/*focus-the-search-field*/}
+#### Focus the search field
 
 Make it so that clicking the "Search" button puts focus into the field.
 
@@ -828,7 +828,7 @@ button { display: block; margin-bottom: 10px; }
 
 </Solution>
 
-#### Scrolling an image carousel {/*scrolling-an-image-carousel*/}
+#### Scrolling an image carousel
 
 This image carousel has a "Next" button that switches the active image. Make the gallery scroll horizontally to the active image on click. You will want to call [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) on the DOM node of the active image:
 
@@ -1090,7 +1090,7 @@ img {
 
 </Solution>
 
-#### Focus the search field with separate components {/*focus-the-search-field-with-separate-components*/}
+#### Focus the search field with separate components
 
 Make it so that clicking the "Search" button puts focus into the field. Note that each component is defined in a separate file and shouldn't be moved out of it. How do you connect them together?
 

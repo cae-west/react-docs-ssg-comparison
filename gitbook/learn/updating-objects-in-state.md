@@ -17,7 +17,7 @@ State can hold any kind of JavaScript value, including objects. But you shouldn'
 
 </YouWillLearn>
 
-## What's a mutation? {/*whats-a-mutation*/}
+## What's a mutation?
 
 You can store any kind of JavaScript value in state.
 
@@ -47,7 +47,7 @@ position.x = 5;
 
 However, although objects in React state are technically mutable, you should treat them **as if** they were immutable--like numbers, booleans, and strings. Instead of mutating them, you should always replace them.
 
-## Treat state as read-only {/*treat-state-as-read-only*/}
+## Treat state as read-only
 
 In other words, you should **treat any JavaScript object that you put into state as read-only.**
 
@@ -104,9 +104,9 @@ onPointerMove={e => {
 }}
 ```
 
-This code modifies the object assigned to `position` from [the previous render.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) But without using the state setting function, React has no idea that object has changed. So React does not do anything in response. It's like trying to change the order after you've already eaten the meal. While mutating state can work in some cases, we don't recommend it. You should treat the state value you have access to in a render as read-only.
+This code modifies the object assigned to `position` from [the previous render.](state-as-a-snapshot.md#rendering-takes-a-snapshot-in-time) But without using the state setting function, React has no idea that object has changed. So React does not do anything in response. It's like trying to change the order after you've already eaten the meal. While mutating state can work in some cases, we don't recommend it. You should treat the state value you have access to in a render as read-only.
 
-To actually [trigger a re-render](/learn/state-as-a-snapshot#setting-state-triggers-renders) in this case, **create a *new* object and pass it to the state setting function:**
+To actually [trigger a re-render](state-as-a-snapshot.md#setting-state-triggers-renders) in this case, **create a *new* object and pass it to the state setting function:**
 
 ```js
 onPointerMove={e => {
@@ -170,7 +170,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 <DeepDive>
 
-#### Local mutation is fine {/*local-mutation-is-fine*/}
+#### Local mutation is fine
 
 Code like this is a problem because it modifies an *existing* object in state:
 
@@ -197,11 +197,11 @@ setPosition({
 });
 ```
 
-Mutation is only a problem when you change *existing* objects that are already in state. Mutating an object you've just created is okay because *no other code references it yet.* Changing it isn't going to accidentally impact something that depends on it. This is called a "local mutation". You can even do local mutation [while rendering.](/learn/keeping-components-pure#local-mutation-your-components-little-secret) Very convenient and completely okay!
+Mutation is only a problem when you change *existing* objects that are already in state. Mutating an object you've just created is okay because *no other code references it yet.* Changing it isn't going to accidentally impact something that depends on it. This is called a "local mutation". You can even do local mutation [while rendering.](keeping-components-pure.md#local-mutation-your-components-little-secret) Very convenient and completely okay!
 
 </DeepDive>
 
-## Copying objects with the spread syntax {/*copying-objects-with-the-spread-syntax*/}
+## Copying objects with the spread syntax
 
 In the previous example, the `position` object is always created fresh from the current cursor position. But often, you will want to include *existing* data as a part of the new object you're creating. For example, you may want to update *only one* field in a form, but keep the previous values for all other fields.
 
@@ -377,7 +377,7 @@ Note that the `...` spread syntax is "shallow"--it only copies things one level 
 
 <DeepDive>
 
-#### Using a single event handler for multiple fields {/*using-a-single-event-handler-for-multiple-fields*/}
+#### Using a single event handler for multiple fields
 
 You can also use the `[` and `]` braces inside your object definition to specify a property with a dynamic name. Here is the same example, but with a single event handler instead of three different ones:
 
@@ -447,7 +447,7 @@ Here, `e.target.name` refers to the `name` property given to the `<input>` DOM e
 
 </DeepDive>
 
-## Updating a nested object {/*updating-a-nested-object*/}
+## Updating a nested object
 
 Consider a nested object structure like this:
 
@@ -598,7 +598,7 @@ img { width: 200px; height: 200px; }
 
 <DeepDive>
 
-#### Objects are not really nested {/*objects-are-not-really-nested*/}
+#### Objects are not really nested
 
 An object like this appears "nested" in code:
 
@@ -652,9 +652,9 @@ If you were to mutate `obj3.artwork.city`, it would affect both `obj2.artwork.ci
 
 </DeepDive>
 
-### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
+### Write concise update logic with Immer
 
-If your state is deeply nested, you might want to consider [flattening it.](/learn/choosing-the-state-structure#avoid-deeply-nested-state) But, if you don't want to change your state structure, you might prefer a shortcut to nested spreads. [Immer](https://github.com/immerjs/use-immer) is a popular library that lets you write using the convenient but mutating syntax and takes care of producing the copies for you. With Immer, the code you write looks like you are "breaking the rules" and mutating an object:
+If your state is deeply nested, you might want to consider [flattening it.](choosing-the-state-structure.md#avoid-deeply-nested-state) But, if you don't want to change your state structure, you might prefer a shortcut to nested spreads. [Immer](https://github.com/immerjs/use-immer) is a popular library that lets you write using the convenient but mutating syntax and takes care of producing the copies for you. With Immer, the code you write looks like you are "breaking the rules" and mutating an object:
 
 ```js
 updatePerson(draft => {
@@ -666,7 +666,7 @@ But unlike a regular mutation, it doesn't overwrite the past state!
 
 <DeepDive>
 
-#### How does Immer work? {/*how-does-immer-work*/}
+#### How does Immer work?
 
 The `draft` provided by Immer is a special type of object, called a [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), that "records" what you do with it. This is why you can mutate it freely as much as you like! Under the hood, Immer figures out which parts of the `draft` have been changed, and produces a completely new object that contains your edits.
 
@@ -794,13 +794,13 @@ Notice how much more concise the event handlers have become. You can mix and mat
 
 <DeepDive>
 
-#### Why is mutating state not recommended in React? {/*why-is-mutating-state-not-recommended-in-react*/}
+#### Why is mutating state not recommended in React?
 
 There are a few reasons:
 
 * **Debugging:** If you use `console.log` and don't mutate state, your past logs won't get clobbered by the more recent state changes. So you can clearly see how state has changed between renders.
-* **Optimizations:** Common React [optimization strategies](/reference/react/memo) rely on skipping work if previous props or state are the same as the next ones. If you never mutate state, it is very fast to check whether there were any changes. If `prevObj === obj`, you can be sure that nothing could have changed inside of it.
-* **New Features:** The new React features we're building rely on state being [treated like a snapshot.](/learn/state-as-a-snapshot) If you're mutating past versions of state, that may prevent you from using the new features.
+* **Optimizations:** Common React [optimization strategies](../reference/react/memo.md) rely on skipping work if previous props or state are the same as the next ones. If you never mutate state, it is very fast to check whether there were any changes. If `prevObj === obj`, you can be sure that nothing could have changed inside of it.
+* **New Features:** The new React features we're building rely on state being [treated like a snapshot.](state-as-a-snapshot.md) If you're mutating past versions of state, that may prevent you from using the new features.
 * **Requirement Changes:** Some application features, like implementing Undo/Redo, showing a history of changes, or letting the user reset a form to earlier values, are easier to do when nothing is mutated. This is because you can keep past copies of state in memory, and reuse them when appropriate. If you start with a mutative approach, features like this can be difficult to add later on.
 * **Simpler Implementation:** Because React does not rely on mutation, it does not need to do anything special with your objects. It does not need to hijack their properties, always wrap them into Proxies, or do other work at initialization as many "reactive" solutions do. This is also why React lets you put any object into state--no matter how large--without additional performance or correctness pitfalls.
 
@@ -824,7 +824,7 @@ In practice, you can often "get away" with mutating state in React, but we stron
 
 <Challenges>
 
-#### Fix incorrect state updates {/*fix-incorrect-state-updates*/}
+#### Fix incorrect state updates
 
 This form has a few bugs. Click the button that increases the score a few times. Notice that it does not increase. Then edit the first name, and notice that the score has suddenly "caught up" with your changes. Finally, edit the last name, and notice that the score has disappeared completely.
 
@@ -972,7 +972,7 @@ The problem with `handleLastNameChange` was that it did not copy the existing `.
 
 </Solution>
 
-#### Find and fix the mutation {/*find-and-fix-the-mutation*/}
+#### Find and fix the mutation
 
 There is a draggable box on a static background. You can change the box's color using the select input.
 
@@ -1287,7 +1287,7 @@ select { margin-bottom: 10px; }
 
 </Solution>
 
-#### Update an object with Immer {/*update-an-object-with-immer*/}
+#### Update an object with Immer
 
 This is the same buggy example as in the previous challenge. This time, fix the mutation by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `shape` state variable to use it.
 

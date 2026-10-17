@@ -16,7 +16,7 @@ title: Writing Markup with JSX
 
 </YouWillLearn>
 
-## JSX: Putting markup into JavaScript {/*jsx-putting-markup-into-javascript*/}
+## JSX: Putting markup into JavaScript
 
 The Web has been built on HTML, CSS, and JavaScript. For many years, web developers kept content in HTML, design in CSS, and logic in JavaScript—often in separate files! Content was marked up inside HTML while the page's logic lived separately in JavaScript:
 
@@ -64,7 +64,7 @@ JSX and React are two separate things. They're often used together, but you *can
 
 </Note>
 
-## Converting HTML to JSX {/*converting-html-to-jsx*/}
+## Converting HTML to JSX
 
 Suppose that you have some (perfectly valid) HTML:
 
@@ -130,9 +130,9 @@ Most of the time, React's on-screen error messages will help you find where the 
 
 </Note>
 
-## The Rules of JSX {/*the-rules-of-jsx*/}
+## The Rules of JSX
 
-### 1. Return a single root element {/*1-return-a-single-root-element*/}
+### 1. Return a single root element
 
 To return multiple elements from a component, **wrap them with a single parent tag.**
 
@@ -169,17 +169,17 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
 </>
 ```
 
-This empty tag is called a *[Fragment.](/reference/react/Fragment)* Fragments let you group things without leaving any trace in the browser HTML tree.
+This empty tag is called a *[Fragment.](../reference/react/Fragment.md)* Fragments let you group things without leaving any trace in the browser HTML tree.
 
 <DeepDive>
 
-#### Why do multiple JSX tags need to be wrapped? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
+#### Why do multiple JSX tags need to be wrapped?
 
 JSX looks like HTML, but under the hood it is transformed into plain JavaScript objects. You can't return two objects from a function without wrapping them into an array. This explains why you also can't return two JSX tags without wrapping them into another tag or a Fragment.
 
 </DeepDive>
 
-### 2. Close all the tags {/*2-close-all-the-tags*/}
+### 2. Close all the tags
 
 JSX requires tags to be explicitly closed: self-closing tags like `<img>` must become `<img />`, and wrapping tags like `<li>oranges` must be written as `<li>oranges</li>`.
 
@@ -200,7 +200,7 @@ This is how Hedy Lamarr's image and list items look closed:
 </>
 ```
 
-### 3. camelCase <s>all</s> most of the things! {/*3-camelcase-salls-most-of-the-things*/}
+### 3. camelCase <s>all</s> most of the things!
 
 JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can't contain dashes or be reserved words like `class`.
 
@@ -214,7 +214,7 @@ This is why, in React, many HTML and SVG attributes are written in camelCase. Fo
 />
 ```
 
-You can [find all these attributes in the list of DOM component props.](/reference/react-dom/components/common) If you get one wrong, don't worry—React will print a message with a possible correction to the [browser console.](https://developer.mozilla.org/docs/Tools/Browser_Console)
+You can [find all these attributes in the list of DOM component props.](../reference/react-dom/components/common.md) If you get one wrong, don't worry—React will print a message with a possible correction to the [browser console.](https://developer.mozilla.org/docs/Tools/Browser_Console)
 
 <Pitfall>
 
@@ -222,7 +222,7 @@ For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Access
 
 </Pitfall>
 
-### Pro-tip: Use a JSX Converter {/*pro-tip-use-a-jsx-converter*/}
+### Pro-tip: Use a JSX Converter
 
 Converting all these attributes in existing markup can be tedious! We recommend using a [converter](https://transform.tools/html-to-jsx) to translate your existing HTML and SVG to JSX. Converters are very useful in practice, but it's still worth understanding what is going on so that you can comfortably write JSX on your own.
 
@@ -270,7 +270,7 @@ Now you know why JSX exists and how to use it in components:
 
 <Challenges>
 
-#### Convert some HTML to JSX {/*convert-some-html-to-jsx*/}
+#### Convert some HTML to JSX
 
 This HTML was pasted into a component, but it's not valid JSX. Fix it:
 

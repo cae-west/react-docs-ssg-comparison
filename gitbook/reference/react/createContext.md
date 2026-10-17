@@ -4,7 +4,7 @@ title: createContext
 
 <Intro>
 
-`createContext` lets you create a [context](/learn/passing-data-deeply-with-context) that components can provide or read.
+`createContext` lets you create a [context](../../learn/passing-data-deeply-with-context.md) that components can provide or read.
 
 ```js
 const SomeContext = createContext(defaultValue)
@@ -16,9 +16,9 @@ const SomeContext = createContext(defaultValue)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `createContext(defaultValue)` {/*createcontext*/}
+### `createContext(defaultValue)`
 
 Call `createContext` outside of any components to create a context.
 
@@ -30,15 +30,15 @@ const ThemeContext = createContext('light');
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `defaultValue`: The value that you want the context to have when there is no matching context provider in the tree above the component that reads context. If you don't have any meaningful default value, specify `null`. The default value is meant as a "last resort" fallback. It is static and never changes over time.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `createContext` returns a context object.
 
-**The context object itself does not hold any information.** It represents _which_ context other components read or provide. Typically, you will use [`SomeContext`](#provider) in components above to specify the context value, and call [`useContext(SomeContext)`](/reference/react/useContext) in components below to read it. The context object has a few properties:
+**The context object itself does not hold any information.** It represents _which_ context other components read or provide. Typically, you will use [`SomeContext`](#somecontext-provider) in components above to specify the context value, and call [`useContext(SomeContext)`](useContext.md) in components below to read it. The context object has a few properties:
 
 * `SomeContext` lets you provide the context value to components.
 * `SomeContext.Consumer` is an alternative and rarely used way to read the context value.
@@ -46,7 +46,7 @@ const ThemeContext = createContext('light');
 
 ---
 
-### `SomeContext` Provider {/*provider*/}
+### `SomeContext` Provider
 
 Wrap your components into a context provider to specify the value of this context for all components inside:
 
@@ -70,13 +70,13 @@ In older versions of React, use `<SomeContext.Provider>`.
 
 </Note>
 
-#### Props {/*provider-props*/}
+#### Props
 
-* `value`: The value that you want to pass to all the components reading this context inside this provider, no matter how deep. The context value can be of any type. A component calling [`useContext(SomeContext)`](/reference/react/useContext) inside of the provider receives the `value` of the innermost corresponding context provider above it.
+* `value`: The value that you want to pass to all the components reading this context inside this provider, no matter how deep. The context value can be of any type. A component calling [`useContext(SomeContext)`](useContext.md) inside of the provider receives the `value` of the innermost corresponding context provider above it.
 
 ---
 
-### `SomeContext.Consumer` {/*consumer*/}
+### `SomeContext.Consumer`
 
 Before `useContext` existed, there was an older way to read context:
 
@@ -93,7 +93,7 @@ function Button() {
 }
 ```
 
-Although this older way still works, **newly written code should read context with [`useContext()`](/reference/react/useContext) instead:**
+Although this older way still works, **newly written code should read context with [`useContext()`](useContext.md) instead:**
 
 ```js
 function Button() {
@@ -103,17 +103,17 @@ function Button() {
 }
 ```
 
-#### Props {/*consumer-props*/}
+#### Props
 
-* `children`: A function. React will call the function you pass with the current context value determined by the same algorithm as [`useContext()`](/reference/react/useContext) does, and render the result you return from this function. React will also re-run this function and update the UI whenever the context from the parent components changes.
+* `children`: A function. React will call the function you pass with the current context value determined by the same algorithm as [`useContext()`](useContext.md) does, and render the result you return from this function. React will also re-run this function and update the UI whenever the context from the parent components changes.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Creating context {/*creating-context*/}
+### Creating context
 
-Context lets components [pass information deep down](/learn/passing-data-deeply-with-context) without explicitly passing props.
+Context lets components [pass information deep down](../../learn/passing-data-deeply-with-context.md) without explicitly passing props.
 
 Call `createContext` outside any components to create one or more contexts.
 
@@ -124,7 +124,7 @@ const ThemeContext = createContext('light');
 const AuthContext = createContext(null);
 ```
 
-`createContext` returns a <CodeStep step={1}>context object</CodeStep>. Components can read context by passing it to [`useContext()`](/reference/react/useContext):
+`createContext` returns a <CodeStep step={1}>context object</CodeStep>. Components can read context by passing it to [`useContext()`](useContext.md):
 
 ```js [[1, 2, "ThemeContext"], [1, 7, "AuthContext"]]
 function Button() {
@@ -161,11 +161,11 @@ function App() {
 
 Now the `Page` component and any components inside it, no matter how deep, will "see" the passed context values. If the passed context values change, React will re-render the components reading the context as well.
 
-[Read more about reading and providing context and see examples.](/reference/react/useContext)
+[Read more about reading and providing context and see examples.](useContext.md)
 
 ---
 
-### Importing and exporting context from a file {/*importing-and-exporting-context-from-a-file*/}
+### Importing and exporting context from a file
 
 Often, components in different files will need access to the same context. This is why it's common to declare contexts in a separate file. Then you can use the [`export` statement](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) to make context available for other files:
 
@@ -205,13 +205,13 @@ function App() {
 }
 ```
 
-This works similar to [importing and exporting components.](/learn/importing-and-exporting-components)
+This works similar to [importing and exporting components.](../../learn/importing-and-exporting-components.md)
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I can't find a way to change the context value {/*i-cant-find-a-way-to-change-the-context-value*/}
+### I can't find a way to change the context value
 
 
 Code like this specifies the *default* context value:
@@ -222,4 +222,4 @@ const ThemeContext = createContext('light');
 
 This value never changes. React only uses this value as a fallback if it can't find a matching provider above.
 
-To make context change over time, [add state and wrap components in a context provider.](/reference/react/useContext#updating-data-passed-via-context)
+To make context change over time, [add state and wrap components in a context provider.](useContext.md#updating-data-passed-via-context)

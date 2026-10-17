@@ -19,7 +19,7 @@ Welcome to the React documentation! This page will give you an introduction to 8
 
 </YouWillLearn>
 
-## Creating and nesting components {/*components*/}
+## Creating and nesting components
 
 React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
 
@@ -75,9 +75,9 @@ export default function MyApp() {
 
 The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Writing markup with JSX
 
-The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
+The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](installation.md) support JSX out of the box.
 
 JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
 
@@ -94,7 +94,7 @@ function AboutPage() {
 
 If you have a lot of HTML to port to JSX, you can use an [online converter.](https://transform.tools/html-to-jsx)
 
-## Adding styles {/*adding-styles*/}
+## Adding styles
 
 In React, you specify a CSS class with `className`. It works the same way as the HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
 
@@ -113,7 +113,7 @@ Then you write the CSS rules for it in a separate CSS file:
 
 React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
 
-## Displaying data {/*displaying-data*/}
+## Displaying data
 
 JSX lets you put markup into JavaScript. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
 
@@ -179,7 +179,7 @@ export default function Profile() {
 
 In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` JSX curly braces. You can use the `style` attribute when your styles depend on JavaScript variables.
 
-## Conditional rendering {/*conditional-rendering*/}
+## Conditional rendering
 
 In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
 
@@ -219,7 +219,7 @@ When you don't need the `else` branch, you can also use a shorter [logical `&&` 
 
 All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
 
-## Rendering lists {/*rendering-lists*/}
+## Rendering lists
 
 You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of components.
 
@@ -278,7 +278,7 @@ export default function ShoppingList() {
 
 </Sandpack>
 
-## Responding to events {/*responding-to-events*/}
+## Responding to events
 
 You can respond to events by declaring *event handler* functions inside your components:
 
@@ -298,11 +298,11 @@ function MyButton() {
 
 Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ the event handler function: you only need to *pass it down*. React will call your event handler when the user clicks the button.
 
-## Updating the screen {/*updating-the-screen*/}
+## Updating the screen
 
 Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
 
-First, import [`useState`](/reference/react/useState) from React:
+First, import [`useState`](../reference/react/useState.md) from React:
 
 ```js
 import { useState } from 'react';
@@ -381,13 +381,13 @@ button {
 
 Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
 
-## Using Hooks {/*using-hooks*/}
+## Using Hooks
 
-Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
+Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](../reference/react/index.md) You can also write your own Hooks by combining the existing ones.
 
 Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
 
-## Sharing data between components {/*sharing-data-between-components*/}
+## Sharing data between components
 
 In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
 
@@ -531,8 +531,8 @@ button {
 
 </Sandpack>
 
-## Next Steps {/*next-steps*/}
+## Next Steps
 
 By now, you know the basics of how to write React code!
 
-Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to put them into practice and build your first mini-app with React.
+Check out the [Tutorial](tutorial-tic-tac-toe.md) to put them into practice and build your first mini-app with React.

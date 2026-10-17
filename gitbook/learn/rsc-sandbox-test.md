@@ -2,7 +2,7 @@
 title: RSC Sandbox Test
 ---
 
-## Basic Server Component {/*basic-server-component*/}
+## Basic Server Component
 
 <SandpackRSC>
 
@@ -14,7 +14,7 @@ export default function App() {
 
 </SandpackRSC>
 
-## Server + Client Components {/*server-client*/}
+## Server + Client Components
 
 <SandpackRSC>
 
@@ -48,7 +48,7 @@ export default function Counter() {
 
 </SandpackRSC>
 
-## Async Server Component with Suspense {/*async-suspense*/}
+## Async Server Component with Suspense
 
 <SandpackRSC>
 
@@ -88,7 +88,7 @@ export default async function Albums() {
 
 </SandpackRSC>
 
-## Streaming Proof {/*streaming-proof*/}
+## Streaming Proof
 
 This demo proves streaming is incremental. The shell renders instantly with a `<Suspense>` fallback. After 2 seconds the async component streams in and replaces it — without re-rendering the outer content. The timestamps show the gap.
 
@@ -145,7 +145,7 @@ export default function Timestamp() {
 
 </SandpackRSC>
 
-## Flight Data Types {/*flight-data-types*/}
+## Flight Data Types
 
 This demo passes Map, Set, Date, and BigInt from a server component through the Flight stream to a client component, proving the full Flight protocol type system works end-to-end.
 
@@ -206,7 +206,7 @@ export default function DataViewer({ map, set, date, big }) {
 
 </SandpackRSC>
 
-## Promise Streaming with use() {/*promise-streaming-use*/}
+## Promise Streaming with use()
 
 The server creates a promise (resolves in 2s) and passes it as a prop through a parent async component that suspends for 3s. When the parent reveals at ~3s, the promise is already resolved — so `use()` returns instantly with no inner fallback. The elapsed time should be ~3000ms (the parent's delay), not ~5000ms (which would mean the promise restarted on the client).
 
@@ -284,7 +284,7 @@ export default function UserCard({ userPromise, serverTime }) {
 
 </SandpackRSC>
 
-## Flight Data Types in Server Actions {/*flight-data-types-actions*/}
+## Flight Data Types in Server Actions
 
 This demo sends Map, Set, Date, and BigInt from a client component *to* a server action via `encodeReply`/`decodeReply`, then verifies the types survived the round trip.
 
@@ -388,7 +388,7 @@ export default function TestButton({ testTypes }) {
 
 </SandpackRSC>
 
-## Server Action Mutation + Re-render {/*action-mutation-rerender*/}
+## Server Action Mutation + Re-render
 
 The server action mutates server-side data and returns a confirmation string. The updated list is only visible because the framework automatically re-renders the entire server component tree after the action completes — the server component re-reads the data and streams the new UI to the client.
 
@@ -485,7 +485,7 @@ export default function AddTodo({ createTodo }) {
 
 </SandpackRSC>
 
-## Inline Server Actions {/*inline-server-actions*/}
+## Inline Server Actions
 
 Server actions defined inline inside a server component with `'use server'` on the function body. The action closes over module-level state and is passed as a prop — no separate `actions.js` file needed.
 
@@ -526,7 +526,7 @@ export default function LikeButton({ addLike }) {
 
 </SandpackRSC>
 
-## Server Functions {/*server-functions*/}
+## Server Functions
 
 <SandpackRSC>
 

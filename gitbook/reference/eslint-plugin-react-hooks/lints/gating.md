@@ -4,15 +4,15 @@ title: gating
 
 <Intro>
 
-Validates configuration of [gating mode](/reference/react-compiler/gating).
+Validates configuration of [gating mode](../../react-compiler/gating.md).
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 Gating mode lets you gradually adopt React Compiler by marking specific components for optimization. This rule ensures your gating configuration is valid so the compiler knows which components to process.
 
-### Invalid {/*invalid*/}
+### Invalid
 
 Examples of incorrect code for this rule:
 
@@ -39,7 +39,7 @@ module.exports = {
 };
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 Examples of correct code for this rule:
 

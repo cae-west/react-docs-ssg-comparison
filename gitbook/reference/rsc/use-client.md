@@ -5,7 +5,7 @@ titleForTitleTag: "'use client' directive"
 
 <RSC>
 
-`'use client'` is for use with [React Server Components](/reference/rsc/server-components).
+`'use client'` is for use with [React Server Components](server-components.md).
 
 </RSC>
 
@@ -20,9 +20,9 @@ titleForTitleTag: "'use client' directive"
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `'use client'` {/*use-client*/}
+### `'use client'`
 
 Add `'use client'` at the top of a file to mark the module and its transitive dependencies as client code.
 
@@ -41,11 +41,11 @@ export default function RichTextEditor({ timestamp, text }) {
 }
 ```
 
-When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](/learn/creating-a-react-app#full-stack-frameworks) will treat the module import as a boundary between server-run and client-run code.
+When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](../../learn/creating-a-react-app.md#full-stack-frameworks) will treat the module import as a boundary between server-run and client-run code.
 
 As dependencies of `RichTextEditor`, `formatDate` and `Button` will also be evaluated on the client regardless of whether their modules contain a `'use client'` directive. Note that a single module may be evaluated on the server when imported from server code and on the client when imported from client code.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * `'use client'` must be at the very beginning of a file, above any imports or other code (comments are OK). They must be written with single or double quotes, but not backticks.
 * When a `'use client'` module is imported from another client-rendered module, the directive has no effect.
@@ -54,11 +54,11 @@ As dependencies of `RichTextEditor`, `formatDate` and `Button` will also be eval
 * Code that is marked for client evaluation is not limited to components. All code that is a part of the Client module sub-tree is sent to and run by the client.
 * When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or [supported serializable prop values](#passing-props-from-server-to-client-components) to be passed to a Client Component. Any other use case will throw an exception.
 
-### How `'use client'` marks client code {/*how-use-client-marks-client-code*/}
+### How `'use client'` marks client code
 
-In a React app, components are often split into separate files, or [modules](/learn/importing-and-exporting-components#exporting-and-importing-a-component).
+In a React app, components are often split into separate files, or [modules](../../learn/importing-and-exporting-components.md#exporting-and-importing-a-component).
 
-For apps that use React Server Components, the app is server-rendered by default. `'use client'` introduces a server-client boundary in the [module dependency tree](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), effectively creating a subtree of Client modules.
+For apps that use React Server Components, the app is server-rendered by default. `'use client'` introduces a server-client boundary in the [module dependency tree](../../learn/understanding-your-ui-as-a-tree.md#the-module-dependency-tree), effectively creating a subtree of Client modules.
 
 To better illustrate this, consider the following React Server Components app.
 
@@ -151,7 +151,7 @@ In the module dependency tree of this example app, the `'use client'` directive 
 `'use client'` segments the module dependency tree of the React Server Components app, marking `InspirationGenerator.js` and all of its dependencies as client-rendered.
 </Diagram>
 
-During render, the framework will server-render the root component and continue through the [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree), opting-out of evaluating any code imported from client-marked code.
+During render, the framework will server-render the root component and continue through the [render tree](../../learn/understanding-your-ui-as-a-tree.md#the-render-tree), opting-out of evaluating any code imported from client-marked code.
 
 The server-rendered portion of the render tree is then sent to the client. The client, with its client code downloaded, then completes rendering the rest of the tree.
 
@@ -167,7 +167,7 @@ We introduce the following definitions:
 Working through the example app, `App`, `FancyText` and `Copyright` are all server-rendered and considered Server Components. As `InspirationGenerator.js` and its transitive dependencies are marked as client code, the component `InspirationGenerator` and its child component `FancyText` are Client Components.
 
 <DeepDive>
-#### How is `FancyText` both a Server and a Client Component? {/*how-is-fancytext-both-a-server-and-a-client-component*/}
+#### How is `FancyText` both a Server and a Client Component?
 
 By the above definitions, the component `FancyText` is both a Server and Client Component, how can that be?
 
@@ -212,7 +212,7 @@ This means that the component definition for `FancyText` will both be evaluated 
 
 <DeepDive>
 
-#### Why is `Copyright` a Server Component? {/*why-is-copyright-a-server-component*/}
+#### Why is `Copyright` a Server Component?
 
 Because `Copyright` is rendered as a child of the Client Component `InspirationGenerator`, you might be surprised that it is a Server Component.
 
@@ -224,29 +224,29 @@ Recall that `'use client'` defines the boundary between server and client code o
 
 In the module dependency tree, we see that `App.js` imports and calls `Copyright` from the `Copyright.js` module. As `Copyright.js` does not contain a `'use client'` directive, the component usage is rendered on the server. `App` is rendered on the server as it is the root component.
 
-Client Components can render Server Components because you can pass JSX as props. In this case, `InspirationGenerator` receives `Copyright` as [children](/learn/passing-props-to-a-component#passing-jsx-as-children). However, the `InspirationGenerator` module never directly imports the `Copyright` module nor calls the component, all of that is done by `App`. In fact, the `Copyright` component is fully executed before `InspirationGenerator` starts rendering.
+Client Components can render Server Components because you can pass JSX as props. In this case, `InspirationGenerator` receives `Copyright` as [children](../../learn/passing-props-to-a-component.md#passing-jsx-as-children). However, the `InspirationGenerator` module never directly imports the `Copyright` module nor calls the component, all of that is done by `App`. In fact, the `Copyright` component is fully executed before `InspirationGenerator` starts rendering.
 
 The takeaway is that a parent-child render relationship between components does not guarantee the same render environment.
 
 </DeepDive>
 
-### When to use `'use client'` {/*when-to-use-use-client*/}
+### When to use `'use client'`
 
 With `'use client'`, you can determine when components are Client Components. As Server Components are default, here is a brief overview of the advantages and limitations to Server Components to determine when you need to mark something as client rendered.
 
 For simplicity, we talk about Server Components, but the same principles apply to all code in your app that is server run.
 
-#### Advantages of Server Components {/*advantages*/}
+#### Advantages of Server Components
 * Server Components can reduce the amount of code sent and run by the client. Only Client modules are bundled and evaluated by the client.
 * Server Components benefit from running on the server. They can access the local filesystem and may experience low latency for data fetches and network requests.
 
-#### Limitations of Server Components {/*limitations*/}
+#### Limitations of Server Components
 * Server Components cannot support interaction as event handlers must be registered and triggered by a client.
 	* For example, event handlers like `onClick` can only be defined in Client Components.
 * Server Components cannot use most Hooks.
 	* When Server Components are rendered, their output is essentially a list of components for the client to render. Server Components do not persist in memory after render and cannot have their own state.
 
-### Serializable types returned by Server Components {/*serializable-types*/}
+### Serializable types returned by Server Components
 
 As in any React app, parent components pass data to child components. As they are rendered in different environments, passing data from a Server Component to a Client Component requires extra consideration.
 
@@ -269,20 +269,20 @@ Serializable props include:
 	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) and [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 * [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 * Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
-* Functions that are [Server Functions](/reference/rsc/server-functions)
+* Functions that are [Server Functions](server-functions.md)
 * Client or Server Component elements (JSX)
 * [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 Notably, these are not supported:
-* [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) that are not exported from client-marked modules or marked with [`'use server'`](/reference/rsc/use-server)
+* [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) that are not exported from client-marked modules or marked with [`'use server'`](use-server.md)
 * [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 * Objects that are instances of any class (other than the built-ins mentioned) or objects with [a null prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
 * Symbols not registered globally, ex. `Symbol('my new symbol')`
 
 
-## Usage {/*usage*/}
+## Usage
 
-### Building with interactivity and state {/*building-with-interactivity-and-state*/}
+### Building with interactivity and state
 
 <Sandpack>
 
@@ -337,7 +337,7 @@ In this case, we don't add the `'use client'` directive, resulting in `FancyText
 
 But if `FancyText`'s HTML output was large relative to its source code (including dependencies), it might be more efficient to force it to always be a Client Component. Components that return a long SVG path string are one case where it may be more efficient to force a component to be a Client Component.
 
-### Using client APIs {/*using-client-apis*/}
+### Using client APIs
 
 Your React app may use client-specific APIs, such as the browser's APIs for web storage, audio and video manipulation, and device hardware, among [others](https://developer.mozilla.org/en-US/docs/Web/API).
 
@@ -362,16 +362,16 @@ export default function Circle() {
 }
 ```
 
-### Using third-party libraries {/*using-third-party-libraries*/}
+### Using third-party libraries
 
 Often in a React app, you'll leverage third-party libraries to handle common UI patterns or logic.
 
 These libraries may rely on component Hooks or client APIs. Third-party components that use any of the following React APIs must run on the client:
-* [createContext](/reference/react/createContext)
-* [`react`](/reference/react/hooks) and [`react-dom`](/reference/react-dom/hooks) Hooks, excluding [`use`](/reference/react/use) and [`useId`](/reference/react/useId)
-* [forwardRef](/reference/react/forwardRef)
-* [memo](/reference/react/memo)
-* [startTransition](/reference/react/startTransition)
+* [createContext](../react/createContext.md)
+* [`react`](../react/hooks.md) and [`react-dom`](../react-dom/hooks/index.md) Hooks, excluding [`use`](../react/use.md) and [`useId`](../react/useId.md)
+* [forwardRef](../react/forwardRef.md)
+* [memo](../react/memo.md)
+* [startTransition](../react/startTransition.md)
 * If they use client APIs, ex. DOM insertion or native platform views
 
 If these libraries have been updated to be compatible with React Server Components, then they will already include `'use client'` markers of their own, allowing you to use them directly from your Server Components. If a library hasn't been updated, or if a component needs props like event handlers that can only be specified on the client, you may need to add your own Client Component file in between the third-party Client Component and your Server Component where you'd like to use it.

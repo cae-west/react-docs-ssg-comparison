@@ -16,9 +16,9 @@ The [built-in browser `<progress>` component](https://developer.mozilla.org/en-U
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<progress>` {/*progress*/}
+### `<progress>`
 
 To display a progress indicator, render the [built-in browser `<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) component.
 
@@ -28,9 +28,9 @@ To display a progress indicator, render the [built-in browser `<progress>`](http
 
 [See more examples below.](#usage)
 
-#### Props {/*props*/}
+#### Props
 
-`<progress>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<progress>` supports all [common element props.](common.md#props)
 
 Additionally, `<progress>` supports these props:
 
@@ -39,9 +39,9 @@ Additionally, `<progress>` supports these props:
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Controlling a progress indicator {/*controlling-a-progress-indicator*/}
+### Controlling a progress indicator
 
 To display a progress indicator, render a `<progress>` component. You can pass a number `value` between `0` and the `max` value you specify. If you don't pass a `max` value, it will assumed to be `1` by default.
 

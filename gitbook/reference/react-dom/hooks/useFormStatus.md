@@ -16,9 +16,9 @@ const { pending, data, method, action } = useFormStatus();
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `useFormStatus()` {/*use-form-status*/}
+### `useFormStatus()`
 
 The `useFormStatus` Hook provides status information of the last form submission.
 
@@ -46,11 +46,11 @@ In the above example, `Submit` uses this information to disable `<button>` press
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 `useFormStatus` does not take any parameters.
 
-#### Returns {/*returns*/}
+#### Returns
 
 A `status` object with the following properties:
 
@@ -63,16 +63,16 @@ A `status` object with the following properties:
 [//]: # (Link to `<form>` documentation. "Read more on the `action` prop on `<form>`.")
 * `action`: A reference to the function passed to the `action` prop on the parent `<form>`. If there is no parent `<form>`, the property is `null`. If there is a URI value provided to the `action` prop, or no `action` prop specified, `status.action` will be `null`.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * The `useFormStatus` Hook must be called from a component that is rendered inside a `<form>`.
 * `useFormStatus` will only return status information for a parent `<form>`. It will not return status information for any `<form>` rendered in that same component or children components.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
+### Display a pending state during form submission
 To display a pending state while a form is submitting, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
 
 Here, we use the `pending` property to indicate the form is submitting.
@@ -114,7 +114,7 @@ export async function submitForm(query) {
 
 <Pitfall>
 
-##### `useFormStatus` will not return status information for a `<form>` rendered in the same component. {/*useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component*/}
+##### `useFormStatus` will not return status information for a `<form>` rendered in the same component.
 
 The `useFormStatus` Hook only returns status information for a parent `<form>` and not for any `<form>` rendered in the same component calling the Hook, or child components.
 
@@ -148,7 +148,7 @@ function Form() {
 
 </Pitfall>
 
-### Read the form data being submitted {/*read-form-data-being-submitted*/}
+### Read the form data being submitted
 
 You can use the `data` property of the status information returned from `useFormStatus` to display what data is being submitted by the user.
 
@@ -219,9 +219,9 @@ button {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### `status.pending` is never `true` {/*pending-is-never-true*/}
+### `status.pending` is never `true`
 
 `useFormStatus` will only return status information for a parent `<form>`.
 

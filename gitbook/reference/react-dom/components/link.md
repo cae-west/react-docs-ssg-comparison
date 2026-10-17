@@ -16,9 +16,9 @@ The [built-in browser `<link>` component](https://developer.mozilla.org/en-US/do
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<link>` {/*link*/}
+### `<link>`
 
 To link to external resources such as stylesheets, fonts, and icons, or to annotate the document with link metadata, render the [built-in browser `<link>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link). You can render `<link>` from any component and React will [in most cases](#special-rendering-behavior) place the corresponding DOM element in the document head.
 
@@ -28,15 +28,15 @@ To link to external resources such as stylesheets, fonts, and icons, or to annot
 
 [See more examples below.](#usage)
 
-#### Props {/*props*/}
+#### Props
 
-`<link>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<link>` supports all [common element props.](common.md#props)
 
 * `rel`: a string, required. Specifies the [relationship to the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel). React [treats links with `rel="stylesheet"` differently](#special-rendering-behavior) from other links.
 
 These props apply when `rel="stylesheet"`:
 
-* `precedence`: a string. Tells React where to rank the `<link>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher". Many style systems can work fine using a single precedence value because style rules are atomic. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using [`preinit`](/reference/react-dom/preinit) functions.
+* `precedence`: a string. Tells React where to rank the `<link>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher". Many style systems can work fine using a single precedence value because style rules are atomic. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using [`preinit`](../preinit.md) functions.
 * `media`: a string. Restricts the stylesheet to a certain [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries).
 * `title`: a string. Specifies the name of an [alternative stylesheet](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
 
@@ -70,7 +70,7 @@ Props that are **not recommended** for use with React:
 
 * `blocking`: a string. If set to `"render"`, instructs the browser not to render the page until the stylesheet is loaded. React provides more fine-grained control using Suspense.
 
-#### Special rendering behavior {/*special-rendering-behavior*/}
+#### Special rendering behavior
 
 React will always place the DOM element corresponding to the `<link>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<link>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render `<link>` components itself.
 
@@ -80,11 +80,11 @@ There are a few exceptions to this:
 * If the `<link>` has an [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) prop, there is no special behavior, because in this case it doesn’t apply to the document but instead represents metadata about a specific part of the page.
 * If the `<link>` has an `onLoad` or `onError` prop, because in that case you are managing the loading of the linked resource manually within your React component.
 
-#### Special behavior for stylesheets {/*special-behavior-for-stylesheets*/}
+#### Special behavior for stylesheets
 
 In addition, if the `<link>` is to a stylesheet (namely, it has `rel="stylesheet"` in its props), React treats it specially in the following ways:
 
-* The component that renders `<link>` will [suspend](/reference/react/Suspense) while the stylesheet is loading.
+* The component that renders `<link>` will [suspend](../../react/Suspense.md) while the stylesheet is loading.
 * If multiple components render links to the same stylesheet, React will de-duplicate them and only put a single link into the DOM. Two links are considered the same if they have the same `href` prop.
 
 There are two exception to this special behavior:
@@ -99,9 +99,9 @@ This special treatment comes with two caveats:
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Linking to related resources {/*linking-to-related-resources*/}
+### Linking to related resources
 
 You can annotate the document with links to related resources such as an icon, canonical URL, or pingback. React will place this metadata within the document `<head>` regardless of where in the React tree it is rendered.
 
@@ -124,12 +124,12 @@ export default function BlogPage() {
 
 </SandpackWithHTMLOutput>
 
-### Linking to a stylesheet {/*linking-to-a-stylesheet*/}
+### Linking to a stylesheet
 
-If a component depends on a certain stylesheet in order to be displayed correctly, you can render a link to that stylesheet within the component. Your component will [suspend](/reference/react/Suspense) while the stylesheet is loading. You must supply the `precedence` prop, which tells React where to place this stylesheet relative to others — stylesheets with higher precedence can override those with lower precedence.
+If a component depends on a certain stylesheet in order to be displayed correctly, you can render a link to that stylesheet within the component. Your component will [suspend](../../react/Suspense.md) while the stylesheet is loading. You must supply the `precedence` prop, which tells React where to place this stylesheet relative to others — stylesheets with higher precedence can override those with lower precedence.
 
 <Note>
-When you want to use a stylesheet, it can be beneficial to call the [preinit](/reference/react-dom/preinit) function. Calling this function may allow the browser to start fetching the stylesheet earlier than if you just render a `<link>` component, for example by sending an [HTTP Early Hints response](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
+When you want to use a stylesheet, it can be beneficial to call the [preinit](../preinit.md) function. Calling this function may allow the browser to start fetching the stylesheet earlier than if you just render a `<link>` component, for example by sending an [HTTP Early Hints response](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
 </Note>
 
 <SandpackWithHTMLOutput>
@@ -149,7 +149,7 @@ export default function SiteMapPage() {
 
 </SandpackWithHTMLOutput>
 
-### Controlling stylesheet precedence {/*controlling-stylesheet-precedence*/}
+### Controlling stylesheet precedence
 
 Stylesheets can conflict with each other, and when they do, the browser goes with the one that comes later in the document. React lets you control the order of stylesheets with the `precedence` prop. In this example, three components render stylesheets, and the ones with the same precedence are grouped together in the `<head>`.
 
@@ -187,7 +187,7 @@ function ThirdComponent() {
 
 Note the `precedence` values themselves are arbitrary and their naming is up to you. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher".
 
-### Deduplicated stylesheet rendering {/*deduplicated-stylesheet-rendering*/}
+### Deduplicated stylesheet rendering
 
 If you render the same stylesheet from multiple components, React will place only a single `<link>` in the document head.
 
@@ -213,7 +213,7 @@ function Component() {
 
 </SandpackWithHTMLOutput>
 
-### Annotating specific items within the document with links {/*annotating-specific-items-within-the-document-with-links*/}
+### Annotating specific items within the document with links
 
 You can use the `<link>` component with the `itemProp` prop to annotate specific items within the document with links to related resources. In this case, React will *not* place these annotations within the document `<head>` but will place them like any other React component.
 

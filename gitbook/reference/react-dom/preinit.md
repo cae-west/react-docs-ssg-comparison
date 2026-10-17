@@ -4,7 +4,7 @@ title: preinit
 
 <Note>
 
-[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+[React-based frameworks](../../learn/creating-a-react-app.md) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
 
 </Note>
 
@@ -22,9 +22,9 @@ preinit("https://example.com/script.js", {as: "script"});
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `preinit(href, options)` {/*preinit*/}
+### `preinit(href, options)`
 
 To preinit a script or stylesheet, call the `preinit` function from `react-dom`.
 
@@ -42,7 +42,7 @@ function AppRoot() {
 
 The `preinit` function provides the browser with a hint that it should start downloading and executing the given resource, which can save time. Scripts that you `preinit` are executed when they finish downloading. Stylesheets that you preinit are inserted into the document, which causes them to go into effect right away.
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `href`: a string. The URL of the resource you want to download and execute.
 * `options`: an object. It contains the following properties:
@@ -53,11 +53,11 @@ The `preinit` function provides the browser with a hint that it should start dow
   *  `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
   *  `fetchPriority`: a string. Suggests a relative priority for fetching the resource. The possible values are `auto` (the default), `high`, and `low`.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `preinit` returns nothing.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * Multiple calls to `preinit` with the same `href` have the same effect as a single call.
 * In the browser, you can call `preinit` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
@@ -65,15 +65,15 @@ The `preinit` function provides the browser with a hint that it should start dow
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Preiniting when rendering {/*preiniting-when-rendering*/}
+### Preiniting when rendering
 
 Call `preinit` when rendering a component if you know that it or its children will use a specific resource, and you're OK with the resource being evaluated and thereby taking effect immediately upon being downloaded.
 
 <Recipes titleText="Examples of preiniting">
 
-#### Preiniting an external script {/*preiniting-an-external-script*/}
+#### Preiniting an external script
 
 ```js
 import { preinit } from 'react-dom';
@@ -84,11 +84,11 @@ function AppRoot() {
 }
 ```
 
-If you want the browser to download the script but not to execute it right away, use [`preload`](/reference/react-dom/preload) instead. If you want to load an ESM module, use [`preinitModule`](/reference/react-dom/preinitModule).
+If you want the browser to download the script but not to execute it right away, use [`preload`](preload.md) instead. If you want to load an ESM module, use [`preinitModule`](preinitModule.md).
 
 <Solution />
 
-#### Preiniting a stylesheet {/*preiniting-a-stylesheet*/}
+#### Preiniting a stylesheet
 
 ```js
 import { preinit } from 'react-dom';
@@ -101,13 +101,13 @@ function AppRoot() {
 
 The `precedence` option, which is required, lets you control the order of stylesheets within the document. Stylesheets with higher precedence can overrule those with lower precedence.
 
-If you want to download the stylesheet but not to insert it into the document right away, use [`preload`](/reference/react-dom/preload) instead.
+If you want to download the stylesheet but not to insert it into the document right away, use [`preload`](preload.md) instead.
 
 <Solution />
 
 </Recipes>
 
-### Preiniting in an event handler {/*preiniting-in-an-event-handler*/}
+### Preiniting in an event handler
 
 Call `preinit` in an event handler before transitioning to a page or state where external resources will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.
 

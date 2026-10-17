@@ -13,11 +13,11 @@ October 7, 2025 by [Seth Webster](https://x.com/sethwebster), [Matt Carroll](htt
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem', marginLeft: '7rem', marginRight: '7rem' }}>
   <picture >
       <source srcset="/images/blog/react-foundation/react_foundation_logo.png" />
-      <img className="w-full light-image" src="/images/blog/react-foundation/react_foundation_logo.webp" />
+      <img className="w-full light-image" src="../../../../images/blog/react-foundation/react_foundation_logo.webp" />
   </picture>
   <picture >
       <source srcset="/images/blog/react-foundation/react_foundation_logo_dark.png" />
-      <img className="w-full dark-image" src="/images/blog/react-foundation/react_foundation_logo_dark.webp" />
+      <img className="w-full dark-image" src="../../../../images/blog/react-foundation/react_foundation_logo_dark.webp" />
   </picture>
 </div>
 
@@ -33,7 +33,7 @@ We open sourced React over a decade ago to help developers build great user expe
 
 To better serve the React community, we are announcing our plans to move React and React Native from Meta to a new React Foundation. As a part of this change, we will also be implementing a new independent technical governance structure. We believe these changes will enable us to give React ecosystem projects more resources.
 
-## The React Foundation {/*the-react-foundation*/}
+## The React Foundation
 
 We will make the React Foundation the new home for React, React Native, and some supporting projects like JSX. The React Foundation’s mission will be to support the React community and ecosystem. Once implemented, the React Foundation will
 
@@ -48,20 +48,20 @@ The founding corporate members of the React Foundation will be Amazon, Callstack
 <div style={{display: 'flex', justifyContent: 'center', margin: '2rem'}}>
   <picture >
       <source srcset="/images/blog/react-foundation/react_foundation_member_logos.png" />
-      <img className="w-full light-image" src="/images/blog/react-foundation/react_foundation_member_logos.webp" />
+      <img className="w-full light-image" src="../../../../images/blog/react-foundation/react_foundation_member_logos.webp" />
   </picture>
   <picture >
       <source srcset="/images/blog/react-foundation/react_foundation_member_logos_dark.png" />
-      <img className="w-full dark-image" src="/images/blog/react-foundation/react_foundation_member_logos_dark.webp" />
+      <img className="w-full dark-image" src="../../../../images/blog/react-foundation/react_foundation_member_logos_dark.webp" />
   </picture>
 </div>
 
-## React’s technical governance {/*reacts-technical-governance*/}
+## React’s technical governance
 
 We believe that React's technical direction should be set by the people who contribute to and maintain React. As React moves to a foundation, it is important that no single company or organization is overrepresented. To achieve this, we plan to define a new technical governance structure for React that is independent from the React Foundation.
 
 As a part of creating React’s new technical governance structure we will reach out to the community for feedback. Once finalized, we will share details in a future post.
 
-## Thank you {/*thank-you*/}
+## Thank you
 
 React's incredible growth is thanks to the thousands of people, companies, and projects that have shaped React. The creation of the React Foundation is a testament to the strength and vibrancy of the React community. Together, the React Foundation and React’s new technical governance will ensure that React’s future is secure for years to come.

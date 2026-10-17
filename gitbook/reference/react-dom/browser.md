@@ -16,11 +16,11 @@ use(browser(reason?))
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `browser(reason?)` {/*browser*/}
+### `browser(reason?)`
 
-Call `browser` inside [`use`](/reference/react/use) to mark a component as browser-only during server rendering:
+Call `browser` inside [`use`](../react/use.md) to mark a component as browser-only during server rendering:
 
 ```js
 import { use } from 'react';
@@ -32,33 +32,33 @@ function BrowserOnly() {
 }
 ```
 
-During server rendering, `use(browser())` stops rendering the component and leaves the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in its place. In the browser, `use(browser())` returns `undefined`, so the component renders normally.
+During server rendering, `use(browser())` stops rendering the component and leaves the closest [`<Suspense>`](../react/Suspense.md) boundary's fallback in its place. In the browser, `use(browser())` returns `undefined`, so the component renders normally.
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * **optional** `reason`: A string or function that explains why the content needs to render in the browser. The string or the function's return value becomes the `cause` of the `Error` passed to [`onBrowserBailout`](#reporting-browser-only-rendering-on-the-server). React calls a reason function each time a server renderer encounters the value returned by `browser`, but does not call it in the browser. If creating the reason is expensive, pass a function such as `() => new Error(...)`.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `browser` returns an opaque value that you can pass to `use` in a component or use as the reason when [aborting a server render](#aborting-pending-server-rendering-for-the-browser). In the browser, passing this value to `use` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * `use(browser())` must be inside a `<Suspense>` boundary during server rendering. Without one, the server render fails.
-* `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
+* `use(browser())` must be called from a [Client Component](../rsc/use-client.md), not a [Server Component](../rsc/server-components.md).
 * Calling `browser()` by itself has no effect. To mark a component as browser-only, pass the value returned by `browser` to `use`. Do not throw it.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Rendering content only in the browser {/*rendering-content-only-in-the-browser*/}
+### Rendering content only in the browser
 
 Call `browser` inside `use` in a component that should only render in the browser:
 
-You can use this instead of checking `typeof window`, waiting for an [`Effect`](/reference/react/useEffect) to set mounted state, or using a framework option to disable server rendering.
+You can use this instead of checking `typeof window`, waiting for an [`Effect`](../react/useEffect.md) to set mounted state, or using a framework option to disable server rendering.
 
 Click **Reload** to see the loading fallback in the initial HTML. After hydration, React displays the draft loaded from `localStorage`.
 
@@ -206,7 +206,7 @@ iframe {
 
 <Note>
 
-`use(browser())` must be called from a Client Component. If your framework uses Server Components by default, add the [`'use client'`](/reference/rsc/use-client) directive to that file or move the call to a child Client Component:
+`use(browser())` must be called from a Client Component. If your framework uses Server Components by default, add the [`'use client'`](../rsc/use-client.md) directive to that file or move the call to a child Client Component:
 
 ```js {1}
 'use client';
@@ -225,9 +225,9 @@ export default function SavedDraft() {
 
 ---
 
-### Conditionally rendering on the server {/*conditionally-rendering-on-the-server*/}
+### Conditionally rendering on the server
 
-Like other calls to [`use`](/reference/react/use), `use(browser())` can be called inside a conditional statement or after an early return. This lets a Component or custom Hook opt out of server rendering based on a condition, such as the value of a prop.
+Like other calls to [`use`](../react/use.md), `use(browser())` can be called inside a conditional statement or after an early return. This lets a Component or custom Hook opt out of server rendering based on a condition, such as the value of a prop.
 
 For example, this `useTimeZone` Hook accepts an optional default value. When provided, React renders the default value in the initial HTML and in the browser. Without a default value, the Component suspends during server rendering and shows the device's local time zone in the browser.
 
@@ -391,13 +391,13 @@ function ProductDetails({ productId, initialData }) {
 }
 ```
 
-With `initialData`, React renders the Component to HTML on the server. Without it, React leaves the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `useQuery` can fetch the data or read it from its client cache as usual.
+With `initialData`, React renders the Component to HTML on the server. Without it, React leaves the closest [`<Suspense>`](../react/Suspense.md) boundary's fallback in the HTML. In the browser, `useQuery` can fetch the data or read it from its client cache as usual.
 
 ---
 
-### Reporting browser-only rendering on the server {/*reporting-browser-only-rendering-on-the-server*/}
+### Reporting browser-only rendering on the server
 
-Pass an `onBrowserBailout` callback to the server renderer to report browser-only rendering. When React leaves a Suspense fallback for the browser, it does not call the server renderer's `onError` callback or [`hydrateRoot`'s `onRecoverableError`](/reference/react-dom/client/hydrateRoot#error-logging-in-production) callback. This example also passes a reason, which is available as the reported error's `cause`:
+Pass an `onBrowserBailout` callback to the server renderer to report browser-only rendering. When React leaves a Suspense fallback for the browser, it does not call the server renderer's `onError` callback or [`hydrateRoot`'s `onRecoverableError`](client/hydrateRoot.md#error-logging-in-production) callback. This example also passes a reason, which is available as the reported error's `cause`:
 
 ```js
 import { Suspense, use, useState } from 'react';
@@ -439,7 +439,7 @@ If there is no Suspense boundary to provide a fallback, the server render fails.
 
 ---
 
-### Aborting pending server rendering for the browser {/*aborting-pending-server-rendering-for-the-browser*/}
+### Aborting pending server rendering for the browser
 
 If you call a server rendering API directly, you can stop waiting for pending content and let the browser finish rendering it. Pass the value returned by `browser` as the reason when aborting the server render. React then leaves pending Suspense boundaries in their fallback state and renders their content in the browser:
 

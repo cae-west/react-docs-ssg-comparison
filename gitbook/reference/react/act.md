@@ -23,9 +23,9 @@ You might find using `act()` directly a bit too verbose. To avoid some of the bo
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `await act(async actFn)` {/*await-act-async-actfn*/}
+### `await act(async actFn)`
 
 When writing UI tests, tasks like rendering, user events, or data fetching can be considered as “units” of interaction with a user interface. React provides a helper called `act()` that makes sure all updates related to these “units” have been processed and applied to the DOM before you make any assertions.
 
@@ -48,15 +48,15 @@ We will deprecate and remove the sync version in the future.
 
 </Note>
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `async actFn`: An async function wrapping renders or interactions for components being tested. Any updates triggered within the `actFn`, are added to an internal act queue, which are then flushed together to process and apply any changes to the DOM. Since it is async, React will also run any code that crosses an async boundary, and flush any updates scheduled.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `act` does not return anything.
 
-## Usage {/*usage*/}
+## Usage
 
 When testing a component, you can use `act` to make assertions about its output.
 
@@ -84,7 +84,7 @@ function Counter() {
 }
 ```
 
-### Rendering components in tests {/*rendering-components-in-tests*/}
+### Rendering components in tests
 
 To test the render output of a component, wrap the render inside `act()`:
 
@@ -113,7 +113,7 @@ Here, we create a container, append it to the document, and render the `Counter`
 
 Using `act` ensures that all updates have been applied before we make assertions.
 
-### Dispatching events in tests {/*dispatching-events-in-tests*/}
+### Dispatching events in tests
 
 To test events, wrap the event dispatch inside `act()`:
 
@@ -150,9 +150,9 @@ Don’t forget that dispatching DOM events only works when the DOM container is 
 
 </Pitfall>
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I'm getting an error: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+### I'm getting an error: "The current testing environment is not configured to support act(...)"
 
 Using `act` requires setting `global.IS_REACT_ACT_ENVIRONMENT=true` in your test environment. This is to ensure that `act` is only used in the correct environment.
 

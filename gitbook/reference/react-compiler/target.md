@@ -18,29 +18,29 @@ The `target` option specifies which React version the compiler should generate c
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `target` {/*target*/}
+### `target`
 
 Configures the React version compatibility for the compiled output.
 
-#### Type {/*type*/}
+#### Type
 
 ```
 '17' | '18' | '19'
 ```
 
-#### Default value {/*default-value*/}
+#### Default value
 
 `'19'`
 
-#### Valid values {/*valid-values*/}
+#### Valid values
 
 - **`'19'`**: Target React 19 (default). No additional runtime required.
 - **`'18'`**: Target React 18. Requires `react-compiler-runtime` package.
 - **`'17'`**: Target React 17. Requires `react-compiler-runtime` package.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 - Always use string values, not numbers (e.g., `'17'` not `17`)
 - Don't include patch versions (e.g., use `'18'` not `'18.2.0'`)
@@ -49,9 +49,9 @@ Configures the React version compatibility for the compiled output.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Targeting React 19 (default) {/*targeting-react-19*/}
+### Targeting React 19 (default)
 
 For React 19, no special configuration is needed:
 
@@ -68,7 +68,7 @@ The compiler will use React 19's built-in runtime APIs:
 import { c as _c } from 'react/compiler-runtime';
 ```
 
-### Targeting React 17 or 18 {/*targeting-react-17-or-18*/}
+### Targeting React 17 or 18
 
 For React 17 and React 18 projects, you need two steps:
 
@@ -101,9 +101,9 @@ import { c as _c } from 'react-compiler-runtime';
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### Runtime errors about missing compiler runtime {/*missing-runtime*/}
+### Runtime errors about missing compiler runtime
 
 If you see errors like "Cannot find module 'react/compiler-runtime'":
 
@@ -124,7 +124,7 @@ If you see errors like "Cannot find module 'react/compiler-runtime'":
    }
    ```
 
-### Runtime package not working {/*runtime-not-working*/}
+### Runtime package not working
 
 Ensure the runtime package is:
 
@@ -133,7 +133,7 @@ Ensure the runtime package is:
 3. The correct version (`@latest` tag)
 4. Not in `devDependencies` (it's needed at runtime)
 
-### Checking compiled output {/*checking-output*/}
+### Checking compiled output
 
 To verify the correct runtime is being used, note the different import (`react/compiler-runtime` for builtin, `react-compiler-runtime` standalone package for 17/18):
 

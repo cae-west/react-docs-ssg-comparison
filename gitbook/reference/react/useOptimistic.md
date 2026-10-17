@@ -16,9 +16,9 @@ const [optimisticState, setOptimistic] = useOptimistic(value, reducer?);
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `useOptimistic(value, reducer?)` {/*useoptimistic*/}
+### `useOptimistic(value, reducer?)`
 
 Call `useOptimistic` at the top level of your component to create optimistic state for a value.
 
@@ -35,23 +35,23 @@ function MyComponent({name, todos}) {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `value`: The value returned when there are no pending Actions.
 * **optional** `reducer(currentState, action)`: The reducer function that specifies how the optimistic state gets updated. It must be pure, should take the current state and reducer action arguments, and should return the next optimistic state.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `useOptimistic` returns an array with exactly two values:
 
 1. `optimisticState`: The current optimistic state. It is equal to `value` unless an Action is pending, in which case it is equal to the state returned by `reducer` (or the value passed to the set function if no `reducer` was provided).
-2. The [`set` function](#setoptimistic) that lets you update the optimistic state to a different value inside an Action.
+2. The [`set` function](#set-functions-like-setoptimisticoptimisticstate) that lets you update the optimistic state to a different value inside an Action.
 
 ---
 
-### `set` functions, like `setOptimistic(optimisticState)` {/*setoptimistic*/}
+### `set` functions, like `setOptimistic(optimisticState)`
 
-The `set` function returned by `useOptimistic` lets you update the state for the duration of an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). You can pass the next state directly, or a function that calculates it from the previous state:
+The `set` function returned by `useOptimistic` lets you update the state for the duration of an [Action](useTransition.md#functions-called-in-starttransition-are-called-actions). You can pass the next state directly, or a function that calculates it from the previous state:
 
 ```js
 const [optimisticLike, setOptimisticLike] = useOptimistic(false);
@@ -66,22 +66,22 @@ function handleClick() {
 }
 ```
 
-#### Parameters {/*setoptimistic-parameters*/}
+#### Parameters
 
-* `optimisticState`: The value that you want the optimistic state to be during an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). If you provided a `reducer` to `useOptimistic`, this value will be passed as the second argument to your reducer. It can be a value of any type.
-    * If you pass a function as `optimisticState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next optimistic state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying the queued updaters to the previous state similar to [`useState` updaters](/reference/react/useState#setstate-parameters).
+* `optimisticState`: The value that you want the optimistic state to be during an [Action](useTransition.md#functions-called-in-starttransition-are-called-actions). If you provided a `reducer` to `useOptimistic`, this value will be passed as the second argument to your reducer. It can be a value of any type.
+    * If you pass a function as `optimisticState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next optimistic state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying the queued updaters to the previous state similar to [`useState` updaters](useState.md#parameters-1).
 
-#### Returns {/*setoptimistic-returns*/}
+#### Returns
 
 `set` functions do not have a return value.
 
-#### Caveats {/*setoptimistic-caveats*/}
+#### Caveats
 
-* The `set` function must be called inside an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). If you call the setter outside an Action, [React will show a warning](#an-optimistic-state-update-occurred-outside-a-transition-or-action) and the optimistic state will briefly render.
+* The `set` function must be called inside an [Action](useTransition.md#functions-called-in-starttransition-are-called-actions). If you call the setter outside an Action, [React will show a warning](#im-getting-an-error-an-optimistic-state-update-occurred-outside-a-transition-or-action) and the optimistic state will briefly render.
 
 <DeepDive>
 
-#### How optimistic state works {/*how-optimistic-state-works*/}
+#### How optimistic state works
 
 `useOptimistic` lets you show a temporary value while an Action is in progress:
 
@@ -116,7 +116,7 @@ There's no extra render to "clear" the optimistic state. The optimistic and real
 
 <Note>
 
-#### Optimistic state is temporary {/*optimistic-state-is-temporary*/}
+#### Optimistic state is temporary
 
 Optimistic state only renders while an Action is in progress, otherwise `value` is rendered.
 
@@ -142,9 +142,9 @@ If the Action throws an error, the Transition still ends, and React renders with
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Adding optimistic state to a component {/*adding-optimistic-state-to-a-component*/}
+### Adding optimistic state to a component
 
 Call `useOptimistic` at the top level of your component to declare one or more optimistic states.
 
@@ -161,7 +161,7 @@ function MyComponent({age, name, todos}) {
 `useOptimistic` returns an array with exactly two items:
 
 1. The <CodeStep step={2}>optimistic state</CodeStep>, initially set to the <CodeStep step={1}>value</CodeStep> provided.
-2. The <CodeStep step={3}>set function</CodeStep> that lets you temporarily change the state during an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
+2. The <CodeStep step={3}>set function</CodeStep> that lets you temporarily change the state during an [Action](useTransition.md#functions-called-in-starttransition-are-called-actions).
    * If a <CodeStep step={4}>reducer</CodeStep> is provided, it will run before returning the optimistic state.
 
 To use the <CodeStep step={2}>optimistic state</CodeStep>, call the `set` function inside an Action.
@@ -184,7 +184,7 @@ See [How optimistic state works](#how-optimistic-state-works) for a deep dive.
 
 <Note>
 
-When using [Action props](/reference/react/useTransition#exposing-action-props-from-components), you can call the set function without `startTransition`:
+When using [Action props](useTransition.md#exposing-action-prop-from-components), you can call the set function without `startTransition`:
 
 ```js [[3, 2, "setOptimisticName"]]
 async function submitAction() {
@@ -201,9 +201,9 @@ For an example, see: [Using optimistic state in Action props](#using-optimistic-
 
 ---
 
-### Using optimistic state in Action props {/*using-optimistic-state-in-action-props*/}
+### Using optimistic state in Action props
 
-In an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you can call the optimistic setter directly without `startTransition`.
+In an [Action prop](useTransition.md#exposing-action-prop-from-components), you can call the optimistic setter directly without `startTransition`.
 
 This example sets optimistic state inside a `<form>` `submitAction` prop:
 
@@ -266,21 +266,21 @@ In this example, when the user submits the form, the `optimisticName` updates im
 
 <DeepDive>
 
-#### Why doesn't this need `startTransition`? {/*why-doesnt-this-need-starttransition*/}
+#### Why doesn't this need `startTransition`?
 
 By convention, props called inside `startTransition` are named with "Action".
 
 Since `submitAction` is named with "Action", you know it's already called inside `startTransition`.
 
-See [Exposing `action` prop from components](/reference/react/useTransition#exposing-action-props-from-components) for the Action prop pattern.
+See [Exposing `action` prop from components](useTransition.md#exposing-action-prop-from-components) for the Action prop pattern.
 
 </DeepDive>
 
 ---
 
-### Adding optimistic state to Action props {/*adding-optimistic-state-to-action-props*/}
+### Adding optimistic state to Action props
 
-When creating an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you can add `useOptimistic` to show immediate feedback.
+When creating an [Action prop](useTransition.md#exposing-action-prop-from-components), you can add `useOptimistic` to show immediate feedback.
 
 Here's a button that shows "Submitting..." while the `action` is pending:
 
@@ -363,7 +363,7 @@ The pending state will be shown until everything in the `action` prop is finishe
 
 <Note>
 
-You can also use [`useTransition`](/reference/react/useTransition) to get pending state via `isPending`.
+You can also use [`useTransition`](useTransition.md) to get pending state via `isPending`.
 
 The difference is that `useTransition` gives you the `startTransition` function, while `useOptimistic` works with any Transition. Use whichever fits your component's needs.
 
@@ -371,7 +371,7 @@ The difference is that `useTransition` gives you the `startTransition` function,
 
 ---
 
-### Updating props or state optimistically {/*updating-props-or-state-optimistically*/}
+### Updating props or state optimistically
 
 You can wrap props or state in `useOptimistic` to update it immediately while an Action is in progress.
 
@@ -450,7 +450,7 @@ See [Updating state based on the current state](#updating-state-based-on-current
 
 ---
 
-### Updating multiple values together {/*updating-multiple-values-together*/}
+### Updating multiple values together
 
 When an optimistic update affects multiple related values, use a reducer to update them together. This ensures the UI stays consistent.
 
@@ -538,11 +538,11 @@ The reducer receives the new `isFollowing` value and calculates both the new fol
 
 <DeepDive>
 
-#### Choosing between updaters and reducers {/*choosing-between-updaters-and-reducers*/}
+#### Choosing between updaters and reducers
 
 `useOptimistic` supports two patterns for calculating state based on current state:
 
-**Updater functions** work like [useState updaters](/reference/react/useState#updating-state-based-on-the-previous-state). Pass a function to the setter:
+**Updater functions** work like [useState updaters](useState.md#updating-state-based-on-the-previous-state). Pass a function to the setter:
 
 ```js
 const [optimistic, setOptimistic] = useOptimistic(value);
@@ -572,7 +572,7 @@ An updater function like `setOptimistic(prev => [...prev, newItem])` would only 
 
 ---
 
-### Optimistically adding to a list {/*optimistically-adding-to-a-list*/}
+### Optimistically adding to a list
 
 When you need to optimistically add items to a list, use a `reducer`:
 
@@ -654,7 +654,7 @@ Each optimistic item includes a `pending: true` flag so you can show loading sta
 
 ---
 
-### Handling multiple `action` types {/*handling-multiple-action-types*/}
+### Handling multiple `action` types
 
 When you need to handle multiple types of optimistic updates (like adding and removing items), use a reducer pattern with `action` objects.
 
@@ -822,11 +822,11 @@ export async function updateQuantity(id, quantity) {
 
 </Sandpack>
 
-The reducer handles three `action` types (`add`, `remove`, `update_quantity`) and returns the new optimistic state for each. Each `action` sets a `pending: true` flag so you can show visual feedback while the [Server Function](/reference/rsc/server-functions) runs.
+The reducer handles three `action` types (`add`, `remove`, `update_quantity`) and returns the new optimistic state for each. Each `action` sets a `pending: true` flag so you can show visual feedback while the [Server Function](../rsc/server-functions.md) runs.
 
 ---
 
-### Optimistic delete with error recovery {/*optimistic-delete-with-error-recovery*/}
+### Optimistic delete with error recovery
 
 When deleting items optimistically, you should handle the case where the Action fails.
 
@@ -934,9 +934,9 @@ Try deleting 'Deploy to production'. When the delete fails, the item automatical
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I'm getting an error: "An optimistic state update occurred outside a Transition or Action" {/*an-optimistic-state-update-occurred-outside-a-transition-or-action*/}
+### I'm getting an error: "An optimistic state update occurred outside a Transition or Action"
 
 You may see this error:
 
@@ -976,7 +976,7 @@ function submitAction(formData) {
 
 When you call the setter outside an Action, the optimistic state will briefly appear and then immediately revert back to the original value. This happens because there's no Transition to "hold" the optimistic state while your Action runs.
 
-### I'm getting an error: "Cannot update optimistic state while rendering" {/*cannot-update-optimistic-state-while-rendering*/}
+### I'm getting an error: "Cannot update optimistic state while rendering"
 
 You may see this error:
 
@@ -1030,7 +1030,7 @@ function MyComponent({ items }) {
 }
 ```
 
-### My optimistic updates show stale values {/*my-optimistic-updates-show-stale-values*/}
+### My optimistic updates show stale values
 
 If your optimistic state seems to be based on old data, consider using an updater function or reducer to calculate the optimistic state relative to the current state.
 
@@ -1046,7 +1046,7 @@ adjust(1);  // Always adds 1 to whatever the current count is
 
 See [Updating state based on the current state](#updating-state-based-on-current-state) for details.
 
-### I don't know if my optimistic update is pending {/*i-dont-know-if-my-optimistic-update-is-pending*/}
+### I don't know if my optimistic update is pending
 
 To know when `useOptimistic` is pending, you have three options:
 

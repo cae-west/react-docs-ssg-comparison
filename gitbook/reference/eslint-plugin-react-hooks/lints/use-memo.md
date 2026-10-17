@@ -4,15 +4,15 @@ title: use-memo
 
 <Intro>
 
-Validates that the `useMemo` hook is used with a return value. See [`useMemo` docs](/reference/react/useMemo) for more information.
+Validates that the `useMemo` hook is used with a return value. See [`useMemo` docs](../../react/useMemo.md) for more information.
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 `useMemo` is for computing and caching expensive values, not for side effects. Without a return value, `useMemo` returns `undefined`, which defeats its purpose and likely indicates you're using the wrong hook.
 
-### Invalid {/*invalid*/}
+### Invalid
 
 Examples of incorrect code for this rule:
 
@@ -28,7 +28,7 @@ function Component({ data }) {
 }
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 Examples of correct code for this rule:
 
@@ -43,9 +43,9 @@ function Component({ data }) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I need to run side effects when dependencies change {/*side-effects*/}
+### I need to run side effects when dependencies change
 
 You might try to use `useMemo` for side effects:
 

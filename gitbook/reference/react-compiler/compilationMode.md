@@ -18,23 +18,23 @@ The `compilationMode` option controls how the React Compiler selects which funct
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `compilationMode` {/*compilationmode*/}
+### `compilationMode`
 
 Controls the strategy for determining which functions the React Compiler will optimize.
 
-#### Type {/*type*/}
+#### Type
 
 ```
 'infer' | 'syntax' | 'annotation' | 'all'
 ```
 
-#### Default value {/*default-value*/}
+#### Default value
 
 `'infer'`
 
-#### Options {/*options*/}
+#### Options
 
 - **`'infer'`** (default): The compiler uses intelligent heuristics to identify React components and hooks:
   - Functions explicitly annotated with `"use memo"` directive
@@ -46,7 +46,7 @@ Controls the strategy for determining which functions the React Compiler will op
 
 - **`'all'`**: Compile all top-level functions. Not recommended as it may compile non-React functions.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 - The `'infer'` mode requires functions to follow React naming conventions to be detected
 - Using `'all'` mode may negatively impact performance by compiling utility functions
@@ -55,9 +55,9 @@ Controls the strategy for determining which functions the React Compiler will op
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Default inference mode {/*default-inference-mode*/}
+### Default inference mode
 
 The default `'infer'` mode works well for most codebases that follow React conventions:
 
@@ -93,7 +93,7 @@ function calculateTotal(items) {
 }
 ```
 
-### Incremental adoption with annotation mode {/*incremental-adoption*/}
+### Incremental adoption with annotation mode
 
 For gradual migration, use `'annotation'` mode to only compile marked functions:
 
@@ -124,7 +124,7 @@ function NormalComponent(props) {
 }
 ```
 
-### Using Flow syntax mode {/*flow-syntax-mode*/}
+### Using Flow syntax mode
 
 If your codebase uses Flow instead of TypeScript:
 
@@ -154,7 +154,7 @@ function helper(data) {
 }
 ```
 
-### Opting out specific functions {/*opting-out*/}
+### Opting out specific functions
 
 Regardless of compilation mode, use `"use no memo"` to skip compilation:
 
@@ -171,9 +171,9 @@ function ComponentWithSideEffects() {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### Component not being compiled in infer mode {/*component-not-compiled-infer*/}
+### Component not being compiled in infer mode
 
 In `'infer'` mode, ensure your component follows React conventions:
 

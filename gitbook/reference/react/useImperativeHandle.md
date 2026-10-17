@@ -4,7 +4,7 @@ title: useImperativeHandle
 
 <Intro>
 
-`useImperativeHandle` is a React Hook that lets you customize the handle exposed as a [ref.](/learn/manipulating-the-dom-with-refs)
+`useImperativeHandle` is a React Hook that lets you customize the handle exposed as a [ref.](../../learn/manipulating-the-dom-with-refs.md)
 
 ```js
 useImperativeHandle(ref, createHandle, dependencies?)
@@ -16,9 +16,9 @@ useImperativeHandle(ref, createHandle, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `useImperativeHandle(ref, createHandle, dependencies?)` {/*useimperativehandle*/}
+### `useImperativeHandle(ref, createHandle, dependencies?)`
 
 Call `useImperativeHandle` at the top level of your component to customize the ref handle it exposes:
 
@@ -36,29 +36,29 @@ function MyInput({ ref }) {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `ref`: The `ref` you received as a prop to the `MyInput` component.
 
 * `createHandle`: A function that takes no arguments and returns the ref handle you want to expose. That ref handle can have any type. Usually, you will return an object with the methods you want to expose.
 
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `createHandle` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If a re-render resulted in a change to some dependency, or if you omitted this argument, your `createHandle` function will re-execute, and the newly created handle will be assigned to the ref.
+* **optional** `dependencies`: The list of all reactive values referenced inside of the `createHandle` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](../../learn/editor-setup.md#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If a re-render resulted in a change to some dependency, or if you omitted this argument, your `createHandle` function will re-execute, and the newly created handle will be assigned to the ref.
 
 <Note>
 
-Starting with React 19, [`ref` is available as a prop.](/blog/2024/12/05/react-19#ref-as-a-prop) In React 18 and earlier, it was necessary to get the `ref` from [`forwardRef`.](/reference/react/forwardRef)
+Starting with React 19, [`ref` is available as a prop.](../../blog/2024/12/05/react-19.md#ref-as-a-prop) In React 18 and earlier, it was necessary to get the `ref` from [`forwardRef`.](forwardRef.md)
 
 </Note>
 
-#### Returns {/*returns*/}
+#### Returns
 
 `useImperativeHandle` returns `undefined`.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Exposing a custom ref handle to the parent component {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
+### Exposing a custom ref handle to the parent component
 
 To expose a DOM node to the parent element, pass in the `ref` prop to the node.
 
@@ -68,7 +68,7 @@ function MyInput({ ref }) {
 };
 ```
 
-With the code above, [a ref to `MyInput` will receive the `<input>` DOM node.](/learn/manipulating-the-dom-with-refs) However, you can expose a custom value instead. To customize the exposed handle, call `useImperativeHandle` at the top level of your component:
+With the code above, [a ref to `MyInput` will receive the `<input>` DOM node.](../../learn/manipulating-the-dom-with-refs.md) However, you can expose a custom value instead. To customize the exposed handle, call `useImperativeHandle` at the top level of your component:
 
 ```js {4-8}
 import { useImperativeHandle } from 'react';
@@ -170,7 +170,7 @@ input {
 
 ---
 
-### Exposing your own imperative methods {/*exposing-your-own-imperative-methods*/}
+### Exposing your own imperative methods
 
 The methods you expose via an imperative handle don't have to match the DOM methods exactly. For example, this `Post` component exposes a `scrollAndFocusAddComment` method via an imperative handle. This lets the parent `Page` scroll the list of comments *and* focus the input field when you click the button:
 
@@ -287,6 +287,6 @@ export default AddComment;
 
 **Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.
 
-**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
+**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](../../learn/synchronizing-with-effects.md) can help you expose imperative behaviors via props.
 
 </Pitfall>

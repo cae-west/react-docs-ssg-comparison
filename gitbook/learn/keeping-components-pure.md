@@ -16,7 +16,7 @@ Some JavaScript functions are *pure.* Pure functions only perform a calculation 
 
 </YouWillLearn>
 
-## Purity: Components as formulas {/*purity-components-as-formulas*/}
+## Purity: Components as formulas
 
 In computer science (and especially the world of functional programming), [a pure function](https://wikipedia.org/wiki/Pure_function) is a function with the following characteristics:
 
@@ -81,11 +81,11 @@ If you pass `drinkers={4}`, it will return JSX containing `4 cups of water`. Alw
 
 Just like a math formula.
 
-You could think of your components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the component serves to React to [render.](/learn/render-and-commit)
+You could think of your components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the component serves to React to [render.](render-and-commit.md)
 
-<Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
+<Illustration src="../images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
 
-## Side Effects: (un)intended consequences {/*side-effects-unintended-consequences*/}
+## Side Effects: (un)intended consequences
 
 React's rendering process must always be pure. Components should only *return* their JSX, and not *change* any objects or variables that existed before rendering—that would make them impure!
 
@@ -119,7 +119,7 @@ This component is reading and writing a `guest` variable declared outside of it.
 
 Going back to our formula <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, now even if <Math><MathI>x</MathI> = 2</Math>, we cannot trust that <Math><MathI>y</MathI> = 4</Math>. Our tests could fail, our users would be baffled, planes would fall out of the sky—you can see how this would lead to confusing bugs!
 
-You can fix this component by [passing `guest` as a prop instead](/learn/passing-props-to-a-component):
+You can fix this component by [passing `guest` as a prop instead](passing-props-to-a-component.md):
 
 <Sandpack>
 
@@ -147,11 +147,11 @@ In general, you should not expect your components to be rendered in any particul
 
 <DeepDive>
 
-#### Detecting impure calculations with StrictMode {/*detecting-impure-calculations-with-strict-mode*/}
+#### Detecting impure calculations with StrictMode
 
-Although you might not have used them all yet, in React there are three kinds of inputs that you can read while rendering: [props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context.](/learn/passing-data-deeply-with-context) You should always treat these inputs as read-only.
+Although you might not have used them all yet, in React there are three kinds of inputs that you can read while rendering: [props](passing-props-to-a-component.md), [state](state-a-components-memory.md), and [context.](passing-data-deeply-with-context.md) You should always treat these inputs as read-only.
 
-When you want to *change* something in response to user input, you should [set state](/learn/state-a-components-memory) instead of writing to a variable. You should never change preexisting variables or objects while your component is rendering.
+When you want to *change* something in response to user input, you should [set state](state-a-components-memory.md) instead of writing to a variable. You should never change preexisting variables or objects while your component is rendering.
 
 React offers a "Strict Mode" in which it calls each component's function twice during development. **By calling the component functions twice, Strict Mode helps find components that break these rules.**
 
@@ -161,7 +161,7 @@ Strict Mode has no effect in production, so it won't slow down the app for your 
 
 </DeepDive>
 
-### Local mutation: Your component's little secret {/*local-mutation-your-components-little-secret*/}
+### Local mutation: Your component's little secret
 
 In the above example, the problem was that the component changed a *preexisting* variable while rendering. This is often called a **"mutation"** to make it sound a bit scarier. Pure functions don't mutate variables outside of the function's scope or objects that were created before the call—that makes them impure!
 
@@ -189,24 +189,24 @@ If the `cups` variable or the `[]` array were created outside the `TeaGathering`
 
 However, it's fine because you've created them *during the same render*, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **"local mutation"**—it's like your component's little secret.
 
-## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
+## Where you _can_ cause side effects
 
 While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects.** They're things that happen _"on the side"_, not during rendering.
 
-In React, **side effects usually belong inside [event handlers.](/learn/responding-to-events)** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
+In React, **side effects usually belong inside [event handlers.](responding-to-events.md)** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
 
-If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](/reference/react/useEffect) call in your component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
+If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](../reference/react/useEffect.md) call in your component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
 
 When possible, try to express your logic with rendering alone. You'll be surprised how far this can take you!
 
 <DeepDive>
 
-#### Why does React care about purity? {/*why-does-react-care-about-purity*/}
+#### Why does React care about purity?
 
 Writing pure functions takes some habit and discipline. But it also unlocks marvelous opportunities:
 
 * Your components could run in a different environment—for example, on the server! Since they return the same result for the same inputs, one component can serve many user requests.
-* You can improve performance by [skipping rendering](/reference/react/memo) components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
+* You can improve performance by [skipping rendering](../reference/react/memo.md) components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
 * If some data changes in the middle of rendering a deep component tree, React can restart rendering without wasting time to finish the outdated render. Purity makes it safe to stop calculating at any time.
 
 Every new React feature we're building takes advantage of purity. From data fetching to animations to performance, keeping components pure unlocks the power of the React paradigm.
@@ -219,7 +219,7 @@ Every new React feature we're building takes advantage of purity. From data fetc
   * **It minds its own business.** It should not change any objects or variables that existed before rendering.
   * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX.
 * Rendering can happen at any time, so components should not depend on each others' rendering sequence.
-* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
+* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](state-a-components-memory.md) instead of mutating preexisting objects.
 * Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
 * Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
 
@@ -229,7 +229,7 @@ Every new React feature we're building takes advantage of purity. From data fetc
 
 <Challenges>
 
-#### Fix a broken clock {/*fix-a-broken-clock*/}
+#### Fix a broken clock
 
 This component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
 
@@ -366,7 +366,7 @@ In this example, the side effect (modifying the DOM) was not necessary at all. Y
 
 </Solution>
 
-#### Fix a broken profile {/*fix-a-broken-profile*/}
+#### Fix a broken profile
 
 Two `Profile` components are rendered side by side with different data. Press "Collapse" on the first profile, and then "Expand" it. You'll notice that both profiles now show the same person. This is a bug.
 
@@ -575,7 +575,7 @@ Remember that React does not guarantee that component functions will execute in 
 
 </Solution>
 
-#### Fix a broken story tray {/*fix-a-broken-story-tray*/}
+#### Fix a broken story tray
 
 The CEO of your company is asking you to add "stories" to your online clock app, and you can't say no. You've written a `StoryTray` component that accepts a list of `stories`, followed by a "Create Story" placeholder.
 

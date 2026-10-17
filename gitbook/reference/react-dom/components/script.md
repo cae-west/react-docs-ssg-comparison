@@ -16,9 +16,9 @@ The [built-in browser `<script>` component](https://developer.mozilla.org/en-US/
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<script>` {/*script*/}
+### `<script>`
 
 To add inline or external scripts to your document, render the [built-in browser `<script>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script). You can render `<script>` from any component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical scripts.
 
@@ -29,9 +29,9 @@ To add inline or external scripts to your document, render the [built-in browser
 
 [See more examples below.](#usage)
 
-#### Props {/*props*/}
+#### Props
 
-`<script>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<script>` supports all [common element props.](common.md#props)
 
 It should have *either* `children` or a `src` prop.
 
@@ -59,7 +59,7 @@ Props that are **not recommended** for use with React:
 * `blocking`: a string. If set to `"render"`, instructs the browser not to render the page until the scriptsheet is loaded. React provides more fine-grained control using Suspense.
 * `defer`: a string. Prevents the browser from executing the script until the document is done loading. Not compatible with streaming server-rendered components. Use the `async` prop instead.
 
-#### Special rendering behavior {/*special-rendering-behavior*/}
+#### Special rendering behavior
 
 React can move `<script>` components to the document's `<head>` and de-duplicate identical scripts.
 
@@ -72,9 +72,9 @@ This special treatment comes with two caveats:
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Rendering an external script {/*rendering-an-external-script*/}
+### Rendering an external script
 
 If a component depends on certain scripts in order to be displayed correctly, you can render a `<script>` within the component.
 However, the component might be committed before the script has finished loading.
@@ -108,10 +108,10 @@ export default function Page() {
 </SandpackWithHTMLOutput>
 
 <Note>
-When you want to use a script, it can be beneficial to call the [preinit](/reference/react-dom/preinit) function. Calling this function may allow the browser to start fetching the script earlier than if you just render a `<script>` component, for example by sending an [HTTP Early Hints response](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
+When you want to use a script, it can be beneficial to call the [preinit](../preinit.md) function. Calling this function may allow the browser to start fetching the script earlier than if you just render a `<script>` component, for example by sending an [HTTP Early Hints response](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
 </Note>
 
-### Rendering an inline script {/*rendering-an-inline-script*/}
+### Rendering an inline script
 
 To include an inline script, render the `<script>` component with the script source code as its children. Inline scripts are not de-duplicated or moved to the document `<head>`.
 

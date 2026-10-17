@@ -16,9 +16,9 @@ React lets you add *event handlers* to your JSX. Event handlers are your own fun
 
 </YouWillLearn>
 
-## Adding event handlers {/*adding-event-handlers*/}
+## Adding event handlers
 
-To add an event handler, you will first define a function and then [pass it as a prop](/learn/passing-props-to-a-component) to the appropriate JSX tag. For example, here is a button that doesn't do anything yet:
+To add an event handler, you will first define a function and then [pass it as a prop](passing-props-to-a-component.md) to the appropriate JSX tag. For example, here is a button that doesn't do anything yet:
 
 <Sandpack>
 
@@ -62,7 +62,7 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-You defined the `handleClick` function and then [passed it as a prop](/learn/passing-props-to-a-component) to `<button>`.  `handleClick` is an **event handler.** Event handler functions:
+You defined the `handleClick` function and then [passed it as a prop](passing-props-to-a-component.md) to `<button>`.  `handleClick` is an **event handler.** Event handler functions:
 
 * Are usually defined *inside* your components.
 * Have names that start with `handle`, followed by the name of the event.
@@ -97,7 +97,7 @@ Functions passed to event handlers must be passed, not called. For example:
 
 The difference is subtle. In the first example, the `handleClick` function is passed as an `onClick` event handler. This tells React to remember it and only call your function when the user clicks the button.
 
-In the second example, the `()` at the end of `handleClick()` fires the function *immediately* during [rendering](/learn/render-and-commit), without any clicks. This is because JavaScript inside the [JSX `{` and `}`](/learn/javascript-in-jsx-with-curly-braces) executes right away.
+In the second example, the `()` at the end of `handleClick()` fires the function *immediately* during [rendering](render-and-commit.md), without any clicks. This is because JavaScript inside the [JSX `{` and `}`](javascript-in-jsx-with-curly-braces.md) executes right away.
 
 When you write code inline, the same pitfall presents itself in a different way:
 
@@ -130,7 +130,7 @@ In both cases, what you want to pass is a function:
 
 </Pitfall>
 
-### Reading props in event handlers {/*reading-props-in-event-handlers*/}
+### Reading props in event handlers
 
 Because event handlers are declared inside of a component, they have access to the component's props. Here is a button that, when clicked, shows an alert with its `message` prop:
 
@@ -167,7 +167,7 @@ button { margin-right: 10px; }
 
 This lets these two buttons show different messages. Try changing the messages passed to them.
 
-### Passing event handlers as props {/*passing-event-handlers-as-props*/}
+### Passing event handlers as props
 
 Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image.
 
@@ -229,9 +229,9 @@ Finally, your `Button` component accepts a prop called `onClick`. It passes that
 
 If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), it's common for components like buttons to contain styling but not specify behavior. Instead, components like `PlayButton` and `UploadButton` will pass event handlers down.
 
-### Naming event handler props {/*naming-event-handler-props*/}
+### Naming event handler props
 
-Built-in components like `<button>` and `<div>` only support [browser event names](/reference/react-dom/components/common#common-props) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
+Built-in components like `<button>` and `<div>` only support [browser event names](../reference/react-dom/components/common.md#props) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
 
 By convention, event handler props should start with `on`, followed by a capital letter.
 
@@ -320,7 +320,7 @@ Make sure that you use the appropriate HTML tags for your event handlers. For ex
 
 </Note>
 
-## Event propagation {/*event-propagation*/}
+## Event propagation
 
 Event handlers will also catch events from any children your component might have. We say that an event "bubbles" or "propagates" up the tree: it starts with where the event happened, and then goes up the tree.
 
@@ -363,7 +363,7 @@ All events propagate in React except `onScroll`, which only works on the JSX tag
 
 </Pitfall>
 
-### Stopping propagation {/*stopping-propagation*/}
+### Stopping propagation
 
 Event handlers receive an **event object** as their only argument. By convention, it's usually called `e`, which stands for "event". You can use this object to read information about the event.
 
@@ -422,7 +422,7 @@ As a result of `e.stopPropagation()`, clicking on the buttons now only shows a s
 
 <DeepDive>
 
-#### Capture phase events {/*capture-phase-events*/}
+#### Capture phase events
 
 In rare cases, you might need to catch all events on child elements, *even if they stopped propagation*. For example, maybe you want to log every click to analytics, regardless of the propagation logic. You can do this by adding `Capture` at the end of the event name:
 
@@ -443,7 +443,7 @@ Capture events are useful for code like routers or analytics, but you probably w
 
 </DeepDive>
 
-### Passing handlers as alternative to propagation {/*passing-handlers-as-alternative-to-propagation*/}
+### Passing handlers as alternative to propagation
 
 Notice how this click handler runs a line of code _and then_ calls the `onClick` prop passed by the parent:
 
@@ -464,7 +464,7 @@ You could add more code to this handler before calling the parent `onClick` even
 
 If you rely on propagation and it's difficult to trace which handlers execute and why, try this approach instead.
 
-### Preventing default behavior {/*preventing-default-behavior*/}
+### Preventing default behavior
 
 Some browser events have default behavior associated with them. For example, a `<form>` submit event, which happens when a button inside of it is clicked, will reload the whole page by default:
 
@@ -516,11 +516,11 @@ Don't confuse `e.stopPropagation()` and `e.preventDefault()`. They are both usef
 * [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) stops the event handlers attached to the tags above from firing.
 * [`e.preventDefault()` ](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) prevents the default browser behavior for the few events that have it.
 
-## Can event handlers have side effects? {/*can-event-handlers-have-side-effects*/}
+## Can event handlers have side effects?
 
 Absolutely! Event handlers are the best place for side effects.
 
-Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
+Unlike rendering functions, event handlers don't need to be [pure](keeping-components-pure.md), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory.](state-a-components-memory.md) You will learn all about it on the next page.
 
 <Recap>
 
@@ -540,7 +540,7 @@ Unlike rendering functions, event handlers don't need to be [pure](/learn/keepin
 
 <Challenges>
 
-#### Fix an event handler {/*fix-an-event-handler*/}
+#### Fix an event handler
 
 Clicking this button is supposed to switch the page background between white and black. However, nothing happens when you click it. Fix the problem. (Don't worry about the logic inside `handleClick`—that part is fine.)
 
@@ -621,7 +621,7 @@ export default function LightSwitch() {
 
 </Solution>
 
-#### Wire up the events {/*wire-up-the-events*/}
+#### Wire up the events
 
 This `ColorSwitch` component renders a button. It's supposed to change the page color. Wire it up to the `onChangeColor` event handler prop it receives from the parent so that clicking the button changes the color.
 

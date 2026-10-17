@@ -17,13 +17,13 @@ Today we are thrilled to launch [react.dev](https://react.dev), the new home for
 
 ---
 
-## tl;dr {/*tldr*/}
+## tl;dr
 
 * The new React site ([react.dev](https://react.dev)) teaches modern React with function components and Hooks.
 * We've included diagrams, illustrations, challenges, and over 600 new interactive examples.
 * The previous React documentation site has now moved to [legacy.reactjs.org](https://legacy.reactjs.org).
 
-## New site, new domain, new homepage {/*new-site-new-domain-new-homepage*/}
+## New site, new domain, new homepage
 
 First, a little bit of housekeeping.
 
@@ -35,28 +35,28 @@ Believe it or not, React will soon be ten years old. In JavaScript years, it's l
 
 If you haven't seen the new homepage yet, check it out!
 
-## Going all-in on modern React with Hooks {/*going-all-in-on-modern-react-with-hooks*/}
+## Going all-in on modern React with Hooks
 
 When we released React Hooks in 2018, the Hooks docs assumed the reader is familiar with class components. This helped the community adopt Hooks very swiftly, but after a while the old docs failed to serve the new readers. New readers had to learn React twice: once with class components and then once again with Hooks.
 
 **The new docs teach React with Hooks from the beginning.** The docs are divided in two main sections:
 
-* **[Learn React](/learn)** is a self-paced course that teaches React from scratch.
+* **[Learn React](../../../../learn/index.md)** is a self-paced course that teaches React from scratch.
 * **[API Reference](/reference)** provides the details and usage examples for every React API.
 
 Let's have a closer look at what you can find in each section.
 
 <Note>
 
-There are still a few rare class component use cases that do not yet have a Hook-based equivalent. Class components remain supported, and are documented in the [Legacy API](/reference/react/legacy) section of the new site.
+There are still a few rare class component use cases that do not yet have a Hook-based equivalent. Class components remain supported, and are documented in the [Legacy API](../../../../reference/react/legacy.md) section of the new site.
 
 </Note>
 
-## Quick start {/*quick-start*/}
+## Quick start
 
-The Learn section begins with the [Quick Start](/learn) page. It is a short introductory tour of React. It introduces the syntax for concepts like components, props, and state, but doesn't go into much detail on how to use them.
+The Learn section begins with the [Quick Start](../../../../learn/index.md) page. It is a short introductory tour of React. It introduces the syntax for concepts like components, props, and state, but doesn't go into much detail on how to use them.
 
-If you like to learn by doing, we recommend checking out the [Tic-Tac-Toe Tutorial](/learn/tutorial-tic-tac-toe) next. It walks you through building a little game with React, while teaching the skills you'll use every day. Here's what you'll build:
+If you like to learn by doing, we recommend checking out the [Tic-Tac-Toe Tutorial](../../../../learn/tutorial-tic-tac-toe.md) next. It walks you through building a little game with React, while teaching the skills you'll use every day. Here's what you'll build:
 
 <Sandpack>
 
@@ -225,7 +225,7 @@ body {
 
 </Sandpack>
 
-We'd also like to highlight [Thinking in React](/learn/thinking-in-react)—that's the tutorial that made React "click" for many of us. **We've updated both of these classic tutorials to use function components and Hooks,** so they're as good as new.
+We'd also like to highlight [Thinking in React](../../../../learn/thinking-in-react.md)—that's the tutorial that made React "click" for many of us. **We've updated both of these classic tutorials to use function components and Hooks,** so they're as good as new.
 
 <Note>
 
@@ -233,33 +233,33 @@ The example above is a *sandbox*. We've added a lot of sandboxes—over 600!—e
 
 </Note>
 
-## Learn React step by step {/*learn-react-step-by-step*/}
+## Learn React step by step
 
 We'd like everyone in the world to have an equal opportunity to learn React for free on their own.
 
 This is why the Learn section is organized like a self-paced course split into chapters. The first two chapters describe the fundamentals of React. If you're new to React, or want to refresh it in your memory, start here:
 
-- **[Describing the UI](/learn/describing-the-ui)** teaches how to display information with components.
-- **[Adding Interactivity](/learn/adding-interactivity)** teaches how to update the screen in response to user input.
+- **[Describing the UI](../../../../learn/describing-the-ui.md)** teaches how to display information with components.
+- **[Adding Interactivity](../../../../learn/adding-interactivity.md)** teaches how to update the screen in response to user input.
 
 The next two chapters are more advanced, and will give you a deeper insight into the trickier parts:
 
-- **[Managing State](/learn/managing-state)** teaches how to organize your logic as your app grows in complexity.
-- **[Escape Hatches](/learn/escape-hatches)** teaches how you can "step outside" React, and when it makes most sense to do so.
+- **[Managing State](../../../../learn/managing-state.md)** teaches how to organize your logic as your app grows in complexity.
+- **[Escape Hatches](../../../../learn/escape-hatches.md)** teaches how you can "step outside" React, and when it makes most sense to do so.
 
-Every chapter consists of several related pages. Most of these pages teach a specific skill or a technique—for example, [Writing Markup with JSX](/learn/writing-markup-with-jsx), [Updating Objects in State](/learn/updating-objects-in-state), or [Sharing State Between Components](/learn/sharing-state-between-components). Some of the pages focus on explaining an idea—like [Render and Commit](/learn/render-and-commit), or [State as a Snapshot](/learn/state-as-a-snapshot). And there are a few, like [You Might Not Need an Effect](/learn/you-might-not-need-an-effect), that share our suggestions based on what we've learned over these years.
+Every chapter consists of several related pages. Most of these pages teach a specific skill or a technique—for example, [Writing Markup with JSX](../../../../learn/writing-markup-with-jsx.md), [Updating Objects in State](../../../../learn/updating-objects-in-state.md), or [Sharing State Between Components](../../../../learn/sharing-state-between-components.md). Some of the pages focus on explaining an idea—like [Render and Commit](../../../../learn/render-and-commit.md), or [State as a Snapshot](../../../../learn/state-as-a-snapshot.md). And there are a few, like [You Might Not Need an Effect](../../../../learn/you-might-not-need-an-effect.md), that share our suggestions based on what we've learned over these years.
 
 You don't have to read these chapters as a sequence. Who has the time for this?! But you could. Pages in the Learn section only rely on concepts introduced by the earlier pages. If you want to read it like a book, go for it!
 
-### Check your understanding with challenges {/*check-your-understanding-with-challenges*/}
+### Check your understanding with challenges
 
-Most pages in the Learn section end with a few challenges to check your understanding. For example, here are a few challenges from the page about [Conditional Rendering](/learn/conditional-rendering#challenges).
+Most pages in the Learn section end with a few challenges to check your understanding. For example, here are a few challenges from the page about [Conditional Rendering](../../../../learn/conditional-rendering.md#challenges).
 
 You don't have to solve them right now! Unless you *really* want to.
 
 <Challenges noTitle={true}>
 
-#### Show an icon for incomplete items with `? :` {/*show-an-icon-for-incomplete-items-with--*/}
+#### Show an icon for incomplete items with `? :`
 
 Use the conditional operator (`cond ? a : b`) to render a ❌ if `isPacked` isn’t `true`.
 
@@ -339,7 +339,7 @@ export default function PackingList() {
 
 </Solution>
 
-#### Show the item importance with `&&` {/*show-the-item-importance-with-*/}
+#### Show the item importance with `&&`
 
 In this example, each `Item` receives a numerical `importance` prop. Use the `&&` operator to render "_(Importance: X)_" in italics, but only for items that have non-zero importance. Your item list should end up looking like this:
 
@@ -439,9 +439,9 @@ In this solution, two separate conditions are used to insert a space between the
 
 Notice the "Show solution" button in the left bottom corner. It's handy if you want to check yourself!
 
-### Build an intuition with diagrams and illustrations {/*build-an-intuition-with-diagrams-and-illustrations*/}
+### Build an intuition with diagrams and illustrations
 
-When we couldn't figure out how to explain something with code and words alone, we've added diagrams that help provide some intuition. For example, here is one of the diagrams from [Preserving and Resetting State](/learn/preserving-and-resetting-state):
+When we couldn't figure out how to explain something with code and words alone, we've added diagrams that help provide some intuition. For example, here is one of the diagrams from [Preserving and Resetting State](../../../../learn/preserving-and-resetting-state.md):
 
 <Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'section', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'div', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
 
@@ -449,31 +449,31 @@ When `section` changes to `div`, the `section` is deleted and the new `div` is a
 
 </Diagram>
 
-You'll also see some illustrations throughout the docs--here's one of the [browser painting the screen](/learn/render-and-commit#epilogue-browser-paint):
+You'll also see some illustrations throughout the docs--here's one of the [browser painting the screen](../../../../learn/render-and-commit.md#epilogue-browser-paint):
 
-<Illustration alt="A browser painting 'still life with card element'." src="/images/docs/illustrations/i_browser-paint.png" />
+<Illustration alt="A browser painting 'still life with card element'." src="../../../../images/docs/illustrations/i_browser-paint.png" />
 
 We've confirmed with the browser vendors that this depiction is 100% scientifically accurate.
 
-## A new, detailed API Reference {/*a-new-detailed-api-reference*/}
+## A new, detailed API Reference
 
-In the [API Reference](/reference/react), every React API now has a dedicated page. This includes all kinds of APIs:
+In the [API Reference](../../../../reference/react/index.md), every React API now has a dedicated page. This includes all kinds of APIs:
 
-- Built-in Hooks like [`useState`](/reference/react/useState).
-- Built-in components like [`<Suspense>`](/reference/react/Suspense).
-- Built-in browser components like [`<input>`](/reference/react-dom/components/input).
-- Framework-oriented APIs like [`renderToPipeableStream`](/reference/react-dom/server/renderToReadableStream).
-- Other React APIs like [`memo`](/reference/react/memo).
+- Built-in Hooks like [`useState`](../../../../reference/react/useState.md).
+- Built-in components like [`<Suspense>`](../../../../reference/react/Suspense.md).
+- Built-in browser components like [`<input>`](../../../../reference/react-dom/components/input.md).
+- Framework-oriented APIs like [`renderToPipeableStream`](../../../../reference/react-dom/server/renderToReadableStream.md).
+- Other React APIs like [`memo`](../../../../reference/react/memo.md).
 
 You'll notice that every API page is split into at least two segments: *Reference* and *Usage*.
 
-[Reference](/reference/react/useState#reference) describes the formal API signature by listing its arguments and return values. It's concise, but it can feel a bit abstract if you're not familiar with that API. It describes what an API does, but not how to use it.
+[Reference](../../../../reference/react/useState.md#reference) describes the formal API signature by listing its arguments and return values. It's concise, but it can feel a bit abstract if you're not familiar with that API. It describes what an API does, but not how to use it.
 
-[Usage](/reference/react/useState#usage) shows why and how you would use this API in practice, like a colleague or a friend might explain. It shows the **canonical scenarios for how each API was meant to be used by the React team.** We've added color-coded snippets, examples of using different APIs together, and recipes that you can copy and paste from:
+[Usage](../../../../reference/react/useState.md#usage) shows why and how you would use this API in practice, like a colleague or a friend might explain. It shows the **canonical scenarios for how each API was meant to be used by the React team.** We've added color-coded snippets, examples of using different APIs together, and recipes that you can copy and paste from:
 
 <Recipes titleText="Basic useState examples" titleId="examples-basic">
 
-#### Counter (number) {/*counter-number*/}
+#### Counter (number)
 
 In this example, the `count` state variable holds a number. Clicking the button increments it.
 
@@ -501,7 +501,7 @@ export default function Counter() {
 
 <Solution />
 
-#### Text field (string) {/*text-field-string*/}
+#### Text field (string)
 
 In this example, the `text` state variable holds a string. When you type, `handleChange` reads the latest input value from the browser input DOM element, and calls `setText` to update the state. This allows you to display the current `text` below.
 
@@ -533,7 +533,7 @@ export default function MyInput() {
 
 <Solution />
 
-#### Checkbox (boolean) {/*checkbox-boolean*/}
+#### Checkbox (boolean)
 
 In this example, the `liked` state variable holds a boolean. When you click the input, `setLiked` updates the `liked` state variable with whether the browser checkbox input is checked. The `liked` variable is used to render the text below the checkbox.
 
@@ -569,7 +569,7 @@ export default function MyCheckbox() {
 
 <Solution />
 
-#### Form (two variables) {/*form-two-variables*/}
+#### Form (two variables)
 
 You can declare more than one state variable in the same component. Each state variable is completely independent.
 
@@ -607,11 +607,11 @@ button { display: block; margin-top: 10px; }
 
 </Recipes>
 
-Some API pages also include [Troubleshooting](/reference/react/useEffect#troubleshooting) (for common problems) and [Alternatives](/reference/react-dom/findDOMNode#alternatives) (for deprecated APIs).
+Some API pages also include [Troubleshooting](../../../../reference/react/useEffect.md#troubleshooting) (for common problems) and [Alternatives](/reference/react-dom/findDOMNode#alternatives) (for deprecated APIs).
 
 We hope that this approach will make the API reference useful not only as a way to look up an argument, but as a way to see all the different things you can do with any given API—and how it connects to the other ones.
 
-## What's next? {/*whats-next*/}
+## What's next?
 
 That's a wrap for our little tour! Have a look around the new website, see what you like or don't like, and keep the feedback coming in our [issue tracker](https://github.com/reactjs/react.dev/issues).
 
@@ -629,7 +629,7 @@ Now that [react.dev](https://react.dev/) is out, we will be able to shift our fo
 
 We think there's never been a better time to learn React.
 
-## Who worked on this? {/*who-worked-on-this*/}
+## Who worked on this?
 
 On the React team, [Rachel Nabors](https://twitter.com/rachelnabors/) led the project (and provided the illustrations), and [Dan Abramov](https://bsky.app/profile/danabra.mov) designed the curriculum. They co-authored most of the content together as well.
 

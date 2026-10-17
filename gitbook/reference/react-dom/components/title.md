@@ -16,9 +16,9 @@ The [built-in browser `<title>` component](https://developer.mozilla.org/en-US/d
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<title>` {/*title*/}
+### `<title>`
 
 To specify the title of the document, render the [built-in browser `<title>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title). You can render `<title>` from any component and React will always place the corresponding DOM element in the document head.
 
@@ -28,13 +28,13 @@ To specify the title of the document, render the [built-in browser `<title>` com
 
 [See more examples below.](#usage)
 
-#### Props {/*props*/}
+#### Props
 
-`<title>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<title>` supports all [common element props.](common.md#props)
 
 * `children`: `<title>` accepts only text as a child. This text will become the title of the document. You can also pass your own components as long as they only render text.
 
-#### Special rendering behavior {/*special-rendering-behavior*/}
+#### Special rendering behavior
 
 React will always place the DOM element corresponding to the `<title>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<title>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render its `<title>` itself.
 
@@ -50,9 +50,9 @@ Only render a single `<title>` at a time. If more than one component renders a `
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Set the document title {/*set-the-document-title*/}
+### Set the document title
 
 Render the `<title>` component from any component with text as its children. React will put a `<title>` DOM node in the document `<head>`.
 
@@ -74,7 +74,7 @@ export default function ContactUsPage() {
 
 </SandpackWithHTMLOutput>
 
-### Use variables in the title {/*use-variables-in-the-title*/}
+### Use variables in the title
 
 The children of the `<title>` component must be a single string of text. (Or a single number or a single object with a `toString` method.) It might not be obvious, but using JSX curly braces like this:
 

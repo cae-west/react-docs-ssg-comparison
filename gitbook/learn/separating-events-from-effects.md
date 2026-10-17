@@ -18,7 +18,7 @@ Event handlers only re-run when you perform the same interaction again. Unlike e
 
 </YouWillLearn>
 
-## Choosing between event handlers and Effects {/*choosing-between-event-handlers-and-effects*/}
+## Choosing between event handlers and Effects
 
 First, let's recap the difference between event handlers and Effects.
 
@@ -27,9 +27,9 @@ Imagine you're implementing a chat room component. Your requirements look like t
 1. Your component should automatically connect to the selected chat room.
 1. When you click the "Send" button, it should send a message to the chat.
 
-Let's say you've already implemented the code for them, but you're not sure where to put it. Should you use event handlers or Effects? Every time you need to answer this question, consider [*why* the code needs to run.](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)
+Let's say you've already implemented the code for them, but you're not sure where to put it. Should you use event handlers or Effects? Every time you need to answer this question, consider [*why* the code needs to run.](synchronizing-with-effects.md#what-are-effects-and-how-are-they-different-from-events)
 
-### Event handlers run in response to specific interactions {/*event-handlers-run-in-response-to-specific-interactions*/}
+### Event handlers run in response to specific interactions
 
 From the user's perspective, sending a message should happen *because* the particular "Send" button was clicked. The user will get rather upset if you send their message at any other time or for any other reason. This is why sending a message should be an event handler. Event handlers let you handle specific interactions:
 
@@ -52,7 +52,7 @@ function ChatRoom({ roomId }) {
 
 With an event handler, you can be sure that `sendMessage(message)` will *only* run if the user presses the button.
 
-### Effects run whenever synchronization is needed {/*effects-run-whenever-synchronization-is-needed*/}
+### Effects run whenever synchronization is needed
 
 Recall that you also need to keep the component connected to the chat room. Where does that code go?
 
@@ -72,7 +72,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-With this code, you can be sure that there is always an active connection to the currently selected chat server, *regardless* of the specific interactions performed by the user. Whether the user has only opened your app, selected a different room, or navigated to another screen and back, your Effect ensures that the component will *remain synchronized* with the currently selected room, and will [re-connect whenever it's necessary.](/learn/lifecycle-of-reactive-effects#why-synchronization-may-need-to-happen-more-than-once)
+With this code, you can be sure that there is always an active connection to the currently selected chat server, *regardless* of the specific interactions performed by the user. Whether the user has only opened your app, selected a different room, or navigated to another screen and back, your Effect ensures that the component will *remain synchronized* with the currently selected room, and will [re-connect whenever it's necessary.](lifecycle-of-reactive-effects.md#why-synchronization-may-need-to-happen-more-than-once)
 
 <Sandpack>
 
@@ -154,7 +154,7 @@ input, select { margin-right: 20px; }
 
 </Sandpack>
 
-## Reactive values and reactive logic {/*reactive-values-and-reactive-logic*/}
+## Reactive values and reactive logic
 
 Intuitively, you could say that event handlers are always triggered "manually", for example by clicking a button. Effects, on the other hand, are "automatic": they run and re-run as often as it's needed to stay synchronized.
 
@@ -175,11 +175,11 @@ function ChatRoom({ roomId }) {
 Reactive values like these can change due to a re-render. For example, the user may edit the `message` or choose a different `roomId` in a dropdown. Event handlers and Effects respond to changes differently:
 
 - **Logic inside event handlers is *not reactive.*** It will not run again unless the user performs the same interaction (e.g. a click) again. Event handlers can read reactive values without "reacting" to their changes.
-- **Logic inside Effects is *reactive.*** If your Effect reads a reactive value, [you have to specify it as a dependency.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Then, if a re-render causes that value to change, React will re-run your Effect's logic with the new value.
+- **Logic inside Effects is *reactive.*** If your Effect reads a reactive value, [you have to specify it as a dependency.](lifecycle-of-reactive-effects.md#effects-react-to-reactive-values) Then, if a re-render causes that value to change, React will re-run your Effect's logic with the new value.
 
 Let's revisit the previous example to illustrate this difference.
 
-### Logic inside event handlers is not reactive {/*logic-inside-event-handlers-is-not-reactive*/}
+### Logic inside event handlers is not reactive
 
 Take a look at this line of code. Should this logic be reactive or not?
 
@@ -199,7 +199,7 @@ From the user's perspective, **a change to the `message` does _not_ mean that th
 
 Event handlers aren't reactive, so `sendMessage(message)` will only run when the user clicks the Send button.
 
-### Logic inside Effects is reactive {/*logic-inside-effects-is-reactive*/}
+### Logic inside Effects is reactive
 
 Now let's return to these lines:
 
@@ -224,7 +224,7 @@ From the user's perspective, **a change to the `roomId` *does* mean that they wa
 
 Effects are reactive, so `createConnection(serverUrl, roomId)` and `connection.connect()` will run for every distinct value of `roomId`. Your Effect keeps the chat connection synchronized to the currently selected room.
 
-## Extracting non-reactive logic out of Effects {/*extracting-non-reactive-logic-out-of-effects*/}
+## Extracting non-reactive logic out of Effects
 
 Things get more tricky when you want to mix reactive logic with non-reactive logic.
 
@@ -241,7 +241,7 @@ function ChatRoom({ roomId, theme }) {
     // ...
 ```
 
-However, `theme` is a reactive value (it can change as a result of re-rendering), and [every reactive value read by an Effect must be declared as its dependency.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Now you have to specify `theme` as a dependency of your Effect:
+However, `theme` is a reactive value (it can change as a result of re-rendering), and [every reactive value read by an Effect must be declared as its dependency.](lifecycle-of-reactive-effects.md#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Now you have to specify `theme` as a dependency of your Effect:
 
 ```js {5,11}
 function ChatRoom({ roomId, theme }) {
@@ -398,9 +398,9 @@ In other words, you *don't* want this line to be reactive, even though it is ins
 
 You need a way to separate this non-reactive logic from the reactive Effect around it.
 
-### Declaring an Effect Event {/*declaring-an-effect-event*/}
+### Declaring an Effect Event
 
-Use a special Hook called [`useEffectEvent`](/reference/react/useEffectEvent) to extract this non-reactive logic out of your Effect:
+Use a special Hook called [`useEffectEvent`](../reference/react/useEffectEvent.md) to extract this non-reactive logic out of your Effect:
 
 ```js {1,4-6}
 import { useEffect, useEffectEvent } from 'react';
@@ -570,7 +570,7 @@ label { display: block; margin-top: 10px; }
 
 You can think of Effect Events as being very similar to event handlers. The main difference is that event handlers run in response to user interactions, whereas Effect Events are triggered by you from Effects. Effect Events let you "break the chain" between the reactivity of Effects and code that should not be reactive.
 
-### Reading latest props and state with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
+### Reading latest props and state with Effect Events
 
 Effect Events let you fix many patterns where you might be tempted to suppress the dependency linter.
 
@@ -695,7 +695,7 @@ Here, `url` inside `onVisit` corresponds to the *latest* `url` (which could have
 
 <DeepDive>
 
-#### Is it okay to suppress the dependency linter instead? {/*is-it-okay-to-suppress-the-dependency-linter-instead*/}
+#### Is it okay to suppress the dependency linter instead?
 
 In the existing codebases, you may sometimes see the lint rule suppressed like this:
 
@@ -844,11 +844,11 @@ body {
 
 This doesn't mean that `useEffectEvent` is *always* the correct solution. You should only apply it to the lines of code that you don't want to be reactive. In the above sandbox, you didn't want the Effect's code to be reactive with regards to `canMove`. That's why it made sense to extract an Effect Event.
 
-Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for other correct alternatives to suppressing the linter.
+Read [Removing Effect Dependencies](removing-effect-dependencies.md) for other correct alternatives to suppressing the linter.
 
 </DeepDive>
 
-### Limitations of Effect Events {/*limitations-of-effect-events*/}
+### Limitations of Effect Events
 
 Effect Events are very limited in how you can use them:
 
@@ -925,7 +925,7 @@ Effect Events are non-reactive "pieces" of your Effect code. They should be next
 
 <Challenges>
 
-#### Fix a variable that doesn't update {/*fix-a-variable-that-doesnt-update*/}
+#### Fix a variable that doesn't update
 
 This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable. You can control the `increment` variable with the plus and minus buttons.
 
@@ -1040,7 +1040,7 @@ Now, when `increment` changes, React will re-synchronize your Effect, which will
 
 </Solution>
 
-#### Fix a freezing counter {/*fix-a-freezing-counter*/}
+#### Fix a freezing counter
 
 This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable, which you can control it with the plus and minus buttons. For example, try pressing the plus button nine times, and notice that the `count` now increases each second by ten rather than by one.
 
@@ -1161,7 +1161,7 @@ Since `onTick` is an Effect Event, the code inside it isn't reactive. The change
 
 </Solution>
 
-#### Fix a non-adjustable delay {/*fix-a-non-adjustable-delay*/}
+#### Fix a non-adjustable delay
 
 In this example, you can customize the interval delay. It's stored in a `delay` state variable which is updated by two buttons. However, even if you press the "plus 100 ms" button until the `delay` is 1000 milliseconds (that is, a second), you'll notice that the timer still increments very fast (every 100 ms). It's as if your changes to the `delay` are ignored. Find and fix the bug.
 
@@ -1308,7 +1308,7 @@ In general, you should be suspicious of functions like `onMount` that focus on t
 
 </Solution>
 
-#### Fix a delayed notification {/*fix-a-delayed-notification*/}
+#### Fix a delayed notification
 
 When you join a chat room, this component shows a notification. However, it doesn't show the notification immediately. Instead, the notification is artificially delayed by two seconds so that the user has a chance to look around the UI.
 

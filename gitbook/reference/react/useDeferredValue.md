@@ -16,9 +16,9 @@ const deferredValue = useDeferredValue(value)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `useDeferredValue(value, initialValue?)` {/*usedeferredvalue*/}
+### `useDeferredValue(value, initialValue?)`
 
 Call `useDeferredValue` at the top level of your component to get a deferred version of that value.
 
@@ -34,17 +34,17 @@ function SearchPage() {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `value`: The value you want to defer. It can have any type.
 * **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
 
 
-#### Returns {/*returns*/}
+#### Returns
 
 - `currentValue`: During the initial render, the returned deferred value will be the `initialValue`, or the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 - When an update is inside a Transition, `useDeferredValue` always returns the new `value` and does not spawn a deferred render, since the update is already deferred.
 
@@ -52,7 +52,7 @@ function SearchPage() {
 
 - When `useDeferredValue` receives a different value (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), in addition to the current render (when it still uses the previous value), it schedules a re-render in the background with the new value. The background re-render is interruptible: if there's another update to the `value`, React will restart the background re-render from scratch. For example, if the user is typing into an input faster than a chart receiving its deferred value can re-render, the chart will only re-render after the user stops typing.
 
-- `useDeferredValue` is integrated with [`<Suspense>`.](/reference/react/Suspense) If the background update caused by a new value suspends the UI, the user will not see the fallback. They will see the old deferred value until the data loads.
+- `useDeferredValue` is integrated with [`<Suspense>`.](Suspense.md) If the background update caused by a new value suspends the UI, the user will not see the fallback. They will see the old deferred value until the data loads.
 
 - `useDeferredValue` does not by itself prevent extra network requests.
 
@@ -62,9 +62,9 @@ function SearchPage() {
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Showing stale content while fresh content is loading {/*showing-stale-content-while-fresh-content-is-loading*/}
+### Showing stale content while fresh content is loading
 
 Call `useDeferredValue` at the top level of your component to defer updating some part of your UI.
 
@@ -86,14 +86,14 @@ During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behin
 
 <Note>
 
-This example assumes you use a data source that [activates a Suspense boundary](/reference/react/Suspense#what-activates-a-suspense-boundary), such as a Promise you read with [`use`](/reference/react/use).
+This example assumes you use a data source that [activates a Suspense boundary](Suspense.md#what-activates-a-suspense-boundary), such as a Promise you read with [`use`](use.md).
 
-[Learn more about Suspense.](/reference/react/Suspense)
+[Learn more about Suspense.](Suspense.md)
 
 </Note>
 
 
-In this example, the `SearchResults` component [suspends](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading) while fetching the search results. Try typing `"a"`, waiting for the results, and then editing it to `"ab"`. The results for `"a"` get replaced by the loading fallback.
+In this example, the `SearchResults` component [suspends](Suspense.md#displaying-a-fallback-while-content-is-loading) while fetching the search results. Try typing `"a"`, waiting for the results, and then editing it to `"ab"`. The results for `"a"` get replaced by the loading fallback.
 
 <Sandpack>
 
@@ -412,7 +412,7 @@ input { margin: 10px; }
 
 <DeepDive>
 
-#### How does deferring a value work under the hood? {/*how-does-deferring-a-value-work-under-the-hood*/}
+#### How does deferring a value work under the hood?
 
 You can think of it as happening in two steps:
 
@@ -428,7 +428,7 @@ Note that there is still a network request per each keystroke. What's being defe
 
 ---
 
-### Indicating that the content is stale {/*indicating-that-the-content-is-stale*/}
+### Indicating that the content is stale
 
 In the example above, there is no indication that the result list for the latest query is still loading. This can be confusing to the user if the new results take a while to load. To make it more obvious to the user that the result list does not match the latest query, you can add a visual indication when the stale result list is displayed:
 
@@ -596,7 +596,7 @@ input { margin: 10px; }
 
 ---
 
-### Deferring re-rendering for a part of the UI {/*deferring-re-rendering-for-a-part-of-the-ui*/}
+### Deferring re-rendering for a part of the UI
 
 You can also apply `useDeferredValue` as a performance optimization. It is useful when a part of your UI is slow to re-render, there's no easy way to optimize it, and you want to prevent it from blocking the rest of the UI.
 
@@ -614,7 +614,7 @@ function App() {
 }
 ```
 
-First, optimize `SlowList` to skip re-rendering when its props are the same. To do this, [wrap it in `memo`:](/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
+First, optimize `SlowList` to skip re-rendering when its props are the same. To do this, [wrap it in `memo`:](memo.md#skipping-re-rendering-when-props-are-unchanged)
 
 ```js {1,3}
 const SlowList = memo(function SlowList({ text }) {
@@ -643,7 +643,7 @@ This does not make re-rendering of the `SlowList` faster. However, it tells Reac
 
 <Recipes titleText="The difference between useDeferredValue and unoptimized re-rendering" titleId="examples">
 
-#### Deferred re-rendering of the list {/*deferred-re-rendering-of-the-list*/}
+#### Deferred re-rendering of the list
 
 In this example, each item in the `SlowList` component is **artificially slowed down** so that you can see how `useDeferredValue` lets you keep the input responsive. Type into the input and notice that typing feels snappy while the list "lags behind" it.
 
@@ -721,7 +721,7 @@ export default SlowList;
 
 <Solution />
 
-#### Unoptimized re-rendering of the list {/*unoptimized-re-rendering-of-the-list*/}
+#### Unoptimized re-rendering of the list
 
 In this example, each item in the `SlowList` component is **artificially slowed down**, but there is no `useDeferredValue`.
 
@@ -804,13 +804,13 @@ export default SlowList;
 
 <Pitfall>
 
-This optimization requires `SlowList` to be wrapped in [`memo`.](/reference/react/memo) This is because whenever the `text` changes, React needs to be able to re-render the parent component quickly. During that re-render, `deferredText` still has its previous value, so `SlowList` is able to skip re-rendering (its props have not changed). Without [`memo`,](/reference/react/memo) it would have to re-render anyway, defeating the point of the optimization.
+This optimization requires `SlowList` to be wrapped in [`memo`.](memo.md) This is because whenever the `text` changes, React needs to be able to re-render the parent component quickly. During that re-render, `deferredText` still has its previous value, so `SlowList` is able to skip re-rendering (its props have not changed). Without [`memo`,](memo.md) it would have to re-render anyway, defeating the point of the optimization.
 
 </Pitfall>
 
 <DeepDive>
 
-#### How is deferring a value different from debouncing and throttling? {/*how-is-deferring-a-value-different-from-debouncing-and-throttling*/}
+#### How is deferring a value different from debouncing and throttling?
 
 There are two common optimization techniques you might have used before in this scenario:
 

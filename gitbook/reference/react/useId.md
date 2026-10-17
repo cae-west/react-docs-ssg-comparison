@@ -16,9 +16,9 @@ const id = useId()
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `useId()` {/*useid*/}
+### `useId()`
 
 Call `useId` at the top level of your component to generate a unique ID:
 
@@ -32,35 +32,35 @@ function PasswordField() {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 `useId` does not take any parameters.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `useId` returns a unique ID string associated with this particular `useId` call in this particular component.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
 
-* `useId` **should not be used to generate cache keys** for [use()](/reference/react/use). The ID is stable when a component is mounted but may change during rendering. Cache keys should be generated from your data.
+* `useId` **should not be used to generate cache keys** for [use()](use.md). The ID is stable when a component is mounted but may change during rendering. Cache keys should be generated from your data.
 
-* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](../../learn/rendering-lists.md#where-to-get-your-key)
 
-* `useId` currently cannot be used in [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
+* `useId` currently cannot be used in [async Server Components](../rsc/server-components.md#async-components-with-server-components).
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
 <Pitfall>
 
-**Do not call `useId` to generate keys in a list.** [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+**Do not call `useId` to generate keys in a list.** [Keys should be generated from your data.](../../learn/rendering-lists.md#where-to-get-your-key)
 
 </Pitfall>
 
-### Generating unique IDs for accessibility attributes {/*generating-unique-ids-for-accessibility-attributes*/}
+### Generating unique IDs for accessibility attributes
 
 Call `useId` at the top level of your component to generate a unique ID:
 
@@ -171,17 +171,17 @@ input { margin: 5px; }
 
 <Pitfall>
 
-With [server rendering](/reference/react-dom/server), **`useId` requires an identical component tree on the server and the client**. If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
+With [server rendering](../react-dom/server/index.md), **`useId` requires an identical component tree on the server and the client**. If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Why is useId better than an incrementing counter? {/*why-is-useid-better-than-an-incrementing-counter*/}
+#### Why is useId better than an incrementing counter?
 
 You might be wondering why `useId` is better than incrementing a global variable like `nextId++`.
 
-The primary benefit of `useId` is that React ensures that it works with [server rendering.](/reference/react-dom/server) During server rendering, your components generate HTML output. Later, on the client, [hydration](/reference/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
+The primary benefit of `useId` is that React ensures that it works with [server rendering.](../react-dom/server/index.md) During server rendering, your components generate HTML output. Later, on the client, [hydration](../react-dom/client/hydrateRoot.md) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
 
 This is very difficult to guarantee with an incrementing counter because the order in which the Client Components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
 
@@ -191,7 +191,7 @@ Inside React, `useId` is generated from the "parent path" of the calling compone
 
 ---
 
-### Generating IDs for several related elements {/*generating-ids-for-several-related-elements*/}
+### Generating IDs for several related elements
 
 If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them:
 
@@ -224,9 +224,9 @@ This lets you avoid calling `useId` for every single element that needs a unique
 
 ---
 
-### Specifying a shared prefix for all generated IDs {/*specifying-a-shared-prefix-for-all-generated-ids*/}
+### Specifying a shared prefix for all generated IDs
 
-If you render multiple independent React applications on a single page, pass `identifierPrefix` as an option to your [`createRoot`](/reference/react-dom/client/createRoot#parameters) or [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) calls. This ensures that the IDs generated by the two different apps never clash because every identifier generated with `useId` will start with the distinct prefix you've specified.
+If you render multiple independent React applications on a single page, pass `identifierPrefix` as an option to your [`createRoot`](../react-dom/client/createRoot.md#parameters) or [`hydrateRoot`](../react-dom/client/hydrateRoot.md) calls. This ensures that the IDs generated by the two different apps never clash because every identifier generated with `useId` will start with the distinct prefix you've specified.
 
 <Sandpack>
 
@@ -309,9 +309,9 @@ input { margin: 5px; }
 
 ---
 
-### Using the same ID prefix on the client and the server {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
+### Using the same ID prefix on the client and the server
 
-If you [render multiple independent React apps on the same page](#specifying-a-shared-prefix-for-all-generated-ids), and some of these apps are server-rendered, make sure that the `identifierPrefix` you pass to the [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) call on the client side is the same as the `identifierPrefix` you pass to the [server APIs](/reference/react-dom/server) such as [`renderToPipeableStream`.](/reference/react-dom/server/renderToPipeableStream)
+If you [render multiple independent React apps on the same page](#specifying-a-shared-prefix-for-all-generated-ids), and some of these apps are server-rendered, make sure that the `identifierPrefix` you pass to the [`hydrateRoot`](../react-dom/client/hydrateRoot.md) call on the client side is the same as the `identifierPrefix` you pass to the [server APIs](../react-dom/server/index.md) such as [`renderToPipeableStream`.](../react-dom/server/renderToPipeableStream.md)
 
 ```js
 // Server

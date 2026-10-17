@@ -18,9 +18,9 @@ title: <Activity>
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<Activity>` {/*activity*/}
+### `<Activity>`
 
 You can use Activity to hide part of your application:
 
@@ -40,21 +40,21 @@ In this way, Activity can be thought of as a mechanism for rendering "background
 
 [See more examples below.](#usage)
 
-#### Props {/*props*/}
+#### Props
 
 * `children`: The UI you intend to show and hide.
 * `mode`: A string value of either `'visible'` or `'hidden'`. If omitted, defaults to `'visible'`.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
-- If an Activity is rendered inside of a [ViewTransition](/reference/react/ViewTransition), and it becomes visible as a result of an update caused by [startTransition](/reference/react/startTransition), it will activate the ViewTransition's `enter` animation. If it becomes hidden, it will activate its `exit` animation.
+- If an Activity is rendered inside of a [ViewTransition](ViewTransition.md), and it becomes visible as a result of an update caused by [startTransition](startTransition.md), it will activate the ViewTransition's `enter` animation. If it becomes hidden, it will activate its `exit` animation.
 - A *hidden* Activity that just renders text will not render anything rather than rendering hidden text, because there’s no corresponding DOM element to apply visibility changes to. For example, `<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` will not produce any output in the DOM for `const ComponentThatJustReturnsText = () => "Hello, World!"`. `<Activity mode="visible"><ComponentThatJustReturnsText /></Activity>` will render visible text.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Restoring the state of hidden components {/*restoring-the-state-of-hidden-components*/}
+### Restoring the state of hidden components
 
 In React, when you want to conditionally show or hide a component, you typically mount or unmount it based on that condition:
 
@@ -279,7 +279,7 @@ Our sidebar's internal state is now restored, without any changes to its impleme
 
 ---
 
-### Restoring the DOM of hidden components {/*restoring-the-dom-of-hidden-components*/}
+### Restoring the DOM of hidden components
 
 Since Activity boundaries hide their children using `display: none`, their children's DOM is also preserved when hidden. This makes them great for maintaining ephemeral state in parts of the UI that the user is likely to interact with again.
 
@@ -465,7 +465,7 @@ Again, the Activity boundary let us preserve the Contact tab's internal state wi
 
 ---
 
-### Pre-rendering content that's likely to become visible {/*pre-rendering-content-thats-likely-to-become-visible*/}
+### Pre-rendering content that's likely to become visible
 
 So far, we've seen how Activity can hide some content that the user has interacted with, without discarding that content's ephemeral state.
 
@@ -755,14 +755,14 @@ Pre-rendering components with hidden Activity boundaries is a powerful way to re
 
 <Note>
 
-Only data read from a source that [activates a Suspense boundary](/reference/react/Suspense#what-activates-a-suspense-boundary), such as a Promise read with [`use`](/reference/react/use), is fetched during pre-rendering. Activity does not detect data fetched inside an Effect.
+Only data read from a source that [activates a Suspense boundary](Suspense.md#what-activates-a-suspense-boundary), such as a Promise read with [`use`](use.md), is fetched during pre-rendering. Activity does not detect data fetched inside an Effect.
 
 </Note>
 
 ---
 
 
-### Speeding up interactions during page load {/*speeding-up-interactions-during-page-load*/}
+### Speeding up interactions during page load
 
 React includes an under-the-hood performance optimization called Selective Hydration. It works by hydrating your app's initial HTML _in chunks_, enabling some components to become interactive even if other components on the page haven't loaded their code or data yet.
 
@@ -898,9 +898,9 @@ function Page() {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### My hidden components have unwanted side effects {/*my-hidden-components-have-unwanted-side-effects*/}
+### My hidden components have unwanted side effects
 
 An Activity boundary hides its content by setting `display: none` on its children and cleaning up any of their Effects. So, most well-behaved React components that properly clean up their side effects will already be robust to being hidden by Activity.
 
@@ -1228,15 +1228,15 @@ The most common cases of this will be from the following tags:
 
 Typically, though, most of your React components should already be robust to being hidden by an Activity boundary. And conceptually, you should think of "hidden" Activities as being unmounted.
 
-To eagerly discover other Effects that don't have proper cleanup, which is important not only for Activity boundaries but for many other behaviors in React, we recommend using [`<StrictMode>`](/reference/react/StrictMode).
+To eagerly discover other Effects that don't have proper cleanup, which is important not only for Activity boundaries but for many other behaviors in React, we recommend using [`<StrictMode>`](StrictMode.md).
 
 ---
 
 
-### My hidden components have Effects that aren't running {/*my-hidden-components-have-effects-that-arent-running*/}
+### My hidden components have Effects that aren't running
 
 When an `<Activity>` is "hidden", all its children's Effects are cleaned up. Conceptually, the children are unmounted, but React saves their state for later. This is a feature of Activity because it means subscriptions won't be active for hidden parts of the UI, reducing the amount of work needed for hidden content.
 
 If you're relying on an Effect mounting to clean up a component's side effects, refactor the Effect to do the work in the returned cleanup function instead.
 
-To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](/reference/react/StrictMode) which will eagerly perform Activity unmounts and mounts to catch any unexpected side-effects.
+To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](StrictMode.md) which will eagerly perform Activity unmounts and mounts to catch any unexpected side-effects.

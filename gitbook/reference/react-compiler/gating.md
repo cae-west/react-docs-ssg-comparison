@@ -21,13 +21,13 @@ The `gating` option enables conditional compilation, allowing you to control whe
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `gating` {/*gating*/}
+### `gating`
 
 Configures runtime feature flag gating for compiled functions.
 
-#### Type {/*type*/}
+#### Type
 
 ```
 {
@@ -36,16 +36,16 @@ Configures runtime feature flag gating for compiled functions.
 } | null
 ```
 
-#### Default value {/*default-value*/}
+#### Default value
 
 `null`
 
-#### Properties {/*properties*/}
+#### Properties
 
 - **`source`**: Module path to import the feature flag from
 - **`importSpecifierName`**: Name of the exported function to import
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 - The gating function must return a boolean
 - Both compiled and original versions increase bundle size
@@ -53,9 +53,9 @@ Configures runtime feature flag gating for compiled functions.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Basic feature flag setup {/*basic-setup*/}
+### Basic feature flag setup
 
 1. Create a feature flag module:
 
@@ -98,9 +98,9 @@ Note that the gating function is evaluated once at module time, so once the JS b
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### Feature flag not working {/*flag-not-working*/}
+### Feature flag not working
 
 Verify your flag module exports the correct function:
 
@@ -116,7 +116,7 @@ export function shouldUseCompiler() {
 }
 ```
 
-### Import errors {/*import-errors*/}
+### Import errors
 
 Ensure the source path is correct:
 

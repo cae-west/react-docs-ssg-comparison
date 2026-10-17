@@ -10,14 +10,14 @@ Components often need to change what's on the screen as a result of an interacti
 
 <YouWillLearn>
 
-* How to add a state variable with the [`useState`](/reference/react/useState) Hook
+* How to add a state variable with the [`useState`](../reference/react/useState.md) Hook
 * What pair of values the `useState` Hook returns
 * How to add more than one state variable
 * Why state is called local
 
 </YouWillLearn>
 
-## When a regular variable isn’t enough {/*when-a-regular-variable-isnt-enough*/}
+## When a regular variable isn’t enough
 
 Here's a component that renders a sculpture image. Clicking the "Next" button should show the next sculpture by changing the `index` to `1`, then `2`, and so on. However, this **won't work** (you can try it!):
 
@@ -161,12 +161,12 @@ To update a component with new data, two things need to happen:
 1. **Retain** the data between renders.
 2. **Trigger** React to render the component with new data (re-rendering).
 
-The [`useState`](/reference/react/useState) Hook provides those two things:
+The [`useState`](../reference/react/useState.md) Hook provides those two things:
 
 1. A **state variable** to retain the data between renders.
 2. A **state setter function** to update the variable and trigger React to render the component again.
 
-## Adding a state variable {/*adding-a-state-variable*/}
+## Adding a state variable
 
 To add a state variable, import `useState` from React at the top of the file:
 
@@ -331,23 +331,23 @@ button {
 
 </Sandpack>
 
-### Meet your first Hook {/*meet-your-first-hook*/}
+### Meet your first Hook
 
 In React, `useState`, as well as any other function starting with "`use`", is called a Hook.
 
-*Hooks* are special functions that are only available while React is [rendering](/learn/render-and-commit#step-1-trigger-a-render) (which we'll get into in more detail on the next page). They let you "hook into" different React features.
+*Hooks* are special functions that are only available while React is [rendering](render-and-commit.md#step-1-trigger-a-render) (which we'll get into in more detail on the next page). They let you "hook into" different React features.
 
 State is just one of those features, but you will meet the other Hooks later.
 
 <Pitfall>
 
-**Hooks—functions starting with `use`—can only be called at the top level of your components or [your own Hooks.](/learn/reusing-logic-with-custom-hooks)** You can't call Hooks inside conditions, loops, or other nested functions. Hooks are functions, but it's helpful to think of them as unconditional declarations about your component's needs. You "use" React features at the top of your component similar to how you "import" modules at the top of your file.
+**Hooks—functions starting with `use`—can only be called at the top level of your components or [your own Hooks.](reusing-logic-with-custom-hooks.md)** You can't call Hooks inside conditions, loops, or other nested functions. Hooks are functions, but it's helpful to think of them as unconditional declarations about your component's needs. You "use" React features at the top of your component similar to how you "import" modules at the top of your file.
 
 </Pitfall>
 
-### Anatomy of `useState` {/*anatomy-of-usestate*/}
+### Anatomy of `useState`
 
-When you call [`useState`](/reference/react/useState), you are telling React that you want this component to remember something:
+When you call [`useState`](../reference/react/useState.md), you are telling React that you want this component to remember something:
 
 ```js
 const [index, setIndex] = useState(0);
@@ -379,7 +379,7 @@ const [index, setIndex] = useState(0);
 3. **Your component's second render.** React still sees `useState(0)`, but because React *remembers* that you set `index` to `1`, it returns `[1, setIndex]` instead.
 4. And so on!
 
-## Giving a component multiple state variables {/*giving-a-component-multiple-state-variables*/}
+## Giving a component multiple state variables
 
 You can have as many state variables of as many types as you like in one component. This component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
 
@@ -520,11 +520,11 @@ button {
 
 </Sandpack>
 
-It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be easier to combine them into one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than state variable per field. Read [Choosing the State Structure](/learn/choosing-the-state-structure) for more tips.
+It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be easier to combine them into one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than state variable per field. Read [Choosing the State Structure](choosing-the-state-structure.md) for more tips.
 
 <DeepDive>
 
-#### How does React know which state to return? {/*how-does-react-know-which-state-to-return*/}
+#### How does React know which state to return?
 
 You might have noticed that the `useState` call does not receive any information about *which* state variable it refers to. There is no "identifier" that is passed to `useState`, so how does it know which of the state variables to return? Does it rely on some magic like parsing your functions? The answer is no.
 
@@ -728,7 +728,7 @@ You don't have to understand it to use React, but you might find this a helpful 
 
 </DeepDive>
 
-## State is isolated and private {/*state-is-isolated-and-private*/}
+## State is isolated and private
 
 State is local to a component instance on the screen. In other words, **if you render the same component twice, each copy will have completely isolated state!** Changing one of them will not affect the other.
 
@@ -895,7 +895,7 @@ This is what makes state different from regular variables that you might declare
 
 Also notice how the `Page` component doesn't "know" anything about the `Gallery` state or even whether it has any. Unlike props, **state is fully private to the component declaring it.** The parent component can't change it. This lets you add state to any component or remove it without impacting the rest of the components.
 
-What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child components and add it to their closest shared parent. The next few pages will focus on organizing state of a single component, but we will return to this topic in [Sharing State Between Components.](/learn/sharing-state-between-components)
+What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child components and add it to their closest shared parent. The next few pages will focus on organizing state of a single component, but we will return to this topic in [Sharing State Between Components.](sharing-state-between-components.md)
 
 <Recap>
 
@@ -913,7 +913,7 @@ What if you wanted both galleries to keep their states in sync? The right way to
 
 <Challenges>
 
-#### Complete the gallery {/*complete-the-gallery*/}
+#### Complete the gallery
 
 When you press "Next" on the last sculpture, the code crashes. Fix the logic to prevent the crash. You may do this by adding extra logic to event handler or by disabling the button when the action is not possible.
 
@@ -1223,7 +1223,7 @@ Notice how `hasPrev` and `hasNext` are used *both* for the returned JSX and insi
 
 </Solution>
 
-#### Fix stuck form inputs {/*fix-stuck-form-inputs*/}
+#### Fix stuck form inputs
 
 When you type into the input fields, nothing appears. It's like the input values are "stuck" with empty strings. The `value` of the first `<input>` is set to always match the `firstName` variable, and the `value` for the second `<input>` is set to always match the `lastName` variable. This is correct. Both inputs have `onChange` event handlers, which try to update the variables based on the latest user input (`e.target.value`). However, the variables don't seem to "remember" their values between re-renders. Fix this by using state variables instead.
 
@@ -1325,7 +1325,7 @@ h1 { margin-top: 10px; }
 
 </Solution>
 
-#### Fix a crash {/*fix-a-crash*/}
+#### Fix a crash
 
 Here is a small form that is supposed to let the user leave some feedback. When the feedback is submitted, it's supposed to display a thank-you message. However, it crashes with an error message saying "Rendered fewer hooks than expected". Can you spot the mistake and fix it?
 
@@ -1446,15 +1446,15 @@ export default function FeedbackForm() {
 
 Try moving the second `useState` call after the `if` condition and notice how this breaks it again.
 
-If your linter is [configured for React](/learn/editor-setup#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project.
+If your linter is [configured for React](editor-setup.md#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project.
 
 </Solution>
 
-#### Remove unnecessary state {/*remove-unnecessary-state*/}
+#### Remove unnecessary state
 
 When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason the first time it shows "Hello, !", and then "Hello, [name]!" with the previous input every time after.
 
-To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
+To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](state-as-a-snapshot.md) later.)
 
 Can you explain why this state variable was unnecessary?
 

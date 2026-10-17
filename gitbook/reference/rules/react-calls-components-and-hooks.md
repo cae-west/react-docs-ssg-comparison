@@ -10,10 +10,10 @@ React is responsible for rendering components and Hooks when necessary to optimi
 
 ---
 
-## Never call component functions directly {/*never-call-component-functions-directly*/}
+## Never call component functions directly
 Components should only be used in JSX. Don't call them as regular functions. React should call it.
 
-React must decide when your component function is called [during rendering](/reference/rules/components-and-hooks-must-be-pure#how-does-react-run-your-code). In React, you do this using JSX.
+React must decide when your component function is called [during rendering](components-and-hooks-must-be-pure.md#how-does-react-run-your-code). In React, you do this using JSX.
 
 ```js {2}
 function BlogPost() {
@@ -27,7 +27,7 @@ function BlogPost() {
 }
 ```
 
-If a component contains Hooks, it's easy to violate the [Rules of Hooks](/reference/rules/rules-of-hooks) when components are called directly in a loop or conditionally.
+If a component contains Hooks, it's easy to violate the [Rules of Hooks](rules-of-hooks.md) when components are called directly in a loop or conditionally.
 
 Letting React orchestrate rendering also allows a number of benefits:
 
@@ -39,7 +39,7 @@ Letting React orchestrate rendering also allows a number of benefits:
 
 ---
 
-## Never pass around Hooks as regular values {/*never-pass-around-hooks-as-regular-values*/}
+## Never pass around Hooks as regular values
 
 Hooks should only be called inside of components or Hooks. Never pass it around as a regular value.
 
@@ -47,7 +47,7 @@ Hooks allow you to augment a component with React features. They should always b
 
 Breaking this rule will cause React to not automatically optimize your component.
 
-### Don't dynamically mutate a Hook {/*dont-dynamically-mutate-a-hook*/}
+### Don't dynamically mutate a Hook
 
 Hooks should be as "static" as possible. This means you shouldn't dynamically mutate them. For example, this means you shouldn't write higher order Hooks:
 
@@ -70,7 +70,7 @@ function useDataWithLogging() {
 }
 ```
 
-### Don't dynamically use Hooks {/*dont-dynamically-use-hooks*/}
+### Don't dynamically use Hooks
 
 Hooks should also not be dynamically used: for example, instead of doing dependency injection in a component by passing a Hook as a value:
 
@@ -97,5 +97,5 @@ function useDataWithLogging() {
 }
 ```
 
-This way, `<Button />` is much easier to understand and debug. When Hooks are used in dynamic ways, it increases the complexity of your app greatly and inhibits local reasoning, making your team less productive in the long term. It also makes it easier to accidentally break the [Rules of Hooks](/reference/rules/rules-of-hooks) that Hooks should not be called conditionally. If you find yourself needing to mock components for tests, it's better to mock the server instead to respond with canned data. If possible, it's also usually more effective to test your app with end-to-end tests.
+This way, `<Button />` is much easier to understand and debug. When Hooks are used in dynamic ways, it increases the complexity of your app greatly and inhibits local reasoning, making your team less productive in the long term. It also makes it easier to accidentally break the [Rules of Hooks](rules-of-hooks.md) that Hooks should not be called conditionally. If you find yourself needing to mock components for tests, it's better to mock the server instead to respond with canned data. If possible, it's also usually more effective to test your app with end-to-end tests.
 

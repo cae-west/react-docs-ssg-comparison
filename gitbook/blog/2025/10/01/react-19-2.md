@@ -5,7 +5,7 @@ date: 2025/10/01
 description: React 19.2 adds new features like Activity, React Performance Tracks, useEffectEvent, and more.
 ---
 
-October 1, 2025 by [The React Team](/community/team)
+October 1, 2025 by [The React Team](../../../../community/team.md)
 
 ---
 
@@ -21,9 +21,9 @@ This is our third release in the last year, following React 19 in December and R
 
 ---
 
-## New React Features {/*new-react-features*/}
+## New React Features
 
-### `<Activity />` {/*activity*/}
+### `<Activity />`
 
 `<Activity>` lets you break your app into "activities" that can be controlled and prioritized.
 
@@ -50,11 +50,11 @@ You can use Activity to render hidden parts of the app that a user is likely to 
 
 In the future, we plan to add more modes to Activity for different use cases.
 
-For examples on how to use Activity, check out the [Activity docs](/reference/react/Activity).
+For examples on how to use Activity, check out the [Activity docs](../../../../reference/react/Activity.md).
 
 ---
 
-### `useEffectEvent` {/*use-effect-event*/}
+### `useEffectEvent`
 
 One common pattern with `useEffect` is to notify the app code about some kind of "events" from an external system. For example, when a chat room gets connected, you might want to display a notification:
 
@@ -102,25 +102,25 @@ Similar to DOM events, Effect Events always “see” the latest props and state
 
 <Note>
 
-#### When to use `useEffectEvent` {/*when-to-use-useeffectevent*/}
+#### When to use `useEffectEvent`
 
 You should use `useEffectEvent` for functions that are conceptually "events" that happen to be fired from an Effect instead of a user event (that's what makes it an "Effect Event"). You don't need to wrap everything in `useEffectEvent`, or to use it just to silence the lint error, as this can lead to bugs.
 
-For a deep dive on how to think about Event Effects, see: [Separating Events from Effects](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects).
+For a deep dive on how to think about Event Effects, see: [Separating Events from Effects](../../../../learn/separating-events-from-effects.md#extracting-non-reactive-logic-out-of-effects).
 
 </Note>
 
 ---
 
-### `cacheSignal` {/*cache-signal*/}
+### `cacheSignal`
 
 <RSC>
 
-`cacheSignal` is only for use with [React Server Components](/reference/rsc/server-components).
+`cacheSignal` is only for use with [React Server Components](../../../../reference/rsc/server-components.md).
 
 </RSC>
 
-`cacheSignal` allows you to know when the [`cache()`](/reference/react/cache) lifetime is over:
+`cacheSignal` allows you to know when the [`cache()`](../../../../reference/react/cache.md) lifetime is over:
 
 ```
 import {cache, cacheSignal} from 'react';
@@ -137,48 +137,48 @@ This allows you to clean up or abort work when the result will no longer be used
 - The render was aborted
 - The render has failed
 
-For more info, see the [`cacheSignal` docs](/reference/react/cacheSignal).
+For more info, see the [`cacheSignal` docs](../../../../reference/react/cacheSignal.md).
 
 ---
 
-### Performance Tracks {/*performance-tracks*/}
+### Performance Tracks
 
 React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to Chrome DevTools performance profiles to provide more information about the performance of your React app:
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <picture >
       <source srcset="/images/blog/react-labs-april-2025/perf_tracks.png" />
-      <img className="w-full light-image" src="/images/blog/react-labs-april-2025/perf_tracks.webp" />
+      <img className="w-full light-image" src="../../../../images/blog/react-labs-april-2025/perf_tracks.webp" />
   </picture>
   <picture >
       <source srcset="/images/blog/react-labs-april-2025/perf_tracks_dark.png" />
-      <img className="w-full dark-image" src="/images/blog/react-labs-april-2025/perf_tracks_dark.webp" />
+      <img className="w-full dark-image" src="../../../../images/blog/react-labs-april-2025/perf_tracks_dark.webp" />
   </picture>
 </div>
 
-The [React Performance Tracks docs](/reference/dev-tools/react-performance-tracks) explain everything included in the tracks, but here is a high-level overview.
+The [React Performance Tracks docs](../../../../reference/dev-tools/react-performance-tracks.md) explain everything included in the tracks, but here is a high-level overview.
 
-#### Scheduler ⚛ {/*scheduler-*/}
+#### Scheduler ⚛
 
 The Scheduler track shows what React is working on for different priorities such as "blocking" for user interactions, or "transition" for updates inside startTransition. Inside each track, you will see the type of work being performed such as the event that scheduled an update, and when the render for that update happened.
 
 We also show information such as when an update is blocked waiting for a different priority, or when React is waiting for paint before continuing. The Scheduler track helps you understand how React splits your code into different priorities, and the order it completed the work.
 
-See the [Scheduler track](/reference/dev-tools/react-performance-tracks#scheduler) docs to see everything included.
+See the [Scheduler track](../../../../reference/dev-tools/react-performance-tracks.md#scheduler) docs to see everything included.
 
-#### Components ⚛ {/*components-*/}
+#### Components ⚛
 
 The Components track shows the tree of components that React is working on either to render or run effects. Inside you'll see labels such as "Mount" for when children mount or effects are mounted, or "Blocked" for when rendering is blocked due to yielding to work outside React.
 
 The Components track helps you understand when components are rendered or run effects, and the time it takes to complete that work to help identify performance problems.
 
-See the [Components track docs](/reference/dev-tools/react-performance-tracks#components) for see everything included.
+See the [Components track docs](../../../../reference/dev-tools/react-performance-tracks.md#components) for see everything included.
 
 ---
 
-## New React DOM Features {/*new-react-dom-features*/}
+## New React DOM Features
 
-### Partial Pre-rendering {/*partial-pre-rendering*/}
+### Partial Pre-rendering
 
 In 19.2 we're adding a new capability to pre-render part of the app ahead of time, and resume rendering it later.
 
@@ -217,19 +217,19 @@ const { prelude } = await resumeAndPrerender(<App />, postponedState);
 
 For more info, see the docs for the new APIs:
 - `react-dom/server`
-  - [`resume`](/reference/react-dom/server/resume): for Web Streams.
-  - [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream) for Node Streams.
+  - [`resume`](../../../../reference/react-dom/server/resume.md): for Web Streams.
+  - [`resumeToPipeableStream`](../../../../reference/react-dom/server/resumeToPipeableStream.md) for Node Streams.
 - `react-dom/static`
-  - [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) for Web Streams.
-  - [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream) for Node Streams.
+  - [`resumeAndPrerender`](../../../../reference/react-dom/static/resumeAndPrerender.md) for Web Streams.
+  - [`resumeAndPrerenderToNodeStream`](../../../../reference/react-dom/static/resumeAndPrerenderToNodeStream.md) for Node Streams.
 
 Additionally, the prerender apis now return a `postpone` state to pass to the `resume` apis.
 
 ---
 
-## Notable Changes {/*notable-changes*/}
+## Notable Changes
 
-### Batching Suspense Boundaries for SSR {/*batching-suspense-boundaries-for-ssr*/}
+### Batching Suspense Boundaries for SSR
 
 We fixed a behavioral bug where Suspense boundaries would reveal differently depending on if they were rendered on the client or when streaming from server-side rendering.
 
@@ -259,27 +259,27 @@ For example, if the total page load time is approaching 2.5s (which is the time 
 
 ---
 
-### SSR: Web Streams support for Node {/*ssr-web-streams-support-for-node*/}
+### SSR: Web Streams support for Node
 
 React 19.2 adds support for Web Streams for streaming SSR in Node.js:
-- [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) is now available for Node.js
-- [`prerender`](/reference/react-dom/static/prerender) is now available for Node.js
+- [`renderToReadableStream`](../../../../reference/react-dom/server/renderToReadableStream.md) is now available for Node.js
+- [`prerender`](../../../../reference/react-dom/static/prerender.md) is now available for Node.js
 
 As well as the new `resume` APIs:
-- [`resume`](/reference/react-dom/server/resume) is available for Node.js.
-- [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) is available for Node.js.
+- [`resume`](../../../../reference/react-dom/server/resume.md) is available for Node.js.
+- [`resumeAndPrerender`](../../../../reference/react-dom/static/resumeAndPrerender.md) is available for Node.js.
 
 
 <Pitfall>
 
-#### Prefer Node Streams for server-side rendering in Node.js {/*prefer-node-streams-for-server-side-rendering-in-nodejs*/}
+#### Prefer Node Streams for server-side rendering in Node.js
 
 In Node.js environments, we still highly recommend using the Node Streams APIs:
 
-- [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream)
-- [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream)
-- [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream)
-- [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream)
+- [`renderToPipeableStream`](../../../../reference/react-dom/server/renderToPipeableStream.md)
+- [`resumeToPipeableStream`](../../../../reference/react-dom/server/resumeToPipeableStream.md)
+- [`prerenderToNodeStream`](../../../../reference/react-dom/static/prerenderToNodeStream.md)
+- [`resumeAndPrerenderToNodeStream`](../../../../reference/react-dom/static/resumeAndPrerenderToNodeStream.md)
 
 This is because Node Streams are much faster than Web Streams in Node, and Web Streams do not support compression by default, leading to users accidentally missing the benefits of streaming.
 
@@ -287,7 +287,7 @@ This is because Node Streams are much faster than Web Streams in Node, and Web S
 
 ---
 
-### `eslint-plugin-react-hooks` v6 {/*eslint-plugin-react-hooks*/}
+### `eslint-plugin-react-hooks` v6
 
 We also published `eslint-plugin-react-hooks@latest` with flat config by default in the `recommended` preset, and opt-in for new React Compiler powered rules.
 
@@ -298,13 +298,13 @@ To continue using the legacy config, you can change to `recommended-legacy`:
 + extends: ['plugin:react-hooks/recommended-legacy']
 ```
 
-For a full list of compiler enabled rules, [check out the linter docs](/reference/eslint-plugin-react-hooks#recommended).
+For a full list of compiler enabled rules, [check out the linter docs](../../../../reference/eslint-plugin-react-hooks/index.md#recommended-rules).
 
 Check out the `eslint-plugin-react-hooks` [changelog for a full list of changes](https://github.com/react/react/blob/main/packages/eslint-plugin-react-hooks/CHANGELOG.md#610).
 
 ---
 
-### Update the default `useId` prefix {/*update-the-default-useid-prefix*/}
+### Update the default `useId` prefix
 
 In 19.2, we're updating the default `useId` prefix from `:r:` (19.0.0) or `«r»` (19.1.0) to `_r_`.
 
@@ -312,7 +312,7 @@ The original intent of using a special character that was not valid for CSS sele
 
 ---
 
-## Changelog {/*changelog*/}
+## Changelog
 
 Other notable changes
 - `react-dom`: Allow nonce to be used on hoistable styles [#32461](https://github.com/react/react/pull/32461)

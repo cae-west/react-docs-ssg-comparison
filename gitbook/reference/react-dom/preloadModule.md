@@ -4,7 +4,7 @@ title: preloadModule
 
 <Note>
 
-[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+[React-based frameworks](../../learn/creating-a-react-app.md) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
 
 </Note>
 
@@ -22,9 +22,9 @@ preloadModule("https://example.com/module.js", {as: "script"});
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `preloadModule(href, options)` {/*preloadmodule*/}
+### `preloadModule(href, options)`
 
 To preload an ESM module, call the `preloadModule` function from `react-dom`.
 
@@ -42,7 +42,7 @@ function AppRoot() {
 
 The `preloadModule` function provides the browser with a hint that it should start downloading the given module, which can save time.
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `href`: a string. The URL of the module you want to download.
 * `options`: an object. It contains the following properties:
@@ -52,11 +52,11 @@ The `preloadModule` function provides the browser with a hint that it should sta
   *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
 
 
-#### Returns {/*returns*/}
+#### Returns
 
 `preloadModule` returns nothing.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * Multiple calls to `preloadModule` with the same `href` have the same effect as a single call.
 * In the browser, you can call `preloadModule` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
@@ -64,9 +64,9 @@ The `preloadModule` function provides the browser with a hint that it should sta
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Preloading when rendering {/*preloading-when-rendering*/}
+### Preloading when rendering
 
 Call `preloadModule` when rendering a component if you know that it or its children will use a specific module.
 
@@ -79,9 +79,9 @@ function AppRoot() {
 }
 ```
 
-If you want the browser to start executing the module immediately (rather than just downloading it), use [`preinitModule`](/reference/react-dom/preinitModule) instead. If you want to load a script that isn't an ESM module, use [`preload`](/reference/react-dom/preload).
+If you want the browser to start executing the module immediately (rather than just downloading it), use [`preinitModule`](preinitModule.md) instead. If you want to load a script that isn't an ESM module, use [`preload`](preload.md).
 
-### Preloading in an event handler {/*preloading-in-an-event-handler*/}
+### Preloading in an event handler
 
 Call `preloadModule` in an event handler before transitioning to a page or state where the module will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.
 

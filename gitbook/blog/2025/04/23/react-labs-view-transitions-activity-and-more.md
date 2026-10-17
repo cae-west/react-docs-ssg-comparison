@@ -30,7 +30,7 @@ We're also sharing updates on new features currently in development:
 
 ---
 
-# New Experimental Features {/*new-experimental-features*/}
+# New Experimental Features
 
 <Note>
 
@@ -49,11 +49,11 @@ You can try them by upgrading React packages to the most recent experimental ver
 
 Read on to learn how to use these features in your app, or check out the newly published docs:
 
-- [`<ViewTransition>`](/reference/react/ViewTransition): A component that lets you activate an animation for a Transition.
-- [`addTransitionType`](/reference/react/addTransitionType): A function that allows you to specify the cause of a Transition.
-- [`<Activity>`](/reference/react/Activity): A component that lets you hide and show parts of the UI.
+- [`<ViewTransition>`](../../../../reference/react/ViewTransition.md): A component that lets you activate an animation for a Transition.
+- [`addTransitionType`](../../../../reference/react/addTransitionType.md): A function that allows you to specify the cause of a Transition.
+- [`<Activity>`](../../../../reference/react/Activity.md): A component that lets you hide and show parts of the UI.
 
-## View Transitions {/*view-transitions*/}
+## View Transitions
 
 React View Transitions are a new experimental feature that makes it easier to add animations to UI transitions in your app. Under-the-hood, these animations use the new [`startViewTransition`](https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition) API available in most modern browsers.
 
@@ -97,9 +97,9 @@ By default, these animations use the [default CSS animations for View Transition
 }
 ```
 
-When the DOM updates due to an animation trigger&mdash;like `startTransition`, `useDeferredValue`, or a `Suspense` fallback switching to content&mdash;React will use [declarative heuristics](/reference/react/ViewTransition#viewtransition) to automatically determine which `<ViewTransition>` components to activate for the animation. The browser will then run the animation that's defined in CSS.
+When the DOM updates due to an animation trigger&mdash;like `startTransition`, `useDeferredValue`, or a `Suspense` fallback switching to content&mdash;React will use [declarative heuristics](../../../../reference/react/ViewTransition.md#viewtransition) to automatically determine which `<ViewTransition>` components to activate for the animation. The browser will then run the animation that's defined in CSS.
 
-If you're familiar with the browser's View Transition API and want to know how React supports it, check out [How does `<ViewTransition>` Work](/reference/react/ViewTransition#how-does-viewtransition-work) in the docs.
+If you're familiar with the browser's View Transition API and want to know how React supports it, check out [How does `<ViewTransition>` Work](../../../../reference/react/ViewTransition.md#how-does-viewtransition-work) in the docs.
 
 In this post, let's take a look at a few examples of how to use View Transitions.
 
@@ -1262,7 +1262,7 @@ root.render(
 
 <Note>
 
-#### View Transitions do not replace CSS and JS driven animations {/*view-transitions-do-not-replace-css-and-js-driven-animations*/}
+#### View Transitions do not replace CSS and JS driven animations
 
 View Transitions are meant to be used for UI transitions such as navigation, expanding, opening, or re-ordering. They are not meant to replace all the animations in your app.
 
@@ -1270,9 +1270,9 @@ In our example app above, notice that there are already animations when you clic
 
 </Note>
 
-### Animating navigations {/*animating-navigations*/}
+### Animating navigations
 
-Our app includes a Suspense-enabled router, with [page transitions already marked as Transitions](/reference/react/useTransition#building-a-suspense-enabled-router), which means navigations are performed with `startTransition`:
+Our app includes a Suspense-enabled router, with [page transitions already marked as Transitions](../../../../reference/react/useTransition.md#building-a-suspense-enabled-router), which means navigations are performed with `startTransition`:
 
 ```js
 function navigate(url) {
@@ -2459,11 +2459,11 @@ root.render(
 
 Since our router already updates the route using `startTransition`, this one line change to add `<ViewTransition>` activates with the default cross-fade animation.
 
-If you're curious how this works, see the docs for [How does `<ViewTransition>` work?](/reference/react/ViewTransition#how-does-viewtransition-work)
+If you're curious how this works, see the docs for [How does `<ViewTransition>` work?](../../../../reference/react/ViewTransition.md#how-does-viewtransition-work)
 
 <Note>
 
-#### Opting out of `<ViewTransition>` animations {/*opting-out-of-viewtransition-animations*/}
+#### Opting out of `<ViewTransition>` animations
 
 In this example, we're wrapping the root of the app in `<ViewTransition>` for simplicity, but this means that all transitions in the app will be animated, which can lead to unexpected animations.
 
@@ -2480,11 +2480,11 @@ In practice, navigations should be done via "enter" and "exit" props, or by usin
 
 </Note>
 
-### Customizing animations {/*customizing-animations*/}
+### Customizing animations
 
 By default, `<ViewTransition>` includes the default cross-fade from the browser.
 
-To customize animations, you can provide props to the `<ViewTransition>` component to specify which animations to use, based on [how the `<ViewTransition>` activates](/reference/react/ViewTransition#props).
+To customize animations, you can provide props to the `<ViewTransition>` component to specify which animations to use, based on [how the `<ViewTransition>` activates](../../../../reference/react/ViewTransition.md#props).
 
 For example, we can slow down the `default` cross fade animation:
 
@@ -2494,7 +2494,7 @@ For example, we can slow down the `default` cross fade animation:
 </ViewTransition>
 ```
 
-And define `slow-fade` in CSS using [view transition classes](/reference/react/ViewTransition#view-transition-class):
+And define `slow-fade` in CSS using [view transition classes](../../../../reference/react/ViewTransition.md#view-transition-class):
 
 ```css
 ::view-transition-old(.slow-fade) {
@@ -3685,9 +3685,9 @@ root.render(
 
 </Sandpack>
 
-See [Styling View Transitions](/reference/react/ViewTransition#styling-view-transitions) for a full guide on styling `<ViewTransition>`.
+See [Styling View Transitions](../../../../reference/react/ViewTransition.md#styling-view-transitions) for a full guide on styling `<ViewTransition>`.
 
-### Shared Element Transitions {/*shared-element-transitions*/}
+### Shared Element Transitions
 
 When two pages include the same element, often you want to animate it from one page to the next.
 
@@ -4894,11 +4894,11 @@ root.render(
 
 </Sandpack>
 
-By default, React automatically generates a unique `name` for each element activated for a transition (see [How does `<ViewTransition>` work](/reference/react/ViewTransition#how-does-viewtransition-work)). When React sees a transition where a `<ViewTransition>` with a `name` is removed and a new `<ViewTransition>` with the same `name` is added, it will activate a shared element transition.
+By default, React automatically generates a unique `name` for each element activated for a transition (see [How does `<ViewTransition>` work](../../../../reference/react/ViewTransition.md#how-does-viewtransition-work)). When React sees a transition where a `<ViewTransition>` with a `name` is removed and a new `<ViewTransition>` with the same `name` is added, it will activate a shared element transition.
 
-For more info, see the docs for [Animating a Shared Element](/reference/react/ViewTransition#animating-a-shared-element).
+For more info, see the docs for [Animating a Shared Element](../../../../reference/react/ViewTransition.md#animating-a-shared-element).
 
-### Animating based on cause {/*animating-based-on-cause*/}
+### Animating based on cause
 
 Sometimes, you may want elements to animate differently based on how it was triggered. For this use case, we've added a new API called `addTransitionType` to specify the cause of a transition:
 
@@ -6210,7 +6210,7 @@ root.render(
 
 </Sandpack>
 
-### Animating Suspense Boundaries {/*animating-suspense-boundaries*/}
+### Animating Suspense Boundaries
 
 Suspense will also activate View Transitions.
 
@@ -8830,7 +8830,7 @@ root.render(
 </Sandpack>
 
 
-### Animating Lists {/*animating-lists*/}
+### Animating Lists
 
 You can also use `<ViewTransition>` to animate lists of items as they re-order, like in a searchable list of items:
 
@@ -10170,7 +10170,7 @@ root.render(
 
 </Sandpack>
 
-### Final result {/*final-result*/}
+### Final result
 
 By adding a few `<ViewTransition>` components and a few lines of CSS, we were able to add all the animations above into the final result.
 
@@ -11456,23 +11456,23 @@ root.render(
 
 </Sandpack>
 
-If you're curious to know more about how they work, check out [How Does `<ViewTransition>` Work](/reference/react/ViewTransition#how-does-viewtransition-work) in the docs.
+If you're curious to know more about how they work, check out [How Does `<ViewTransition>` Work](../../../../reference/react/ViewTransition.md#how-does-viewtransition-work) in the docs.
 
 _For more background on how we built View Transitions, see: [#31975](https://github.com/react/react/pull/31975), [#32105](https://github.com/react/react/pull/32105), [#32041](https://github.com/react/react/pull/32041), [#32734](https://github.com/react/react/pull/32734), [#32797](https://github.com/react/react/pull/32797) [#31999](https://github.com/react/react/pull/31999), [#32031](https://github.com/react/react/pull/32031), [#32050](https://github.com/react/react/pull/32050), [#32820](https://github.com/react/react/pull/32820), [#32029](https://github.com/react/react/pull/32029), [#32028](https://github.com/react/react/pull/32028), and [#32038](https://github.com/react/react/pull/32038) by [@sebmarkbage](https://twitter.com/sebmarkbage) (thanks Seb!)._
 
 ---
 
-## Activity {/*activity*/}
+## Activity
 
 <Note>
 
 **`<Activity />` is now available in React’s Canary channel.**
 
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
+[Learn more about React’s release channels here.](../../../../community/versioning-policy.md#all-release-channels)
 
 </Note>
 
-In [past](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022#offscreen) [updates](/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024#offscreen-renamed-to-activity), we shared that we were researching an API to allow components to be visually hidden and deprioritized, preserving UI state with reduced performance costs relative to unmounting or hiding with CSS.
+In [past](../../../2022/06/15/react-labs-what-we-have-been-working-on-june-2022.md#offscreen) [updates](../../../2024/02/15/react-labs-what-we-have-been-working-on-february-2024.md#offscreen-renamed-to-activity), we shared that we were researching an API to allow components to be visually hidden and deprioritized, preserving UI state with reduced performance costs relative to unmounting or hiding with CSS.
 
 We're now ready to share the API and how it works, so you can start testing it in experimental React versions.
 
@@ -11496,11 +11496,11 @@ Let's look at some examples improving the View Transition examples above.
 
 When an `<Activity>` is `hidden`, Effects are unmounted. Conceptually, the component is unmounted, but React saves the state for later.
 
-In practice, this works as expected if you have followed the [You Might Not Need an Effect](/learn/you-might-not-need-an-effect) guide. To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](/reference/react/StrictMode) which will eagerly perform Activity unmounts and mounts to catch any unexpected side effects.
+In practice, this works as expected if you have followed the [You Might Not Need an Effect](../../../../learn/you-might-not-need-an-effect.md) guide. To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](../../../../reference/react/StrictMode.md) which will eagerly perform Activity unmounts and mounts to catch any unexpected side effects.
 
 </Note>
 
-### Restoring state with Activity {/*restoring-state-with-activity*/}
+### Restoring state with Activity
 
 When a user navigates away from a page, it's common to stop rendering the old page:
 
@@ -12855,7 +12855,7 @@ root.render(
 
 </Sandpack>
 
-### Pre-rendering with Activity {/*prerender-with-activity*/}
+### Pre-rendering with Activity
 
 Sometimes, you may want to prepare the next part of the UI a user is likely to use ahead of time, so it's ready by the time they are ready to use it. This is especially useful if the next route needs to suspend on data it needs to render, because you can help ensure the data is already fetched before the user navigates.
 
@@ -14193,7 +14193,7 @@ root.render(
 
 </Sandpack>
 
-### Server-Side Rendering with Activity {/*server-side-rendering-with-activity*/}
+### Server-Side Rendering with Activity
 
 When using Activity on a page that uses server-side rendering (SSR), there are additional optimizations.
 
@@ -14203,7 +14203,7 @@ For parts of the UI rendered with `mode="visible"`, React will de-prioritize hyd
 
 These are advanced use cases, but they show the additional benefits considered with Activity.
 
-### Future modes for Activity {/*future-modes-for-activity*/}
+### Future modes for Activity
 
 In the future, we may add more modes to Activity.
 
@@ -14213,11 +14213,11 @@ Instead, we're considering a new mode that would keep the content visible&mdash;
 
 Another mode we're considering for Activity is the ability to automatically destroy state for hidden Activities if there is too much memory being used. Since the component is already unmounted, it may be preferable to destroy state for the least recently used hidden parts of the app rather than consume too many resources.
 
-These are areas we're still exploring, and we'll share more as we make progress. For more information on what Activity includes today, [check out the docs](/reference/react/Activity).
+These are areas we're still exploring, and we'll share more as we make progress. For more information on what Activity includes today, [check out the docs](../../../../reference/react/Activity.md).
 
 ---
 
-# Features in development {/*features-in-development*/}
+# Features in development
 
 We're also developing features to help solve the common problems below.
 
@@ -14227,7 +14227,7 @@ When the solutions we're working on are shared too early, it can create churn an
 
 As these features progress, we'll announce them on the blog with docs included so you can try them out.
 
-## React Performance Tracks {/*react-performance-tracks*/}
+## React Performance Tracks
 
 We're working on a new set of custom tracks to performance profilers using browser APIs that [allow adding custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to provide more information about the performance of your React app.
 
@@ -14236,11 +14236,11 @@ This feature is still in progress, so we're not ready to publish docs to fully r
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <picture >
       <source srcset="/images/blog/react-labs-april-2025/perf_tracks.png" />
-      <img className="w-full light-image" src="/images/blog/react-labs-april-2025/perf_tracks.webp" />
+      <img className="w-full light-image" src="../../../../images/blog/react-labs-april-2025/perf_tracks.webp" />
   </picture>
   <picture >
       <source srcset="/images/blog/react-labs-april-2025/perf_tracks_dark.png" />
-      <img className="w-full dark-image" src="/images/blog/react-labs-april-2025/perf_tracks_dark.webp" />
+      <img className="w-full dark-image" src="../../../../images/blog/react-labs-april-2025/perf_tracks_dark.webp" />
   </picture>
 </div>
 
@@ -14250,7 +14250,7 @@ Once we solve those issues, we'll publish experimental docs and share that it's 
 
 ---
 
-## Automatic Effect Dependencies {/*automatic-effect-dependencies*/}
+## Automatic Effect Dependencies
 
 When we released hooks, we had three motivations:
 
@@ -14260,15 +14260,15 @@ When we released hooks, we had three motivations:
 
 Since their release, hooks have been successful at *sharing code between components*. Hooks are now the favored way to share logic between components, and there are less use cases for render props and higher order components. Hooks have also been successful at supporting features like Fast Refresh that were not possible with class components.
 
-### Effects can be hard {/*effects-can-be-hard*/}
+### Effects can be hard
 
 Unfortunately, some hooks are still hard to think in terms of function instead of lifecycles. Effects specifically are still hard to understand and are the most common pain point we hear from developers. Last year, we spent a significant amount of time researching how Effects were used, and how those use cases could be simplified and easier to understand.
 
-We found that often, the confusion is from using an Effect when you don't need to. The [You Might Not Need an Effect](/learn/you-might-not-need-an-effect) guide covers many cases for when Effects are not the right solution. However, even when an Effect is the right fit for a problem, Effects can still be harder to understand than class component lifecycles.
+We found that often, the confusion is from using an Effect when you don't need to. The [You Might Not Need an Effect](../../../../learn/you-might-not-need-an-effect.md) guide covers many cases for when Effects are not the right solution. However, even when an Effect is the right fit for a problem, Effects can still be harder to understand than class component lifecycles.
 
 We believe one of the reasons for confusion is that developers to think of Effects from the _component's_ perspective (like a lifecycle), instead of the _Effects_ point of view (what the Effect does).
 
-Let's look at an example [from the docs](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective):
+Let's look at an example [from the docs](../../../../learn/lifecycle-of-reactive-effects.md#thinking-from-the-effects-perspective):
 
 ```js
 useEffect(() => {
@@ -14284,7 +14284,7 @@ useEffect(() => {
 
 Many users would read this code as "on mount, connect to the roomId. whenever `roomId` changes, disconnect to the old room and re-create the connection". However, this is thinking from the component's lifecycle perspective, which means you will need to think of every component lifecycle state to write the Effect correctly. This can be difficult, so it's understandable that Effects seem harder than class lifecycles when using the component perspective.
 
-### Effects without dependencies {/*effects-without-dependencies*/}
+### Effects without dependencies
 
 Instead, it's better to think from the Effect's perspective. The Effect doesn't know about the component lifecycles. It only describes how to start synchronization and how to stop it. When users think of Effects in this way, their Effects tend to be easier to write, and more resilient to being started and stopped as many times as is needed.
 
@@ -14302,15 +14302,15 @@ useEffect(() => {
 }); // compiler inserted dependencies.
 ```
 
-With this code, the React Compiler can infer the dependencies for you and insert them automatically so you don't need to see or write them. With features like [the IDE extension](#compiler-ide-extension) and [`useEffectEvent`](/reference/react/useEffectEvent), we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. This helps reinforce the correct mental model for writing Effects, which can run at any time to synchronize your component or hook's state with something else.
+With this code, the React Compiler can infer the dependencies for you and insert them automatically so you don't need to see or write them. With features like [the IDE extension](#compiler-ide-extension) and [`useEffectEvent`](../../../../reference/react/useEffectEvent.md), we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. This helps reinforce the correct mental model for writing Effects, which can run at any time to synchronize your component or hook's state with something else.
 
 Our hope is that automatically inserting dependencies is not only easier to write, but that it also makes them easier to understand by forcing you to think in terms of what the Effect does, and not in component lifecycles.
 
 ---
 
-## Compiler IDE Extension {/*compiler-ide-extension*/}
+## Compiler IDE Extension
 
-Later in 2025 [we shared](/blog/2025/10/07/react-compiler-1) the first stable release of React Compiler, and we're continuing to invest in shipping more improvements.
+Later in 2025 [we shared](../../10/07/react-compiler-1.md) the first stable release of React Compiler, and we're continuing to invest in shipping more improvements.
 
 We've also begun exploring ways to use the React Compiler to provide information that can improve understanding and debugging your code. One idea we've started exploring is a new experimental LSP-based React IDE extension powered by React Compiler, similar to the extension used in [Lauren Tan's React Conf talk](https://conf2024.react.dev/talks/5).
 
@@ -14320,7 +14320,7 @@ The IDE extension is still an early exploration, but we'll share our progress in
 
 ---
 
-## Fragment Refs {/*fragment-refs*/}
+## Fragment Refs
 
 Many DOM APIs like those for event management, positioning, and focus are difficult to compose when writing with React. This often leads developers to reach for Effects, managing multiple Refs, by using APIs like `findDOMNode` (removed in React 19).
 
@@ -14330,7 +14330,7 @@ Fragment refs are still being researched. We'll share more when we're closer to 
 
 ---
 
-## Gesture Animations {/*gesture-animations*/}
+## Gesture Animations
 
 We're also researching ways to enhance View Transitions to support gesture animations such as swiping to open a menu, or scroll through a photo carousel.
 
@@ -14344,7 +14344,7 @@ We believe we’ve found an approach that works well and may introduce a new API
 
 ---
 
-## Concurrent Stores {/*concurrent-stores*/}
+## Concurrent Stores
 
 When we released React 18 with concurrent rendering, we also released `useSyncExternalStore` so external store libraries that did not use React state or context could [support concurrent rendering](https://github.com/reactwg/react-18/discussions/70) by forcing a synchronous render when the store is updated.
 

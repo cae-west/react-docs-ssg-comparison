@@ -16,9 +16,9 @@ The [built-in browser `<img>` component](https://developer.mozilla.org/en-US/doc
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<img>` {/*img*/}
+### `<img>`
 
 To display an image, render the [built-in browser `<img>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
 
@@ -28,9 +28,9 @@ To display an image, render the [built-in browser `<img>` component](https://dev
 
 [See more examples below.](#usage)
 
-#### Props {/*props*/}
+#### Props
 
-`<img>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<img>` supports all [common element props.](common.md#props)
 
 * `alt`: a string. Specifies alternative text for the image. Use an empty string for a purely decorative image.
 * `crossOrigin`: a string. Specifies the [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use when fetching the image. The possible values are `anonymous` and `use-credentials`.
@@ -38,8 +38,8 @@ To display an image, render the [built-in browser `<img>` component](https://dev
 * `fetchPriority`: a string. Suggests a relative priority for fetching the image. The possible values are `high`, `low`, and `auto` (the default). During server rendering, `fetchPriority="low"` also prevents React from [automatically preloading the image.](#controlling-image-preloading-during-server-rendering)
 * `height`: a number or string. Specifies the rendered height of the image.
 * `loading`: a string. Specifies whether the browser should defer loading the image until it is near the viewport. The possible values are `eager` (the default) and `lazy`. Setting `loading="lazy"` prevents React from [automatically preloading the image.](#controlling-image-preloading-during-server-rendering)
-* `onError`: an [event handler](/reference/react-dom/components/common#event-handler) function. Fires when the image fails to load.
-* `onLoad`: an [event handler](/reference/react-dom/components/common#event-handler) function. Fires when the image finishes loading. Passing `onLoad` prevents React from [waiting for the image during a client-rendered View Transition update.](#waiting-for-an-image-during-a-view-transition)
+* `onError`: an [event handler](common.md#event-handler-function) function. Fires when the image fails to load.
+* `onLoad`: an [event handler](common.md#event-handler-function) function. Fires when the image finishes loading. Passing `onLoad` prevents React from [waiting for the image during a client-rendered View Transition update.](#waiting-for-an-image-during-a-view-transition)
 * `referrerPolicy`: a string. Specifies the [referrer information](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#referrerpolicy) to send when fetching the image.
 * `sizes`: a string. Specifies the image sizes for different page layouts. Used with `srcSet`.
 * `src`: a string. Specifies the URL of the image.
@@ -47,7 +47,7 @@ To display an image, render the [built-in browser `<img>` component](https://dev
 * `useMap`: a string. Associates the image with a [client-side image map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map).
 * `width`: a number or string. Specifies the rendered width of the image.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * Do not pass an empty string to `src`. It may cause the browser to request the current page again. React warns in development and omits the attribute. To render no image, omit the `<img>` or pass `null` to `src`.
 * `<img>` cannot have children or use `dangerouslySetInnerHTML`. React throws an error if you pass either.
@@ -55,9 +55,9 @@ To display an image, render the [built-in browser `<img>` component](https://dev
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Displaying an image {/*displaying-an-image*/}
+### Displaying an image
 
 Pass the image URL to `src` and a text description to `alt`:
 
@@ -89,7 +89,7 @@ Specify `width` and `height` when you know the image dimensions so the browser c
 
 ---
 
-### Controlling image preloading during server rendering {/*controlling-image-preloading-during-server-rendering*/}
+### Controlling image preloading during server rendering
 
 During server rendering, React automatically generates a preload hint for an `<img>` by default. This can let the browser start fetching the image before it encounters the `<img>` in the rendered HTML.
 
@@ -119,13 +119,13 @@ React also does not automatically preload an image when it is inside a `<picture
 
 If you render an image through a framework or a component library, consult its documentation for the default behavior. React decides whether to generate an automatic preload from the props of the underlying `<img>`. For example, an image component may add `loading="lazy"` by default and provide a separate option for explicitly preloading selected images.
 
-To create an explicit preload hint, call [`preload`](/reference/react-dom/preload).
+To create an explicit preload hint, call [`preload`](../preload.md).
 
 ---
 
-### Waiting for an image during a View Transition {/*waiting-for-an-image-during-a-view-transition*/}
+### Waiting for an image during a View Transition
 
-During a [`<ViewTransition>`](/reference/react/ViewTransition) update, React waits up to 500 ms for visible images to load before starting the animation. This includes newly rendered `<img>` elements and existing images whose `src` or `srcSet` changes. Setting `loading="lazy"` or adding an `onLoad` handler opts an image out.
+During a [`<ViewTransition>`](../../react/ViewTransition.md) update, React waits up to 500 ms for visible images to load before starting the animation. This includes newly rendered `<img>` elements and existing images whose `src` or `srcSet` changes. Setting `loading="lazy"` or adding an `onLoad` handler opts an image out.
 
 Compare how the same image appears when a Suspense boundary reveals its content inside and outside a `<ViewTransition>`:
 

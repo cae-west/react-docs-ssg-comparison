@@ -23,7 +23,7 @@ All the talks are [available to stream online](https://www.youtube.com/watch?v=F
 
 Here’s a summary of what was shared on stage:
 
-## React 18 and concurrent features {/*react-18-and-concurrent-features*/}
+## React 18 and concurrent features
 
 In the keynote, we shared our vision for the future of React starting with React 18.
 
@@ -37,7 +37,7 @@ Watch the full keynote from [Andrew Clark](https://twitter.com/acdlite), [Juan T
 
 <YouTubeIframe src="https://www.youtube.com/embed/FZ0cG47msEk" />
 
-## React 18 for Application Developers {/*react-18-for-application-developers*/}
+## React 18 for Application Developers
 
 In the keynote, we also announced that the React 18 RC is available to try now. Pending further feedback, this is the exact version of React that we will publish to stable early next year.
 
@@ -64,7 +64,7 @@ For a demo of upgrading to React 18, see [Shruti Kapoor](https://twitter.com/shr
 
 <YouTubeIframe src="https://www.youtube.com/embed/ytudH8je5ko" />
 
-## Streaming Server Rendering with Suspense {/*streaming-server-rendering-with-suspense*/}
+## Streaming Server Rendering with Suspense
 
 React 18 also includes improvements to server-side rendering performance using Suspense.
 
@@ -74,7 +74,7 @@ For a deep dive, see [Shaundai Person](https://twitter.com/shaundai)’s talk he
 
 <YouTubeIframe src="https://www.youtube.com/embed/pj5N-Khihgc" />
 
-## The first React working group {/*the-first-react-working-group*/}
+## The first React working group
 
 For React 18, we created our first Working Group to collaborate with a panel of experts, developers, library maintainers, and educators. Together we worked to create our gradual adoption strategy and refine new APIs such as `useId`, `useSyncExternalStore`, and `useInsertionEffect`.
 
@@ -82,7 +82,7 @@ For an overview of this work, see [Aakansha' Doshi](https://twitter.com/aakansha
 
 <YouTubeIframe src="https://www.youtube.com/embed/qn7gRClrC9U" />
 
-## React Developer Tooling {/*react-developer-tooling*/}
+## React Developer Tooling
 
 To support the new features in this release, we also announced the newly formed React DevTools team and a new Timeline Profiler to help developers debug their React apps.
 
@@ -90,19 +90,19 @@ For more information and a demo of new DevTools features, see [Brian Vaughn](htt
 
 <YouTubeIframe src="https://www.youtube.com/embed/oxDfrke8rZg" />
 
-## React without memo {/*react-without-memo*/}
+## React without memo
 
 Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpro) shared an update from our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
 
 <YouTubeIframe src="https://www.youtube.com/embed/lGEMwh32soc" />
 
-## React docs keynote {/*react-docs-keynote*/}
+## React docs keynote
 
-[Rachel Nabors](https://twitter.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's new docs ([now shipped as react.dev](/blog/2023/03/16/introducing-react-dev)):
+[Rachel Nabors](https://twitter.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's new docs ([now shipped as react.dev](../../../2023/03/16/introducing-react-dev.md)):
 
 <YouTubeIframe src="https://www.youtube.com/embed/mneDaMYOKP8" />
 
-## And more... {/*and-more*/}
+## And more...
 
 **We also heard talks on learning and designing with React:**
 
@@ -125,7 +125,7 @@ Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpr
 * Lyle Troxell: [UI tools for artists](https://youtu.be/b3l4WxipFsE).
 * Helen Lin: [Hydrogen + React 18](https://youtu.be/HS6vIYkSNks).
 
-## Thank you {/*thank-you*/}
+## Thank you
 
 This was our first year planning a conference ourselves, and we have a lot of people to thank.
 

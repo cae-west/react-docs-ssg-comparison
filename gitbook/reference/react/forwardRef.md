@@ -12,7 +12,7 @@ In React 19, `forwardRef` is no longer necessary. Pass `ref` as a prop instead.
 
 <Intro>
 
-`forwardRef` lets your component expose a DOM node to the parent component with a [ref.](/learn/manipulating-the-dom-with-refs)
+`forwardRef` lets your component expose a DOM node to the parent component with a [ref.](../../learn/manipulating-the-dom-with-refs.md)
 
 ```js
 const SomeComponent = forwardRef(render)
@@ -24,9 +24,9 @@ const SomeComponent = forwardRef(render)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `forwardRef(render)` {/*forwardref*/}
+### `forwardRef(render)`
 
 Call `forwardRef()` to let your component receive a ref and forward it to a child component:
 
@@ -40,22 +40,22 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `render`: The render function for your component. React calls this function with the props and `ref` that your component received from its parent. The JSX you return will be the output of your component.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, a component returned by `forwardRef` is also able to receive a `ref` prop.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
-* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
+* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](useState.md#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
 
 
 ---
 
-### `render` function {/*render-function*/}
+### `render` function
 
 `forwardRef` accepts a render function as an argument. React calls this function with `props` and `ref`:
 
@@ -70,21 +70,21 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-#### Parameters {/*render-parameters*/}
+#### Parameters
 
 * `props`: The props passed by the parent component.
 
-* `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/reference/react/useImperativeHandle)
+* `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](useImperativeHandle.md)
 
-#### Returns {/*render-returns*/}
+#### Returns
 
 `forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, the component returned by `forwardRef` is able to take a `ref` prop.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Exposing a DOM node to the parent component {/*exposing-a-dom-node-to-the-parent-component*/}
+### Exposing a DOM node to the parent component
 
 By default, each component's DOM nodes are private. However, sometimes it's useful to expose a DOM node to the parent--for example, to allow focusing it. To opt in, wrap your component definition into `forwardRef()`:
 
@@ -139,13 +139,13 @@ function Form() {
 }
 ```
 
-This `Form` component [passes a ref](/reference/react/useRef#manipulating-the-dom-with-a-ref) to `MyInput`. The `MyInput` component *forwards* that ref to the `<input>` browser tag. As a result, the `Form` component can access that `<input>` DOM node and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it.
+This `Form` component [passes a ref](useRef.md#manipulating-the-dom-with-a-ref) to `MyInput`. The `MyInput` component *forwards* that ref to the `<input>` browser tag. As a result, the `Form` component can access that `<input>` DOM node and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it.
 
 Keep in mind that exposing a ref to the DOM node inside your component makes it harder to change your component's internals later. You will typically expose DOM nodes from reusable low-level components like buttons or text inputs, but you won't do it for application-level components like an avatar or a comment.
 
 <Recipes titleText="Examples of forwarding a ref">
 
-#### Focusing a text input {/*focusing-a-text-input*/}
+#### Focusing a text input
 
 Clicking the button will focus the input. The `Form` component defines a ref and passes it to the `MyInput` component. The `MyInput` component forwards that ref to the browser `<input>`. This lets the `Form` component focus the `<input>`.
 
@@ -199,7 +199,7 @@ input {
 
 <Solution />
 
-#### Playing and pausing a video {/*playing-and-pausing-a-video*/}
+#### Playing and pausing a video
 
 Clicking the button will call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on a `<video>` DOM node. The `App` component defines a ref and passes it to the `MyVideoPlayer` component. The `MyVideoPlayer` component forwards that ref to the browser `<video>` node. This lets the `App` component play and pause the `<video>`.
 
@@ -260,7 +260,7 @@ button { margin-bottom: 10px; margin-right: 10px; }
 
 ---
 
-### Forwarding a ref through multiple components {/*forwarding-a-ref-through-multiple-components*/}
+### Forwarding a ref through multiple components
 
 Instead of forwarding a `ref` to a DOM node, you can forward it to your own component like `MyInput`:
 
@@ -375,7 +375,7 @@ input, button {
 
 ---
 
-### Exposing an imperative handle instead of a DOM node {/*exposing-an-imperative-handle-instead-of-a-dom-node*/}
+### Exposing an imperative handle instead of a DOM node
 
 Instead of exposing an entire DOM node, you can expose a custom object, called an *imperative handle,* with a more constrained set of methods. To do this, you'd need to define a separate ref to hold the DOM node:
 
@@ -389,7 +389,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Pass the `ref` you received to [`useImperativeHandle`](/reference/react/useImperativeHandle) and specify the value you want to expose to the `ref`:
+Pass the `ref` you received to [`useImperativeHandle`](useImperativeHandle.md) and specify the value you want to expose to the `ref`:
 
 ```js {6-15}
 import { forwardRef, useRef, useImperativeHandle } from 'react';
@@ -471,21 +471,21 @@ input {
 
 </Sandpack>
 
-[Read more about using imperative handles.](/reference/react/useImperativeHandle)
+[Read more about using imperative handles.](useImperativeHandle.md)
 
 <Pitfall>
 
 **Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.
 
-**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
+**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](../../learn/synchronizing-with-effects.md) can help you expose imperative behaviors via props.
 
 </Pitfall>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### My component is wrapped in `forwardRef`, but the `ref` to it is always `null` {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
+### My component is wrapped in `forwardRef`, but the `ref` to it is always `null`
 
 This usually means that you forgot to actually use the `ref` that you received.
 

@@ -4,7 +4,7 @@ title: preinitModule
 
 <Note>
 
-[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+[React-based frameworks](../../learn/creating-a-react-app.md) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
 
 </Note>
 
@@ -22,9 +22,9 @@ preinitModule("https://example.com/module.js", {as: "script"});
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `preinitModule(href, options)` {/*preinitmodule*/}
+### `preinitModule(href, options)`
 
 To preinit an ESM module, call the `preinitModule` function from `react-dom`.
 
@@ -42,7 +42,7 @@ function AppRoot() {
 
 The `preinitModule` function provides the browser with a hint that it should start downloading and executing the given module, which can save time. Modules that you `preinit` are executed when they finish downloading.
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `href`: a string. The URL of the module you want to download and execute.
 * `options`: an object. It contains the following properties:
@@ -51,11 +51,11 @@ The `preinitModule` function provides the browser with a hint that it should sta
   *  `integrity`: a string. A cryptographic hash of the module, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
   *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `preinitModule` returns nothing.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * Multiple calls to `preinitModule` with the same `href` have the same effect as a single call.
 * In the browser, you can call `preinitModule` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
@@ -63,9 +63,9 @@ The `preinitModule` function provides the browser with a hint that it should sta
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Preloading when rendering {/*preloading-when-rendering*/}
+### Preloading when rendering
 
 Call `preinitModule` when rendering a component if you know that it or its children will use a specific module and you're OK with the module being evaluated and thereby taking effect immediately upon being downloaded.
 
@@ -78,9 +78,9 @@ function AppRoot() {
 }
 ```
 
-If you want the browser to download the module but not to execute it right away, use [`preloadModule`](/reference/react-dom/preloadModule) instead. If you want to preinit a script that isn't an ESM module, use [`preinit`](/reference/react-dom/preinit).
+If you want the browser to download the module but not to execute it right away, use [`preloadModule`](preloadModule.md) instead. If you want to preinit a script that isn't an ESM module, use [`preinit`](preinit.md).
 
-### Preloading in an event handler {/*preloading-in-an-event-handler*/}
+### Preloading in an event handler
 
 Call `preinitModule` in an event handler before transitioning to a page or state where the module will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.
 

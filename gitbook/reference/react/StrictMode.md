@@ -20,9 +20,9 @@ title: <StrictMode>
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<StrictMode>` {/*strictmode*/}
+### `<StrictMode>`
 
 Use `StrictMode` to enable additional development behaviors and warnings for the component tree inside:
 
@@ -47,19 +47,19 @@ Strict Mode enables the following development-only behaviors:
 - Your components will [re-run refs callbacks an extra time](#fixing-bugs-found-by-re-running-ref-callbacks-in-development) to find bugs caused by missing ref cleanup.
 - Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
-#### Props {/*props*/}
+#### Props
 
 `StrictMode` accepts no props.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * There is no way to opt out of Strict Mode inside a tree wrapped in `<StrictMode>`. This gives you confidence that all components inside `<StrictMode>` are checked. If two teams working on a product disagree whether they find the checks valuable, they need to either reach consensus or move `<StrictMode>` down in the tree.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Enabling Strict Mode for entire app {/*enabling-strict-mode-for-entire-app*/}
+### Enabling Strict Mode for entire app
 
 Strict Mode enables extra development-only checks for the entire component tree inside the `<StrictMode>` component. These checks help you find common bugs in your components early in the development process.
 
@@ -78,7 +78,7 @@ root.render(
 );
 ```
 
-We recommend wrapping your entire app in Strict Mode, especially for newly created apps. If you use a framework that calls [`createRoot`](/reference/react-dom/client/createRoot) for you, check its documentation for how to enable Strict Mode.
+We recommend wrapping your entire app in Strict Mode, especially for newly created apps. If you use a framework that calls [`createRoot`](../react-dom/client/createRoot.md) for you, check its documentation for how to enable Strict Mode.
 
 Although the Strict Mode checks **only run in development,** they help you find bugs that already exist in your code but can be tricky to reliably reproduce in production. Strict Mode lets you fix bugs before your users report them.
 
@@ -97,7 +97,7 @@ Strict Mode enables the following checks in development:
 
 ---
 
-### Enabling Strict Mode for a part of the app {/*enabling-strict-mode-for-a-part-of-the-app*/}
+### Enabling Strict Mode for a part of the app
 
 You can also enable Strict Mode for any part of your application:
 
@@ -130,15 +130,15 @@ When `StrictMode` is enabled for a part of the app, React will only enable behav
 
 ---
 
-### Fixing bugs found by double rendering in development {/*fixing-bugs-found-by-double-rendering-in-development*/}
+### Fixing bugs found by double rendering in development
 
-[React assumes that every component you write is a pure function.](/learn/keeping-components-pure) This means that React components you write must always return the same JSX given the same inputs (props, state, and context).
+[React assumes that every component you write is a pure function.](../../learn/keeping-components-pure.md) This means that React components you write must always return the same JSX given the same inputs (props, state, and context).
 
 Components breaking this rule behave unpredictably and cause bugs. To help you find accidentally impure code, Strict Mode calls some of your functions (only the ones that should be pure) **twice in development.** This includes:
 
 - Your component function body (only top-level logic, so this doesn't include code inside event handlers)
-- Functions that you pass to [`useState`](/reference/react/useState), [`set` functions](/reference/react/useState#setstate), [`useMemo`](/reference/react/useMemo), or [`useReducer`](/reference/react/useReducer)
-- Some class component methods like [`constructor`](/reference/react/Component#constructor), [`render`](/reference/react/Component#render), [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) ([see the whole list](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects))
+- Functions that you pass to [`useState`](useState.md), [`set` functions](useState.md#set-functions-like-setsomethingnextstate), [`useMemo`](useMemo.md), or [`useReducer`](useReducer.md)
+- Some class component methods like [`constructor`](Component.md#constructorprops), [`render`](Component.md#render), [`shouldComponentUpdate`](Component.md#shouldcomponentupdatenextprops-nextstate-nextcontext) ([see the whole list](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects))
 
 If a function is pure, running it twice does not change its behavior because a pure function produces the same result every time. However, if a function is impure (for example, it mutates the data it receives), running it twice tends to be noticeable (that's what makes it impure!) This helps you spot and fix the bug early.
 
@@ -322,7 +322,7 @@ export default function StoryTray({ stories }) {
   items.push({ id: 'create', label: 'Create Story' });
 ```
 
-This would [make the `StoryTray` function pure.](/learn/keeping-components-pure) Each time it is called, it would only modify a new copy of the array, and would not affect any external objects or variables. This solves the bug, but you had to make the component re-render more often before it became obvious that something is wrong with its behavior.
+This would [make the `StoryTray` function pure.](../../learn/keeping-components-pure.md) Each time it is called, it would only modify a new copy of the array, and would not affect any external objects or variables. This solves the bug, but you had to make the component re-render more often before it became obvious that something is wrong with its behavior.
 
 **In the original example, the bug wasn't obvious. Now let's wrap the original (buggy) code in `<StrictMode>`:**
 
@@ -501,19 +501,19 @@ li {
 
 Without Strict Mode, it was easy to miss the bug until you added more re-renders. Strict Mode made the same bug appear right away. Strict Mode helps you find bugs before you push them to your team and to your users.
 
-[Read more about keeping components pure.](/learn/keeping-components-pure)
+[Read more about keeping components pure.](../../learn/keeping-components-pure.md)
 
 <Note>
 
-If you have [React DevTools](/learn/react-developer-tools) installed, any `console.log` calls during the second render call will appear slightly dimmed. React DevTools also offers a setting (off by default) to suppress them completely.
+If you have [React DevTools](../../learn/react-developer-tools.md) installed, any `console.log` calls during the second render call will appear slightly dimmed. React DevTools also offers a setting (off by default) to suppress them completely.
 
 </Note>
 
 ---
 
-### Fixing bugs found by re-running Effects in development {/*fixing-bugs-found-by-re-running-effects-in-development*/}
+### Fixing bugs found by re-running Effects in development
 
-Strict Mode can also help find bugs in [Effects.](/learn/synchronizing-with-effects)
+Strict Mode can also help find bugs in [Effects.](../../learn/synchronizing-with-effects.md)
 
 Every Effect has some setup code and may have some cleanup code. Normally, React calls setup when the component *mounts* (is added to the screen) and calls cleanup when the component *unmounts* (is removed from the screen). React then calls cleanup and setup again if its dependencies changed since the last render.
 
@@ -662,7 +662,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-You'll notice that the number of open connections always keeps growing. In a real app, this would cause performance and network problems. The issue is that [your Effect is missing a cleanup function:](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed)
+You'll notice that the number of open connections always keeps growing. In a real app, this would cause performance and network problems. The issue is that [your Effect is missing a cleanup function:](../../learn/synchronizing-with-effects.md#step-3-add-cleanup-if-needed)
 
 ```js {4}
   useEffect(() => {
@@ -830,12 +830,12 @@ Notice how the active connection count in the console doesn't keep growing anymo
 
 Without Strict Mode, it was easy to miss that your Effect needed cleanup. By running *setup → cleanup → setup* instead of *setup* for your Effect in development, Strict Mode made the missing cleanup logic more noticeable.
 
-[Read more about implementing Effect cleanup.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+[Read more about implementing Effect cleanup.](../../learn/synchronizing-with-effects.md#how-to-handle-the-effect-firing-twice-in-development)
 
 ---
-### Fixing bugs found by re-running ref callbacks in development {/*fixing-bugs-found-by-re-running-ref-callbacks-in-development*/}
+### Fixing bugs found by re-running ref callbacks in development
 
-Strict Mode can also help find bugs in [callbacks refs.](/learn/manipulating-the-dom-with-refs)
+Strict Mode can also help find bugs in [callbacks refs.](../../learn/manipulating-the-dom-with-refs.md)
 
 Every callback `ref` has some setup code and may have some cleanup code. Normally, React calls setup when the element is *created* (is added to the DOM) and calls cleanup when the element is *removed* (is removed from the DOM).
 
@@ -1242,10 +1242,10 @@ Now on inital mount in StrictMode, the ref callbacks are all setup, cleaned up, 
 Without Strict Mode, it was easy to miss the bug until you clicked around to app to notice broken features. Strict Mode made the bugs appear right away, before you push them to production.
 
 ---
-### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
+### Fixing deprecation warnings enabled by Strict Mode
 
 React warns if some component anywhere inside a `<StrictMode>` tree uses one of these deprecated APIs:
 
-* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [See alternatives.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles)
+* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](Component.md#unsafe_componentwillmount). [See alternatives.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles)
 
-These APIs are primarily used in older [class components](/reference/react/Component) so they rarely appear in modern apps.
+These APIs are primarily used in older [class components](Component.md) so they rarely appear in modern apps.

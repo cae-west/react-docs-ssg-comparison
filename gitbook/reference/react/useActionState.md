@@ -4,7 +4,7 @@ title: useActionState
 
 <Intro>
 
-`useActionState` is a React Hook that lets you update state with side effects using [Actions](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
+`useActionState` is a React Hook that lets you update state with side effects using [Actions](useTransition.md#functions-called-in-starttransition-are-called-actions).
 
 ```js
 const [state, dispatchAction, isPending] = useActionState(reducerAction, initialState, permalink?);
@@ -16,9 +16,9 @@ const [state, dispatchAction, isPending] = useActionState(reducerAction, initial
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `useActionState(reducerAction, initialState, permalink?)` {/*useactionstate*/}
+### `useActionState(reducerAction, initialState, permalink?)`
 
 Call `useActionState` at the top level of your component to create state for the result of an Action.
 
@@ -37,43 +37,43 @@ function MyCart({initialState}) {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 * `reducerAction`: The function to be called when the Action is triggered. When called, it receives the previous state (initially the `initialState` you provided, then its previous return value) as its first argument, followed by the `actionPayload` passed to `dispatchAction`.
 * `initialState`: The value you want the state to be initially. React ignores this argument after `dispatchAction` is invoked for the first time.
 * **optional** `permalink`: A string containing the unique page URL that this form modifies.
-  * For use on pages with [React Server Components](/reference/rsc/server-components) with progressive enhancement.
-  * If `reducerAction` is a [Server Function](/reference/rsc/server-functions) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL rather than the current page's URL.
+  * For use on pages with [React Server Components](../rsc/server-components.md) with progressive enhancement.
+  * If `reducerAction` is a [Server Function](../rsc/server-functions.md) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL rather than the current page's URL.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `useActionState` returns an array with exactly three values:
 
 1. The current state. During the first render, it will match the `initialState` you passed. After `dispatchAction` is invoked, it will match the value returned by the `reducerAction`.
-2. A `dispatchAction` function that you call inside [Actions](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
+2. A `dispatchAction` function that you call inside [Actions](useTransition.md#functions-called-in-starttransition-are-called-actions).
 3. The `isPending` flag that tells you if any dispatched Actions for this Hook are pending.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * `useActionState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
 * React queues and executes multiple calls to `dispatchAction` sequentially. Each call to `reducerAction` receives the result of the previous call.
-* The `dispatchAction` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+* The `dispatchAction` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](../../learn/removing-effect-dependencies.md#move-dynamic-objects-and-functions-inside-your-effect)
 * When using the `permalink` option, ensure the same form component is rendered on the destination page (including the same `reducerAction` and `permalink`) so React knows how to pass the state through. Once the page becomes interactive, this parameter has no effect.
-* When using Server Functions, `initialState` needs to be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (values like plain objects, arrays, strings, and numbers).
-* If `dispatchAction` throws an error, React cancels all queued actions and shows the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
+* When using Server Functions, `initialState` needs to be [serializable](../rsc/use-server.md#serializable-arguments-and-return-values) (values like plain objects, arrays, strings, and numbers).
+* If `dispatchAction` throws an error, React cancels all queued actions and shows the nearest [Error Boundary](Component.md#catching-rendering-errors-with-an-error-boundary).
 * If there are multiple ongoing Actions, React batches them together. This is a limitation that may be removed in a future release.
 
 <Note>
 
 `dispatchAction` must be called from an Action.
 
-You can wrap it in [`startTransition`](/reference/react/startTransition), or pass it to an [Action prop](/reference/react/useTransition#exposing-action-props-from-components). Calls outside that scope won’t be treated as part of the Transition and [log an error](#async-function-outside-transition) on development mode.
+You can wrap it in [`startTransition`](startTransition.md), or pass it to an [Action prop](useTransition.md#exposing-action-prop-from-components). Calls outside that scope won’t be treated as part of the Transition and [log an error](#im-getting-an-error-an-async-function-with-useactionstate-was-called-outside-of-a-transition) on development mode.
 
 </Note>
 
 ---
 
-### `reducerAction` function {/*reduceraction*/}
+### `reducerAction` function
 
 The `reducerAction` function passed to `useActionState` receives the previous state and returns a new state.
 
@@ -88,27 +88,27 @@ async function reducerAction(previousState, actionPayload) {
 
 Each time you call `dispatchAction`, React calls the `reducerAction` with the `actionPayload`. The reducer will perform side effects such as posting data, and return the new state. If `dispatchAction` is called multiple times, React queues and executes them in order so the result of the previous call is passed as `previousState` for the current call.
 
-#### Parameters {/*reduceraction-parameters*/}
+#### Parameters
 
 * `previousState`: The last state. Initially this is equal to the `initialState`. After the first call to `dispatchAction`, it's equal to the last state returned.
 
 * **optional** `actionPayload`: The argument passed to `dispatchAction`. It can be a value of any type. Similar to `useReducer` conventions, it is usually an object with a `type` property identifying it and, optionally, other properties with additional information.
 
-#### Returns {/*reduceraction-returns*/}
+#### Returns
 
 `reducerAction` returns the new state, and triggers a Transition to re-render with that state.
 
-#### Caveats {/*reduceraction-caveats*/}
+#### Caveats
 
 * `reducerAction` can be sync or async. It can perform sync actions like showing a notification, or async actions like posting updates to a server.
 * `reducerAction` is not invoked twice in `<StrictMode>` since `reducerAction` is designed to allow side effects.
 * The return type of `reducerAction` must match the type of `initialState`. If TypeScript infers a mismatch, you may need to explicitly annotate your state type.
-* If you set state after `await` in the `reducerAction` you currently need to wrap the state update in an additional `startTransition`. See the [startTransition](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition) docs for more info.
-* When using Server Functions, `actionPayload` needs to be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (values like plain objects, arrays, strings, and numbers).
+* If you set state after `await` in the `reducerAction` you currently need to wrap the state update in an additional `startTransition`. See the [startTransition](useTransition.md#react-doesnt-treat-my-state-update-after-await-as-a-transition) docs for more info.
+* When using Server Functions, `actionPayload` needs to be [serializable](../rsc/use-server.md#serializable-arguments-and-return-values) (values like plain objects, arrays, strings, and numbers).
 
 <DeepDive>
 
-#### Why is it called `reducerAction`? {/*why-is-it-called-reduceraction*/}
+#### Why is it called `reducerAction`?
 
 The function passed to `useActionState` is called a *reducer action* because:
 
@@ -121,9 +121,9 @@ Conceptually, `useActionState` is like `useReducer`, but you can do side effects
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Adding state to an Action {/*adding-state-to-an-action*/}
+### Adding state to an Action
 
 Call `useActionState` at the top level of your component to create state for the result of an Action.
 
@@ -261,7 +261,7 @@ Every time you click "Add Ticket," React queues a call to `addToCartAction`. Rea
 
 <DeepDive>
 
-#### How `useActionState` queuing works {/*how-useactionstate-queuing-works*/}
+#### How `useActionState` queuing works
 
 Try clicking "Add Ticket" multiple times. Every time you click, a new `addToCartAction` is queued. Since there's an artificial 1 second delay, that means 4 clicks will take ~4 seconds to complete.
 
@@ -269,13 +269,13 @@ Try clicking "Add Ticket" multiple times. Every time you click, a new `addToCart
 
 We have to wait for the previous result of `addToCartAction` in order to pass the `prevCount` to the next call to `addToCartAction`. That means React has to wait for the previous Action to finish before calling the next Action.
 
-You can typically solve this by [using with useOptimistic](/reference/react/useActionState#using-with-useoptimistic) but for more complex cases you may want to consider [cancelling queued actions](#cancelling-queued-actions) or not using `useActionState`.
+You can typically solve this by [using with useOptimistic](useActionState.md#using-with-useoptimistic) but for more complex cases you may want to consider [cancelling queued actions](#cancelling-queued-actions) or not using `useActionState`.
 
 </DeepDive>
 
 ---
 
-### Using multiple Action types {/*using-multiple-action-types*/}
+### Using multiple Action types
 
 To handle multiple types, you can pass an argument to `dispatchAction`.
 
@@ -434,7 +434,7 @@ In this example, we use the pending state of the Actions to replace both the qua
 
 <DeepDive>
 
-#### How is `useActionState` different from `useReducer`? {/*useactionstate-vs-usereducer*/}
+#### How is `useActionState` different from `useReducer`?
 
 You might notice this example looks a lot like `useReducer`, but they serve different purposes:
 
@@ -442,15 +442,15 @@ You might notice this example looks a lot like `useReducer`, but they serve diff
 
 - **Use `useActionState`** to manage state of your Actions. The reducer can perform side effects.
 
-You can think of `useActionState` as `useReducer` for side effects from user Actions. Since it computes the next Action to take based on the previous Action, it has to [order the calls sequentially](/reference/react/useActionState#how-useactionstate-queuing-works). If you want to perform Actions in parallel, use `useState` and `useTransition` directly.
+You can think of `useActionState` as `useReducer` for side effects from user Actions. Since it computes the next Action to take based on the previous Action, it has to [order the calls sequentially](useActionState.md#how-useactionstate-queuing-works). If you want to perform Actions in parallel, use `useState` and `useTransition` directly.
 
 </DeepDive>
 
 ---
 
-### Using with `useOptimistic` {/*using-with-useoptimistic*/}
+### Using with `useOptimistic`
 
-You can combine `useActionState` with [`useOptimistic`](/reference/react/useOptimistic) to show immediate UI feedback:
+You can combine `useActionState` with [`useOptimistic`](useOptimistic.md) to show immediate UI feedback:
 
 
 <Sandpack>
@@ -610,9 +610,9 @@ hr {
 ---
 
 
-### Using with Action props {/*using-with-action-props*/}
+### Using with Action props
 
-When you pass the `dispatchAction` function to a component that exposes an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you don't need to call `startTransition` or `useOptimistic` yourself.
+When you pass the `dispatchAction` function to a component that exposes an [Action prop](useTransition.md#exposing-action-prop-from-components), you don't need to call `startTransition` or `useOptimistic` yourself.
 
 This example shows using the `increaseAction` and `decreaseAction` props of a QuantityStepper component:
 
@@ -795,7 +795,7 @@ Since `<QuantityStepper>` has built-in support for transitions, pending state, a
 
 ---
 
-### Cancelling queued Actions {/*cancelling-queued-actions*/}
+### Cancelling queued Actions
 
 You can use an `AbortController` to cancel pending Actions:
 
@@ -1028,7 +1028,7 @@ For example, if the Action performs a mutation (like writing to a database), abo
 
 ---
 
-### Using with `<form>` Action props {/*use-with-a-form*/}
+### Using with `<form>` Action props
 
 You can pass the `dispatchAction` function as the `action` prop to a `<form>`.
 
@@ -1186,21 +1186,21 @@ In this example, when the user clicks the stepper arrows, the button submits the
 
 <RSC>
 
-When used with a [Server Function](/reference/rsc/server-functions), `useActionState` allows the server's response to be shown before hydration (when React attaches to server-rendered HTML) completes. You can also use the optional `permalink` parameter for progressive enhancement (allowing the form to work before JavaScript loads) on pages with dynamic content. This is typically handled by your framework for you.
+When used with a [Server Function](../rsc/server-functions.md), `useActionState` allows the server's response to be shown before hydration (when React attaches to server-rendered HTML) completes. You can also use the optional `permalink` parameter for progressive enhancement (allowing the form to work before JavaScript loads) on pages with dynamic content. This is typically handled by your framework for you.
 
 </RSC>
 
-See the [`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) docs for more information on using Actions with forms.
+See the [`<form>`](../react-dom/components/form.md#handle-form-submission-with-a-server-function) docs for more information on using Actions with forms.
 
 ---
 
-### Handling errors {/*handling-errors*/}
+### Handling errors
 
 There are two ways to handle errors with `useActionState`.
 
 For known errors, such as "quantity not available" validation errors from your backend, you can return it as part of your `reducerAction` state and display it in the UI.
 
-For unknown errors, such as `undefined is not a function`, you can throw an error. React will cancel all queued Actions and shows the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) by rethrowing the error from the `useActionState` hook.
+For unknown errors, such as `undefined is not a function`, you can throw an error. React will cancel all queued Actions and shows the nearest [Error Boundary](Component.md#catching-rendering-errors-with-an-error-boundary) by rethrowing the error from the `useActionState` hook.
 
 <Sandpack>
 
@@ -1378,11 +1378,11 @@ In this example, "Add 10" simulates an API that returns a validation error, whic
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### My `isPending` flag is not updating {/*ispending-not-updating*/}
+### My `isPending` flag is not updating
 
-If you're calling `dispatchAction` manually (not through an Action prop), make sure you wrap the call in [`startTransition`](/reference/react/startTransition):
+If you're calling `dispatchAction` manually (not through an Action prop), make sure you wrap the call in [`startTransition`](startTransition.md):
 
 ```js
 import { useActionState, startTransition } from 'react';
@@ -1405,7 +1405,7 @@ When `dispatchAction` is passed to an Action prop, React automatically wraps it 
 
 ---
 
-### My Action cannot read form data {/*action-cannot-read-form-data*/}
+### My Action cannot read form data
 
 When you use `useActionState`, the `reducerAction` receives an extra argument as its first argument: the previous or initial state. The submitted form data is therefore its second argument instead of its first.
 
@@ -1423,7 +1423,7 @@ function action(prevState, formData) {
 
 ---
 
-### My actions are being skipped {/*actions-skipped*/}
+### My actions are being skipped
 
 If you call `dispatchAction` multiple times and some of them don't run, it may be because an earlier `dispatchAction` call threw an error.
 
@@ -1445,7 +1445,7 @@ async function myReducerAction(prevState, data) {
 
 ---
 
-### My state doesn't reset {/*reset-state*/}
+### My state doesn't reset
 
 `useActionState` doesn't provide a built-in reset function. To reset the state, you can design your `reducerAction` to handle a reset signal:
 
@@ -1479,7 +1479,7 @@ Alternatively, you can add a `key` prop to the component using `useActionState` 
 
 ---
 
-### I'm getting an error: "An async function with useActionState was called outside of a transition." {/*async-function-outside-transition*/}
+### I'm getting an error: "An async function with useActionState was called outside of a transition."
 
 A common mistake is to forget to call `dispatchAction` from inside a Transition:
 
@@ -1507,7 +1507,7 @@ function MyComponent() {
 }
 ```
 
-To fix, either wrap the call in [`startTransition`](/reference/react/startTransition):
+To fix, either wrap the call in [`startTransition`](startTransition.md):
 
 ```js
 import { useActionState, startTransition } from 'react';
@@ -1539,7 +1539,7 @@ function MyComponent() {
 
 ---
 
-### I'm getting an error: "Cannot update action state while rendering" {/*cannot-update-during-render*/}
+### I'm getting an error: "Cannot update action state while rendering"
 
 You cannot call `dispatchAction` during render:
 

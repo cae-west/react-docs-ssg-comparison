@@ -4,15 +4,15 @@ title: config
 
 <Intro>
 
-Validates the compiler [configuration options](/reference/react-compiler/configuration).
+Validates the compiler [configuration options](../../react-compiler/configuration.md).
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
-React Compiler accepts various [configuration options](/reference/react-compiler/configuration)  to control its behavior. This rule validates that your configuration uses correct option names and value types, preventing silent failures from typos or incorrect settings.
+React Compiler accepts various [configuration options](../../react-compiler/configuration.md)  to control its behavior. This rule validates that your configuration uses correct option names and value types, preventing silent failures from typos or incorrect settings.
 
-### Invalid {/*invalid*/}
+### Invalid
 
 Examples of incorrect code for this rule:
 
@@ -36,7 +36,7 @@ module.exports = {
 };
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 Examples of correct code for this rule:
 
@@ -52,9 +52,9 @@ module.exports = {
 };
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### Configuration not working as expected {/*config-not-working*/}
+### Configuration not working as expected
 
 Your compiler configuration might have typos or incorrect values:
 
@@ -74,7 +74,7 @@ module.exports = {
 };
 ```
 
-Check the [configuration documentation](/reference/react-compiler/configuration) for valid options:
+Check the [configuration documentation](../../react-compiler/configuration.md) for valid options:
 
 ```js
 // ✅ Better: Valid configuration

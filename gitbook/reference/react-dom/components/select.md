@@ -19,9 +19,9 @@ The [built-in browser `<select>` component](https://developer.mozilla.org/en-US/
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<select>` {/*select*/}
+### `<select>`
 
 To display a select box, render the [built-in browser `<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) component.
 
@@ -34,9 +34,9 @@ To display a select box, render the [built-in browser `<select>`](https://develo
 
 [See more examples below.](#usage)
 
-#### Props {/*props*/}
+#### Props
 
-`<select>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<select>` supports all [common element props.](common.md#props)
 
 You can [make a select box controlled](#controlling-a-select-box-with-a-state-variable) by passing a `value` prop:
 
@@ -57,16 +57,16 @@ These `<select>` props are relevant both for uncontrolled and controlled select 
 * [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#form): A string. Specifies the `id` of the `<form>` this select box belongs to. If omitted, it's the closest parent form.
 * [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#multiple): A boolean. If `true`, the browser allows [multiple selection.](#enabling-multiple-selection)
 * [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#name): A string. Specifies the name for this select box that's [submitted with the form.](#reading-the-select-box-value-when-submitting-a-form)
-* `onChange`: An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Required for [controlled select boxes.](#controlling-a-select-box-with-a-state-variable) Fires immediately when the user picks a different option. Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
-* `onChangeCapture`: A version of `onChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
-* `onInputCapture`: A version of `onInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires if an input fails validation on form submit. Unlike the built-in `invalid` event, the React `onInvalid` event bubbles.
-* `onInvalidCapture`: A version of `onInvalid` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onChange`: An [`Event` handler](common.md#event-handler-function) function. Required for [controlled select boxes.](#controlling-a-select-box-with-a-state-variable) Fires immediately when the user picks a different option. Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
+* `onChangeCapture`: A version of `onChange` that fires in the [capture phase.](../../../learn/responding-to-events.md#capture-phase-events)
+* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](common.md#event-handler-function) function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
+* `onInputCapture`: A version of `onInput` that fires in the [capture phase.](../../../learn/responding-to-events.md#capture-phase-events)
+* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): An [`Event` handler](common.md#event-handler-function) function. Fires if an input fails validation on form submit. Unlike the built-in `invalid` event, the React `onInvalid` event bubbles.
+* `onInvalidCapture`: A version of `onInvalid` that fires in the [capture phase.](../../../learn/responding-to-events.md#capture-phase-events)
 * [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#required): A boolean. If `true`, the value must be provided for the form to submit.
 * [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#size): A number. For `multiple={true}` selects, specifies the preferred number of initially visible items.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 - Unlike in HTML, passing a `selected` attribute to `<option>` is not supported. Instead, use [`<select defaultValue>`](#providing-an-initially-selected-option) for uncontrolled select boxes and [`<select value>`](#controlling-a-select-box-with-a-state-variable) for controlled select boxes.
 - If a select box receives a `value` prop, it will be [treated as controlled.](#controlling-a-select-box-with-a-state-variable)
@@ -76,9 +76,9 @@ These `<select>` props are relevant both for uncontrolled and controlled select 
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Displaying a select box with options {/*displaying-a-select-box-with-options*/}
+### Displaying a select box with options
 
 Render a `<select>` with a list of `<option>` components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
 
@@ -107,11 +107,11 @@ select { margin: 5px; }
 
 ---
 
-### Providing a label for a select box {/*providing-a-label-for-a-select-box*/}
+### Providing a label for a select box
 
 Typically, you will place every `<select>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that select box. When the user clicks the label, the browser will automatically focus the select box. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the select box.
 
-If you can't nest `<select>` into a `<label>`, associate them by passing the same ID to `<select id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
+If you can't nest `<select>` into a `<label>`, associate them by passing the same ID to `<select id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](../../react/useId.md)
 
 <Sandpack>
 
@@ -153,7 +153,7 @@ select { margin: 5px; }
 
 ---
 
-### Providing an initially selected option {/*providing-an-initially-selected-option*/}
+### Providing an initially selected option
 
 By default, the browser will select the first `<option>` in the list. To select a different option by default, pass that `<option>`'s `value` as the `defaultValue` to the `<select>` element.
 
@@ -188,7 +188,7 @@ Unlike in HTML, passing a `selected` attribute to an individual `<option>` is no
 
 ---
 
-### Enabling multiple selection {/*enabling-multiple-selection*/}
+### Enabling multiple selection
 
 Pass `multiple={true}` to the `<select>` to let the user select multiple options. In that case, if you also specify `defaultValue` to choose the initially selected options, it must be an array.
 
@@ -221,7 +221,7 @@ select { display: block; margin-top: 10px; width: 200px; }
 
 ---
 
-### Reading the select box value when submitting a form {/*reading-the-select-box-value-when-submitting-a-form*/}
+### Reading the select box value when submitting a form
 
 Add a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) around your select box with a [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) inside. It will call your `<form onSubmit>` event handler. By default, the browser will send the form data to the current URL and refresh the page. You can override that behavior by calling `e.preventDefault()`. Read the form data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 <Sandpack>
@@ -298,11 +298,11 @@ By default, *any* `<button>` inside a `<form>` will submit it. This can be surpr
 
 ---
 
-### Controlling a select box with a state variable {/*controlling-a-select-box-with-a-state-variable*/}
+### Controlling a select box with a state variable
 
 A select box like `<select />` is *uncontrolled.* Even if you [pass an initially selected value](#providing-an-initially-selected-option) like `<select defaultValue="orange" />`, your JSX only specifies the initial value, not the value right now.
 
-**To render a _controlled_ select box, pass the `value` prop to it.** React will force the select box to always have the `value` you passed. Typically, you will control a select box by declaring a [state variable:](/reference/react/useState)
+**To render a _controlled_ select box, pass the `value` prop to it.** React will force the select box to always have the `value` you passed. Typically, you will control a select box by declaring a [state variable:](../../react/useState.md)
 
 ```js {2,6,7}
 function FruitPicker() {

@@ -7,32 +7,32 @@ Pure functions only perform a calculation and nothing more. It makes your code e
 </Intro>
 
 <Note>
-This reference page covers advanced topics and requires familiarity with the concepts covered in the [Keeping Components Pure](/learn/keeping-components-pure) page.
+This reference page covers advanced topics and requires familiarity with the concepts covered in the [Keeping Components Pure](../../learn/keeping-components-pure.md) page.
 </Note>
 
 <InlineToc />
 
-### Why does purity matter? {/*why-does-purity-matter*/}
+### Why does purity matter?
 
 One of the key concepts that makes React, _React_ is _purity_. A pure component or hook is one that is:
 
-* **Idempotent** – You [always get the same result every time](/learn/keeping-components-pure#purity-components-as-formulas) you run it with the same inputs – props, state, context for component inputs; and arguments for hook inputs.
-* **Has no side effects in render** – Code with side effects should run [**separately from rendering**](#how-does-react-run-your-code). For example as an [event handler](/learn/responding-to-events) – where the user interacts with the UI and causes it to update; or as an [Effect](/reference/react/useEffect) – which runs after render.
-* **Does not mutate non-local values**: Components and Hooks should [never modify values that aren't created locally](#mutation) in render.
+* **Idempotent** – You [always get the same result every time](../../learn/keeping-components-pure.md#purity-components-as-formulas) you run it with the same inputs – props, state, context for component inputs; and arguments for hook inputs.
+* **Has no side effects in render** – Code with side effects should run [**separately from rendering**](#how-does-react-run-your-code). For example as an [event handler](../../learn/responding-to-events.md) – where the user interacts with the UI and causes it to update; or as an [Effect](../react/useEffect.md) – which runs after render.
+* **Does not mutate non-local values**: Components and Hooks should [never modify values that aren't created locally](#when-is-it-okay-to-have-mutation) in render.
 
 When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects [in render](#how-does-react-run-your-code), React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
 
-Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable [during render](#how-does-react-run-your-code) – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app. You can see an [example of this in the Keeping Components Pure page](/learn/keeping-components-pure#side-effects-unintended-consequences).
+Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable [during render](#how-does-react-run-your-code) – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app. You can see an [example of this in the Keeping Components Pure page](../../learn/keeping-components-pure.md#side-effects-unintended-consequences).
 
-#### How does React run your code? {/*how-does-react-run-your-code*/}
+#### How does React run your code?
 
 React is declarative: you tell React _what_ to render, and React will figure out _how_ best to display it to your user. To do this, React has a few phases where it runs your code. You don't need to know about all of these phases to use React well. But at a high level, you should know about what code runs in _render_, and what runs outside of it.
 
-_Rendering_ refers to calculating what the next version of your UI should look like. After rendering, React takes this new calculation and compares it to the calculation used to create the previous version of your UI. Then React commits just the minimum changes needed to the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (what your user actually sees) to apply the changes. Finally, [Effects](/learn/synchronizing-with-effects) are flushed (meaning they are run until there are no more left). For more detailed information see the docs for [Render](/learn/render-and-commit) and [Commit and Effect Hooks](/reference/react/hooks#effect-hooks).
+_Rendering_ refers to calculating what the next version of your UI should look like. After rendering, React takes this new calculation and compares it to the calculation used to create the previous version of your UI. Then React commits just the minimum changes needed to the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (what your user actually sees) to apply the changes. Finally, [Effects](../../learn/synchronizing-with-effects.md) are flushed (meaning they are run until there are no more left). For more detailed information see the docs for [Render](../../learn/render-and-commit.md) and [Commit and Effect Hooks](../react/hooks.md#effect-hooks).
 
 <DeepDive>
 
-#### How to tell if code runs in render {/*how-to-tell-if-code-runs-in-render*/}
+#### How to tell if code runs in render
 
 One quick heuristic to tell if code runs during render is to examine where it is: if it's written at the top level like in the example below, there's a good chance it runs during render.
 
@@ -68,9 +68,9 @@ function Dropdown() {
 
 ---
 
-## Components and Hooks must be idempotent {/*components-and-hooks-must-be-idempotent*/}
+## Components and Hooks must be idempotent
 
-Components must always return the same output with respect to their inputs – props, state, and context. This is known as _idempotency_. [Idempotency](https://en.wikipedia.org/wiki/Idempotence) is a term popularized in functional programming. It refers to the idea that you [always get the same result every time](learn/keeping-components-pure) you run that piece of code with the same inputs.
+Components must always return the same output with respect to their inputs – props, state, and context. This is known as _idempotency_. [Idempotency](https://en.wikipedia.org/wiki/Idempotence) is a term popularized in functional programming. It refers to the idea that you [always get the same result every time](../../learn/keeping-components-pure.md) you run that piece of code with the same inputs.
 
 This means that _all_ code that runs [during render](#how-does-react-run-your-code) must also be idempotent in order for this rule to hold. For example, this line of code is not idempotent (and therefore, neither is the component):
 
@@ -83,7 +83,7 @@ function Clock() {
 
 `new Date()` is not idempotent as it always returns the current date and changes its result every time it's called. When you render the above component, the time displayed on the screen will stay stuck on the time that the component was rendered. Similarly, functions like `Math.random()` also aren't idempotent, because they return different results every time they're called, even when the inputs are the same.
 
-This doesn't mean you shouldn't use non-idempotent functions like `new Date()` _at all_ – you should just avoid using them [during render](#how-does-react-run-your-code). In this case, we can _synchronize_ the latest date to this component using an [Effect](/reference/react/useEffect):
+This doesn't mean you shouldn't use non-idempotent functions like `new Date()` _at all_ – you should just avoid using them [during render](#how-does-react-run-your-code). In this case, we can _synchronize_ the latest date to this component using an [Effect](../react/useEffect.md):
 
 <Sandpack>
 
@@ -118,25 +118,25 @@ export default function Clock() {
 
 By wrapping the non-idempotent `new Date()` call in an Effect, it moves that calculation [outside of rendering](#how-does-react-run-your-code).
 
-If you don't need to synchronize some external state with React, you can also consider using an [event handler](/learn/responding-to-events) if it only needs to be updated in response to a user interaction.
+If you don't need to synchronize some external state with React, you can also consider using an [event handler](../../learn/responding-to-events.md) if it only needs to be updated in response to a user interaction.
 
 ---
 
-## Side effects must run outside of render {/*side-effects-must-run-outside-of-render*/}
+## Side effects must run outside of render
 
-[Side effects](/learn/keeping-components-pure#side-effects-unintended-consequences) should not run [in render](#how-does-react-run-your-code), as React can render components multiple times to create the best possible user experience.
+[Side effects](../../learn/keeping-components-pure.md#side-effects-unintended-consequences) should not run [in render](#how-does-react-run-your-code), as React can render components multiple times to create the best possible user experience.
 
 <Note>
 Side effects are a broader term than Effects. Effects specifically refer to code that's wrapped in `useEffect`, while a side effect is a general term for code that has any observable effect other than its primary result of returning a value to the caller.
 
-Side effects are typically written inside of [event handlers](/learn/responding-to-events) or Effects. But never during render.
+Side effects are typically written inside of [event handlers](../../learn/responding-to-events.md) or Effects. But never during render.
 </Note>
 
-While render must be kept pure, side effects are necessary at some point in order for your app to do anything interesting, like showing something on the screen! The key point of this rule is that side effects should not run [in render](#how-does-react-run-your-code), as React can render components multiple times. In most cases, you'll use [event handlers](learn/responding-to-events) to handle side effects. Using an event handler explicitly tells React that this code doesn't need to run during render, keeping render pure. If you've exhausted all options – and only as a last resort – you can also handle side effects using `useEffect`.
+While render must be kept pure, side effects are necessary at some point in order for your app to do anything interesting, like showing something on the screen! The key point of this rule is that side effects should not run [in render](#how-does-react-run-your-code), as React can render components multiple times. In most cases, you'll use [event handlers](../../learn/responding-to-events.md) to handle side effects. Using an event handler explicitly tells React that this code doesn't need to run during render, keeping render pure. If you've exhausted all options – and only as a last resort – you can also handle side effects using `useEffect`.
 
-### When is it okay to have mutation? {/*mutation*/}
+### When is it okay to have mutation?
 
-#### Local mutation {/*local-mutation*/}
+#### Local mutation
 One common example of a side effect is mutation, which in JavaScript refers to changing the value of a non-[primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) value. In general, while mutation is not idiomatic in React, _local_ mutation is absolutely fine:
 
 ```js {2,7}
@@ -173,7 +173,7 @@ function FriendList({ friends }) {
 
 When `<FriendList />` runs again, we will continue appending `friends` to `items` every time that component is run, leading to multiple duplicated results. This version of `<FriendList />` has observable side effects [during render](#how-does-react-run-your-code) and **breaks the rule**.
 
-#### Lazy initialization {/*lazy-initialization*/}
+#### Lazy initialization
 
 Lazy initialization is also fine despite not being fully "pure":
 
@@ -184,7 +184,7 @@ function ExpenseForm() {
 }
 ```
 
-#### Changing the DOM {/*changing-the-dom*/}
+#### Changing the DOM
 
 Side effects that are directly visible to the user are not allowed in the render logic of React components. In other words, merely calling a component function shouldn’t by itself produce a change on the screen.
 
@@ -194,19 +194,19 @@ function ProductDetailPage({ product }) {
 }
 ```
 
-One way to achieve the desired result of updating `document.title` outside of render is to [synchronize the component with `document`](/learn/synchronizing-with-effects).
+One way to achieve the desired result of updating `document.title` outside of render is to [synchronize the component with `document`](../../learn/synchronizing-with-effects.md).
 
-As long as calling a component multiple times is safe and doesn’t affect the rendering of other components, React doesn’t care if it’s 100% pure in the strict functional programming sense of the word. It is more important that [components must be idempotent](/reference/rules/components-and-hooks-must-be-pure).
+As long as calling a component multiple times is safe and doesn’t affect the rendering of other components, React doesn’t care if it’s 100% pure in the strict functional programming sense of the word. It is more important that [components must be idempotent](components-and-hooks-must-be-pure.md).
 
 ---
 
-## Props and state are immutable {/*props-and-state-are-immutable*/}
+## Props and state are immutable
 
-A component's props and state are immutable [snapshots](learn/state-as-a-snapshot). Never mutate them directly. Instead, pass new props down, and use the setter function from `useState`.
+A component's props and state are immutable [snapshots](../../learn/state-as-a-snapshot.md). Never mutate them directly. Instead, pass new props down, and use the setter function from `useState`.
 
 You can think of the props and state values as snapshots that are updated after rendering. For this reason, you don't modify the props or state variables directly: instead you pass new props, or use the setter function provided to you to tell React that state needs to update the next time the component is rendered.
 
-### Don't mutate Props {/*props*/}
+### Don't mutate Props
 Props are immutable because if you mutate them, the application will produce inconsistent output, which can be hard to debug as it may or may not work depending on the circumstances.
 
 ```js {expectedErrors: {'react-compiler': [2]}} {2}
@@ -223,7 +223,7 @@ function Post({ item }) {
 }
 ```
 
-### Don't mutate State {/*state*/}
+### Don't mutate State
 `useState` returns the state variable and a setter to update that state.
 
 ```js
@@ -266,7 +266,7 @@ function Counter() {
 
 ---
 
-## Return values and arguments to Hooks are immutable {/*return-values-and-arguments-to-hooks-are-immutable*/}
+## Return values and arguments to Hooks are immutable
 
 Once values are passed to a hook, you should not modify them. Like props in JSX, values become immutable when passed to a hook.
 
@@ -325,7 +325,7 @@ Similarly, it's important to not modify the return values of Hooks, as they may 
 
 ---
 
-## Values are immutable after being passed to JSX {/*values-are-immutable-after-being-passed-to-jsx*/}
+## Values are immutable after being passed to JSX
 
 Don't mutate values after they've been used in JSX. Move the mutation to before the JSX is created.
 

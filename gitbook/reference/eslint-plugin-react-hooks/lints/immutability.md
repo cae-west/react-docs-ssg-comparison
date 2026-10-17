@@ -4,17 +4,17 @@ title: immutability
 
 <Intro>
 
-Validates against mutating props, state, and other values that [are immutable](/reference/rules/components-and-hooks-must-be-pure#props-and-state-are-immutable).
+Validates against mutating props, state, and other values that [are immutable](../../rules/components-and-hooks-must-be-pure.md#props-and-state-are-immutable).
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 A component’s props and state are immutable snapshots. Never mutate them directly. Instead, pass new props down, and use the setter function from `useState`.
 
-## Common Violations {/*common-violations*/}
+## Common Violations
 
-### Invalid {/*invalid*/}
+### Invalid
 
 ```js
 // ❌ Array push mutation
@@ -47,7 +47,7 @@ function Component() {
 }
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 ```js
 // ✅ Create new array
@@ -69,9 +69,9 @@ function Component() {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I need to add items to an array {/*add-items-array*/}
+### I need to add items to an array
 
 Mutating arrays with methods like `push()` won't trigger re-renders:
 
@@ -113,7 +113,7 @@ function TodoList() {
 }
 ```
 
-### I need to update nested objects {/*update-nested-objects*/}
+### I need to update nested objects
 
 Mutating nested properties doesn't trigger re-renders:
 

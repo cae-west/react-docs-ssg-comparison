@@ -16,9 +16,9 @@ const [isPending, startTransition] = useTransition()
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `useTransition()` {/*usetransition*/}
+### `useTransition()`
 
 Call `useTransition` at the top level of your component to mark some state updates as Transitions.
 
@@ -33,20 +33,20 @@ function TabContainer() {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 `useTransition` does not take any parameters.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `useTransition` returns an array with exactly two items:
 
 1. The `isPending` flag that tells you whether there is a pending Transition.
-2. The [`startTransition` function](#starttransition) that lets you mark updates as a Transition.
+2. The [`startTransition` function](#starttransitionaction) that lets you mark updates as a Transition.
 
 ---
 
-### `startTransition(action)` {/*starttransition*/}
+### `startTransition(action)`
 
 The `startTransition` function returned by `useTransition` lets you mark an update as a Transition.
 
@@ -65,7 +65,7 @@ function TabContainer() {
 ```
 
 <Note>
-#### Functions called in `startTransition` are called "Actions". {/*functions-called-in-starttransition-are-called-actions*/}
+#### Functions called in `startTransition` are called "Actions".
 
 The function passed to `startTransition` is called an "Action". By convention, any callback called inside `startTransition` (such as a callback prop) should be named `action` or include the "Action" suffix:
 
@@ -93,25 +93,25 @@ function SubmitButton({ submitAction }) {
 
 
 
-#### Parameters {/*starttransition-parameters*/}
+#### Parameters
 
-* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls that are awaited in the `action` will be included in the Transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#perform-non-blocking-updates-with-actions) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
+* `action`: A function that updates some state by calling one or more [`set` functions](useState.md#set-functions-like-setsomethingnextstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls that are awaited in the `action` will be included in the Transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#perform-non-blocking-updates-with-actions) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
 
-#### Returns {/*starttransition-returns*/}
+#### Returns
 
 `startTransition` does not return anything.
 
-#### Caveats {/*starttransition-caveats*/}
+#### Caveats
 
-* `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a Transition somewhere else (for example, from a data library), call the standalone [`startTransition`](/reference/react/startTransition) instead.
+* `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a Transition somewhere else (for example, from a data library), call the standalone [`startTransition`](startTransition.md) instead.
 
-* You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
+* You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook value, try [`useDeferredValue`](useDeferredValue.md) instead.
 
 * The function you pass to `startTransition` is called immediately, marking all state updates that happen while it executes as Transitions. If you try to perform state updates in a `setTimeout`, for example, they won't be marked as Transitions.
 
 * You must wrap any state updates after any async requests in another `startTransition` to mark them as Transitions. This is a known limitation that we will fix in the future (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
 
-* The `startTransition` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+* The `startTransition` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](../../learn/removing-effect-dependencies.md#move-dynamic-objects-and-functions-inside-your-effect)
 
 * A state update marked as a Transition will be interrupted by other state updates. For example, if you update a chart component inside a Transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input update.
 
@@ -119,9 +119,9 @@ function SubmitButton({ submitAction }) {
 
 * If there are multiple ongoing Transitions, React currently batches them together. This is a limitation that may be removed in a future release.
 
-## Usage {/*usage*/}
+## Usage
 
-### Perform non-blocking updates with Actions {/*perform-non-blocking-updates-with-actions*/}
+### Perform non-blocking updates with Actions
 
 Call `useTransition` at the top of your component to create Actions, and access the pending state:
 
@@ -167,7 +167,7 @@ To give the user feedback about in-progress Transitions, the `isPending` state s
 
 <Recipes titleText="The difference between Actions and regular event handling">
 
-#### Updating the quantity in an Action {/*updating-the-quantity-in-an-action*/}
+#### Updating the quantity in an Action
 
 In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function is *artificially slowed down* so that it takes at least a second to complete the request.
 
@@ -308,15 +308,15 @@ export async function updateQuantity(newQuantity) {
 This is a basic example to demonstrate how Actions work, but this example does not handle requests completing out of order. When updating the quantity multiple times, it's possible for the previous requests to finish after later requests causing the quantity to update out of order. This is a known limitation that we will fix in the future (see [Troubleshooting](#my-state-updates-in-transitions-are-out-of-order) below).
 
 For common use cases, React provides built-in abstractions such as:
-- [`useActionState`](/reference/react/useActionState)
-- [`<form>` actions](/reference/react-dom/components/form)
-- [Server Functions](/reference/rsc/server-functions)
+- [`useActionState`](useActionState.md)
+- [`<form>` actions](../react-dom/components/form.md)
+- [Server Functions](../rsc/server-functions.md)
 
 These solutions handle request ordering for you. When using Transitions to build your own custom hooks or libraries that manage async state transitions, you have greater control over the request ordering, but you must handle it yourself.
 
 <Solution />
 
-#### Updating the quantity without an Action {/*updating-the-users-name-without-an-action*/}
+#### Updating the quantity without an Action
 
 In this example, the `updateQuantity` function also simulates a request to the server to update the item's quantity in the cart. This function is *artificially slowed down* so that it takes at least a second to complete the request.
 
@@ -581,7 +581,7 @@ This solution makes the app feel slow, because the user must wait each time they
 
 ---
 
-### Exposing `action` prop from components {/*exposing-action-props-from-components*/}
+### Exposing `action` prop from components
 
 You can expose an `action` prop from a component to allow a parent to call an Action.
 
@@ -754,7 +754,7 @@ This allows the `action` callback to be either synchronous or asynchronous witho
 
 ---
 
-### Displaying a pending visual state {/*displaying-a-pending-visual-state*/}
+### Displaying a pending visual state
 
 You can use the `isPending` boolean value returned by `useTransition` to indicate to the user that a Transition is in progress. For example, the tab button can have a special "pending" visual state:
 
@@ -905,9 +905,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Preventing unwanted loading indicators {/*preventing-unwanted-loading-indicators*/}
+### Preventing unwanted loading indicators
 
-In this example, the `PostsTab` component fetches some data using [use](/reference/react/use). When you click the "Posts" tab, the `PostsTab` component *suspends*, causing the closest loading fallback to appear:
+In this example, the `PostsTab` component fetches some data using [use](use.md). When you click the "Posts" tab, the `PostsTab` component *suspends*, causing the closest loading fallback to appear:
 
 <Sandpack>
 
@@ -1225,17 +1225,17 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-[Read more about using Transitions with Suspense.](/reference/react/Suspense#preventing-already-revealed-content-from-hiding)
+[Read more about using Transitions with Suspense.](Suspense.md#preventing-already-revealed-content-from-hiding)
 
 <Note>
 
-Transitions only "wait" long enough to avoid hiding *already revealed* content (like the tab container). If the Posts tab had a [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) the Transition would not "wait" for it.
+Transitions only "wait" long enough to avoid hiding *already revealed* content (like the tab container). If the Posts tab had a [nested `<Suspense>` boundary,](Suspense.md#revealing-nested-content-as-it-loads) the Transition would not "wait" for it.
 
 </Note>
 
 ---
 
-### Building a Suspense-enabled router {/*building-a-suspense-enabled-router*/}
+### Building a Suspense-enabled router
 
 If you're building a React framework or a router, we recommend marking page navigations as Transitions.
 
@@ -1559,15 +1559,15 @@ main {
 
 <Note>
 
-[Suspense-enabled](/reference/react/Suspense) routers are expected to wrap the navigation updates into Transitions by default.
+[Suspense-enabled](Suspense.md) routers are expected to wrap the navigation updates into Transitions by default.
 
 </Note>
 
 ---
 
-### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+### Displaying an error to users with an error boundary
 
-If a function passed to `startTransition` throws an error or returns a rejected Promise, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
+If a function passed to `startTransition` throws an error or returns a rejected Promise, you can display an error to your user with an [error boundary](Component.md#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
 
 <Sandpack>
 
@@ -1647,9 +1647,9 @@ root.render(
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### Updating an input in a Transition doesn't work {/*updating-an-input-in-a-transition-doesnt-work*/}
+### Updating an input in a Transition doesn't work
 
 You can't use a Transition for a state variable that controls an input:
 
@@ -1669,11 +1669,11 @@ return <input value={text} onChange={handleChange} />;
 This is because Transitions are non-blocking, but updating an input in response to the change event should happen synchronously. If you want to run a Transition in response to typing, you have two options:
 
 1. You can declare two separate state variables: one for the input state (which always updates synchronously), and one that you will update in a Transition. This lets you control the input using the synchronous state, and pass the Transition state variable (which will "lag behind" the input) to the rest of your rendering logic.
-2. Alternatively, you can have one state variable, and add [`useDeferredValue`](/reference/react/useDeferredValue) which will "lag behind" the real value. It will trigger non-blocking re-renders to "catch up" with the new value automatically.
+2. Alternatively, you can have one state variable, and add [`useDeferredValue`](useDeferredValue.md) which will "lag behind" the real value. It will trigger non-blocking re-renders to "catch up" with the new value automatically.
 
 ---
 
-### React doesn't treat my state update as a Transition {/*react-doesnt-treat-my-state-update-as-a-transition*/}
+### React doesn't treat my state update as a Transition
 
 When you wrap a state update in a Transition, make sure that it happens *during* the `startTransition` call:
 
@@ -1708,7 +1708,7 @@ setTimeout(() => {
 
 ---
 
-### React doesn't treat my state update after `await` as a Transition {/*react-doesnt-treat-my-state-update-after-await-as-a-transition*/}
+### React doesn't treat my state update after `await` as a Transition
 
 When you use `await` inside a `startTransition` function, the state updates that happen after the `await` are not marked as Transitions. You must wrap state updates after each `await` in a `startTransition` call:
 
@@ -1736,17 +1736,17 @@ This is a JavaScript limitation due to React losing the scope of the async conte
 
 ---
 
-### I want to call `useTransition` from outside a component {/*i-want-to-call-usetransition-from-outside-a-component*/}
+### I want to call `useTransition` from outside a component
 
 You can't call `useTransition` outside a component because it's a Hook. In this
-case, the standalone [`startTransition`](/reference/react/startTransition)
+case, the standalone [`startTransition`](startTransition.md)
 function can mark state updates as Transitions. It does not provide the
 `isPending` flag. Because the standalone function is not associated with a
 component, an Error Boundary cannot handle errors from its Transition.
 
 ---
 
-### The function I pass to `startTransition` executes immediately {/*the-function-i-pass-to-starttransition-executes-immediately*/}
+### The function I pass to `startTransition` executes immediately
 
 If you run this code, it will print 1, 2, 3:
 
@@ -1781,7 +1781,7 @@ function setState() {
 }
 ```
 
-### My state updates in Transitions are out of order {/*my-state-updates-in-transitions-are-out-of-order*/}
+### My state updates in Transitions are out of order
 
 If you `await` inside `startTransition`, you might see the updates happen out of order.
 
@@ -1957,7 +1957,7 @@ export async function updateQuantity(newName) {
 
 When clicking multiple times, it's possible for previous requests to finish after later requests. When this happens, React currently has no way to know the intended order. This is because the updates are scheduled asynchronously, and React loses context of the order across the async boundary.
 
-This is expected, because Actions within a Transition do not guarantee execution order. For common use cases, React provides higher-level abstractions like [`useActionState`](/reference/react/useActionState) and [`<form>` actions](/reference/react-dom/components/form) that handle ordering for you. For advanced use cases, you'll need to implement your own queuing and abort logic to handle this.
+This is expected, because Actions within a Transition do not guarantee execution order. For common use cases, React provides higher-level abstractions like [`useActionState`](useActionState.md) and [`<form>` actions](../react-dom/components/form.md) that handle ordering for you. For advanced use cases, you'll need to implement your own queuing and abort logic to handle this.
 
 
 Example of `useActionState` handling execution order:

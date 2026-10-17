@@ -10,14 +10,14 @@ Hooks are defined using JavaScript functions, but they represent a special type 
 
 ---
 
-##  Only call Hooks at the top level {/*only-call-hooks-at-the-top-level*/}
+##  Only call Hooks at the top level
 
-Functions whose names start with `use` are called [*Hooks*](/reference/react) in React.
+Functions whose names start with `use` are called [*Hooks*](../react/index.md) in React.
 
 **Don’t call Hooks inside loops, conditions, nested functions, or `try`/`catch`/`finally` blocks.** Instead, always use Hooks at the top level of your React function, before any early returns. You can only call Hooks while React is rendering a function component:
 
-* ✅ Call them at the top level in the body of a [function component](/learn/your-first-component).
-* ✅ Call them at the top level in the body of a [custom Hook](/learn/reusing-logic-with-custom-hooks).
+* ✅ Call them at the top level in the body of a [function component](../../learn/your-first-component.md).
+* ✅ Call them at the top level in the body of a [custom Hook](../../learn/reusing-logic-with-custom-hooks.md).
 
 ```js{2-3,8-9}
 function Counter() {
@@ -109,18 +109,18 @@ You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/packa
 
 <Note>
 
-[Custom Hooks](/learn/reusing-logic-with-custom-hooks) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
+[Custom Hooks](../../learn/reusing-logic-with-custom-hooks.md) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
 
 </Note>
 
 ---
 
-## Only call Hooks from React functions {/*only-call-hooks-from-react-functions*/}
+## Only call Hooks from React functions
 
 Don’t call Hooks from regular JavaScript functions. Instead, you can:
 
 ✅ Call Hooks from React function components.
-✅ Call Hooks from [custom Hooks](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component).
+✅ Call Hooks from [custom Hooks](../../learn/reusing-logic-with-custom-hooks.md#extracting-your-own-custom-hook-from-a-component).
 
 By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.
 

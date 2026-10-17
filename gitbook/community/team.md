@@ -10,7 +10,7 @@ React development is led by contributors from companies and communities all over
 
 React work is organized into working groups, each responsible for an area of the project such as Server, DOM, Fiber, Docs & Community, Compiler, DevX, and React Native. Each working group is represented on the React Leadership Council, which coordinates direction across the project.
 
-## Leadership Council {/*leadership-council*/}
+## Leadership Council
 
 <TeamMember name="Andrew Clark" permalink="andrew-clark" photo="/images/team/acdlite.jpg" github="acdlite" twitter="acdlite" threads="acdlite" title="Engineer at Vercel" group="Fiber*, DOM">
     Andrew got started with web development by making sites with WordPress, and eventually tricked himself into doing JavaScript. His favorite pastime is karaoke. Andrew is either a Disney villain or a Disney princess, depending on the day.
@@ -36,7 +36,7 @@ React work is organized into working groups, each responsible for an area of the
     Sebastian learned programming to make the browser games he played during class more enjoyable. Eventually this lead to contributing to as much open source code as possible. Outside of coding he's busy making sure people don't confuse him with the other Sebastians and Zilberman of the React community.
 </TeamMember>
 
-## Working Group members {/*working-group-members*/}
+## Working Group members
 
 <TeamMember name="Alex Hunt" permalink="alex-hunt" photo="/images/team/gh-huntie.jpg" github="huntie" twitter="huntie" title="Engineer at Meta" group="DevX, React Native" />
 
@@ -104,7 +104,7 @@ React work is organized into working groups, each responsible for an area of the
 
 <TeamMember name="Vitali Zaidman" permalink="vitali-zaidman" photo="/images/team/gh-vzaidman.jpg" github="vzaidman" title="Engineer at Meta" group="DevX" />
 
-## Advisors {/*advisors*/}
+## Advisors
 
 <TeamMember name="Eli White" permalink="eli-white" photo="/images/team/eli-white.jpg" github="elicwhite" twitter="Eli_White" threads="elicwhite" title="Engineer at Meta">
     Eli got into programming after he got suspended from middle school for hacking. He has been working on React and React Native since 2017. He enjoys eating treats, especially ice cream and apple pie. You can find Eli trying quirky activities like parkour, indoor skydiving, and aerial silks.
@@ -122,7 +122,7 @@ React work is organized into working groups, each responsible for an area of the
     Seth started programming as a kid growing up in Tucson, AZ. After school, he was bitten by the music bug and was a touring musician for about 10 years before returning to *work*, starting with Intuit. In his spare time, he loves [taking pictures](https://www.sethwebster.com) and flying for animal rescues in the northeastern United States.
 </TeamMember>
 
-## Emeritus {/*emeritus*/}
+## Emeritus
 
 <TeamMember name="Joe Savona" permalink="joe-savona" photo="/images/team/joe.jpg" github="josephsavona" twitter="en_JS" threads="joesavona" title="Engineer at Meta">
     Joe was planning to major in math and philosophy but got into computer science after writing physics simulations in Matlab. Prior to React, he worked on Relay, RSocket.js, and the Skip programming language. While he’s not building some sort of reactive system he enjoys running, studying Japanese, and spending time with his family.
@@ -144,4 +144,4 @@ React work is organized into working groups, each responsible for an area of the
     Yuzhi studied Computer Science in school. She liked the instant gratification of seeing code come to life without having to physically be in a laboratory. Now she’s a manager in the React org. Before management, she used to work on the Relay data fetching framework. In her spare time, Yuzhi enjoys optimizing her life via gardening and home improvement projects.
 </TeamMember>
 
-You can find the past team members and other people who significantly contributed to React over the years on the [acknowledgements](/community/acknowledgements) page.
+You can find the past team members and other people who significantly contributed to React over the years on the [acknowledgements](acknowledgements.md) page.

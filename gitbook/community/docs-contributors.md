@@ -4,11 +4,11 @@ title: Docs Contributors
 
 <Intro>
 
-React documentation is written and maintained by the [React team](/community/team) and [external contributors.](https://github.com/reactjs/react.dev/graphs/contributors) On this page, we'd like to thank a few people who've made significant contributions to this site.
+React documentation is written and maintained by the [React team](team.md) and [external contributors.](https://github.com/reactjs/react.dev/graphs/contributors) On this page, we'd like to thank a few people who've made significant contributions to this site.
 
 </Intro>
 
-## Content {/*content*/}
+## Content
 
 * [Rachel Nabors](https://twitter.com/RachelNabors): editing, writing, illustrating
 * [Dan Abramov](https://bsky.app/profile/danabra.mov): writing, curriculum design
@@ -22,14 +22,14 @@ React documentation is written and maintained by the [React team](/community/tea
 * [Natalia Tepluhina](https://twitter.com/n_tepluhina): reviews, advice
 * [Sebastian Markbåge](https://twitter.com/sebmarkbage): feedback
 
-## Design {/*design*/}
+## Design
 
 * [Dan Lebowitz](https://twitter.com/lebo): site design
 * [Razvan Gradinar](https://dribbble.com/GradinarRazvan): sandbox design
 * [Maggie Appleton](https://maggieappleton.com/): diagram system
 * [Sophie Alpert](https://twitter.com/sophiebits): color-coded explanations
 
-## Development {/*development*/}
+## Development
 
 * [Jared Palmer](https://twitter.com/jaredpalmer): site development
 * [ThisDotLabs](https://www.thisdot.co/) ([Dane Grant](https://twitter.com/danecando), [Dustin Goodman](https://twitter.com/dustinsgoodman)): site development

@@ -4,7 +4,7 @@ title: cache
 
 <RSC>
 
-`cache` is only for use with [React Server Components](/reference/rsc/server-components).
+`cache` is only for use with [React Server Components](../rsc/server-components.md).
 
 </RSC>
 
@@ -22,9 +22,9 @@ const cachedFn = cache(fn);
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `cache(fn)` {/*cache*/}
+### `cache(fn)`
 
 Call `cache` outside of any components to create a version of the function with caching.
 
@@ -44,11 +44,11 @@ When `getMetrics` is first called with `data`, `getMetrics` will call `calculate
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 - `fn`: The function you want to cache results for. `fn` can take any arguments and return any value.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `cache` returns a cached version of `fn` with the same type signature. It does not call `fn` in the process.
 
@@ -60,18 +60,18 @@ The optimization of caching return values based on inputs is known as [_memoizat
 
 </Note>
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 - React will invalidate the cache for all memoized functions for each server request.
 - Each call to `cache` creates a new function. This means that calling `cache` with the same function multiple times will return different memoized functions that do not share the same cache.
 - `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and the same error is re-thrown when `cachedFn` is called with those same arguments.
-- `cache` is for use in [Server Components](/reference/rsc/server-components) only.
+- `cache` is for use in [Server Components](../rsc/server-components.md) only.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Cache an expensive computation {/*cache-expensive-computation*/}
+### Cache an expensive computation
 
 Use `cache` to skip duplicate work.
 
@@ -101,11 +101,11 @@ Assume `Profile` is rendered first. It will call <CodeStep step={1}>`getUserMetr
 
 When `TeamReport` renders its list of `users` and reaches the same `user` object, it will call <CodeStep step={2}>`getUserMetrics`</CodeStep> and read the result from cache.
 
-If `calculateUserMetrics` can be aborted by passing an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal), you can use [`cacheSignal()`](/reference/react/cacheSignal) to cancel the expensive computation if React has finished rendering. `calculateUserMetrics` may already handle cancellation internally by using `cacheSignal` directly.
+If `calculateUserMetrics` can be aborted by passing an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal), you can use [`cacheSignal()`](cacheSignal.md) to cancel the expensive computation if React has finished rendering. `calculateUserMetrics` may already handle cancellation internally by using `cacheSignal` directly.
 
 <Pitfall>
 
-##### Calling different memoized functions will read from different caches. {/*pitfall-different-memoized-functions*/}
+##### Calling different memoized functions will read from different caches.
 
 To access the same cache, components must call the same memoized function.
 
@@ -172,7 +172,7 @@ export default function Precipitation({cityData}) {
 Here, both components call the <CodeStep step={3}>same memoized function</CodeStep> exported from `./getWeekReport.js` to read and write to the same cache.
 </Pitfall>
 
-### Share a snapshot of data {/*take-and-share-snapshot-of-data*/}
+### Share a snapshot of data
 
 To share a snapshot of data between components, call `cache` with a data-fetching function like `fetch`. When multiple components make the same data fetch, only one request is made and the data returned is cached and shared across components. All components refer to the same snapshot of data across the server render.
 
@@ -212,11 +212,11 @@ async function AnimatedWeatherCard({city}) {
 }
 ```
 
-To render components that use asynchronous data in Client Components, see [`use()` documentation](/reference/react/use).
+To render components that use asynchronous data in Client Components, see [`use()` documentation](use.md).
 
 </Note>
 
-### Preload data {/*preload-data*/}
+### Preload data
 
 By caching a long-running data fetch, you can kick off asynchronous work prior to rendering the component.
 
@@ -253,7 +253,7 @@ When rendering `Profile`, we call <CodeStep step={2}>`getUser`</CodeStep> again.
 
 <DeepDive>
 
-#### Caching asynchronous work {/*caching-asynchronous-work*/}
+#### Caching asynchronous work
 
 When evaluating an [asynchronous function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), you will receive a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for that work. The promise holds the state of that work (_pending_, _fulfilled_, _failed_) and its eventual settled result.
 
@@ -285,7 +285,7 @@ If the promise is already settled, either to an error or the _fulfilled_ result,
 
 <Pitfall>
 
-##### Calling a memoized function outside of a component will not use the cache. {/*pitfall-memoized-call-outside-component*/}
+##### Calling a memoized function outside of a component will not use the cache.
 
 ```jsx [[1, 3, "getUser"]]
 import {cache} from 'react';
@@ -306,19 +306,19 @@ async function DemoProfile() {
 
 React only provides cache access to the memoized function in a component. When calling <CodeStep step={1}>`getUser`</CodeStep> outside of a component, it will still evaluate the function but not read or update the cache.
 
-This is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessible from a component.
+This is because cache access is provided through a [context](../../learn/passing-data-deeply-with-context.md) which is only accessible from a component.
 
 </Pitfall>
 
 <DeepDive>
 
-#### When should I use `cache`, [`memo`](/reference/react/memo), or [`useMemo`](/reference/react/useMemo)? {/*cache-memo-usememo*/}
+#### When should I use `cache`, [`memo`](memo.md), or [`useMemo`](useMemo.md)?
 
 All mentioned APIs offer memoization but the difference is what they're intended to memoize, who can access the cache, and when their cache is invalidated.
 
-#### `useMemo` {/*deep-dive-use-memo*/}
+#### `useMemo`
 
-In general, you should use [`useMemo`](/reference/react/useMemo) for caching an expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a component.
+In general, you should use [`useMemo`](useMemo.md) for caching an expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a component.
 
 ```jsx {expectedErrors: {'react-compiler': [4]}} {4}
 'use client';
@@ -342,7 +342,7 @@ In this example, `App` renders two `WeatherReport`s with the same record. Even t
 
 However, `useMemo` does ensure that if `App` re-renders and the `record` object doesn't change, each component instance would skip work and use the memoized value of `avgTemp`. `useMemo` will only cache the last computation of `avgTemp` with the given dependencies.
 
-#### `cache` {/*deep-dive-cache*/}
+#### `cache`
 
 In general, you should use `cache` in Server Components to memoize work that can be shared across components.
 
@@ -368,9 +368,9 @@ Re-writing the previous example to use `cache`, in this case the <CodeStep step=
 
 At this time, `cache` should only be used in Server Components and the cache will be invalidated across server requests.
 
-#### `memo` {/*deep-dive-memo*/}
+#### `memo`
 
-You should use [`memo`](reference/react/memo) to prevent a component re-rendering if its props are unchanged.
+You should use [`memo`](memo.md) to prevent a component re-rendering if its props are unchanged.
 
 ```js
 'use client';
@@ -401,13 +401,13 @@ Compared to `useMemo`, `memo` memoizes the component render based on props vs. s
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### My memoized function still runs even though I've called it with the same arguments {/*memoized-function-still-runs*/}
+### My memoized function still runs even though I've called it with the same arguments
 
 See prior mentioned pitfalls
-* [Calling different memoized functions will read from different caches.](#pitfall-different-memoized-functions)
-* [Calling a memoized function outside of a component will not use the cache.](#pitfall-memoized-call-outside-component)
+* [Calling different memoized functions will read from different caches.](#calling-different-memoized-functions-will-read-from-different-caches)
+* [Calling a memoized function outside of a component will not use the cache.](#calling-a-memoized-function-outside-of-a-component-will-not-use-the-cache)
 
 If none of the above apply, it may be a problem with how React checks if something exists in cache.
 

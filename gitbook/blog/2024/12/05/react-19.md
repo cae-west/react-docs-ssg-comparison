@@ -5,16 +5,16 @@ date: 2024/12/05
 description: React 19 is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
 ---
 
-December 05, 2024 by [The React Team](/community/team)
+December 05, 2024 by [The React Team](../../../../community/team.md)
 
 ---
 <Note>
 
-### React 19 is now stable! {/*react-19-is-now-stable*/}
+### React 19 is now stable!
 
 Additions since this post was originally shared with the React 19 RC in April:
 
-- **Pre-warming for suspended trees**: see [Improvements to Suspense](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense).
+- **Pre-warming for suspended trees**: see [Improvements to Suspense](../../04/25/react-19-upgrade-guide.md#improvements-to-suspense).
 - **React DOM static APIs**: see [New React DOM Static APIs](#new-react-dom-static-apis).
 
 _The date for this post has been updated to reflect the stable release date._
@@ -27,19 +27,19 @@ React v19 is now available on npm!
 
 </Intro>
 
-In our [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+In our [React 19 Upgrade Guide](../../04/25/react-19-upgrade-guide.md), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
 
 - [What's new in React 19](#whats-new-in-react-19)
 - [Improvements in React 19](#improvements-in-react-19)
 - [How to upgrade](#how-to-upgrade)
 
-For a list of breaking changes, see the [Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide).
+For a list of breaking changes, see the [Upgrade Guide](../../04/25/react-19-upgrade-guide.md).
 
 ---
 
-## What's new in React 19 {/*whats-new-in-react-19*/}
+## What's new in React 19
 
-### Actions {/*actions*/}
+### Actions
 
 A common use case in React apps is to perform a data mutation and then update state in response. For example, when a user submits a form to change their name, you will make an API request, and then handle the response. In the past, you would need to handle pending states, errors, optimistic updates, and sequential requests manually.
 
@@ -113,18 +113,18 @@ The async transition will immediately set the `isPending` state to true, make th
 
 <Note>
 
-#### By convention, functions that use async transitions are called "Actions". {/*by-convention-functions-that-use-async-transitions-are-called-actions*/}
+#### By convention, functions that use async transitions are called "Actions".
 
 Actions automatically manage submitting data for you:
 
 - **Pending state**: Actions provide a pending state that starts at the beginning of a request and automatically resets when the final state update is committed.
-- **Optimistic updates**: Actions support the new [`useOptimistic`](#new-hook-optimistic-updates) hook so you can show users instant feedback while the requests are submitting.
+- **Optimistic updates**: Actions support the new [`useOptimistic`](#new-hook-useoptimistic) hook so you can show users instant feedback while the requests are submitting.
 - **Error handling**: Actions provide error handling so you can display Error Boundaries when a request fails, and revert optimistic updates to their original value automatically.
 - **Forms**: `<form>` elements now support passing functions to the `action` and `formAction` props. Passing functions to the `action` props use Actions by default and reset the form automatically after submission.
 
 </Note>
 
-Building on top of Actions, React 19 introduces [`useOptimistic`](#new-hook-optimistic-updates) to manage optimistic updates, and a new hook [`React.useActionState`](#new-hook-useactionstate) to handle common cases for Actions. In `react-dom` we're adding [`<form>` Actions](#form-actions) to manage forms automatically and [`useFormStatus`](#new-hook-useformstatus) to support the common cases for Actions in forms.
+Building on top of Actions, React 19 introduces [`useOptimistic`](#new-hook-useoptimistic) to manage optimistic updates, and a new hook [`React.useActionState`](#new-hook-useactionstate) to handle common cases for Actions. In `react-dom` we're adding [`<form>` Actions](#react-dom-form-actions) to manage forms automatically and [`useFormStatus`](#react-dom-new-hook-useformstatus) to support the common cases for Actions in forms.
 
 In React 19, the above example can be simplified to:
 
@@ -155,7 +155,7 @@ function ChangeName({ name, setName }) {
 
 In the next section, we'll break down each of the new Action features in React 19.
 
-### New hook: `useActionState` {/*new-hook-useactionstate*/}
+### New hook: `useActionState`
 
 To make the common cases easier for Actions, we've added a new hook called `useActionState`:
 
@@ -186,9 +186,9 @@ See [#28491](https://github.com/react/react/pull/28491) for more info.
 
 </Note>
 
-For more information, see the docs for [`useActionState`](/reference/react/useActionState).
+For more information, see the docs for [`useActionState`](../../../../reference/react/useActionState.md).
 
-### React DOM: `<form>` Actions {/*form-actions*/}
+### React DOM: `<form>` Actions
 
 Actions are also integrated with React 19's new `<form>` features for `react-dom`. We've added support for passing functions as the `action` and `formAction` props of `<form>`, `<input>`, and `<button>` elements to automatically submit forms with Actions:
 
@@ -198,9 +198,9 @@ Actions are also integrated with React 19's new `<form>` features for `react-dom
 
 When a `<form>` Action succeeds, React will automatically reset the form for uncontrolled components. If you need to reset the `<form>` manually, you can call the new `requestFormReset` React DOM API.
 
-For more information, see the `react-dom` docs for [`<form>`](/reference/react-dom/components/form), [`<input>`](/reference/react-dom/components/input), and `<button>`.
+For more information, see the `react-dom` docs for [`<form>`](../../../../reference/react-dom/components/form.md), [`<input>`](../../../../reference/react-dom/components/input.md), and `<button>`.
 
-### React DOM: New hook: `useFormStatus` {/*new-hook-useformstatus*/}
+### React DOM: New hook: `useFormStatus`
 
 In design systems, it's common to write design components that need access to information about the `<form>` they're in, without drilling props down to the component. This can be done via Context, but to make the common case easier, we've added a new hook `useFormStatus`:
 
@@ -215,9 +215,9 @@ function DesignButton() {
 
 `useFormStatus` reads the status of the parent `<form>` as if the form was a Context provider.
 
-For more information, see the `react-dom` docs for [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
+For more information, see the `react-dom` docs for [`useFormStatus`](../../../../reference/react-dom/hooks/useFormStatus.md).
 
-### New hook: `useOptimistic` {/*new-hook-optimistic-updates*/}
+### New hook: `useOptimistic`
 
 Another common UI pattern when performing a data mutation is to show the final state optimistically while the async request is underway. In React 19, we're adding a new hook called `useOptimistic` to make this easier:
 
@@ -250,9 +250,9 @@ function ChangeName({currentName, onUpdateName}) {
 
 The `useOptimistic` hook will immediately render the `optimisticName` while the `updateName` request is in progress. When the update finishes or errors, React will automatically switch back to the `currentName` value.
 
-For more information, see the docs for [`useOptimistic`](/reference/react/useOptimistic).
+For more information, see the docs for [`useOptimistic`](../../../../reference/react/useOptimistic.md).
 
-### New API: `use` {/*new-feature-use*/}
+### New API: `use`
 
 In React 19 we're introducing a new API to read resources in render: `use`.
 
@@ -280,7 +280,7 @@ function Page({commentsPromise}) {
 
 <Note>
 
-#### `use` does not support promises created in render. {/*use-does-not-support-promises-created-in-render*/}
+#### `use` does not support promises created in render.
 
 If you try to pass a promise created in render to `use`, React will warn:
 
@@ -322,13 +322,13 @@ function Heading({children}) {
 
 The `use` API can only be called in render, similar to hooks. Unlike hooks, `use` can be called conditionally. In the future we plan to support more ways to consume resources in render with `use`.
 
-For more information, see the docs for [`use`](/reference/react/use).
+For more information, see the docs for [`use`](../../../../reference/react/use.md).
 
-## New React DOM Static APIs {/*new-react-dom-static-apis*/}
+## New React DOM Static APIs
 
 We've added two new APIs to `react-dom/static` for static site generation:
-- [`prerender`](/reference/react-dom/static/prerender)
-- [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream)
+- [`prerender`](../../../../reference/react-dom/static/prerender.md)
+- [`prerenderToNodeStream`](../../../../reference/react-dom/static/prerenderToNodeStream.md)
 
 These new APIs improve on `renderToString` by waiting for data to load for static HTML generation. They are designed to work with streaming environments like Node.js Streams and Web Streams. For example, in a Web Stream environment, you can prerender a React tree to static HTML with `prerender`:
 
@@ -345,22 +345,22 @@ async function handler(request) {
 }
 ```
 
-Prerender APIs will wait for all data to load before returning the static HTML stream. Streams can be converted to strings, or sent with a streaming response. They do not support streaming content as it loads, which is supported by the existing [React DOM server rendering APIs](/reference/react-dom/server).
+Prerender APIs will wait for all data to load before returning the static HTML stream. Streams can be converted to strings, or sent with a streaming response. They do not support streaming content as it loads, which is supported by the existing [React DOM server rendering APIs](../../../../reference/react-dom/server/index.md).
 
-For more information, see [React DOM Static APIs](/reference/react-dom/static).
+For more information, see [React DOM Static APIs](../../../../reference/react-dom/static/index.md).
 
-## React Server Components {/*react-server-components*/}
+## React Server Components
 
-### Server Components {/*server-components*/}
+### Server Components
 
 Server Components are a new option that allows rendering components ahead of time, before bundling, in an environment separate from your client application or SSR server. This separate environment is the "server" in React Server Components. Server Components can run once at build time on your CI server, or they can be run for each request using a web server.
 
-React 19 includes all of the React Server Components features included from the Canary channel. This means libraries that ship with Server Components can now target React 19 as a peer dependency with a `react-server` [export condition](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) for use in frameworks that support the [Full-stack React Architecture](/learn/creating-a-react-app#which-features-make-up-the-react-teams-full-stack-architecture-vision).
+React 19 includes all of the React Server Components features included from the Canary channel. This means libraries that ship with Server Components can now target React 19 as a peer dependency with a `react-server` [export condition](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) for use in frameworks that support the [Full-stack React Architecture](../../../../learn/creating-a-react-app.md#which-features-make-up-the-react-teams-full-stack-architecture-vision).
 
 
 <Note>
 
-#### How do I build support for Server Components? {/*how-do-i-build-support-for-server-components*/}
+#### How do I build support for Server Components?
 
 While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x.
 
@@ -369,9 +369,9 @@ To support React Server Components as a bundler or framework, we recommend pinni
 </Note>
 
 
-For more, see the docs for [React Server Components](/reference/rsc/server-components).
+For more, see the docs for [React Server Components](../../../../reference/rsc/server-components.md).
 
-### Server Actions {/*server-actions*/}
+### Server Actions
 
 Server Actions allow Client Components to call async functions executed on the server.
 
@@ -379,11 +379,11 @@ When a Server Action is defined with the `"use server"` directive, your framewor
 
 <Note>
 
-#### There is no directive for Server Components. {/*there-is-no-directive-for-server-components*/}
+#### There is no directive for Server Components.
 
 A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Actions.
 
-For more info, see the docs for [Directives](/reference/rsc/directives).
+For more info, see the docs for [Directives](../../../../reference/rsc/directives.md).
 
 </Note>
 
@@ -391,9 +391,9 @@ Server Actions can be created in Server Components and passed as props to Client
 
 For more, see the docs for [React Server Actions](/reference/rsc/server-actions).
 
-## Improvements in React 19 {/*improvements-in-react-19*/}
+## Improvements in React 19
 
-### `ref` as a prop {/*ref-as-a-prop*/}
+### `ref` as a prop
 
 Starting in React 19, you can now access `ref` as a prop for function components:
 
@@ -414,7 +414,7 @@ New function components will no longer need `forwardRef`, and we will be publish
 
 </Note>
 
-### Diffs for hydration errors {/*diffs-for-hydration-errors*/}
+### Diffs for hydration errors
 
 We also improved error reporting for hydration errors in `react-dom`. For example, instead of logging multiple errors in DEV without any information about the mismatch:
 
@@ -484,7 +484,7 @@ https://react.dev/link/hydration-mismatch {'\n'}
 
 </ConsoleBlockMulti>
 
-### `<Context>` as a provider {/*context-as-a-provider*/}
+### `<Context>` as a provider
 
 In React 19, you can render `<Context>` as a provider instead of `<Context.Provider>`:
 
@@ -503,7 +503,7 @@ function App({children}) {
 
 New Context providers can use `<Context>` and we will be publishing a codemod to convert existing providers. In future versions we will deprecate `<Context.Provider>`.
 
-### Cleanup functions for refs {/*cleanup-functions-for-refs*/}
+### Cleanup functions for refs
 
 We now support returning a cleanup function from `ref` callbacks:
 
@@ -542,7 +542,7 @@ The original code returned the instance of the `HTMLDivElement` and TypeScript w
 
 You can codemod this pattern with [`no-implicit-ref-callback-return`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return).
 
-### `useDeferredValue` initial value {/*use-deferred-value-initial-value*/}
+### `useDeferredValue` initial value
 
 We've added an `initialValue` option to `useDeferredValue`:
 
@@ -560,9 +560,9 @@ function Search({deferredValue}) {
 
 When <CodeStep step={2}>initialValue</CodeStep> is provided, `useDeferredValue` will return it as `value` for the initial render of the component, and schedules a re-render in the background with the <CodeStep step={1}>deferredValue</CodeStep> returned.
 
-For more, see [`useDeferredValue`](/reference/react/useDeferredValue).
+For more, see [`useDeferredValue`](../../../../reference/react/useDeferredValue.md).
 
-### Support for Document Metadata {/*support-for-metadata-tags*/}
+### Support for Document Metadata
 
 In HTML, document metadata tags like `<title>`, `<link>`, and `<meta>` are reserved for placement in the `<head>` section of the document. In React, the component that decides what metadata is appropriate for the app may be very far from the place where you render the `<head>` or React does not render the `<head>` at all. In the past, these elements would need to be inserted manually in an effect, or by libraries like [`react-helmet`](https://github.com/nfl/react-helmet), and required careful handling when server rendering a React application.
 
@@ -589,15 +589,15 @@ When React renders this component, it will see the `<title>` `<link>` and `<meta
 
 <Note>
 
-#### You may still want a Metadata library {/*you-may-still-want-a-metadata-library*/}
+#### You may still want a Metadata library
 
 For simple use cases, rendering Document Metadata as tags may be suitable, but libraries can offer more powerful features like overriding generic metadata with specific metadata based on the current route. These features make it easier for frameworks and libraries like [`react-helmet`](https://github.com/nfl/react-helmet) to support metadata tags, rather than replace them.
 
 </Note>
 
-For more info, see the docs for [`<title>`](/reference/react-dom/components/title), [`<link>`](/reference/react-dom/components/link), and [`<meta>`](/reference/react-dom/components/meta).
+For more info, see the docs for [`<title>`](../../../../reference/react-dom/components/title.md), [`<link>`](../../../../reference/react-dom/components/link.md), and [`<meta>`](../../../../reference/react-dom/components/meta.md).
 
-### Support for stylesheets {/*support-for-stylesheets*/}
+### Support for stylesheets
 
 Stylesheets, both externally linked (`<link rel="stylesheet" href="...">`) and inline (`<style>...</style>`), require careful positioning in the DOM due to style precedence rules. Building a stylesheet capability that allows for composability within components is hard, so users often end up either loading all of their styles far from the components that may depend on them, or they use a style library which encapsulates this complexity.
 
@@ -644,9 +644,9 @@ For users accustomed to loading stylesheets manually this is an opportunity to l
 
 Style libraries and style integrations with bundlers can also adopt this new capability so even if you don't directly render your own stylesheets, you can still benefit as your tools are upgraded to use this feature.
 
-For more details, read the docs for [`<link>`](/reference/react-dom/components/link) and [`<style>`](/reference/react-dom/components/style).
+For more details, read the docs for [`<link>`](../../../../reference/react-dom/components/link.md) and [`<style>`](../../../../reference/react-dom/components/style.md).
 
-### Support for async scripts {/*support-for-async-scripts*/}
+### Support for async scripts
 
 In HTML normal scripts (`<script src="...">`) and deferred scripts (`<script defer="" src="...">`) load in document order which makes rendering these kinds of scripts deep within your component tree challenging. Async scripts (`<script async="" src="...">`) however will load in arbitrary order.
 
@@ -677,9 +677,9 @@ In all rendering environments, async scripts will be deduplicated so that React 
 
 In Server Side Rendering, async scripts will be included in the `<head>` and prioritized behind more critical resources that block paint such as stylesheets, fonts, and image preloads.
 
-For more details, read the docs for [`<script>`](/reference/react-dom/components/script).
+For more details, read the docs for [`<script>`](../../../../reference/react-dom/components/script.md).
 
-### Support for preloading resources {/*support-for-preloading-resources*/}
+### Support for preloading resources
 
 During initial document load and on client side updates, telling the Browser about resources that it will likely need to load as early as possible can have a dramatic effect on page performance.
 
@@ -714,9 +714,9 @@ function MyComponent() {
 
 These APIs can be used to optimize initial page loads by moving discovery of additional resources like fonts out of stylesheet loading. They can also make client updates faster by prefetching a list of resources used by an anticipated navigation and then eagerly preloading those resources on click or even on hover.
 
-For more details see [Resource Preloading APIs](/reference/react-dom#resource-preloading-apis).
+For more details see [Resource Preloading APIs](../../../../reference/react-dom/index.md#resource-preloading-apis).
 
-### Compatibility with third-party scripts and extensions {/*compatibility-with-third-party-scripts-and-extensions*/}
+### Compatibility with third-party scripts and extensions
 
 We've improved hydration to account for third-party scripts and browser extensions.
 
@@ -724,7 +724,7 @@ When hydrating, if an element that renders on the client doesn't match the eleme
 
 In React 19, unexpected tags in the `<head>` and `<body>` will be skipped over, avoiding the mismatch errors. If React needs to re-render the entire document due to an unrelated hydration mismatch, it will leave in place stylesheets inserted by third-party scripts and browser extensions.
 
-### Better error reporting {/*error-handling*/}
+### Better error reporting
 
 We improved error handling in React 19 to remove duplication and provide options for handling caught and uncaught errors. For example, when there's an error in render caught by an Error Boundary, previously React would throw the error twice (once for the original error, then again after failing to automatically recover), and then call `console.error` with info about where the error occurred.
 
@@ -790,9 +790,9 @@ Additionally, we've added two new root options to complement `onRecoverableError
 - `onUncaughtError`: called when an error is thrown and not caught by an Error Boundary.
 - `onRecoverableError`: called when an error is thrown and automatically recovered.
 
-For more info and examples, see the docs for [`createRoot`](/reference/react-dom/client/createRoot) and [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).
+For more info and examples, see the docs for [`createRoot`](../../../../reference/react-dom/client/createRoot.md) and [`hydrateRoot`](../../../../reference/react-dom/client/hydrateRoot.md).
 
-### Support for Custom Elements {/*support-for-custom-elements*/}
+### Support for Custom Elements
 
 React 19 adds full support for custom elements and passes all tests on [Custom Elements Everywhere](https://custom-elements-everywhere.com/).
 
@@ -804,7 +804,7 @@ In past versions, using Custom Elements in React has been difficult because Reac
 Thanks to [Joey Arhar](https://github.com/josepharhar) for driving the design and implementation of Custom Element support in React.
 
 
-#### How to upgrade {/*how-to-upgrade*/}
-See the [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide) for step-by-step instructions and a full list of breaking and notable changes.
+#### How to upgrade
+See the [React 19 Upgrade Guide](../../04/25/react-19-upgrade-guide.md) for step-by-step instructions and a full list of breaking and notable changes.
 
 _Note: this post was originally published 04/25/2024 and has been updated to 12/05/2024 with the stable release._

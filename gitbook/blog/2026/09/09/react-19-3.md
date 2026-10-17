@@ -5,7 +5,7 @@ date: 2026/09/09
 description: React 19.3 adds new features like View Transitions, Fragment Refs, browser(), Trusted Types, and more.
 ---
 
-September 9, 2026 by [The React Team](/community/team)
+September 9, 2026 by [The React Team](../../../../community/team.md)
 
 ---
 
@@ -16,7 +16,7 @@ React 19.3 is now available on npm!
 </Intro>
 
 
-[Last year](/blog/2025/04/23/react-labs-view-transitions-activity-and-more), we shared View Transitions and Fragment Refs as new experimental APIs coming to React. We're excited to announce that both of these are now stable in React 19.3!
+[Last year](../../../2025/04/23/react-labs-view-transitions-activity-and-more.md), we shared View Transitions and Fragment Refs as new experimental APIs coming to React. We're excited to announce that both of these are now stable in React 19.3!
 
 In this post, we'll go over how they work, and also cover some other notable changes in this release.
 
@@ -24,11 +24,11 @@ In this post, we'll go over how they work, and also cover some other notable cha
 
 ---
 
-## New React Features {/*new-react-features*/}
+## New React Features
 
-### View Transitions {/*view-transition*/}
+### View Transitions
 
-The new `<ViewTransition>` component lets you animate elements as they enter, exit, move, or resize using the browser's [View Transition API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API). We shared it as an experimental API [last year](/blog/2025/04/23/react-labs-view-transitions-activity-and-more#view-transitions), and in 19.3 it's stable and ready to use.
+The new `<ViewTransition>` component lets you animate elements as they enter, exit, move, or resize using the browser's [View Transition API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API). We shared it as an experimental API [last year](../../../2025/04/23/react-labs-view-transitions-activity-and-more.md#view-transitions), and in 19.3 it's stable and ready to use.
 
 To animate part of your UI, wrap it in `<ViewTransition>`:
 
@@ -42,10 +42,10 @@ import { ViewTransition } from 'react';
 )}
 ```
 
-Now, whenever an update marked as a [Transition](/reference/react/useTransition) changes the child component's style, or causes the `ViewTransition` to be mounted or unmounted, React will animate that update.
+Now, whenever an update marked as a [Transition](../../../../reference/react/useTransition.md) changes the child component's style, or causes the `ViewTransition` to be mounted or unmounted, React will animate that update.
 
 {/*
-Updates outside of a Transition don't trigger animations, as those are meant to be urgent and reflected immediately in the UI. State updates inside of [startTransition](/reference/react/startTransition), a [`<Suspense>`](/reference/react/Suspense) reveal, or an update from [`useDeferredValue`](/reference/react/useDeferredValue) all cause a View Transition to animate.
+Updates outside of a Transition don't trigger animations, as those are meant to be urgent and reflected immediately in the UI. State updates inside of [startTransition](../../../../reference/react/startTransition.md), a [`<Suspense>`](../../../../reference/react/Suspense.md) reveal, or an update from [`useDeferredValue`](../../../../reference/react/useDeferredValue.md) all cause a View Transition to animate.
 */}
 
 React chooses which animation to run based on how the tree changed:
@@ -55,7 +55,7 @@ React chooses which animation to run based on how the tree changed:
 - **update**: the children of a `<ViewTransition>` change style or content.
 - **share**: a named `<ViewTransition>` is removed in one place and added in another.
 
-Note that updates not marked as Transitions don't trigger animations, as those are meant to be urgent and reflected immediately in the UI. State updates inside of [startTransition](/reference/react/startTransition), a [`<Suspense>`](/reference/react/Suspense) reveal, or an update from [`useDeferredValue`](/reference/react/useDeferredValue) all cause a View Transition to animate.
+Note that updates not marked as Transitions don't trigger animations, as those are meant to be urgent and reflected immediately in the UI. State updates inside of [startTransition](../../../../reference/react/startTransition.md), a [`<Suspense>`](../../../../reference/react/Suspense.md) reveal, or an update from [`useDeferredValue`](../../../../reference/react/useDeferredValue.md) all cause a View Transition to animate.
 
 Here's a simple example of an enter/exit animation:
 
@@ -220,19 +220,19 @@ button:hover {
 
 </Sandpack>
 
-By default, `<ViewTransition>` animates with a smooth cross-fade. You can customize each kind of animation by passing a [View Transition Class](/reference/react/ViewTransition#view-transition-class) and defining the animation in CSS, or you can use the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) to trigger animations imperatively with the [event props](/reference/react/ViewTransition#view-transition-event) (`onEnter`, `onExit`, `onShare`, `onUpdate`).
+By default, `<ViewTransition>` animates with a smooth cross-fade. You can customize each kind of animation by passing a [View Transition Class](../../../../reference/react/ViewTransition.md#view-transition-class) and defining the animation in CSS, or you can use the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) to trigger animations imperatively with the [event props](../../../../reference/react/ViewTransition.md#view-transition-event) (`onEnter`, `onExit`, `onShare`, `onUpdate`).
 
 {/*
-There are a couple of rules to keep in mind. A `<ViewTransition>` only animates on enter and exit if it's the first thing rendered in its subtree, before any DOM node, and each shared `name` must be unique across your app at any given time. See [Troubleshooting](/reference/react/ViewTransition#troubleshooting) for the details.
+There are a couple of rules to keep in mind. A `<ViewTransition>` only animates on enter and exit if it's the first thing rendered in its subtree, before any DOM node, and each shared `name` must be unique across your app at any given time. See [Troubleshooting](../../../../reference/react/ViewTransition.md#troubleshooting) for the details.
  */}
 
 Currently, `<ViewTransition>` only works in the DOM. We're working on support for React Native and other platforms.
 
-For more, see the [`<ViewTransition>` docs](/reference/react/ViewTransition).
+For more, see the [`<ViewTransition>` docs](../../../../reference/react/ViewTransition.md).
 
 ---
 
-#### `addTransitionType` {/*add-transition-type*/}
+#### `addTransitionType`
 
 Sometimes, you'll want to customize which animation is used for the same state update. For example, navigating a carousel _forward_ to the third slide should animate the slides right-to-left, while navigating it _backward_ should animate them left-to-right, even though both actions set the currentSlide to 3.
 
@@ -557,11 +557,11 @@ button:hover {
 
 React also adds every Transition Type to the element as a browser [view transition type](https://www.w3.org/TR/css-view-transitions-2/#active-view-transition-pseudo-examples), so you can scope animations in CSS with `:active-view-transition-type(...)`.
 
-To learn more, see the [`addTransitionType` docs](/reference/react/addTransitionType).
+To learn more, see the [`addTransitionType` docs](../../../../reference/react/addTransitionType.md).
 
 ---
 
-#### Animating fallbacks, images, and fonts with Suspense {/*animating-fallbacks-images-and-fonts-with-suspense*/}
+#### Animating fallbacks, images, and fonts with Suspense
 
 One of the most exciting things about View Transitions in React is how they integrate with Suspense.
 
@@ -1059,7 +1059,7 @@ button:hover {
 
 Notice how the fallback appears immediately when tapping the button, which keeps our UI feeling responsive to user actions. Additionally, once the video has been loaded, toggling it is instant.
 
-There are other patterns you can use depending on what effect you want to achieve. To learn more, check out the docs on [animating with Suspense](/reference/react/ViewTransition#animating-from-suspense-content).
+There are other patterns you can use depending on what effect you want to achieve. To learn more, check out the docs on [animating with Suspense](../../../../reference/react/ViewTransition.md#animating-from-suspense-content).
 
 ---
 
@@ -1310,11 +1310,11 @@ img {
 
 </Sandpack>
 
-To learn more about waiting for images, fonts, or stylesheets to load, see the [Suspense docs](/reference/react/Suspense#waiting-for-a-font-to-load).
+To learn more about waiting for images, fonts, or stylesheets to load, see the [Suspense docs](../../../../reference/react/Suspense.md#waiting-for-a-font-to-load).
 
 ---
 
-### Fragment Refs {/*fragment-refs*/}
+### Fragment Refs
 
 When you need lower-level control over a component's DOM nodes—for example to attach an event listener, observe visibility, or move focus—you can usually use a ref. But there are some situations where this is difficult:
 
@@ -1338,7 +1338,7 @@ Adding a wrapper `<div>` just to hold a ref sometimes works, but it can also int
 
 Fragment Refs solve these problems by providing a limited set of commonly used DOM methods that work with any React component, regardless of what it renders.
 
-In 19.3, you can use them by passing a ref directly to a [`<Fragment>`](/reference/react/Fragment). This ref gives you a `FragmentInstance`, which you can use to work with the Fragment's DOM children:
+In 19.3, you can use them by passing a ref directly to a [`<Fragment>`](../../../../reference/react/Fragment.md). This ref gives you a `FragmentInstance`, which you can use to work with the Fragment's DOM children:
 
 ```js {2,5-6,10}
 function Component() {
@@ -1487,13 +1487,13 @@ export default function InView({ onChange, children }) {
 
 Notice how `InView` is able to add behavior to its children, even though there's no single parent DOM element, and in spite of `Card` not exposing a `ref` prop.
 
-To learn more about working with Fragment Refs, see the [`<Fragment>` docs](/reference/react/Fragment).
+To learn more about working with Fragment Refs, see the [`<Fragment>` docs](../../../../reference/react/Fragment.md).
 
 ---
 
-## New React DOM Features {/*new-react-dom-features*/}
+## New React DOM Features
 
-### `browser` {/*browser*/}
+### `browser`
 
 If your app uses server rendering, your components will render in two different environments:
 
@@ -1824,11 +1824,11 @@ function ProductDetails({ productId, initialData }) {
 
 Now, the ProductDetails component can be included in the HTML, provided it receives `initialData` during server rendering. If not, it suspends until it gets rendered in the browser, at which point `useQuery` can fetch the data or read from its cache as normal.
 
-To learn more about `browser`, [check out the docs](/reference/react-dom/browser).
+To learn more about `browser`, [check out the docs](../../../../reference/react-dom/browser.md).
 
 ---
 
-### Trusted Types support {/*trusted-types-support*/}
+### Trusted Types support
 
 React 19.3 integrates with the browser [Trusted Types API](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API), a security feature that helps prevent DOM-based XSS attacks. When a site enforces Trusted Types with `Content-Security-Policy: require-trusted-types-for 'script'`, the browser requires that values passed to injection sinks like `innerHTML` are typed objects (`TrustedHTML`, `TrustedScript`, `TrustedScriptURL`) created through your sanitization policies, rather than raw strings.
 
@@ -1836,9 +1836,9 @@ Previously, React always coerced values to strings (via `'' + value`) before pas
 
 ---
 
-## New React Server Components Features {/*new-react-server-components-features*/}
+## New React Server Components Features
 
-### `<Context>` can be rendered directly in Server Components {/*context-can-be-rendered-directly-in-server-components*/}
+### `<Context>` can be rendered directly in Server Components
 
 While Server Components can't _create_ Context, they can _render_ Context by importing it from a `'use client'` module.
 
@@ -1903,7 +1903,7 @@ This is especially useful for Contexts that solely exist to allow Server Compone
 
 ---
 
-## Changelog {/*changelog*/}
+## Changelog
 
 Other notable changes
 - `react`: Render Transitions independently instead of entangling them into a single render, so a slow Transition no longer holds up unrelated ones [#37290](https://github.com/react/react/pull/37290)

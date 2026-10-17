@@ -16,9 +16,9 @@ const stack = captureOwnerStack();
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `captureOwnerStack()` {/*captureownerstack*/}
+### `captureOwnerStack()`
 
 Call `captureOwnerStack` to get the current Owner Stack.
 
@@ -33,11 +33,11 @@ function Component() {
 }
 ```
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 `captureOwnerStack` does not take any parameters.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `captureOwnerStack` returns `string | null`.
 
@@ -45,19 +45,19 @@ Owner Stacks are available in
 - Component render
 - Effects (e.g. `useEffect`)
 - React's event handlers (e.g. `<button onClick={...} />`)
-- React error handlers ([React Root options](/reference/react-dom/client/createRoot#parameters) `onCaughtError`, `onRecoverableError`, and `onUncaughtError`)
+- React error handlers ([React Root options](../react-dom/client/createRoot.md#parameters) `onCaughtError`, `onRecoverableError`, and `onUncaughtError`)
 
 If no Owner Stack is available, `null` is returned (see [Troubleshooting: The Owner Stack is `null`](#the-owner-stack-is-null)).
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 - Owner Stacks are only available in development. `captureOwnerStack` will always return `null` outside of development.
 
 <DeepDive>
 
-#### Owner Stack vs Component Stack {/*owner-stack-vs-component-stack*/}
+#### Owner Stack vs Component Stack
 
-The Owner Stack is different from the Component Stack available in React error handlers like [`errorInfo.componentStack` in `onUncaughtError`](/reference/react-dom/client/hydrateRoot#error-logging-in-production).
+The Owner Stack is different from the Component Stack available in React error handlers like [`errorInfo.componentStack` in `onUncaughtError`](../react-dom/client/hydrateRoot.md#error-logging-in-production).
 
 For example, consider the following code:
 
@@ -162,9 +162,9 @@ Neither `Navigation` nor `legend` are in the stack at all since it's only a sibl
 
 </DeepDive>
 
-## Usage {/*usage*/}
+## Usage
 
-### Enhance a custom error overlay {/*enhance-a-custom-error-overlay*/}
+### Enhance a custom error overlay
 
 ```js [[1, 5, "console.error"], [4, 7, "captureOwnerStack"]]
 import { captureOwnerStack } from "react";
@@ -347,9 +347,9 @@ export default function App() {
 
 </Sandpack>
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### The Owner Stack is `null` {/*the-owner-stack-is-null*/}
+### The Owner Stack is `null`
 
 The call of `captureOwnerStack` happened outside of a React controlled function e.g. in a `setTimeout` callback, after a `fetch` call or in a custom DOM event handler. During render, Effects, React event handlers, and React error handlers (e.g. `hydrateRoot#options.onCaughtError`) Owner Stacks should be available.
 
@@ -381,7 +381,7 @@ export default function App() {
 
 </Sandpack>
 
-### `captureOwnerStack` is not available {/*captureownerstack-is-not-available*/}
+### `captureOwnerStack` is not available
 
 `captureOwnerStack` is only exported in development builds. It will be `undefined` in production builds. If `captureOwnerStack` is used in files that are bundled for production and development, you should conditionally access it from a namespace import.
 

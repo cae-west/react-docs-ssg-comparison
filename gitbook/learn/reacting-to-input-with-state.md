@@ -16,7 +16,7 @@ React provides a declarative way to manipulate the UI. Instead of manipulating i
 
 </YouWillLearn>
 
-## How declarative UI compares to imperative {/*how-declarative-ui-compares-to-imperative*/}
+## How declarative UI compares to imperative
 
 When you design UI interactions, you probably think about how the UI *changes* in response to user actions. Consider a form that lets the user submit an answer:
 
@@ -27,7 +27,7 @@ When you design UI interactions, you probably think about how the UI *changes* i
 
 In **imperative programming,** the above corresponds directly to how you implement interaction. You have to write the exact instructions to manipulate the UI depending on what just happened. Here's another way to think about this: imagine riding next to someone in a car and telling them turn by turn where to go.
 
-<Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="In a car driven by an anxious-looking person representing JavaScript, a passenger orders the driver to execute a sequence of complicated turn by turn navigations." />
+<Illustration src="../images/docs/illustrations/i_imperative-ui-programming.png"  alt="In a car driven by an anxious-looking person representing JavaScript, a passenger orders the driver to execute a sequence of complicated turn by turn navigations." />
 
 They don't know where you want to go, they just follow your commands. (And if you get the directions wrong, you end up in the wrong place!) It's called *imperative* because you have to "command" each element, from the spinner to the button, telling the computer *how* to update the UI.
 
@@ -137,9 +137,9 @@ React was built to solve this problem.
 
 In React, you don't directly manipulate the UI--meaning you don't enable, disable, show, or hide components directly. Instead, you **declare what you want to show,** and React figures out how to update the UI. Think of getting into a taxi and telling the driver where you want to go instead of telling them exactly where to turn. It's the driver's job to get you there, and they might even know some shortcuts you haven't considered!
 
-<Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
+<Illustration src="../images/docs/illustrations/i_declarative-ui-programming.png" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
 
-## Thinking about UI declaratively {/*thinking-about-ui-declaratively*/}
+## Thinking about UI declaratively
 
 You've seen how to implement a form imperatively above. To better understand how to think in React, you'll walk through reimplementing this UI in React below:
 
@@ -149,7 +149,7 @@ You've seen how to implement a form imperatively above. To better understand how
 4. **Remove** any non-essential state variables
 5. **Connect** the event handlers to set the state
 
-### Step 1: Identify your component's different visual states {/*step-1-identify-your-components-different-visual-states*/}
+### Step 1: Identify your component's different visual states
 
 In computer science, you may hear about a ["state machine"](https://en.wikipedia.org/wiki/Finite-state_machine) being in one of several “states”. If you work with a designer, you may have seen mockups for different "visual states". React stands at the intersection of design and computer science, so both of these ideas are sources of inspiration.
 
@@ -240,7 +240,7 @@ export default function Form({
 
 <DeepDive>
 
-#### Displaying many visual states at once {/*displaying-many-visual-states-at-once*/}
+#### Displaying many visual states at once
 
 If a component has a lot of visual states, it can be convenient to show them all on one page:
 
@@ -311,7 +311,7 @@ Pages like this are often called "living styleguides" or "storybooks".
 
 </DeepDive>
 
-### Step 2: Determine what triggers those state changes {/*step-2-determine-what-triggers-those-state-changes*/}
+### Step 2: Determine what triggers those state changes
 
 You can trigger state updates in response to two kinds of inputs:
 
@@ -319,11 +319,11 @@ You can trigger state updates in response to two kinds of inputs:
 * **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
 
 <IllustrationBlock>
-  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" />
-  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
+  <Illustration caption="Human inputs" alt="A finger." src="../images/docs/illustrations/i_inputs1.png" />
+  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="../images/docs/illustrations/i_inputs2.png" />
 </IllustrationBlock>
 
-In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI.** For the form you're developing, you will need to change state in response to a few different inputs:
+In both cases, **you must set [state variables](state-a-components-memory.md#anatomy-of-usestate) to update the UI.** For the form you're developing, you will need to change state in response to a few different inputs:
 
 * **Changing the text input** (human) should switch it from the *Empty* state to the *Typing* state or back, depending on whether the text box is empty or not.
 * **Clicking the Submit button** (human) should switch it to the *Submitting* state.
@@ -332,7 +332,7 @@ In both cases, **you must set [state variables](/learn/state-a-components-memory
 
 <Note>
 
-Notice that human inputs often require [event handlers](/learn/responding-to-events)!
+Notice that human inputs often require [event handlers](responding-to-events.md)!
 
 </Note>
 
@@ -348,9 +348,9 @@ Form states
 
 </DiagramGroup>
 
-### Step 3: Represent the state in memory with `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
+### Step 3: Represent the state in memory with `useState`
 
-Next you'll need to represent the visual states of your component in memory with [`useState`.](/reference/react/useState) Simplicity is key: each piece of state is a "moving piece", and **you want as few "moving pieces" as possible.** More complexity leads to more bugs!
+Next you'll need to represent the visual states of your component in memory with [`useState`.](../reference/react/useState.md) Simplicity is key: each piece of state is a "moving piece", and **you want as few "moving pieces" as possible.** More complexity leads to more bugs!
 
 Start with the state that *absolutely must* be there. For example, you'll need to store the `answer` for the input, and the `error` (if it exists) to store the last error:
 
@@ -373,7 +373,7 @@ const [isError, setIsError] = useState(false);
 
 Your first idea likely won't be the best, but that's ok--refactoring state is a part of the process!
 
-### Step 4: Remove any non-essential state variables {/*step-4-remove-any-non-essential-state-variables*/}
+### Step 4: Remove any non-essential state variables
 
 You want to avoid duplication in the state content so you're only tracking what is essential. Spending a little time on refactoring your state structure will make your components easier to understand, reduce duplication, and avoid unintended meanings. Your goal is to **prevent the cases where the state in memory doesn't represent any valid UI that you'd want a user to see.** (For example, you never want to show an error message and disable the input at the same time, or the user won't be able to correct the error!)
 
@@ -395,13 +395,13 @@ You know they are essential, because you can't remove any of them without breaki
 
 <DeepDive>
 
-#### Eliminating “impossible” states with a reducer {/*eliminating-impossible-states-with-a-reducer*/}
+#### Eliminating “impossible” states with a reducer
 
-These three variables are a good enough representation of this form's state. However, there are still some intermediate states that don't fully make sense. For example, a non-null `error` doesn't make sense when `status` is `'success'`. To model the state more precisely, you can [extract it into a reducer.](/learn/extracting-state-logic-into-a-reducer) Reducers let you unify multiple state variables into a single object and consolidate all the related logic!
+These three variables are a good enough representation of this form's state. However, there are still some intermediate states that don't fully make sense. For example, a non-null `error` doesn't make sense when `status` is `'success'`. To model the state more precisely, you can [extract it into a reducer.](extracting-state-logic-into-a-reducer.md) Reducers let you unify multiple state variables into a single object and consolidate all the related logic!
 
 </DeepDive>
 
-### Step 5: Connect the event handlers to set state {/*step-5-connect-the-event-handlers-to-set-state*/}
+### Step 5: Connect the event handlers to set state
 
 Lastly, create event handlers that update the state. Below is the final form, with all event handlers wired up:
 
@@ -503,7 +503,7 @@ Although this code is longer than the original imperative example, it is much le
 
 <Challenges>
 
-#### Add and remove a CSS class {/*add-and-remove-a-css-class*/}
+#### Add and remove a CSS class
 
 Make it so that clicking on the picture *removes* the `background--active` CSS class from the outer `<div>`, but *adds* the `picture--active` class to the `<img>`. Clicking the background again should restore the original CSS classes.
 
@@ -562,7 +562,7 @@ This component has two visual states: when the image is active, and when the ima
 * When the image is active, the CSS classes are `background` and `picture picture--active`.
 * When the image is inactive, the CSS classes are `background background--active` and `picture`.
 
-A single boolean state variable is enough to remember whether the image is active. The original task was to remove or add CSS classes. However, in React you need to *describe* what you want to see rather than *manipulate* the UI elements. So you need to calculate both CSS classes based on the current state. You also need to [stop the propagation](/learn/responding-to-events#stopping-propagation) so that clicking the image doesn't register as a click on the background.
+A single boolean state variable is enough to remember whether the image is active. The original task was to remove or add CSS classes. However, in React you need to *describe* what you want to see rather than *manipulate* the UI elements. So you need to calculate both CSS classes based on the current state. You also need to [stop the propagation](responding-to-events.md#stopping-propagation) so that clicking the image doesn't register as a click on the background.
 
 Verify that this version works by clicking the image and then outside of it:
 
@@ -698,11 +698,11 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Keep in mind that if two different JSX chunks describe the same tree, their nesting (first `<div>` → first `<img>`) has to line up. Otherwise, toggling `isActive` would recreate the whole tree below and [reset its state.](/learn/preserving-and-resetting-state) This is why, if a similar JSX tree gets returned in both cases, it is better to write them as a single piece of JSX.
+Keep in mind that if two different JSX chunks describe the same tree, their nesting (first `<div>` → first `<img>`) has to line up. Otherwise, toggling `isActive` would recreate the whole tree below and [reset its state.](preserving-and-resetting-state.md) This is why, if a similar JSX tree gets returned in both cases, it is better to write them as a single piece of JSX.
 
 </Solution>
 
-#### Profile editor {/*profile-editor*/}
+#### Profile editor
 
 Here is a small form implemented with plain JavaScript and DOM. Play with it to understand its behavior:
 
@@ -842,7 +842,7 @@ label { display: block; margin-bottom: 20px; }
 
 You will need two state variables to hold the input values: `firstName` and `lastName`. You're also going to need an `isEditing` state variable that holds whether to display the inputs or not. You should _not_ need a `fullName` variable because the full name can always be calculated from the `firstName` and the `lastName`.
 
-Finally, you should use [conditional rendering](/learn/conditional-rendering) to show or hide the inputs depending on `isEditing`.
+Finally, you should use [conditional rendering](conditional-rendering.md) to show or hide the inputs depending on `isEditing`.
 
 <Sandpack>
 
@@ -904,7 +904,7 @@ Compare this solution to the original imperative code. How are they different?
 
 </Solution>
 
-#### Refactor the imperative solution without React {/*refactor-the-imperative-solution-without-react*/}
+#### Refactor the imperative solution without React
 
 Here is the original sandbox from the previous challenge, written imperatively without React:
 

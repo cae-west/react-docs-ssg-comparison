@@ -11,20 +11,20 @@ React Performance tracks are specialized custom entries that appear on the Perfo
 These tracks are designed to provide developers with comprehensive insights into their React application's performance by visualizing React-specific events and metrics alongside other critical data sources such as network requests, JavaScript execution, and event loop activity, all synchronized on a unified timeline within the Performance panel for a complete understanding of application behavior.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/performance-tracks/overview.png" alt="React Performance Tracks" />
-  <img className="w-full dark-image" src="/images/docs/performance-tracks/overview.dark.png" alt="React Performance Tracks" />
+  <img className="w-full light-image" src="../../images/docs/performance-tracks/overview.png" alt="React Performance Tracks" />
+  <img className="w-full dark-image" src="../../images/docs/performance-tracks/overview.dark.png" alt="React Performance Tracks" />
 </div>
 
 <InlineToc />
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
 React Performance tracks are only available in development and profiling builds of React:
 
 - **Development**: enabled by default.
-- **Profiling**: Only Scheduler tracks are enabled by default. The Components track only lists Components that are in subtrees wrapped with [`<Profiler>`](/reference/react/Profiler). If you have [React Developer Tools extension](/learn/react-developer-tools) enabled, all Components are included in the Components track even if they're not wrapped in `<Profiler>`. Server tracks are not available in profiling builds.
+- **Profiling**: Only Scheduler tracks are enabled by default. The Components track only lists Components that are in subtrees wrapped with [`<Profiler>`](../react/Profiler.md). If you have [React Developer Tools extension](../../learn/react-developer-tools.md) enabled, all Components are included in the Components track even if they're not wrapped in `<Profiler>`. Server tracks are not available in profiling builds.
 
 If enabled, tracks should appear automatically in the traces you record with the Performance panel of browsers that provide [extensibility APIs](https://developer.chrome.com/docs/devtools/performance/extension).
 
@@ -35,7 +35,7 @@ Server Components and Server Requests tracks are only available in development b
 
 </Pitfall>
 
-### Using profiling builds {/*using-profiling-builds*/}
+### Using profiling builds
 
 In addition to production and development builds, React also includes a special profiling build.
 To use profiling builds, you have to use `react-dom/profiling` instead of `react-dom/client`.
@@ -44,65 +44,65 @@ Your framework might have built-in support for enabling React's profiling build.
 
 ---
 
-## Tracks {/*tracks*/}
+## Tracks
 
-### Scheduler {/*scheduler*/}
+### Scheduler
 
 The Scheduler is an internal React concept used for managing tasks with different priorities. This track consists of 4 subtracks, each representing work of a specific priority:
 
 - **Blocking** - The synchronous updates, which could've been initiated by user interactions.
-- **Transition** - Non-blocking work that happens in the background, usually initiated via [`startTransition`](/reference/react/startTransition).
+- **Transition** - Non-blocking work that happens in the background, usually initiated via [`startTransition`](../react/startTransition.md).
 - **Suspense** - Work related to Suspense boundaries, such as displaying fallbacks or revealing content.
 - **Idle** - The lowest priority work that is done when there are no other tasks with higher priority.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler.png" alt="Scheduler track" />
-  <img className="w-full dark-image" src="/images/docs/performance-tracks/scheduler.dark.png" alt="Scheduler track" />
+  <img className="w-full light-image" src="../../images/docs/performance-tracks/scheduler.png" alt="Scheduler track" />
+  <img className="w-full dark-image" src="../../images/docs/performance-tracks/scheduler.dark.png" alt="Scheduler track" />
 </div>
 
-#### Renders {/*renders*/}
+#### Renders
 
 Every render pass consists of multiple phases that you can see on a timeline:
 
 - **Update** - this is what caused a new render pass.
 - **Render** - React renders the updated subtree by calling render functions of components. You can see the rendered components subtree on [Components track](#components), which follows the same color scheme.
-- **Commit** - After rendering components, React will submit the changes to the DOM and run layout effects, like [`useLayoutEffect`](/reference/react/useLayoutEffect).
-- **Remaining Effects** - React runs passive effects of a rendered subtree. This usually happens after the paint, and this is when React runs hooks like [`useEffect`](/reference/react/useEffect). One known exception is user interactions, like clicks, or other discrete events. In this scenario, this phase could run before the paint.
+- **Commit** - After rendering components, React will submit the changes to the DOM and run layout effects, like [`useLayoutEffect`](../react/useLayoutEffect.md).
+- **Remaining Effects** - React runs passive effects of a rendered subtree. This usually happens after the paint, and this is when React runs hooks like [`useEffect`](../react/useEffect.md). One known exception is user interactions, like clicks, or other discrete events. In this scenario, this phase could run before the paint.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler-update.png" alt="Scheduler track: updates" />
-  <img className="w-full dark-image" src="/images/docs/performance-tracks/scheduler-update.dark.png" alt="Scheduler track: updates" />
+  <img className="w-full light-image" src="../../images/docs/performance-tracks/scheduler-update.png" alt="Scheduler track: updates" />
+  <img className="w-full dark-image" src="../../images/docs/performance-tracks/scheduler-update.dark.png" alt="Scheduler track: updates" />
 </div>
 
-[Learn more about renders and commits](/learn/render-and-commit).
+[Learn more about renders and commits](../../learn/render-and-commit.md).
 
-#### Cascading updates {/*cascading-updates*/}
+#### Cascading updates
 
 Cascading updates is one of the patterns for performance regressions. If an update was scheduled during a render pass, React could discard completed work and start a new pass.
 
 In development builds, React can show you which Component scheduled a new update. This includes both general updates and cascading ones. You can see the enhanced stack trace by clicking on the "Cascading update" entry, which should also display the name of the method that scheduled an update.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler-cascading-update.png" alt="Scheduler track: cascading updates" />
-  <img className="w-full dark-image" src="/images/docs/performance-tracks/scheduler-cascading-update.dark.png" alt="Scheduler track: cascading updates" />
+  <img className="w-full light-image" src="../../images/docs/performance-tracks/scheduler-cascading-update.png" alt="Scheduler track: cascading updates" />
+  <img className="w-full dark-image" src="../../images/docs/performance-tracks/scheduler-cascading-update.dark.png" alt="Scheduler track: cascading updates" />
 </div>
 
-[Learn more about Effects](/learn/you-might-not-need-an-effect).
+[Learn more about Effects](../../learn/you-might-not-need-an-effect.md).
 
-### Components {/*components*/}
+### Components
 
 The Components track visualizes the durations of React components. They are displayed as a flamegraph, where each entry represents the duration of the corresponding component render and all its descendant children components.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/performance-tracks/components-render.png" alt="Components track: render durations" />
-  <img className="w-full dark-image" src="/images/docs/performance-tracks/components-render.dark.png" alt="Components track: render durations" />
+  <img className="w-full light-image" src="../../images/docs/performance-tracks/components-render.png" alt="Components track: render durations" />
+  <img className="w-full dark-image" src="../../images/docs/performance-tracks/components-render.dark.png" alt="Components track: render durations" />
 </div>
 
 Similar to render durations, effect durations are also represented as a flamegraph, but with a different color scheme that aligns with the corresponding phase on the Scheduler track.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/performance-tracks/components-effects.png" alt="Components track: effects durations" />
-  <img className="w-full dark-image" src="/images/docs/performance-tracks/components-effects.dark.png" alt="Components track: effects durations" />
+  <img className="w-full light-image" src="../../images/docs/performance-tracks/components-effects.png" alt="Components track: effects durations" />
+  <img className="w-full dark-image" src="../../images/docs/performance-tracks/components-effects.dark.png" alt="Components track: effects durations" />
 </div>
 
 <Note>
@@ -117,26 +117,26 @@ Additional events may be displayed during the render and effects phases:
 
 - <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Mount</span> - A corresponding subtree of component renders or effects was mounted.
 - <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Unmount</span> - A corresponding subtree of component renders or effects was unmounted.
-- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Reconnect</span> - Similar to Mount, but limited to cases when [`<Activity>`](/reference/react/Activity) is used.
-- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Disconnect</span> - Similar to Unmount, but limited to cases when [`<Activity>`](/reference/react/Activity) is used.
+- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Reconnect</span> - Similar to Mount, but limited to cases when [`<Activity>`](../react/Activity.md) is used.
+- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Disconnect</span> - Similar to Unmount, but limited to cases when [`<Activity>`](../react/Activity.md) is used.
 
-#### Changed props {/*changed-props*/}
+#### Changed props
 
 In development builds, when you click on a component render entry, you can inspect potential changes in props. You can use this information to identify unnecessary renders.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/performance-tracks/changed-props.png" alt="Components track: changed props" />
-  <img className="w-full dark-image" src="/images/docs/performance-tracks/changed-props.dark.png" alt="Components track: changed props" />
+  <img className="w-full light-image" src="../../images/docs/performance-tracks/changed-props.png" alt="Components track: changed props" />
+  <img className="w-full dark-image" src="../../images/docs/performance-tracks/changed-props.dark.png" alt="Components track: changed props" />
 </div>
 
-### Server {/*server*/}
+### Server
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/performance-tracks/server-overview.png" alt="React Server Performance Tracks" />
-  <img className="w-full dark-image" src="/images/docs/performance-tracks/server-overview.dark.png" alt="React Server Performance Tracks" />
+  <img className="w-full light-image" src="../../images/docs/performance-tracks/server-overview.png" alt="React Server Performance Tracks" />
+  <img className="w-full dark-image" src="../../images/docs/performance-tracks/server-overview.dark.png" alt="React Server Performance Tracks" />
 </div>
 
-#### Server Requests {/*server-requests*/}
+#### Server Requests
 
 The Server Requests track visualized all Promises that eventually end up in a React Server Component. This includes any `async` operations like calling `fetch` or async Node.js file operations.
 
@@ -147,7 +147,7 @@ Clicking on spans will show you a stack trace of where the Promise was created a
 
 Rejected Promises are displayed as red with their rejected value.
 
-#### Server Components {/*server-components*/}
+#### Server Components
 
 The Server Components tracks visualize the durations of React Server Components Promises they awaited. Timings are displayed as a flamegraph, where each entry represents the duration of the corresponding component render and all its descendant children components.
 

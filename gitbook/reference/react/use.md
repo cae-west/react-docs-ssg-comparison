@@ -4,7 +4,7 @@ title: use
 
 <Intro>
 
-`use` is a React API that lets you read a resource during rendering, such as a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+`use` is a React API that lets you read a resource during rendering, such as a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](../../learn/passing-data-deeply-with-context.md).
 
 ```js
 const value = use(resource);
@@ -16,11 +16,11 @@ const value = use(resource);
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `use(context)` {/*use-context*/}
+### `use(context)`
 
-Call `use` with a [context](/learn/passing-data-deeply-with-context) to read its value. Unlike [`useContext`](/reference/react/useContext), `use` can be called within loops and conditional statements like `if`.
+Call `use` with a [context](../../learn/passing-data-deeply-with-context.md) to read its value. Unlike [`useContext`](useContext.md), `use` can be called within loops and conditional statements like `if`.
 
 ```js
 import { use } from 'react';
@@ -32,22 +32,22 @@ function Button() {
 
 [See more examples below.](#usage-context)
 
-#### Parameters {/*context-parameters*/}
+#### Parameters
 
-* `context`: A [context](/learn/passing-data-deeply-with-context) created with [`createContext`](/reference/react/createContext).
+* `context`: A [context](../../learn/passing-data-deeply-with-context.md) created with [`createContext`](createContext.md).
 
-#### Returns {/*context-returns*/}
+#### Returns
 
-The context value for the passed context, determined by the closest context provider above the calling component. If there is no provider, the returned value is the `defaultValue` passed to [`createContext`](/reference/react/createContext).
+The context value for the passed context, determined by the closest context provider above the calling component. If there is no provider, the returned value is the `defaultValue` passed to [`createContext`](createContext.md).
 
-#### Caveats {/*context-caveats*/}
+#### Caveats
 
 * `use` must be called inside a Component or a Hook.
-* Reading context with `use` is not supported in [Server Components](/reference/rsc/server-components).
+* Reading context with `use` is not supported in [Server Components](../rsc/server-components.md).
 
 ---
 
-### `use(promise)` {/*use-promise*/}
+### `use(promise)`
 
 Call `use` with a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to read its resolved value. The component calling `use` *suspends* while the Promise is pending. Despite its name, `use` is not a Hook. Unlike Hooks, it can be called inside loops and conditional statements like `if`.
 
@@ -59,30 +59,30 @@ function MessageComponent({ messagePromise }) {
   // ...
 ```
 
-If the component that calls `use` is wrapped in a [Suspense](/reference/react/Suspense) boundary, the fallback will be displayed while the Promise is pending. Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by `use`. If the Promise is rejected, the fallback of the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) will be displayed.
+If the component that calls `use` is wrapped in a [Suspense](Suspense.md) boundary, the fallback will be displayed while the Promise is pending. Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by `use`. If the Promise is rejected, the fallback of the nearest [Error Boundary](Component.md#catching-rendering-errors-with-an-error-boundary) will be displayed.
 
 [See more examples below.](#usage-promises)
 
-#### Parameters {/*promise-parameters*/}
+#### Parameters
 
 * `promise`: A [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) whose resolved value you want to read. The Promise must be [cached](#caching-promises-for-client-components) so that the same instance is reused across re-renders.
 
-#### Returns {/*promise-returns*/}
+#### Returns
 
 The resolved value of the Promise.
 
-#### Caveats {/*promise-caveats*/}
+#### Caveats
 
 * `use` must be called inside a Component or a Hook.
 * `use` cannot be called inside a try-catch block. Instead, wrap your component in an [Error Boundary](#displaying-an-error-with-an-error-boundary) to catch the error and display a fallback.
 * Promises passed to `use` must be cached so the same Promise instance is reused across re-renders. [See caching Promises below.](#caching-promises-for-client-components)
-* When passing a Promise from a Server Component to a Client Component, its resolved value must be [serializable](/reference/rsc/use-client#serializable-types).
+* When passing a Promise from a Server Component to a Client Component, its resolved value must be [serializable](../rsc/use-client.md#serializable-types-returned-by-server-components).
 
 ---
 
-### `use(browser())` {/*use-browser*/}
+### `use(browser())`
 
-Call `use` with the value returned by [`browser`](/reference/react-dom/browser) in a component that should only render in the browser:
+Call `use` with the value returned by [`browser`](../react-dom/browser.md) in a component that should only render in the browser:
 
 ```js
 import { use } from 'react';
@@ -94,30 +94,30 @@ function BrowserOnly() {
 }
 ```
 
-During server rendering, the component calling `use(browser())` suspends and React includes the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `use(browser())` returns `undefined`, so the component renders normally.
+During server rendering, the component calling `use(browser())` suspends and React includes the closest [`<Suspense>`](Suspense.md) boundary's fallback in the HTML. In the browser, `use(browser())` returns `undefined`, so the component renders normally.
 
 [See an example below.](#rendering-a-component-only-in-the-browser)
 
-#### Parameters {/*browser-parameters*/}
+#### Parameters
 
-* `browserValue`: The value returned by [`browser`](/reference/react-dom/browser).
+* `browserValue`: The value returned by [`browser`](../react-dom/browser.md).
 
-#### Returns {/*browser-returns*/}
+#### Returns
 
 `use(browser())` returns `undefined` in the browser.
 
-#### Caveats {/*browser-caveats*/}
+#### Caveats
 
 * The component calling `use(browser())` must be inside a `<Suspense>` boundary during server rendering. Without one, server rendering fails.
-* In a React Server Components app, `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
+* In a React Server Components app, `use(browser())` must be called from a [Client Component](../rsc/use-client.md), not a [Server Component](../rsc/server-components.md).
 
 ---
 
-## Usage (Context) {/*usage-context*/}
+## Usage (Context)
 
-### Reading context with `use` {/*reading-context-with-use*/}
+### Reading context with `use`
 
-When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`.
+When a [context](../../learn/passing-data-deeply-with-context.md) is passed to `use`, it works similarly to [`useContext`](useContext.md). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`.
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { use } from 'react';
@@ -147,7 +147,7 @@ function Form() {
 
 It doesn't matter how many layers of components there are between the provider and the `Button`. When a `Button` *anywhere* inside of `Form` calls `use(ThemeContext)`, it will receive `"dark"` as the value.
 
-Unlike [`useContext`](/reference/react/useContext), <CodeStep step={2}>`use`</CodeStep> can be called in conditionals and loops like <CodeStep step={1}>`if`</CodeStep>.
+Unlike [`useContext`](useContext.md), <CodeStep step={2}>`use`</CodeStep> can be called in conditionals and loops like <CodeStep step={1}>`if`</CodeStep>.
 
 ```js [[1, 2, "if"], [2, 3, "use"]]
 function HorizontalRule({ show }) {
@@ -254,7 +254,7 @@ function Button({ show, children }) {
 
 </Sandpack>
 
-### Reading a Promise from context {/*reading-a-promise-from-context*/}
+### Reading a Promise from context
 
 To share asynchronous data without prop drilling, set a Promise as a context value, then read it with `use(context)` and resolve it with `use(promise)`:
 
@@ -269,23 +269,23 @@ function Profile() {
 }
 ```
 
-Reading the value requires two `use` calls because the context value itself isn't awaited. See [Before you use context](/learn/passing-data-deeply-with-context#before-you-use-context) for alternatives to consider before reaching for context.
+Reading the value requires two `use` calls because the context value itself isn't awaited. See [Before you use context](../../learn/passing-data-deeply-with-context.md#before-you-use-context) for alternatives to consider before reaching for context.
 
-Wrap the components that read the Promise in a [Suspense](/reference/react/Suspense) boundary so only that subtree suspends while the Promise is pending. See [Usage (Promises)](#usage-promises) below for more on reading Promises with `use`.
+Wrap the components that read the Promise in a [Suspense](Suspense.md) boundary so only that subtree suspends while the Promise is pending. See [Usage (Promises)](#usage-promises) below for more on reading Promises with `use`.
 
 <Pitfall>
 
-When this pattern is used with [Server Components](/reference/rsc/server-components), refetching the Promise requires refetching the Server Component that sets the Promise in context. Avoid setting the Promise in context high in the tree, since that would refetch large parts of the app unnecessarily.
+When this pattern is used with [Server Components](../rsc/server-components.md), refetching the Promise requires refetching the Server Component that sets the Promise in context. Avoid setting the Promise in context high in the tree, since that would refetch large parts of the app unnecessarily.
 
 </Pitfall>
 
 ---
 
-## Usage (Promises) {/*usage-promises*/}
+## Usage (Promises)
 
-### Reading a Promise with `use` {/*reading-a-promise-with-use*/}
+### Reading a Promise with `use`
 
-Call `use` with a Promise to read its resolved value. The component will [suspend](/reference/react/Suspense) while the Promise is pending.
+Call `use` with a Promise to read its resolved value. The component will [suspend](Suspense.md) while the Promise is pending.
 
 ```js [[1, 4, "use(albumsPromise)"]]
 import { use } from 'react';
@@ -304,13 +304,13 @@ function Albums({ albumsPromise }) {
 }
 ```
 
-Wrap the component that calls <CodeStep step={1}>`use`</CodeStep> in a [Suspense](/reference/react/Suspense) boundary so React can show a fallback while the Promise is pending. The closest Suspense boundary above the suspending component shows its fallback. Once the Promise resolves, React reads the value with `use` and replaces the fallback with the rendered component.
+Wrap the component that calls <CodeStep step={1}>`use`</CodeStep> in a [Suspense](Suspense.md) boundary so React can show a fallback while the Promise is pending. The closest Suspense boundary above the suspending component shows its fallback. Once the Promise resolves, React reads the value with `use` and replaces the fallback with the rendered component.
 
 <Recipes titleText="Reading a Promise with use vs fetching in an Effect" titleId="examples-promise">
 
-#### Fetching data with `use` {/*fetching-data-with-use*/}
+#### Fetching data with `use`
 
-In this example, `Albums` calls `use` with a cached Promise. The component suspends while the Promise is pending, and React displays the nearest Suspense fallback. Rejected Promises propagate to the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
+In this example, `Albums` calls `use` with a cached Promise. The component suspends while the Promise is pending, and React displays the nearest Suspense fallback. Rejected Promises propagate to the nearest [Error Boundary](Component.md#catching-rendering-errors-with-an-error-boundary).
 
 <Sandpack>
 
@@ -411,9 +411,9 @@ async function getAlbums() {
 
 <Solution />
 
-#### Fetching data with `useEffect` {/*fetching-data-with-useeffect*/}
+#### Fetching data with `useEffect`
 
-Before `use`, a common approach was to fetch data in an Effect and update state when the data arrives. Compared to `use`, this approach requires managing loading and error states manually. For more details on why fetching in an Effect is discouraged, see [You Might Not Need an Effect](/learn/you-might-not-need-an-effect#fetching-data).
+Before `use`, a common approach was to fetch data in an Effect and update state when the data arrives. Compared to `use`, this approach requires managing loading and error states manually. For more details on why fetching in an Effect is discouraged, see [You Might Not Need an Effect](../../learn/you-might-not-need-an-effect.md#fetching-data).
 
 <Sandpack>
 
@@ -493,7 +493,7 @@ export async function fetchAlbums() {
 
 <Pitfall>
 
-##### Promises passed to `use` must be cached {/*promises-must-cached*/}
+##### Promises passed to `use` must be cached
 
 Promises created during render are recreated on every render, which causes React to show the Suspense fallback repeatedly and prevents content from appearing.
 
@@ -505,7 +505,7 @@ function Albums() {
 }
 ```
 
-Instead, pass a Promise from a cache, a [Suspense-enabled framework](/reference/react/Suspense#suspense-enabled-frameworks), or a Server Component:
+Instead, pass a Promise from a cache, a [Suspense-enabled framework](Suspense.md#suspense-enabled-frameworks), or a Server Component:
 
 ```js
 // ✅ fetchData reads the Promise from a cache.
@@ -516,9 +516,9 @@ const albums = use(fetchData('/albums'));
 
 <DeepDive>
 
-#### Why are Promises recreated on every render? {/*why-promises-recreated*/}
+#### Why are Promises recreated on every render?
 
-[React doesn't preserve state for renders that suspended before mounting](/reference/react/Suspense#caveats). After each suspension, React retries rendering from scratch, so any Promise created during render is recreated.
+[React doesn't preserve state for renders that suspended before mounting](Suspense.md#caveats). After each suspension, React retries rendering from scratch, so any Promise created during render is recreated.
 
 Common ways a Promise can be unintentionally recreated during render:
 
@@ -551,7 +551,7 @@ const albums = use(fetchData('/albums'));
 
 ---
 
-### Caching Promises for Client Components {/*caching-promises-for-client-components*/}
+### Caching Promises for Client Components
 
 Promises passed to `use` in Client Components must be cached so the same Promise instance is reused across re-renders. If a new Promise is created directly in render, React will display the Suspense fallback on every re-render.
 
@@ -571,7 +571,7 @@ The `fetchData` function returns the same Promise each time it's called with the
 
 <Note>
 
-The way you cache Promises depends on the framework you use with Suspense. Frameworks typically provide built-in caching mechanisms. If you don't use a framework, you can use a simple module-level cache like the one above, or a [Suspense-enabled data source](/reference/react/Suspense#what-activates-a-suspense-boundary).
+The way you cache Promises depends on the framework you use with Suspense. Frameworks typically provide built-in caching mechanisms. If you don't use a framework, you can use a simple module-level cache like the one above, or a [Suspense-enabled data source](Suspense.md#what-activates-a-suspense-boundary).
 
 </Note>
 
@@ -660,7 +660,7 @@ async function getAlbums() {
 
 <DeepDive>
 
-#### How to implement a promise cache {/*how-to-implement-a-promise-cache*/}
+#### How to implement a promise cache
 
 A basic cache stores the Promise keyed by URL so the same instance is reused across renders. To also avoid unnecessary Suspense fallbacks when data is already available, you can set `status` and `value` (or `reason`) fields on the Promise. React checks these fields when `use` is called: if `status` is `'fulfilled'`, it reads `value` synchronously without suspending. If `status` is `'rejected'`, it throws `reason`. If the field is missing or `'pending'`, it suspends.
 
@@ -695,7 +695,7 @@ This cache pattern is the foundation for [re-fetching data](#re-fetching-data-in
 
 <Pitfall>
 
-##### Don't skip calling `use` based on whether a Promise is already settled. {/*conditional-use*/}
+##### Don't skip calling `use` based on whether a Promise is already settled.
 
 Unlike other hooks, `use` can be called inside conditions and loops — but it must always be called for the Promise itself. Never read `promise.status` or `promise.value` directly to bypass `use`; always pass the Promise to `use` and let React handle it.
 
@@ -719,9 +719,9 @@ Bypassing `use` this way can break React Suspense optimizations and Suspense fea
 
 ---
 
-### Re-fetching data in Client Components {/*re-fetching-data-in-client-components*/}
+### Re-fetching data in Client Components
 
-To refresh data at the same URL (for example, with a "Refresh" button), invalidate the cache entry and start a new fetch inside a [`startTransition`](/reference/react/startTransition). Store the resulting Promise in state to trigger a re-render. While the new Promise is pending, React keeps showing the existing content because the update is inside a Transition.
+To refresh data at the same URL (for example, with a "Refresh" button), invalidate the cache entry and start a new fetch inside a [`startTransition`](startTransition.md). Store the resulting Promise in state to trigger a re-render. While the new Promise is pending, React keeps showing the existing content because the update is inside a Transition.
 
 ```js
 function App() {
@@ -864,7 +864,7 @@ Frameworks that support Suspense typically provide their own caching and invalid
 
 ---
 
-### Preloading data on hover {/*preloading-data-on-hover*/}
+### Preloading data on hover
 
 You can start loading data before it's needed by calling `fetchData` during a hover event. Since `fetchData` caches the Promise, the data may already be available by the time the user clicks. If the Promise has resolved by the time `use` reads it, React renders the component immediately without showing a Suspense fallback.
 
@@ -1044,7 +1044,7 @@ button { margin-right: 10px; }
 
 ---
 
-### Streaming data from server to client {/*streaming-data-from-server-to-client*/}
+### Streaming data from server to client
 
 Data can be streamed from the server to the client by passing a Promise as a prop from a Server Component to a Client Component.
 
@@ -1075,7 +1075,7 @@ export function Message({ messagePromise }) {
   return <p>Here is the message: {messageContent}</p>;
 }
 ```
-Because `Message` is wrapped in a [Suspense](/reference/react/Suspense) boundary, the fallback will be displayed until the Promise is resolved. When the Promise is resolved, the value will be read by the `use` API and the `Message` component will replace the Suspense fallback.
+Because `Message` is wrapped in a [Suspense](Suspense.md) boundary, the fallback will be displayed until the Promise is resolved. When the Promise is resolved, the value will be read by the `use` API and the `Message` component will replace the Suspense fallback.
 
 <Sandpack>
 
@@ -1144,7 +1144,7 @@ root.render(
 
 <DeepDive>
 
-#### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
+#### Should I resolve a Promise in a Server or Client Component?
 
 If you have a Promise, at some point you need to unwrap it to read its value. You unwrap it with `await` in a Server Component, and with `use` in a Client Component.
 
@@ -1158,7 +1158,7 @@ export default async function App() {
 }
 ```
 
-However, you don't have to unwrap it right away. You can pass the Promise down as a prop, and unwrap it deeper in the tree. The component that reads the Promise still suspends, but only that part of the tree waits for the data. Wrap that component in a [`<Suspense>`](/reference/react/Suspense) boundary to show a fallback while the rest of the page renders immediately.
+However, you don't have to unwrap it right away. You can pass the Promise down as a prop, and unwrap it deeper in the tree. The component that reads the Promise still suspends, but only that part of the tree waits for the data. Wrap that component in a [`<Suspense>`](Suspense.md) boundary to show a fallback while the rest of the page renders immediately.
 
 For example, a deeper Server Component can `await` the Promise it receives:
 
@@ -1198,15 +1198,15 @@ export function Message({ messagePromise }) {
 
 Passing the Promise down works the same way in both cases. Both suspend where the Promise is read, and both unblock the UI above. The only difference is that Client Components can't `await` during render, so they unwrap the Promise with `use` instead. A common case is interactive content like popovers and tooltips, where the data is only needed after a hover or click.
 
-See [Revealing content together at once](/reference/react/Suspense#revealing-content-together-at-once) for guidance on where to place Suspense boundaries.
+See [Revealing content together at once](Suspense.md#revealing-content-together-at-once) for guidance on where to place Suspense boundaries.
 
 </DeepDive>
 
 ---
 
-### Displaying an error with an Error Boundary {/*displaying-an-error-with-an-error-boundary*/}
+### Displaying an error with an Error Boundary
 
-If the Promise passed to `use` is rejected, the error propagates to the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Wrap the component that calls `use` in an Error Boundary to display a fallback when the Promise is rejected.
+If the Promise passed to `use` is rejected, the error propagates to the nearest [Error Boundary](Component.md#catching-rendering-errors-with-an-error-boundary). Wrap the component that calls `use` in an Error Boundary to display a fallback when the Promise is rejected.
 
 In the example below, `fetchData` rejects on the first attempt and succeeds on retry. The Error Boundary catches the rejection and shows a fallback with a "Try again" button.
 
@@ -1326,11 +1326,11 @@ async function getData(url) {
 
 ---
 
-## Usage (Browser) {/*usage-browser*/}
+## Usage (Browser)
 
-### Rendering a component only in the browser {/*rendering-a-component-only-in-the-browser*/}
+### Rendering a component only in the browser
 
-Pass the value returned by [`browser`](/reference/react-dom/browser) to `use` inside a component that should only render in the browser.
+Pass the value returned by [`browser`](../react-dom/browser.md) to `use` inside a component that should only render in the browser.
 
 Click **Reload** to see the loading fallback in the initial HTML. After hydration, React displays the draft loaded from `localStorage`.
 
@@ -1480,9 +1480,9 @@ During server rendering, `use(browser())` suspends the component and React inclu
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I'm getting an error: "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
+### I'm getting an error: "Suspense Exception: This is not a real error!"
 
 You are calling `use` inside a try-catch block. `use` throws internally to integrate with Suspense, so it cannot be wrapped in try-catch. Instead, wrap the component that calls `use` in an [Error Boundary](#displaying-an-error-with-an-error-boundary) to handle errors.
 
@@ -1515,7 +1515,7 @@ function Albums({ albumsPromise }) {
 
 ---
 
-### I'm getting a warning: "A component was suspended by an uncached promise" {/*uncached-promise-error*/}
+### I'm getting a warning: "A component was suspended by an uncached promise"
 
 The Promise passed to `use` is not cached, so React cannot reuse it across re-renders.
 

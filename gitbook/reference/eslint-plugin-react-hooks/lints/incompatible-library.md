@@ -14,7 +14,7 @@ These libraries were designed before React's memoization rules were fully docume
 
 </Note>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 Some libraries use patterns that aren't supported by React. When the linter detects usages of these APIs from a [known list](https://github.com/react/react/blob/main/compiler/packages/babel-plugin-react-compiler/src/HIR/DefaultModuleTypeProvider.ts), it flags them under this rule. This means that React Compiler can automatically skip over components that use these incompatible APIs, in order to avoid breaking your app.
 
@@ -34,7 +34,7 @@ React Compiler automatically memoizes values following the Rules of React. If so
 
 <DeepDive>
 
-#### Designing APIs that follow the Rules of React {/*designing-apis-that-follow-the-rules-of-react*/}
+#### Designing APIs that follow the Rules of React
 
 One question to think about when designing a library API or hook is whether calling the API can be safely memoized with `useMemo`. If it can't, then both manual and React Compiler memoizations will break your user's code.
 
@@ -73,7 +73,7 @@ function Component() {
 
 </DeepDive>
 
-### Invalid {/*invalid*/}
+### Invalid
 
 Examples of incorrect code for this rule:
 
@@ -99,7 +99,7 @@ function Component({data}) {
 
 <Pitfall>
 
-#### MobX {/*mobx*/}
+#### MobX
 
 MobX patterns like `observer` also break memoization assumptions, but the linter does not yet detect them. If you rely on MobX and find that your app doesn't work with React Compiler, you may need to use the `"use no memo" directive`.
 
@@ -113,7 +113,7 @@ const Component = observer(() => {
 
 </Pitfall>
 
-### Valid {/*valid*/}
+### Valid
 
 Examples of correct code for this rule:
 

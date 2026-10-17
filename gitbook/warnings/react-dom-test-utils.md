@@ -2,7 +2,7 @@
 title: react-dom/test-utils Deprecation Warnings
 ---
 
-## ReactDOMTestUtils.act() warning {/*reactdomtestutilsact-warning*/}
+## ReactDOMTestUtils.act() warning
 
 `act` from `react-dom/test-utils` has been deprecated in favor of `act` from `react`.
 
@@ -18,13 +18,13 @@ After:
 import {act} from 'react';
 ```
 
-## Rest of ReactDOMTestUtils APIS {/*rest-of-reactdomtestutils-apis*/}
+## Rest of ReactDOMTestUtils APIS
 
 All APIs except `act` have been removed.
 
 The React Team recommends migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) for a modern and well supported testing experience.
 
-### ReactDOMTestUtils.renderIntoDocument {/*reactdomtestutilsrenderintodocument*/}
+### ReactDOMTestUtils.renderIntoDocument
 
 `renderIntoDocument` can be replaced with `render` from `@testing-library/react`.
 
@@ -44,7 +44,7 @@ import {render} from '@testing-library/react';
 render(<Component />);
 ```
 
-### ReactDOMTestUtils.Simulate {/*reactdomtestutilssimulate*/}
+### ReactDOMTestUtils.Simulate
 
 `Simulate` can be replaced with `fireEvent` from `@testing-library/react`.
 
@@ -68,7 +68,7 @@ fireEvent.click(element);
 
 Be aware that `fireEvent` dispatches an actual event on the element and doesn't just synthetically call the event handler.
 
-### List of all removed APIs {/*list-of-all-removed-apis-list-of-all-removed-apis*/}
+### List of all removed APIs
 
 - `mockComponent()`
 - `isElement()`

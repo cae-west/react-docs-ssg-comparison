@@ -8,11 +8,11 @@ Validates against higher order functions defining nested components or hooks. Co
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 Defining components or hooks inside other functions creates new instances on every call. React treats each as a completely different component, destroying and recreating the entire component tree, losing all state, and causing performance problems.
 
-### Invalid {/*invalid*/}
+### Invalid
 
 Examples of incorrect code for this rule:
 
@@ -41,7 +41,7 @@ function createCustomHook(endpoint) {
 }
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 Examples of correct code for this rule:
 
@@ -57,9 +57,9 @@ function useData(endpoint) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I need dynamic component behavior {/*dynamic-behavior*/}
+### I need dynamic component behavior
 
 You might think you need a factory to create customized components:
 
@@ -79,7 +79,7 @@ const RedButton = makeButton('red');
 const BlueButton = makeButton('blue');
 ```
 
-Pass [JSX as children](/learn/passing-props-to-a-component#passing-jsx-as-children) instead:
+Pass [JSX as children](../../../learn/passing-props-to-a-component.md#passing-jsx-as-children) instead:
 
 ```js
 // ✅ Better: Pass JSX as children

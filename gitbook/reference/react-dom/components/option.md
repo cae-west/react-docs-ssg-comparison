@@ -4,7 +4,7 @@ title: "<option>"
 
 <Intro>
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](select.md) box.
 
 ```js
 <select>
@@ -19,11 +19,11 @@ The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<option>` {/*option*/}
+### `<option>`
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](select.md) box.
 
 ```js
 <select>
@@ -34,29 +34,29 @@ The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/
 
 [See more examples below.](#usage)
 
-#### Props {/*props*/}
+#### Props
 
-`<option>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<option>` supports all [common element props.](common.md#props)
 
 Additionally, `<option>` supports these props:
 
 * [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): A boolean. If `true`, the option will not be selectable and will appear dimmed.
 * [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): A string. Specifies the meaning of the option. If not specified, the text inside the option is used.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): The value to be used [when submitting the parent `<select>` in a form](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) if this option is selected.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): The value to be used [when submitting the parent `<select>` in a form](select.md#reading-the-select-box-value-when-submitting-a-form) if this option is selected.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
-* React does not support the `selected` attribute on `<option>`. Instead, pass this option's `value` to the parent [`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) for an uncontrolled select box, or [`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) for a controlled select.
+* React does not support the `selected` attribute on `<option>`. Instead, pass this option's `value` to the parent [`<select defaultValue>`](select.md#providing-an-initially-selected-option) for an uncontrolled select box, or [`<select value>`](select.md#controlling-a-select-box-with-a-state-variable) for a controlled select.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Displaying a select box with options {/*displaying-a-select-box-with-options*/}
+### Displaying a select box with options
 
 Render a `<select>` with a list of `<option>` components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
 
-[Read more about displaying a `<select>` with a list of `<option>` components.](/reference/react-dom/components/select)
+[Read more about displaying a `<select>` with a list of `<option>` components.](select.md)
 
 <Sandpack>
 

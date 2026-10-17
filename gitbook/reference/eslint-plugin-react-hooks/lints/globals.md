@@ -4,15 +4,15 @@ title: globals
 
 <Intro>
 
-Validates against assignment/mutation of globals during render, part of ensuring that [side effects must run outside of render](/reference/rules/components-and-hooks-must-be-pure#side-effects-must-run-outside-of-render).
+Validates against assignment/mutation of globals during render, part of ensuring that [side effects must run outside of render](../../rules/components-and-hooks-must-be-pure.md#side-effects-must-run-outside-of-render).
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 Global variables exist outside React's control. When you modify them during render, you break React's assumption that rendering is pure. This can cause components to behave differently in development vs production, break Fast Refresh, and make your app impossible to optimize with features like React Compiler.
 
-### Invalid {/*invalid*/}
+### Invalid
 
 Examples of incorrect code for this rule:
 
@@ -47,7 +47,7 @@ function Component({id}) {
 }
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 Examples of correct code for this rule:
 

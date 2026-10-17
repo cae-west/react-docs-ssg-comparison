@@ -10,20 +10,20 @@ Some of your components may need to control and synchronize with systems outside
 
 <YouWillLearn isChapter={true}>
 
-* [How to "remember" information without re-rendering](/learn/referencing-values-with-refs)
-* [How to access DOM elements managed by React](/learn/manipulating-the-dom-with-refs)
-* [How to synchronize components with external systems](/learn/synchronizing-with-effects)
-* [How to remove unnecessary Effects from your components](/learn/you-might-not-need-an-effect)
-* [How an Effect's lifecycle is different from a component's](/learn/lifecycle-of-reactive-effects)
-* [How to prevent some values from re-triggering Effects](/learn/separating-events-from-effects)
-* [How to make your Effect re-run less often](/learn/removing-effect-dependencies)
-* [How to share logic between components](/learn/reusing-logic-with-custom-hooks)
+* [How to "remember" information without re-rendering](referencing-values-with-refs.md)
+* [How to access DOM elements managed by React](manipulating-the-dom-with-refs.md)
+* [How to synchronize components with external systems](synchronizing-with-effects.md)
+* [How to remove unnecessary Effects from your components](you-might-not-need-an-effect.md)
+* [How an Effect's lifecycle is different from a component's](lifecycle-of-reactive-effects.md)
+* [How to prevent some values from re-triggering Effects](separating-events-from-effects.md)
+* [How to make your Effect re-run less often](removing-effect-dependencies.md)
+* [How to share logic between components](reusing-logic-with-custom-hooks.md)
 
 </YouWillLearn>
 
-## Referencing values with refs {/*referencing-values-with-refs*/}
+## Referencing values with refs
 
-When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
+When you want a component to "remember" some information, but you don't want that information to [trigger new renders](render-and-commit.md), you can use a *ref*:
 
 ```js
 const ref = useRef(0);
@@ -58,11 +58,11 @@ A ref is like a secret pocket of your component that React doesn't track. For ex
 
 <LearnMore path="/learn/referencing-values-with-refs">
 
-Read **[Referencing Values with Refs](/learn/referencing-values-with-refs)** to learn how to use refs to remember information.
+Read **[Referencing Values with Refs](referencing-values-with-refs.md)** to learn how to use refs to remember information.
 
 </LearnMore>
 
-## Manipulating the DOM with refs {/*manipulating-the-dom-with-refs*/}
+## Manipulating the DOM with refs
 
 React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
 
@@ -93,11 +93,11 @@ export default function Form() {
 
 <LearnMore path="/learn/manipulating-the-dom-with-refs">
 
-Read **[Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs)** to learn how to access DOM elements managed by React.
+Read **[Manipulating the DOM with Refs](manipulating-the-dom-with-refs.md)** to learn how to access DOM elements managed by React.
 
 </LearnMore>
 
-## Synchronizing with Effects {/*synchronizing-with-effects*/}
+## Synchronizing with Effects
 
 Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
 
@@ -187,11 +187,11 @@ In development, React will immediately run and clean up your Effect one extra ti
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to learn how to synchronize components with external systems.
+Read **[Synchronizing with Effects](synchronizing-with-effects.md)** to learn how to synchronize components with external systems.
 
 </LearnMore>
 
-## You Might Not Need An Effect {/*you-might-not-need-an-effect*/}
+## You Might Not Need An Effect
 
 Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
 
@@ -231,11 +231,11 @@ However, you *do* need Effects to synchronize with external systems.
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
-Read **[You Might Not Need an Effect](/learn/you-might-not-need-an-effect)** to learn how to remove unnecessary Effects.
+Read **[You Might Not Need an Effect](you-might-not-need-an-effect.md)** to learn how to remove unnecessary Effects.
 
 </LearnMore>
 
-## Lifecycle of reactive effects {/*lifecycle-of-reactive-effects*/}
+## Lifecycle of reactive effects
 
 Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time.
 
@@ -306,11 +306,11 @@ React provides a linter rule to check that you've specified your Effect's depend
 
 <LearnMore path="/learn/lifecycle-of-reactive-effects">
 
-Read **[Lifecycle of Reactive Events](/learn/lifecycle-of-reactive-effects)** to learn how an Effect's lifecycle is different from a component's.
+Read **[Lifecycle of Reactive Events](lifecycle-of-reactive-effects.md)** to learn how an Effect's lifecycle is different from a component's.
 
 </LearnMore>
 
-## Separating events from Effects {/*separating-events-from-effects*/}
+## Separating events from Effects
 
 Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
 
@@ -579,11 +579,11 @@ Code inside Effect Events isn't reactive, so changing the `theme` no longer make
 
 <LearnMore path="/learn/separating-events-from-effects">
 
-Read **[Separating Events from Effects](/learn/separating-events-from-effects)** to learn how to prevent some values from re-triggering Effects.
+Read **[Separating Events from Effects](separating-events-from-effects.md)** to learn how to prevent some values from re-triggering Effects.
 
 </LearnMore>
 
-## Removing Effect dependencies {/*removing-effect-dependencies*/}
+## Removing Effect dependencies
 
 When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. The way you remove them depends on the case.
 
@@ -740,11 +740,11 @@ Notice that you didn't start by editing the dependency list to remove the `optio
 
 <LearnMore path="/learn/removing-effect-dependencies">
 
-Read **[Removing Effect Dependencies](/learn/removing-effect-dependencies)** to learn how to make your Effect re-run less often.
+Read **[Removing Effect Dependencies](removing-effect-dependencies.md)** to learn how to make your Effect re-run less often.
 
 </LearnMore>
 
-## Reusing logic with custom Hooks {/*reusing-logic-with-custom-hooks*/}
+## Reusing logic with custom Hooks
 
 React comes with built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you’ll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. To do this, you can create your own Hooks for your application's needs.
 
@@ -833,10 +833,10 @@ You can create custom Hooks, compose them together, pass data between them, and 
 
 <LearnMore path="/learn/reusing-logic-with-custom-hooks">
 
-Read **[Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)** to learn how to share logic between components.
+Read **[Reusing Logic with Custom Hooks](reusing-logic-with-custom-hooks.md)** to learn how to share logic between components.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## What's next?
 
-Head over to [Referencing Values with Refs](/learn/referencing-values-with-refs) to start reading this chapter page by page!
+Head over to [Referencing Values with Refs](referencing-values-with-refs.md) to start reading this chapter page by page!

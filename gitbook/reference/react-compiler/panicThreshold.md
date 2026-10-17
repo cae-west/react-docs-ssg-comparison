@@ -18,29 +18,29 @@ The `panicThreshold` option controls how the React Compiler handles errors durin
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `panicThreshold` {/*panicthreshold*/}
+### `panicThreshold`
 
 Determines whether compilation errors should fail the build or skip optimization.
 
-#### Type {/*type*/}
+#### Type
 
 ```
 'none' | 'critical_errors' | 'all_errors'
 ```
 
-#### Default value {/*default-value*/}
+#### Default value
 
 `'none'`
 
-#### Options {/*options*/}
+#### Options
 
 - **`'none'`** (default, recommended): Skip components that can't be compiled and continue building
 - **`'critical_errors'`**: Fail the build only on critical compiler errors
 - **`'all_errors'`**: Fail the build on any compiler diagnostic
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 - Production builds should always use `'none'`
 - Build failures prevent your application from building
@@ -49,9 +49,9 @@ Determines whether compilation errors should fail the build or skip optimization
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Production configuration (recommended) {/*production-configuration*/}
+### Production configuration (recommended)
 
 For production builds, always use `'none'`. This is the default value:
 
@@ -67,7 +67,7 @@ This ensures:
 - Maximum components get optimized
 - Stable production deployments
 
-### Development debugging {/*development-debugging*/}
+### Development debugging
 
 Temporarily use stricter thresholds to find issues:
 

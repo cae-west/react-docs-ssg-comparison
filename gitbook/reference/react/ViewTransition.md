@@ -20,9 +20,9 @@ import {ViewTransition} from 'react';
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<ViewTransition>` {/*viewtransition*/}
+### `<ViewTransition>`
 
 Wrap a component tree in `<ViewTransition>` to animate it:
 
@@ -36,7 +36,7 @@ Wrap a component tree in `<ViewTransition>` to animate it:
 
 <DeepDive>
 
-#### How does `<ViewTransition>` work? {/*how-does-viewtransition-work*/}
+#### How does `<ViewTransition>` work?
 
 Under the hood, React applies `view-transition-name` to inline styles of the nearest DOM node nested inside the `<ViewTransition>` component. If there are multiple sibling DOM nodes like `<ViewTransition><div /><div /></ViewTransition>` then React adds a suffix to the name to make each unique but conceptually they're part of the same one. React doesn't apply these eagerly but only at the time that boundary should participate in an animation.
 
@@ -62,20 +62,20 @@ After the finished Promise of the `startViewTransition` is resolved, React will 
 
 </DeepDive>
 
-#### Props {/*props*/}
+#### Props
 
 - **optional** `name`: A string or object. The name of the View Transition used for shared element transitions. If not provided, React will use a unique name for each View Transition to prevent unexpected animations.
 - [View Transition Class](#view-transition-class) props.
 - [View Transition Event](#view-transition-event) props.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 - Only use `name` for [shared element transitions](#animating-a-shared-element). For all other animations, React automatically generates a unique name to prevent unexpected animations.
-- By default, `setState` updates immediately and does not activate `<ViewTransition>`, only updates wrapped in a [Transition](/reference/react/useTransition), [`<Suspense>`](/reference/react/Suspense), or `useDeferredValue` activate ViewTransition.
+- By default, `setState` updates immediately and does not activate `<ViewTransition>`, only updates wrapped in a [Transition](useTransition.md), [`<Suspense>`](Suspense.md), or `useDeferredValue` activate ViewTransition.
 - `<ViewTransition>` creates an image that can be moved around, scaled and cross-faded. Unlike Layout Animations you may have seen in React Native or Motion, this means that not every individual Element inside of it animates its position. This can lead to better performance and a more continuous feeling, smooth animation compared to animating every individual piece. However, it can also lose continuity in things that should be moving by themselves. So you might have to add more `<ViewTransition>` boundaries manually as a result.
 - Currently, `<ViewTransition>` only works in the DOM. We're working on adding support for React Native and other platforms.
 
-#### Animation triggers {/*animation-triggers*/}
+#### Animation triggers
 
 React automatically decides the type of View Transition animation to trigger:
 
@@ -90,7 +90,7 @@ You can customize the animation by providing a [View Transition Class](#view-tra
 
 <Note>
 
-#### Always check `prefers-reduced-motion` {/*always-check-prefers-reduced-motion*/}
+#### Always check `prefers-reduced-motion`
 
 Many users may prefer not having animations on the page. React doesn't automatically disable animations for this case.
 
@@ -100,7 +100,7 @@ In the future, CSS libraries may have this built-in to their presets.
 
 </Note>
 
-### View Transition Class {/*view-transition-class*/}
+### View Transition Class
 
 `<ViewTransition>` provides props to define what animations trigger:
 
@@ -112,7 +112,7 @@ In the future, CSS libraries may have this built-in to their presets.
 />
 ```
 
-#### Props {/*view-transition-class-props*/}
+#### Props
 
 - **optional** `enter`: `"auto"`, `"none"`, a string, or an object.
 - **optional** `exit`: `"auto"`, `"none"`, a string, or an object.
@@ -120,11 +120,11 @@ In the future, CSS libraries may have this built-in to their presets.
 - **optional** `share`: `"auto"`, `"none"`, a string, or an object.
 - **optional** `default`: `"auto"`, `"none"`, a string, or an object.
 
-#### Caveats {/*view-transition-class-caveats*/}
+#### Caveats
 
 - If `default` is `"none"` then all other triggers are turned off unless explicitly listed.
 
-#### Values {/*view-transition-values*/}
+#### Values
 
 View Transition class values can be:
 - `auto`: the default. Uses the browser default animation.
@@ -132,8 +132,8 @@ View Transition class values can be:
 - `<classname>`: a custom CSS class name to use for [customizing View Transitions](#styling-view-transitions).
 
 Object values can be an object with string keys and a value of `auto`, `none` or a custom className:
-- `{[type]: value}`: applies `value` if the animation matches the [Transition Type](/reference/react/addTransitionType).
-- `{default: value}`: the default value to apply if no [Transition Type](/reference/react/addTransitionType) is matched.
+- `{[type]: value}`: applies `value` if the animation matches the [Transition Type](addTransitionType.md).
+- `{default: value}`: the default value to apply if no [Transition Type](addTransitionType.md) is matched.
 
 For example, you can define a ViewTransition as:
 
@@ -158,7 +158,7 @@ See [Styling View Transitions](#styling-view-transitions) for how to define CSS 
 
 ---
 
-### View Transition Event {/*view-transition-event*/}
+### View Transition Event
 
 View Transition Events allow you to control the animation with JavaScript using the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API):
 
@@ -169,7 +169,7 @@ View Transition Events allow you to control the animation with JavaScript using 
 />
 ```
 
-#### Props {/*view-transition-event-props*/}
+#### Props
 
 - **optional** `onEnter`: Called when an "enter" animation is triggered.
 - **optional** `onExit`: Called when an "exit" animation is triggered.
@@ -177,11 +177,11 @@ View Transition Events allow you to control the animation with JavaScript using 
 - **optional** `onUpdate`: Called when an "update" animation is triggered.
 
 
-#### Caveats {/*view-transition-event-caveats*/}
+#### Caveats
 - Only one event fires per `<ViewTransition>` per Transition. `onShare` takes precedence over `onEnter` and `onExit`.
 - Each event should return a **cleanup function**. The cleanup function is called when the View Transition finishes, allowing you to cancel or cleanup any animations.
 
-#### Arguments {/*view-transition-event-arguments*/}
+#### Arguments
 
 Each event receives two arguments:
 
@@ -191,7 +191,7 @@ Each event receives two arguments:
   - `name`: The `view-transition-name` string for this boundary.
   - `group`: The `::view-transition-group` pseudo-element.
   - `imagePair`: The `::view-transition-image-pair` pseudo-element.
-- `types`: An `Array<string>` of [Transition Types](/reference/react/addTransitionType) included in the animation. Empty array if no types were specified.
+- `types`: An `Array<string>` of [Transition Types](addTransitionType.md) included in the animation. Empty array if no types were specified.
 
 For example, you can define a `onEnter` event that drives the animation using JavaScript:
 
@@ -211,7 +211,7 @@ See [Animating with JavaScript](#animating-with-javascript) for more examples.
 
 ---
 
-## Styling View Transitions {/*styling-view-transitions*/}
+## Styling View Transitions
 
 <Note>
 
@@ -242,9 +242,9 @@ In the future, CSS libraries may add built-in animations using View Transition C
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Animating an element on enter/exit {/*animating-an-element-on-enter*/}
+### Animating an element on enter/exit
 
 Enter/Exit Transitions trigger when a `<ViewTransition>` is added or removed by a component in a transition:
 
@@ -436,7 +436,7 @@ button:hover {
 
 <Pitfall>
 
-#### Only top-level ViewTransitions animate on exit/enter {/*only-top-level-viewtransition-animates-on-exit-enter*/}
+#### Only top-level ViewTransitions animate on exit/enter
 
 `<ViewTransition>` only activates exit/enter if it is placed _before_ any DOM nodes.
 
@@ -460,9 +460,9 @@ This constraint prevents subtle bugs where too much or too little animates.
 
 ---
 
-### Animating enter/exit with Activity {/*animating-enter-exit-with-activity*/}
+### Animating enter/exit with Activity
 
-If you want to animate a component in and out while preserving its state, or pre-rendering content for an animation, you can use [`<Activity>`](/reference/react/Activity). When a `<ViewTransition>` inside an `<Activity>` becomes visible, the `enter` animation activates. When it becomes hidden, the `exit` animation activates:
+If you want to animate a component in and out while preserving its state, or pre-rendering content for an animation, you can use [`<Activity>`](Activity.md). When a `<ViewTransition>` inside an `<Activity>` becomes visible, the `enter` animation activates. When it becomes hidden, the `exit` animation activates:
 
 ```js
 <Activity mode={isVisible ? 'visible' : 'hidden'}>
@@ -578,7 +578,7 @@ Without `<Activity>`, the counter would reset to `0` every time the sidebar reap
 
 ---
 
-### Animating a shared element {/*animating-a-shared-element*/}
+### Animating a shared element
 
 Normally, we don't recommend assigning a name to a `<ViewTransition>` and instead let React assign it an automatic name. The reason you might want to assign a name is to animate between completely different components when one tree unmounts and another tree mounts at the same time, to preserve continuity.
 
@@ -823,7 +823,7 @@ import {MY_NAME} from './shared-name';
 
 ---
 
-### Animating reorder of items in a list {/*animating-reorder-of-items-in-a-list*/}
+### Animating reorder of items in a list
 
 ```js
 items.map((item) => <Component key={item.id} item={item} />);
@@ -1251,9 +1251,9 @@ It's important to properly use keys to preserve identity when reordering lists. 
 
 ---
 
-### Animating from Suspense content {/*animating-from-suspense-content*/}
+### Animating from Suspense content
 
-Like any Transition, React waits for data and new CSS (`<link rel="stylesheet" precedence="...">`) before running the animation. `<ViewTransition>` also waits up to 500 ms for new fonts and visible images to load so they don't flicker in after the animation starts. See examples of [waiting for a font](/reference/react/Suspense#waiting-for-a-font-to-load) and [waiting for an image](/reference/react/Suspense#waiting-for-an-image-to-load) on the Suspense page.
+Like any Transition, React waits for data and new CSS (`<link rel="stylesheet" precedence="...">`) before running the animation. `<ViewTransition>` also waits up to 500 ms for new fonts and visible images to load so they don't flicker in after the animation starts. See examples of [waiting for a font](Suspense.md#waiting-for-a-font-to-load) and [waiting for an image](Suspense.md#waiting-for-an-image-to-load) on the Suspense page.
 
 If the content is inside a new Suspense boundary, React first shows the fallback. After the boundary finishes loading, `<ViewTransition>` animates the reveal to the content.
 
@@ -1504,7 +1504,7 @@ You can achieve different effects depending on where you choose to place the `<V
 
 ---
 
-### Opting-out of an animation {/*opting-out-of-an-animation*/}
+### Opting-out of an animation
 
 Sometimes you're wrapping a large existing component, like a whole page, and you want to animate some updates, such as changing the theme. However, you don't want it to opt-in all updates inside the whole page to cross-fade when they're updating. Especially if you're incrementally adding more animations.
 
@@ -1522,7 +1522,7 @@ This will only animate if the theme changes and not if only the children update.
 
 ---
 
-### Customizing animations {/*customizing-animations*/}
+### Customizing animations
 
 By default, `<ViewTransition>` includes the default cross-fade from the browser.
 
@@ -1969,9 +1969,9 @@ button:hover {
 
 ---
 
-### Customizing animations with types {/*customizing-animations-with-types*/}
+### Customizing animations with types
 
-You can use the [`addTransitionType`](/reference/react/addTransitionType) API to add a class name to the child elements when a specific transition type is activated for a specific activation trigger. This allows you to customize the animation for each type of transition.
+You can use the [`addTransitionType`](addTransitionType.md) API to add a class name to the child elements when a specific transition type is activated for a specific activation trigger. This allows you to customize the animation for each type of transition.
 
 For example, to customize the animation for all forward and backward navigations:
 
@@ -2298,7 +2298,7 @@ button:hover {
 
 ---
 
-### Animating with JavaScript {/*animating-with-javascript*/}
+### Animating with JavaScript
 
 While [View Transition Classes](#view-transition-class) let you define animations with CSS, sometimes you need imperative control over the animation. The `onEnter`, `onExit`, `onUpdate`, and `onShare` callbacks give you direct access to the view transition pseudo-elements so you can animate them using the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).
 
@@ -2524,7 +2524,7 @@ button:hover {
 
 <Note>
 
-#### Always clean up View Transition Events {/*always-clean-up-view-transition-events*/}
+#### Always clean up View Transition Events
 
 View Transition Events should always return a cleanup function:
 
@@ -2546,7 +2546,7 @@ This allows the browser to cancel the animation when the View Transition is inte
 
 ---
 
-### Animating transition types with JavaScript {/*animating-transition-types-with-javascript*/}
+### Animating transition types with JavaScript
 
 You can use `types` passed to `ViewTransition` events to conditionally apply different animations based on how the Transition was triggered.
 
@@ -2563,7 +2563,7 @@ You can use `types` passed to `ViewTransition` events to conditionally apply dif
 >
 ```
 
-This example calls [`addTransitionType`](/reference/react/addTransitionType) to mark a Transition as "fast" and then adjust the animation duration:
+This example calls [`addTransitionType`](addTransitionType.md) to mark a Transition as "fast" and then adjust the animation duration:
 
 <Sandpack>
 
@@ -2769,7 +2769,7 @@ button:hover {
 
 ---
 
-### Building View Transition enabled routers {/*building-view-transition-enabled-routers*/}
+### Building View Transition enabled routers
 
 React waits for any pending Navigation to finish to ensure that scroll restoration happens within the animation. If the Navigation is blocked on React, your router must unblock in `useLayoutEffect` since `useEffect` would lead to a deadlock.
 
@@ -2777,9 +2777,9 @@ If a `startTransition` is started from the legacy popstate event, such as during
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### My `<ViewTransition>` is not activating {/*my-viewtransition-is-not-activating*/}
+### My `<ViewTransition>` is not activating
 
 `<ViewTransition>` only activates if it is placed before any DOM node:
 
@@ -2805,7 +2805,7 @@ function Component() {
 }
 ```
 
-### I'm getting an error "There are two `<ViewTransition name=%s>` components with the same name mounted at the same time." {/*two-viewtransition-with-same-name*/}
+### I'm getting an error "There are two `<ViewTransition name=%s>` components with the same name mounted at the same time."
 
 This error occurs when two `<ViewTransition>` components with the same `name` are mounted at the same time:
 

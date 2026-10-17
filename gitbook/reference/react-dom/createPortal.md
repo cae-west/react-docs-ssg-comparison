@@ -20,9 +20,9 @@ title: createPortal
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `createPortal(children, domNode, key?)` {/*createportal*/}
+### `createPortal(children, domNode, key?)`
 
 To create a portal, call `createPortal`, passing some JSX, and the DOM node where it should be rendered:
 
@@ -44,27 +44,27 @@ import { createPortal } from 'react-dom';
 
 A portal only changes the physical placement of the DOM node. In every other way, the JSX you render into a portal acts as a child node of the React component that renders it. For example, the child can access the context provided by the parent tree, and events bubble up from children to parents according to the React tree.
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
-* `children`: Anything that can be rendered with React, such as a piece of JSX (e.g. `<div />` or `<SomeComponent />`), a [Fragment](/reference/react/Fragment) (`<>...</>`), a string or a number, or an array of these.
+* `children`: Anything that can be rendered with React, such as a piece of JSX (e.g. `<div />` or `<SomeComponent />`), a [Fragment](../react/Fragment.md) (`<>...</>`), a string or a number, or an array of these.
 
 * `domNode`: Some DOM node, such as those returned by `document.getElementById()`. The node must already exist. Passing a different DOM node during an update will cause the portal content to be recreated.
 
-* **optional** `key`: A unique string or number to be used as the portal's [key.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+* **optional** `key`: A unique string or number to be used as the portal's [key.](../../learn/rendering-lists.md#keeping-list-items-in-order-with-key)
 
-#### Returns {/*returns*/}
+#### Returns
 
 `createPortal` returns a React node that can be included into JSX or returned from a React component. If React encounters it in the render output, it will place the provided `children` inside the provided `domNode`.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * Events from portals propagate according to the React tree rather than the DOM tree. For example, if you click inside a portal, and the portal is wrapped in `<div onClick>`, that `onClick` handler will fire. If this causes issues, either stop the event propagation from inside the portal, or move the portal itself up in the React tree.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Rendering to a different part of the DOM {/*rendering-to-a-different-part-of-the-dom*/}
+### Rendering to a different part of the DOM
 
 *Portals* let your components render some of their children into a different place in the DOM. This lets a part of your component "escape" from whatever containers it may be in. For example, a component can display a modal dialog or a tooltip that appears above and outside of the rest of the page.
 
@@ -129,7 +129,7 @@ A portal only changes the physical placement of the DOM node. In every other way
 
 ---
 
-### Rendering a modal dialog with a portal {/*rendering-a-modal-dialog-with-a-portal*/}
+### Rendering a modal dialog with a portal
 
 You can use a portal to create a modal dialog that floats above the rest of the page, even if the component that summons the dialog is inside a container with `overflow: hidden` or other styles that interfere with the dialog.
 
@@ -246,9 +246,9 @@ Follow the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/
 
 ---
 
-### Rendering React components into non-React server markup {/*rendering-react-components-into-non-react-server-markup*/}
+### Rendering React components into non-React server markup
 
-Portals can be useful if your React root is only part of a static or server-rendered page that isn't built with React. For example, if your page is built with a server framework like Rails, you can create areas of interactivity within static areas such as sidebars. Compared with having [multiple separate React roots,](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) portals let you treat the app as a single React tree with shared state even though its parts render to different parts of the DOM.
+Portals can be useful if your React root is only part of a static or server-rendered page that isn't built with React. For example, if your page is built with a server framework like Rails, you can create areas of interactivity within static areas such as sidebars. Compared with having [multiple separate React roots,](client/createRoot.md#rendering-a-page-partially-built-with-react) portals let you treat the app as a single React tree with shared state even though its parts render to different parts of the DOM.
 
 <Sandpack>
 
@@ -342,7 +342,7 @@ p {
 
 ---
 
-### Rendering React components into non-React DOM nodes {/*rendering-react-components-into-non-react-dom-nodes*/}
+### Rendering React components into non-React DOM nodes
 
 You can also use a portal to manage the content of a DOM node that's managed outside of React. For example, suppose you're integrating with a non-React map widget and you want to render React content inside a popup. To do this, declare a `popupContainer` state variable to store the DOM node you're going to render into:
 

@@ -22,9 +22,9 @@ flushSync(callback)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `flushSync(callback)` {/*flushsync*/}
+### `flushSync(callback)`
 
 Call `flushSync` to force React to flush any pending work and update the DOM synchronously.
 
@@ -40,16 +40,16 @@ Most of the time, `flushSync` can be avoided. Use `flushSync` as last resort.
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
 
 * `callback`: A function. React will immediately call this callback and flush any updates it contains synchronously. It may also flush any pending updates, or Effects, or updates inside of Effects. If an update suspends as a result of this `flushSync` call, the fallbacks may be re-shown.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `flushSync` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * `flushSync` can significantly hurt performance. Use sparingly.
 * `flushSync` may force pending Suspense boundaries to show their `fallback` state.
@@ -58,9 +58,9 @@ Most of the time, `flushSync` can be avoided. Use `flushSync` as last resort.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Flushing updates for third-party integrations {/*flushing-updates-for-third-party-integrations*/}
+### Flushing updates for third-party integrations
 
 When integrating with third-party code such as browser APIs or UI libraries, it may be necessary to force React to flush updates. Use `flushSync` to force React to flush any <CodeStep step={1}>state updates</CodeStep> inside the callback synchronously:
 
@@ -134,9 +134,9 @@ Most of the time, `flushSync` can be avoided, so use `flushSync` as a last resor
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### I'm getting an error: "flushSync was called from inside a lifecycle method" {/*im-getting-an-error-flushsync-was-called-from-inside-a-lifecycle-method*/}
+### I'm getting an error: "flushSync was called from inside a lifecycle method"
 
 
 React cannot `flushSync` in the middle of a render. If you do, it will noop and warn:

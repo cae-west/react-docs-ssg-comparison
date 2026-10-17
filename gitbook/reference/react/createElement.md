@@ -4,7 +4,7 @@ title: createElement
 
 <Intro>
 
-`createElement` lets you create a React element. It serves as an alternative to writing [JSX.](/learn/writing-markup-with-jsx)
+`createElement` lets you create a React element. It serves as an alternative to writing [JSX.](../../learn/writing-markup-with-jsx.md)
 
 ```js
 const element = createElement(type, props, ...children)
@@ -16,9 +16,9 @@ const element = createElement(type, props, ...children)
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `createElement(type, props, ...children)` {/*createelement*/}
+### `createElement(type, props, ...children)`
 
 Call `createElement` to create a React element with the given `type`, `props`, and `children`.
 
@@ -36,15 +36,15 @@ function Greeting({ name }) {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters
 
-* `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](/reference/react/Fragment)).
+* `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](Fragment.md)).
 
 * `props`: The `props` argument must either be an object or `null`. If you pass `null`, it will be treated the same as an empty object. React will create an element with props matching the `props` you have passed. Note that `ref` and `key` from your `props` object are special and will *not* be available as `element.props.ref` and `element.props.key` on the returned `element`. They will be available as `element.ref` and `element.key`.
 
-* **optional** `...children`: Zero or more child nodes. They can be any React nodes, including React elements, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
+* **optional** `...children`: Zero or more child nodes. They can be any React nodes, including React elements, strings, numbers, [portals](../react-dom/createPortal.md), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
 
-#### Returns {/*returns*/}
+#### Returns
 
 `createElement` returns a React element object with a few properties:
 
@@ -55,21 +55,21 @@ function Greeting({ name }) {
 
 Usually, you'll return the element from your component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.
 
-#### Caveats {/*caveats*/}
+#### Caveats
 
 * You must **treat React elements and their props as [immutable](https://en.wikipedia.org/wiki/Immutable_object)** and never change their contents after creation. In development, React will [freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) the returned element and its `props` property shallowly to enforce this.
 
 * When you use JSX, **you must start a tag with a capital letter to render your own custom component.** In other words, `<Something />` is equivalent to `createElement(Something)`, but `<something />` (lowercase) is equivalent to `createElement('something')` (note it's a string, so it will be treated as a built-in HTML tag).
 
-* You should only **pass children as multiple arguments to `createElement` if they are all statically known,** like `createElement('h1', {}, child1, child2, child3)`. If your children are dynamic, pass the entire array as the third argument: `createElement('ul', {}, listItems)`. This ensures that React will [warn you about missing `key`s](/learn/rendering-lists#keeping-list-items-in-order-with-key) for any dynamic lists. For static lists this is not necessary because they never reorder.
+* You should only **pass children as multiple arguments to `createElement` if they are all statically known,** like `createElement('h1', {}, child1, child2, child3)`. If your children are dynamic, pass the entire array as the third argument: `createElement('ul', {}, listItems)`. This ensures that React will [warn you about missing `key`s](../../learn/rendering-lists.md#keeping-list-items-in-order-with-key) for any dynamic lists. For static lists this is not necessary because they never reorder.
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Creating an element without JSX {/*creating-an-element-without-jsx*/}
+### Creating an element without JSX
 
-If you don't like [JSX](/learn/writing-markup-with-jsx) or can't use it in your project, you can use `createElement` as an alternative.
+If you don't like [JSX](../../learn/writing-markup-with-jsx.md) or can't use it in your project, you can use `createElement` as an alternative.
 
 To create an element without JSX, call `createElement` with some <CodeStep step={1}>type</CodeStep>, <CodeStep step={2}>props</CodeStep>, and <CodeStep step={3}>children</CodeStep>:
 
@@ -180,7 +180,7 @@ Both coding styles are fine, so you can use whichever one you prefer for your pr
 
 <DeepDive>
 
-#### What is a React element, exactly? {/*what-is-a-react-element-exactly*/}
+#### What is a React element, exactly?
 
 An element is a lightweight description of a piece of the user interface. For example, both `<Greeting name="Taylor" />` and `createElement(Greeting, { name: 'Taylor' })` produce an object like this:
 

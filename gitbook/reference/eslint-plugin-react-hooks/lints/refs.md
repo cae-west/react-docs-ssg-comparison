@@ -4,15 +4,15 @@ title: refs
 
 <Intro>
 
-Validates correct usage of refs, not reading/writing during render. See the "pitfalls" section in [`useRef()` usage](/reference/react/useRef#usage).
+Validates correct usage of refs, not reading/writing during render. See the "pitfalls" section in [`useRef()` usage](../../react/useRef.md#usage).
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## Rule Details
 
 Refs hold values that aren't used for rendering. Unlike state, changing a ref doesn't trigger a re-render. Reading or writing `ref.current` during render breaks React's expectations. Refs might not be initialized when you try to read them, and their values can be stale or inconsistent.
 
-## How It Detects Refs {/*how-it-detects-refs*/}
+## How It Detects Refs
 
 The lint only applies these rules to values it knows are refs. A value is inferred as a ref when the compiler sees any of the following patterns:
 
@@ -36,13 +36,13 @@ The lint only applies these rules to values it knows are refs. A value is inferr
 
 Once something is marked as a ref, that inference follows the value through assignments, destructuring, or helper calls. This lets the lint surface violations even when `ref.current` is accessed inside another function that received the ref as an argument.
 
-## Common Violations {/*common-violations*/}
+## Common Violations
 
 - Reading `ref.current` during render
 - Updating `refs` during render
 - Using `refs` for values that should be state
 
-### Invalid {/*invalid*/}
+### Invalid
 
 Examples of incorrect code for this rule:
 
@@ -62,7 +62,7 @@ function Component({value}) {
 }
 ```
 
-### Valid {/*valid*/}
+### Valid
 
 Examples of correct code for this rule:
 
@@ -108,8 +108,8 @@ function Component() {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting
 
-### The lint flagged my plain object with `.current` {/*plain-object-current*/}
+### The lint flagged my plain object with `.current`
 
 The name heuristic intentionally treats `ref.current` and `fooRef.current` as real refs. If you're modeling a custom container object, pick a different name (for example, `box`) or move the mutable value into state. Renaming avoids the lint because the compiler stops inferring it as a ref.

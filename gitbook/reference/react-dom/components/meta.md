@@ -16,9 +16,9 @@ The [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/do
 
 ---
 
-## Reference {/*reference*/}
+## Reference
 
-### `<meta>` {/*meta*/}
+### `<meta>`
 
 To add document metadata, render the [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta). You can render `<meta>` from any component and React will always place the corresponding DOM element in the document head.
 
@@ -28,9 +28,9 @@ To add document metadata, render the [built-in browser `<meta>` component](https
 
 [See more examples below.](#usage)
 
-#### Props {/*props*/}
+#### Props
 
-`<meta>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+`<meta>` supports all [common element props.](common.md#props)
 
 It should have *exactly one* of the following props: `name`, `httpEquiv`, `charset`, `itemProp`. The `<meta>` component does something different depending on which of these props is specified.
 
@@ -40,7 +40,7 @@ It should have *exactly one* of the following props: `name`, `httpEquiv`, `chars
 * `itemProp`: a string. Specifies metadata about a particular item within the document rather than the document as a whole.
 * `content`: a string. Specifies the metadata to be attached when used with the `name` or `itemProp` props or the behavior of the directive when used with the `httpEquiv` prop.
 
-#### Special rendering behavior {/*special-rendering-behavior*/}
+#### Special rendering behavior
 
 React will always place the DOM element corresponding to the `<meta>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<meta>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render `<meta>` components itself.
 
@@ -48,9 +48,9 @@ There is one exception to this: if `<meta>` has an [`itemProp`](https://develope
 
 ---
 
-## Usage {/*usage*/}
+## Usage
 
-### Annotating the document with metadata {/*annotating-the-document-with-metadata*/}
+### Annotating the document with metadata
 
 You can annotate the document with metadata such as keywords, a summary, or the author’s name. React will place this metadata within the document `<head>` regardless of where in the React tree it is rendered.
 
@@ -81,7 +81,7 @@ export default function SiteMapPage() {
 
 </SandpackWithHTMLOutput>
 
-### Annotating specific items within the document with metadata {/*annotating-specific-items-within-the-document-with-metadata*/}
+### Annotating specific items within the document with metadata
 
 You can use the `<meta>` component with the `itemProp` prop to annotate specific items within the document with metadata. In this case, React will *not* place these annotations within the document `<head>` but will place them like any other React component.
 
