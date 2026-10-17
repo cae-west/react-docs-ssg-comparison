@@ -10,6 +10,15 @@ module.exports = function reactHome() {
     },
     configureWebpack() {
       return {
+        module: {
+          rules: [
+            {
+              test: /react-home[\\/]components[\\/]Layout[\\/]HomeContent\.js$/,
+              enforce: 'pre',
+              use: [{loader: path.resolve(__dirname, 'base-url-loader.cjs')}],
+            },
+          ],
+        },
         resolve: {
           alias: {
             'next/link': path.resolve(__dirname, '../src/react-home/shims/next-link.js'),
